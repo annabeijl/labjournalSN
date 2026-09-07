@@ -27,7 +27,7 @@ navbar:
     href: https://github.com/annabeijl/labjournalSN
 output:
   html_document:
-    theme: journal # options: flatly / journal
+    theme: flatly # options: flatly / journal
     highlight: default
     toc:  true # table of contents
     toc_float: true
