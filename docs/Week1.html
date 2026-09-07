@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Anna Beijl" />
+
+<meta name="date" content="2026-09-02" />
+
+<title>Lab journal week 1</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lab journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Week1.html">Week 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="intro.html">Introduction</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/annabeijl/labjournalSN">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><strong>Lab journal week 1</strong></h1>
+<h4 class="author">Anna Beijl</h4>
+<h4 class="date">02 September 2026</h4>
+
+</div>
+
+
+<div id="workshop-31-08-26" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Workshop 31-08-26</h1>
+<div id="summary" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> <em>Summary</em></h2>
+<p>In the workshop we did the following:</p>
+<ul>
+<li><p>Intro to the course and final assignment</p></li>
+<li><p>Intro to some social network concepts / theory</p></li>
+<li><p>Intro to Rmd / Github and setting up the lab journal and
+website</p></li>
+</ul>
+<p>I started working through the R tutorial in Appendix A of the SNASS
+textbook. I also started thinking about research questions, and started
+looking for literature.</p>
+</div>
+<div id="current-to-do-list" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> <em>Current to do
+list</em></h2>
+<ul>
+<li>Think about RQs</li>
+<li>Look for literature and pick two articles to present</li>
+<li>Finish Appendices A and B</li>
+<li>Finish the lab journal for this week</li>
+<li>Read chapters 1, 2, 3.3, 4 in SNASS textbook</li>
+</ul>
+</div>
+</div>
+<div id="r-and-github" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> R and Github</h1>
+<div id="setting-up-the-lab-journal" class="section level2"
+number="2.1">
+<h2><span class="header-section-number">2.1</span> <em>Setting up the
+lab journal</em></h2>
+<pre class="r"><code># install.packages(&quot;rmarkdown&quot;, dependencies = TRUE) 
+# install.packages(&quot;usethis&quot;) 
+library(&quot;usethis&quot;)
+# use_git_config(user.name = &quot;annabeijl&quot;, user.email = &quot;anna.beijl@ru.nl&quot;) 
+# create_github_token() 
+# gitcreds::gitcreds_set()</code></pre>
+</div>
+<div id="working-through-the-r-tutorial" class="section level2"
+number="2.2">
+<h2><span class="header-section-number">2.2</span> <em>Working through
+the R tutorial</em></h2>
+<p>From the SNASS textbook, Appendix A. I saved the R code in a
+different script, to keep this one clean and legible.</p>
+</div>
+</div>
+<div id="rqs-and-literature" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> RQs and literature</h1>
+<div id="first-setup-rqs" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> <em>First setup
+RQs</em></h2>
+<ul>
+<li><p><strong>Descriptive (macro / network level)</strong> &gt; To what
+extent is cross-group friendship / diversity in students’ social
+networks explained by secondary transfer (spillover) effects of
+prejudice?</p></li>
+<li><p><strong>Explanatory (micro level)</strong> &gt; social influence
+processes</p></li>
+</ul>
+</div>
+<div id="two-articles" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> <em>Two
+articles</em></h2>
+<ol style="list-style-type: decimal">
+<li><p>Chavez et al. 2021 (<a href="https://doi.org/10.1002/cad.20403"
+class="uri">https://doi.org/10.1002/cad.20403</a>)</p>
+<p><em>The role of perspective-taking and low social class prejudice on
+cross-ethnic friendship formation</em></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Central question</strong>: Are people with low prejudice
+on social class level + perspective-taking abilities, also more likely
+to have low prejudice on ethnicity level? And thus engage in
+cross-ethnic friendships?</p>
+<ul>
+<li>My interest: intersectionality social class x ethnicity / spillover
+effects of inclusion towards other out groups?</li>
+</ul></li>
+<li><p><strong>Theory</strong>: social networks perspective</p>
+<ul>
+<li><p>Micro-level explanatory mechanisms: propinquity (availability of
+options)? (ethnic) homophily? Individual attitudes! Perspective-taking +
+social class prejudice</p></li>
+<li><p>A multicultural context does not imply that positive inter-group
+contact will take place. Instead, we can expect that, by default,
+individuals will spendtime and interact with peers from their own
+ingroup. Thus: focus on <em>perspective taking</em> and
+<em>prejudice</em> &gt; And shared context effects are not
+likely</p></li>
+<li><p>“Social class shapes and affects the life experiences regarding
+other social categories, such as ethnicity” &gt; “Members of minority
+groups in Chile (i.e., indigenous and immigrant students) are usually
+seen as belonging to a lower status”</p></li>
+<li><p>Not really intersectional though</p></li>
+</ul></li>
+<li><p><strong>Data:</strong> 242 students (M age = 12, all relatively
+low SES) from ﬁve multicultural classrooms in Chile, longitudinal data
+on 3 time points, from 2017</p></li>
+<li><p><strong>Method</strong>: longitudinal multiplex social network
+models implemented in RSiena</p>
+<ul>
+<li>Reciprocity, indegree popularity, in-degree activity, similarity,
+density, transitivity</li>
+</ul></li>
+<li><p><strong>Results</strong>: all hypotheses supported</p>
+<ul>
+<li><p>So: yes, homophily</p></li>
+<li><p>But also: more cross-ethnic friendship among students with high
+perspective taking and low social class prejudice</p></li>
+<li><p>When social class prejudice is low, this allows students to break
+down the barrier of ethnicity and, consequently, to build friendships
+with low social class peers who, importantly, belong to a different
+ethnic group</p></li>
+</ul></li>
+</ol></li>
+</ol>
+<p><img src="images/clipboard-4134755329.png" width="582" /></p>
+<p><img src="images/clipboard-2313438997.png" width="584" /></p>
+<ul>
+<li><p>Social networks perspective</p>
+<ul>
+<li><p><strong>Hypotheses and theoretical mechanisms</strong>:
+relationships</p>
+<ul>
+<li><p>But: individual attributes?</p></li>
+<li><p>Remains on the micro level; no descriptive macro level
+RQ</p></li>
+</ul></li>
+<li><p><strong>Data</strong>: complete network / socionet, longitudinal
+&gt; great</p></li>
+<li><p><strong>Method</strong>: also seems fitting, don’t know enough
+RSiena yet</p></li>
+</ul></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>a. Zingora et al. 2026 (<a
+href="https://psycnet.apa.org/doi/10.1037/pspi0000530"
+class="uri">https://psycnet.apa.org/doi/10.1037/pspi0000530</a>)
+<strong>NO ACCESS :(</strong></p>
+<p><em>Outgroup friendships and social influence in the development of
+adolescent attitudes toward secondary outgroups</em></p>
+<ol style="list-style-type: decimal">
+<li><strong>Central question</strong>: secondary transfer effects &gt;
+due to generalization of intergroup contact, or social influence as
+friends shape each other’s outgroup attitudes?</li>
+<li><strong>Data</strong>: 3 studies, 2 empirical and 1 simulation.
+Longitudinal network data on adolescents (<em>n</em> = 812, <em>n</em> =
+2,559)</li>
+<li><strong>Method</strong>: stochastic actor-oriented models (?)</li>
+<li><strong>Results</strong>: support social influence mechanism
+(‘attitudes on secondary outgroups become more similar to those of
+primary outgroup friends’) more than generalization of intergroup
+contact (‘attitudes on secondary ougroups become more inclusive when
+having more outgroup friends’)</li>
+</ol></li>
+</ol>
+<ul>
+<li><p>Social networks perspective:</p>
+<ul>
+<li><p><strong>Theoretical mechanisms</strong>: seems okay, focus on
+social influence</p></li>
+<li><p><strong>Data</strong>: complete network data? idk…</p>
+<ul>
+<li>“Actor-oriented models” = egonet instead of socionet?</li>
+</ul></li>
+<li><p><strong>Method</strong>: seems okay</p></li>
+</ul></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>b. Bracegirdle et al. 2019 (<a
+href="https://psycnet.apa.org/doi/10.1037/pspi0000530"
+class="uri">https://psycnet.apa.org/doi/10.1037/pspi0000530</a>)</p>
+<p><em>From Mate to Hate? Prejudice Socialization in Friendship
+Networks</em></p>
+<ol style="list-style-type: decimal">
+<li><strong>Central question</strong>: To what extent does socialization
+among low-, medium-, and high-prejudice individuals lead to changes in
+prejudice (toward ethnic and religious outgroups) in a social
+network?</li>
+<li><strong>Theory</strong>:
+<ul>
+<li><p>Socialization (“increase in similarity between friends over time
+through mutual influence”)</p></li>
+<li><p>Size of the socialization effect? And does this vary based on
+someone’s initial levels of prejudice?</p>
+<ul>
+<li><p>People may break ties with dissimilar friends &gt; echo chambers
+that reinforce existing views + no exposure to others &gt; attitude
+polarization?</p></li>
+<li><p>Ties with dissimilar friends are maintained &gt; adjust opinions
+based on new info (especially from friends) &gt; attitude
+convergence?</p></li>
+</ul></li>
+<li><p>Selection vs influence (!)</p></li>
+</ul></li>
+<li><strong>Data</strong>: longitudinal survey data on German
+adolescents friendships, 2013-2017 + network simulations
+<ul>
+<li>No clear predictions on whether socialization will be stronger,
+weaker, or equivalent depending on the initial levels of prejudice among
+individuals and their friends &gt; simulations</li>
+</ul></li>
+<li><strong>Method</strong>: stochastic actor-oriented models in RSiena
+(incl. simulation)</li>
+<li><strong>Results</strong>: social influence supported
+<ul>
+<li><p>Individuals’ levels of prejudice became more similar to their
+friends’ levels of prejudice over time (= positive influence)</p></li>
+<li><p>Socialization was strongest when friends had initially opposing
+attitudes and weakest when friends had initially concordant
+attitudes.</p></li>
+</ul></li>
+</ol></li>
+</ol>
+<ul>
+<li><p>Social networks perspective:</p>
+<ul>
+<li><p><strong>Theory</strong>: social networks + relations (social
+influence), but “link microlevel mechanisms (e.g., socialization) to
+macrolevel outcomes (e.g., prejudice in a given social context).” &gt;
+again, macro starting conditions are missing, focus on micro
+mechanisms</p></li>
+<li><p><strong>Data</strong>: again, possibly egonet instead of socionet
+data? But not sure</p></li>
+<li><p><strong>Method</strong>: seems okay</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIioqTGFiIGpvdXJuYWwgd2VlayAxKioiDQphdXRob3I6ICJBbm5hIEJlaWpsIg0KZGF0ZTogIjAyIFNlcHRlbWJlciAyMDI2Ig0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KIyBXb3Jrc2hvcCAzMS0wOC0yNg0KDQojIyAqU3VtbWFyeSoNCg0KSW4gdGhlIHdvcmtzaG9wIHdlIGRpZCB0aGUgZm9sbG93aW5nOg0KDQotICAgSW50cm8gdG8gdGhlIGNvdXJzZSBhbmQgZmluYWwgYXNzaWdubWVudA0KDQotICAgSW50cm8gdG8gc29tZSBzb2NpYWwgbmV0d29yayBjb25jZXB0cyAvIHRoZW9yeQ0KDQotICAgSW50cm8gdG8gUm1kIC8gR2l0aHViIGFuZCBzZXR0aW5nIHVwIHRoZSBsYWIgam91cm5hbCBhbmQgd2Vic2l0ZQ0KDQpJIHN0YXJ0ZWQgd29ya2luZyB0aHJvdWdoIHRoZSBSIHR1dG9yaWFsIGluIEFwcGVuZGl4IEEgb2YgdGhlIFNOQVNTIHRleHRib29rLiBJIGFsc28gc3RhcnRlZCB0aGlua2luZyBhYm91dCByZXNlYXJjaCBxdWVzdGlvbnMsIGFuZCBzdGFydGVkIGxvb2tpbmcgZm9yIGxpdGVyYXR1cmUuDQoNCiMjICpDdXJyZW50IHRvIGRvIGxpc3QqDQoNCi0gICBUaGluayBhYm91dCBSUXMNCi0gICBMb29rIGZvciBsaXRlcmF0dXJlIGFuZCBwaWNrIHR3byBhcnRpY2xlcyB0byBwcmVzZW50DQotICAgRmluaXNoIEFwcGVuZGljZXMgQSBhbmQgQg0KLSAgIEZpbmlzaCB0aGUgbGFiIGpvdXJuYWwgZm9yIHRoaXMgd2Vlaw0KLSAgIFJlYWQgY2hhcHRlcnMgMSwgMiwgMy4zLCA0IGluIFNOQVNTIHRleHRib29rDQoNCiMgUiBhbmQgR2l0aHViDQoNCiMjICpTZXR0aW5nIHVwIHRoZSBsYWIgam91cm5hbCoNCg0KYGBge3Igd2FybmluZz1GQUxTRX0NCiMgaW5zdGFsbC5wYWNrYWdlcygicm1hcmtkb3duIiwgZGVwZW5kZW5jaWVzID0gVFJVRSkgDQojIGluc3RhbGwucGFja2FnZXMoInVzZXRoaXMiKSANCmxpYnJhcnkoInVzZXRoaXMiKQ0KIyB1c2VfZ2l0X2NvbmZpZyh1c2VyLm5hbWUgPSAiYW5uYWJlaWpsIiwgdXNlci5lbWFpbCA9ICJhbm5hLmJlaWpsQHJ1Lm5sIikgDQojIGNyZWF0ZV9naXRodWJfdG9rZW4oKSANCiMgZ2l0Y3JlZHM6OmdpdGNyZWRzX3NldCgpDQpgYGANCg0KIyMgKldvcmtpbmcgdGhyb3VnaCB0aGUgUiB0dXRvcmlhbCoNCg0KRnJvbSB0aGUgU05BU1MgdGV4dGJvb2ssIEFwcGVuZGl4IEEuIEkgc2F2ZWQgdGhlIFIgY29kZSBpbiBhIGRpZmZlcmVudCBzY3JpcHQsIHRvIGtlZXAgdGhpcyBvbmUgY2xlYW4gYW5kIGxlZ2libGUuDQoNCiMgUlFzIGFuZCBsaXRlcmF0dXJlDQoNCiMjICpGaXJzdCBzZXR1cCBSUXMqDQoNCi0gICAqKkRlc2NyaXB0aXZlIChtYWNybyAvIG5ldHdvcmsgbGV2ZWwpKiogXD4gVG8gd2hhdCBleHRlbnQgaXMgY3Jvc3MtZ3JvdXAgZnJpZW5kc2hpcCAvIGRpdmVyc2l0eSBpbiBzdHVkZW50cycgc29jaWFsIG5ldHdvcmtzIGV4cGxhaW5lZCBieSBzZWNvbmRhcnkgdHJhbnNmZXIgKHNwaWxsb3ZlcikgZWZmZWN0cyBvZiBwcmVqdWRpY2U/DQoNCi0gICAqKkV4cGxhbmF0b3J5IChtaWNybyBsZXZlbCkqKiBcPiBzb2NpYWwgaW5mbHVlbmNlIHByb2Nlc3Nlcw0KDQojIyAqVHdvIGFydGljbGVzKg0KDQoxLiAgQ2hhdmV6IGV0IGFsLiAyMDIxICg8aHR0cHM6Ly9kb2kub3JnLzEwLjEwMDIvY2FkLjIwNDAzPikNCg0KICAgICpUaGUgcm9sZSBvZiBwZXJzcGVjdGl2ZS10YWtpbmcgYW5kIGxvdyBzb2NpYWwgY2xhc3MgcHJlanVkaWNlIG9uIGNyb3NzLWV0aG5pYyBmcmllbmRzaGlwIGZvcm1hdGlvbioNCg0KICAgIDEuICAqKkNlbnRyYWwgcXVlc3Rpb24qKjogQXJlIHBlb3BsZSB3aXRoIGxvdyBwcmVqdWRpY2Ugb24gc29jaWFsIGNsYXNzIGxldmVsICsgcGVyc3BlY3RpdmUtdGFraW5nIGFiaWxpdGllcywgYWxzbyBtb3JlIGxpa2VseSB0byBoYXZlIGxvdyBwcmVqdWRpY2Ugb24gZXRobmljaXR5IGxldmVsPyBBbmQgdGh1cyBlbmdhZ2UgaW4gY3Jvc3MtZXRobmljIGZyaWVuZHNoaXBzPw0KDQogICAgICAgIC0gICBNeSBpbnRlcmVzdDogaW50ZXJzZWN0aW9uYWxpdHkgc29jaWFsIGNsYXNzIHggZXRobmljaXR5IC8gc3BpbGxvdmVyIGVmZmVjdHMgb2YgaW5jbHVzaW9uIHRvd2FyZHMgb3RoZXIgb3V0IGdyb3Vwcz8NCg0KICAgIDIuICAqKlRoZW9yeSoqOiBzb2NpYWwgbmV0d29ya3MgcGVyc3BlY3RpdmUNCg0KICAgICAgICAtICAgTWljcm8tbGV2ZWwgZXhwbGFuYXRvcnkgbWVjaGFuaXNtczogcHJvcGlucXVpdHkgKGF2YWlsYWJpbGl0eSBvZiBvcHRpb25zKT8gKGV0aG5pYykgaG9tb3BoaWx5PyBJbmRpdmlkdWFsIGF0dGl0dWRlcyEgUGVyc3BlY3RpdmUtdGFraW5nICsgc29jaWFsIGNsYXNzIHByZWp1ZGljZQ0KDQogICAgICAgIC0gICBBIG11bHRpY3VsdHVyYWwgY29udGV4dCBkb2VzIG5vdCBpbXBseSB0aGF0IHBvc2l0aXZlIGludGVyLWdyb3VwIGNvbnRhY3Qgd2lsbCB0YWtlIHBsYWNlLiBJbnN0ZWFkLCB3ZSBjYW4gZXhwZWN0IHRoYXQsIGJ5IGRlZmF1bHQsIGluZGl2aWR1YWxzIHdpbGwgc3BlbmR0aW1lIGFuZCBpbnRlcmFjdCB3aXRoIHBlZXJzIGZyb20gdGhlaXIgb3duIGluZ3JvdXAuIFRodXM6IGZvY3VzIG9uICpwZXJzcGVjdGl2ZSB0YWtpbmcqIGFuZCAqcHJlanVkaWNlKiBcPiBBbmQgc2hhcmVkIGNvbnRleHQgZWZmZWN0cyBhcmUgbm90IGxpa2VseQ0KDQogICAgICAgIC0gICAiU29jaWFsIGNsYXNzIHNoYXBlcyBhbmQgYWZmZWN0cyB0aGUgbGlmZSBleHBlcmllbmNlcyByZWdhcmRpbmcgb3RoZXIgc29jaWFsIGNhdGVnb3JpZXMsIHN1Y2ggYXMgZXRobmljaXR5IiBcPiAiTWVtYmVycyBvZiBtaW5vcml0eSBncm91cHMgaW4gQ2hpbGUgKGkuZS4sIGluZGlnZW5vdXMgYW5kIGltbWlncmFudCBzdHVkZW50cykgYXJlIHVzdWFsbHkgc2VlbiBhcyBiZWxvbmdpbmcgdG8gYSBsb3dlciBzdGF0dXMiDQoNCiAgICAgICAgLSAgIE5vdCByZWFsbHkgaW50ZXJzZWN0aW9uYWwgdGhvdWdoDQoNCiAgICAzLiAgKipEYXRhOioqIDI0MiBzdHVkZW50cyAoTSBhZ2UgPSAxMiwgYWxsIHJlbGF0aXZlbHkgbG93IFNFUykgZnJvbSDvrIF2ZSBtdWx0aWN1bHR1cmFsIGNsYXNzcm9vbXMgaW4gQ2hpbGUsIGxvbmdpdHVkaW5hbCBkYXRhIG9uIDMgdGltZSBwb2ludHMsIGZyb20gMjAxNw0KDQogICAgNC4gICoqTWV0aG9kKio6IGxvbmdpdHVkaW5hbCBtdWx0aXBsZXggc29jaWFsIG5ldHdvcmsgbW9kZWxzIGltcGxlbWVudGVkIGluIFJTaWVuYQ0KDQogICAgICAgIC0gICBSZWNpcHJvY2l0eSwgaW5kZWdyZWUgcG9wdWxhcml0eSwgaW4tZGVncmVlIGFjdGl2aXR5LCBzaW1pbGFyaXR5LCBkZW5zaXR5LCB0cmFuc2l0aXZpdHkNCg0KICAgIDUuICAqKlJlc3VsdHMqKjogYWxsIGh5cG90aGVzZXMgc3VwcG9ydGVkDQoNCiAgICAgICAgLSAgIFNvOiB5ZXMsIGhvbW9waGlseQ0KDQogICAgICAgIC0gICBCdXQgYWxzbzogbW9yZSBjcm9zcy1ldGhuaWMgZnJpZW5kc2hpcCBhbW9uZyBzdHVkZW50cyB3aXRoIGhpZ2ggcGVyc3BlY3RpdmUgdGFraW5nIGFuZCBsb3cgc29jaWFsIGNsYXNzIHByZWp1ZGljZQ0KDQogICAgICAgIC0gICBXaGVuIHNvY2lhbCBjbGFzcyBwcmVqdWRpY2UgaXMgbG93LCB0aGlzIGFsbG93cyBzdHVkZW50cyB0byBicmVhayBkb3duIHRoZSBiYXJyaWVyIG9mIGV0aG5pY2l0eSBhbmQsIGNvbnNlcXVlbnRseSwgdG8gYnVpbGQgZnJpZW5kc2hpcHMgd2l0aCBsb3cgc29jaWFsIGNsYXNzIHBlZXJzIHdobywgaW1wb3J0YW50bHksIGJlbG9uZyB0byBhIGRpZmZlcmVudCBldGhuaWMgZ3JvdXANCg0KIVtdKGltYWdlcy9jbGlwYm9hcmQtNDEzNDc1NTMyOS5wbmcpe3dpZHRoPSI1ODIifQ0KDQohW10oaW1hZ2VzL2NsaXBib2FyZC0yMzEzNDM4OTk3LnBuZyl7d2lkdGg9IjU4NCJ9DQoNCi0gICBTb2NpYWwgbmV0d29ya3MgcGVyc3BlY3RpdmUNCg0KICAgIC0gICAqKkh5cG90aGVzZXMgYW5kIHRoZW9yZXRpY2FsIG1lY2hhbmlzbXMqKjogcmVsYXRpb25zaGlwcw0KDQogICAgICAgIC0gICBCdXQ6IGluZGl2aWR1YWwgYXR0cmlidXRlcz8NCg0KICAgICAgICAtICAgUmVtYWlucyBvbiB0aGUgbWljcm8gbGV2ZWw7IG5vIGRlc2NyaXB0aXZlIG1hY3JvIGxldmVsIFJRDQoNCiAgICAtICAgKipEYXRhKio6IGNvbXBsZXRlIG5ldHdvcmsgLyBzb2Npb25ldCwgbG9uZ2l0dWRpbmFsIFw+IGdyZWF0DQoNCiAgICAtICAgKipNZXRob2QqKjogYWxzbyBzZWVtcyBmaXR0aW5nLCBkb24ndCBrbm93IGVub3VnaCBSU2llbmEgeWV0DQoNCjIuICBhXC4gWmluZ29yYSBldCBhbC4gMjAyNiAoPGh0dHBzOi8vcHN5Y25ldC5hcGEub3JnL2RvaS8xMC4xMDM3L3BzcGkwMDAwNTMwPikgKipOTyBBQ0NFU1MgOigqKg0KDQogICAgKk91dGdyb3VwIGZyaWVuZHNoaXBzIGFuZCBzb2NpYWwgaW5mbHVlbmNlIGluIHRoZSBkZXZlbG9wbWVudCBvZiBhZG9sZXNjZW50IGF0dGl0dWRlcyB0b3dhcmQgc2Vjb25kYXJ5IG91dGdyb3VwcyoNCg0KICAgIDEuICAqKkNlbnRyYWwgcXVlc3Rpb24qKjogc2Vjb25kYXJ5IHRyYW5zZmVyIGVmZmVjdHMgXD4gZHVlIHRvIGdlbmVyYWxpemF0aW9uIG9mIGludGVyZ3JvdXAgY29udGFjdCwgb3Igc29jaWFsIGluZmx1ZW5jZSBhcyBmcmllbmRzIHNoYXBlIGVhY2ggb3RoZXIncyBvdXRncm91cCBhdHRpdHVkZXM/DQogICAgMi4gICoqRGF0YSoqOiAzIHN0dWRpZXMsIDIgZW1waXJpY2FsIGFuZCAxIHNpbXVsYXRpb24uIExvbmdpdHVkaW5hbCBuZXR3b3JrIGRhdGEgb24gYWRvbGVzY2VudHMgKCpuKiA9IDgxMiwgKm4qID0gMiw1NTkpDQogICAgMy4gICoqTWV0aG9kKio6IHN0b2NoYXN0aWMgYWN0b3Itb3JpZW50ZWQgbW9kZWxzICg/KQ0KICAgIDQuICAqKlJlc3VsdHMqKjogc3VwcG9ydCBzb2NpYWwgaW5mbHVlbmNlIG1lY2hhbmlzbSAoJ2F0dGl0dWRlcyBvbiBzZWNvbmRhcnkgb3V0Z3JvdXBzIGJlY29tZSBtb3JlIHNpbWlsYXIgdG8gdGhvc2Ugb2YgcHJpbWFyeSBvdXRncm91cCBmcmllbmRzJykgbW9yZSB0aGFuIGdlbmVyYWxpemF0aW9uIG9mIGludGVyZ3JvdXAgY29udGFjdCAoJ2F0dGl0dWRlcyBvbiBzZWNvbmRhcnkgb3Vncm91cHMgYmVjb21lIG1vcmUgaW5jbHVzaXZlIHdoZW4gaGF2aW5nIG1vcmUgb3V0Z3JvdXAgZnJpZW5kcycpDQoNCi0gICBTb2NpYWwgbmV0d29ya3MgcGVyc3BlY3RpdmU6DQoNCiAgICAtICAgKipUaGVvcmV0aWNhbCBtZWNoYW5pc21zKio6IHNlZW1zIG9rYXksIGZvY3VzIG9uIHNvY2lhbCBpbmZsdWVuY2UNCg0KICAgIC0gICAqKkRhdGEqKjogY29tcGxldGUgbmV0d29yayBkYXRhPyBpZGsuLi4NCg0KICAgICAgICAtICAgIkFjdG9yLW9yaWVudGVkIG1vZGVscyIgPSBlZ29uZXQgaW5zdGVhZCBvZiBzb2Npb25ldD8NCg0KICAgIC0gICAqKk1ldGhvZCoqOiBzZWVtcyBva2F5DQoNCjIuICBiXC4gQnJhY2VnaXJkbGUgZXQgYWwuIDIwMTkgKDxodHRwczovL3BzeWNuZXQuYXBhLm9yZy9kb2kvMTAuMTAzNy9wc3BpMDAwMDUzMD4pDQoNCiAgICAqRnJvbSBNYXRlIHRvIEhhdGU/IFByZWp1ZGljZSBTb2NpYWxpemF0aW9uIGluIEZyaWVuZHNoaXAgTmV0d29ya3MqDQoNCiAgICAxLiAgKipDZW50cmFsIHF1ZXN0aW9uKio6IFRvIHdoYXQgZXh0ZW50IGRvZXMgc29jaWFsaXphdGlvbiBhbW9uZyBsb3ctLCBtZWRpdW0tLCBhbmQgaGlnaC1wcmVqdWRpY2UgaW5kaXZpZHVhbHMgbGVhZCB0byBjaGFuZ2VzIGluIHByZWp1ZGljZSAodG93YXJkIGV0aG5pYyBhbmQgcmVsaWdpb3VzIG91dGdyb3VwcykgaW4gYSBzb2NpYWwgbmV0d29yaz8NCiAgICAyLiAgKipUaGVvcnkqKjoNCiAgICAgICAgLSAgIFNvY2lhbGl6YXRpb24gKCJpbmNyZWFzZSBpbiBzaW1pbGFyaXR5IGJldHdlZW4gZnJpZW5kcyBvdmVyIHRpbWUgdGhyb3VnaCBtdXR1YWwgaW5mbHVlbmNlIikNCg0KICAgICAgICAtICAgU2l6ZSBvZiB0aGUgc29jaWFsaXphdGlvbiBlZmZlY3Q/IEFuZCBkb2VzIHRoaXMgdmFyeSBiYXNlZCBvbiBzb21lb25lJ3MgaW5pdGlhbCBsZXZlbHMgb2YgcHJlanVkaWNlPw0KDQogICAgICAgICAgICAtICAgUGVvcGxlIG1heSBicmVhayB0aWVzIHdpdGggZGlzc2ltaWxhciBmcmllbmRzIFw+IGVjaG8gY2hhbWJlcnMgdGhhdCByZWluZm9yY2UgZXhpc3Rpbmcgdmlld3MgKyBubyBleHBvc3VyZSB0byBvdGhlcnMgXD4gYXR0aXR1ZGUgcG9sYXJpemF0aW9uPw0KDQogICAgICAgICAgICAtICAgVGllcyB3aXRoIGRpc3NpbWlsYXIgZnJpZW5kcyBhcmUgbWFpbnRhaW5lZCBcPiBhZGp1c3Qgb3BpbmlvbnMgYmFzZWQgb24gbmV3IGluZm8gKGVzcGVjaWFsbHkgZnJvbSBmcmllbmRzKSBcPiBhdHRpdHVkZSBjb252ZXJnZW5jZT8NCg0KICAgICAgICAtICAgU2VsZWN0aW9uIHZzIGluZmx1ZW5jZSAoISkNCiAgICAzLiAgKipEYXRhKio6IGxvbmdpdHVkaW5hbCBzdXJ2ZXkgZGF0YSBvbiBHZXJtYW4gYWRvbGVzY2VudHMgZnJpZW5kc2hpcHMsIDIwMTMtMjAxNyArIG5ldHdvcmsgc2ltdWxhdGlvbnMNCiAgICAgICAgLSAgIE5vIGNsZWFyIHByZWRpY3Rpb25zIG9uIHdoZXRoZXIgc29jaWFsaXphdGlvbiB3aWxsIGJlIHN0cm9uZ2VyLCB3ZWFrZXIsIG9yIGVxdWl2YWxlbnQgZGVwZW5kaW5nIG9uIHRoZSBpbml0aWFsIGxldmVscyBvZiBwcmVqdWRpY2UgYW1vbmcgaW5kaXZpZHVhbHMgYW5kIHRoZWlyIGZyaWVuZHMgXD4gc2ltdWxhdGlvbnMNCiAgICA0LiAgKipNZXRob2QqKjogc3RvY2hhc3RpYyBhY3Rvci1vcmllbnRlZCBtb2RlbHMgaW4gUlNpZW5hIChpbmNsLiBzaW11bGF0aW9uKQ0KICAgIDUuICAqKlJlc3VsdHMqKjogc29jaWFsIGluZmx1ZW5jZSBzdXBwb3J0ZWQNCiAgICAgICAgLSAgIEluZGl2aWR1YWxz4oCZIGxldmVscyBvZiBwcmVqdWRpY2UgYmVjYW1lIG1vcmUgc2ltaWxhciB0byB0aGVpciBmcmllbmRz4oCZIGxldmVscyBvZiBwcmVqdWRpY2Ugb3ZlciB0aW1lICg9IHBvc2l0aXZlIGluZmx1ZW5jZSkNCg0KICAgICAgICAtICAgU29jaWFsaXphdGlvbiB3YXMgc3Ryb25nZXN0IHdoZW4gZnJpZW5kcyBoYWQgaW5pdGlhbGx5IG9wcG9zaW5nIGF0dGl0dWRlcyBhbmQgd2Vha2VzdCB3aGVuIGZyaWVuZHMgaGFkIGluaXRpYWxseSBjb25jb3JkYW50IGF0dGl0dWRlcy4NCg0KLSAgIFNvY2lhbCBuZXR3b3JrcyBwZXJzcGVjdGl2ZToNCg0KICAgIC0gICAqKlRoZW9yeSoqOiBzb2NpYWwgbmV0d29ya3MgKyByZWxhdGlvbnMgKHNvY2lhbCBpbmZsdWVuY2UpLCBidXQgImxpbmsgbWljcm9sZXZlbCBtZWNoYW5pc21zIChlLmcuLCBzb2NpYWxpemF0aW9uKSB0byBtYWNyb2xldmVsIG91dGNvbWVzIChlLmcuLCBwcmVqdWRpY2UgaW4gYSBnaXZlbiBzb2NpYWwgY29udGV4dCkuIiBcPiBhZ2FpbiwgbWFjcm8gc3RhcnRpbmcgY29uZGl0aW9ucyBhcmUgbWlzc2luZywgZm9jdXMgb24gbWljcm8gbWVjaGFuaXNtcw0KDQogICAgLSAgICoqRGF0YSoqOiBhZ2FpbiwgcG9zc2libHkgZWdvbmV0IGluc3RlYWQgb2Ygc29jaW9uZXQgZGF0YT8gQnV0IG5vdCBzdXJlDQoNCiAgICAtICAgKipNZXRob2QqKjogc2VlbXMgb2theQ0K</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Week1.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
