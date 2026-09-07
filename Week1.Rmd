@@ -1,0 +1,53 @@
+---
+title: "Week1"
+author: "Anna Beijl"
+date: "2026-08-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Workshop 31-08-26
+
+## Summary
+
+In the workshop we did the following:
+
+-   Intro in the course and final assignment
+
+-   Intro in some social network concepts / theory
+
+-   Intro inRmd and setting up the lab journal and website
+
+I started with the R tutorial in Appendix A of the SNASS textbook. I also started thinking about research questions, and started looking for literature.
+
+## Current to do list
+
+-   Think about RQs
+-   Look for literature and pick two articles to present
+-   Finish the tutorial, Appendices A and B
+-   Finish the lab journal for this week
+-   Read chapters in SNASS textbook
+
+# Lab journal
+
+## Setting up the lab journal
+
+```{r}
+# install.packages("rmarkdown", dependencies = TRUE) 
+# install.packages("usethis") 
+library("usethis")
+use_git_config(user.name = "annabeijl", user.email = "anna.beijl@ru.nl") 
+create_github_token() 
+gitcreds::gitcreds_set() 
+```
+
+## Working through the R tutorial 
+
+From the SNASS textbook, Appendix A
+
+```{r}
+
+```

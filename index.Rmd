@@ -1,19 +1,10 @@
 ---
-title: "Lab journal"
+title: "Lab journal - Social Networks"
 author: "by: Anna Beijl"
 bibliography: references.bib
 ---
 
-hi :D
-
-# Heading 1
-** bold **
-* italics *
-$$\ Sigma^{i} x
-
-```{r}
-2 + 2 
-```
+Welcome to my lab journal <3
 
 ```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
 # install.packages("remotes")
@@ -50,11 +41,11 @@ But please note, we are not here to make a beautiful website, our intention is j
 
 ::::: columns
 ::: {.column width="50%"}
-# My Lab Journal
+# Lab Journal - Social Networks
 
 Last compiled on `r format(Sys.time(), '%B, %Y')`
 
-*Describe lab journal here.*
+*Use the top menu to navigate through the journal.*
 
 <br>
 
@@ -64,11 +55,10 @@ Last compiled on `r format(Sys.time(), '%B, %Y')`
 
 Everyone can fork this repository. Use this example to journal your lab work and assignments.
 
-We, Jochem Tolsma and Bas Hofstra, use this repository for our Social Network Analysis For Social Scientists course [@SNASS]. <!--- this is a reference, stored in references.bib. It will be automatically added at the bottom of the page --->
 :::
 
 ::: {.column width="50%"}
-![](images/cover.jpg)
+![](C:/Users/annab/Downloads/thumbnail.jpg)
 :::
 :::::
 
@@ -83,8 +73,6 @@ We, Jochem Tolsma and Bas Hofstra, use this repository for our Social Network An
 4.  Change everything to make it your own!
 
 <br>
-
-Use the top menu to navigate through the journal.
 
 ------------------------------------------------------------------------
 

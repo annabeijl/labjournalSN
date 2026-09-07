@@ -1,6 +1,6 @@
-name: "Example Lab Journal"
+name: "Lab Journal - Social Networks"
 author: 
-  - 'Your Name'
+  - 'Anna Beijl'
 output_dir: "docs"
 exclude: 
   - "data"
@@ -9,23 +9,27 @@ bibliography: references.bib
 navbar:
   left:
     - icon: fa-home
-      href: index.html
-    - text: "My journal"
+      href: index.html # dont change this!
+    - text: "Lab journal"
       menu:
-      - text: "Page 1"
-        href: lab1.html
+      - text: "Week 1"
+        href: Week1.html
+    - text: "Final project"
+      menu: 
+      - text: "Introduction"
+        href: intro.html
         
         # here, other .Rmds can be added
 
 
   right:
   - icon: fab fa-github
-    href: https://github.com/JochemTolsma/labjournal
+    href: https://github.com/annabeijl/labjournalSN
 output:
   html_document:
-    theme: flatly
+    theme: journal # options: flatly / journal
     highlight: default
-    toc:  true
+    toc:  true # table of contents
     toc_float: true
     number_sections: true
     code_folding: show
