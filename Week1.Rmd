@@ -3,6 +3,7 @@ title: "**Lab journal week 1**"
 author: "Anna Beijl"
 date: "02 September 2026"
 output: html_document
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -20,6 +21,8 @@ In the workshop we did the following:
 -   Intro to some social network concepts / theory
 
 -   Intro to Rmd / Github and setting up the lab journal and website
+
+-   x
 
 I started working through the R tutorial in Appendix A of the SNASS textbook. I also started thinking about research questions, and started looking for literature.
 
@@ -50,15 +53,9 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
 
 # RQs and literature
 
-## *First setup RQs*
-
--   **Descriptive (macro / network level)** \> To what extent is cross-group friendship / diversity in students' social networks explained by secondary transfer (spillover) effects of prejudice?
-
--   **Explanatory (micro level)** \> social influence processes
-
 ## *Two articles*
 
-1.  Chavez et al. 2021 (<https://doi.org/10.1002/cad.20403>)
+1.  @chávez2021a
 
     *The role of perspective-taking and low social class prejudice on cross-ethnic friendship formation*
 
@@ -74,7 +71,7 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
 
         -   "Social class shapes and affects the life experiences regarding other social categories, such as ethnicity" \> "Members of minority groups in Chile (i.e., indigenous and immigrant students) are usually seen as belonging to a lower status"
 
-        -   Not really intersectional though
+        -   Intersectional?
 
     3.  **Data:** 242 students (M age = 12, all relatively low SES) from ﬁve multicultural classrooms in Chile, longitudinal data on 3 time points, from 2017
 
@@ -102,11 +99,11 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
 
         -   Remains on the micro level; no descriptive macro level RQ
 
-    -   **Data**: complete network / socionet, longitudinal \> great
+    -   **Data**: complete network / socionet, longitudinal -\> great
 
     -   **Method**: also seems fitting, don't know enough RSiena yet
 
-2.  a\. Zingora et al. 2026 (<https://psycnet.apa.org/doi/10.1037/pspi0000530>) **NO ACCESS :(**
+2.  a\. @zingora2026 **NO ACCESS :(**
 
     *Outgroup friendships and social influence in the development of adolescent attitudes toward secondary outgroups*
 
@@ -121,11 +118,9 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
 
     -   **Data**: complete network data? idk...
 
-        -   "Actor-oriented models" = egonet instead of socionet?
-
     -   **Method**: seems okay
 
-2.  b\. Bracegirdle et al. 2019 (<https://psycnet.apa.org/doi/10.1037/pspi0000530>)
+2.  b\. @bracegirdle2026
 
     *From Mate to Hate? Prejudice Socialization in Friendship Networks*
 
@@ -155,3 +150,13 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
     -   **Data**: again, possibly egonet instead of socionet data? But not sure
 
     -   **Method**: seems okay
+
+## *First setup RQs*
+
+-   **Descriptive (macro / network level)** \> Diversity in students' social networks based on [outgroup]?
+
+-   **Explanatory (micro level)** \> To what extent is cross-group friendship / diversity in students' social networks explained by secondary transfer (spillover) effects of prejudice? *Social influence processes*
+
+    -   Macro X / starting conditions?
+
+    -   Social influence: arrow, not micro X or Y
