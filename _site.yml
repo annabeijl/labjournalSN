@@ -21,7 +21,7 @@ navbar:
     - text: "Final project"
       menu: 
       - text: "Introduction"
-        href: intro.html
+        href: Introduction.html
         
         # here, other .Rmds can be added
 

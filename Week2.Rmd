@@ -17,7 +17,7 @@ In the workshop we did the following:
 
 -   Student presentations on first ideas RQs and literature
 
--   Ashwin's presentation on his data
+-   Ashwin presentation on his data
 
 -   Started figuring out some descriptive statistics
 
@@ -38,10 +38,6 @@ In the workshop we did the following:
 # Lab Journal
 
 ## Installing and prepping packages
-
-```{r setup, include=FALSE, echo = F, warning = F}
-knitr::opts_chunk$set(tidy = T, results = 'hold', echo = F, warning = F, message = F)
-```
 
 ```{r}
 # install.packages("RSiena")
@@ -67,7 +63,7 @@ attributes(s501)
 rm(list = ls())
 
 network(s501)
- summary(flo,
+ summary(s501,
           print.adj = TRUE
           )
  
@@ -79,7 +75,10 @@ network(s501)
         )
 
 ?igraph
- 
+require(igraph)
+graph <- graph_from_adjacency_matrix(s501, mode = "directed")
+graph
+
 vcount(graph) # count vertices / actors
 ecount(graph) # count edges / ties
 is_bipartite(graph) # is the network unimodal or multi?
@@ -88,14 +87,12 @@ is_weighted(graph) # are edges weigthed or unweighted?
 # EGO CHARACTERISTICS -------------------------------------------------------
 # indegrees, outdegrees, skewness van distributions
 
-ts_degree(net = options[[1]], ego = ego) # number of ties ego sends to alters = outdegrees
-lapply(options, ts_recip, ego = ego) # number of reciprocated ties
+# ts_degree(net = options[[1]], ego = ego) # number of ties ego sends to alters = outdegrees
+# lapply(options, ts_recip, ego = ego) # number of reciprocated ties
 
 
 # DYADS / TRIADS ------------------------------------------------------------
 # dyad and triad census
-graph <- graph_from_adjacency_matrix(s501, mode = "directed")
-graph
 ?triad_census
 triad_census(graph)
 
@@ -107,7 +104,7 @@ dyad_census(graph)
 
 # PATH LENGTH
 # calculate for each path length the proportion of nodes each node can reach and take the average value of that
-mean((ego_size(graph, order = 2, mode = "out") - 1)/vcount(graph))
+mean((ego_size(graph, order = 2, mode = "out") - 1)/vcount(graph)) # 0.0944
 # path length is set to 2 here
 ```
 
@@ -273,44 +270,4 @@ fMoran.I(drink[, 1], scaled = FALSE, weight = weights2, na.rm = TRUE, rowstandar
 
 # Corr = 0.281
 # Conclusion: yes, pupils closer to one another are more alike! And ‘closer’ here means a shorter path length. You also observe that the correlation is lower than we calculated previously. Apparently, we are similar to alters very close by (path length one) and less so (or even dissimilar) to alters further off.
-```
-
-## Random graphs
-
-```{r}
-require(igraph)
-dens <- round(graph.density(smallworld), 2)  #save density of smallworld
-trial <- 1000  #set number of trials/sims
-trialclus <- triallen <- rep(NA, trial)  #define objects in which you are saving results
-
-
-for (i in 1:trial) {
-    random_graph <- erdos.renyi.game(n = 105, p.or.m = dens, directed = FALSE)  #make the random graph
-    triallen[i] <- average.path.length(random_graph, unconnected = TRUE)  #calculate average path length
-    trialclus[i] <- transitivity(random_graph, isolates = c("NaN"))  #calculate clustering
-}
-
-
-par(mfrow = c(1, 2))
-{
-    hist(trialclus, xlim = c(0.1, 0.36), main = "average clustering coefficient", xlab = "", )
-    abline(v = transitivity(smallworld, isolates = c("NaN")), col = "red", lwd = 3)
-}
-
-{
-    hist(triallen, xlim = c(1.9, 2.2), main = "average path length", xlab = "")
-    abline(v = average.path.length(smallworld, unconnected = TRUE), col = "red", lwd = 3)
-}
-```
-
-## Smallworldliness
-
-```{r}
-C <- transitivity(smallworld, isolates = c("NaN"))
-Cr <- mean(trialclus)
-L <- average.path.length(smallworld, unconnected = TRUE)
-Lr <- mean(triallen)
-Sigma <- (C/Cr)/(L/Lr)
-print("The smallworldness of Smallworld is:")
-Sigma # 2.273, which is >1 so considered a small world network
 ```

@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Anna Beijl" />
+
+<meta name="date" content="2026-09-08" />
+
+<title>Lab journal week 2</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lab journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Week1.html">Week 1</a>
+    </li>
+    <li>
+      <a href="Week2.html">Week 2</a>
+    </li>
+    <li>
+      <a href="Week3.html">Week 3</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Introduction.html">Introduction</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/annabeijl/labjournalSN">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><strong>Lab journal week 2</strong></h1>
+<h4 class="author">Anna Beijl</h4>
+<h4 class="date">8 September 2026</h4>
+
+</div>
+
+
+<div id="workshop-07-09-2026" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Workshop
+07-09-2026</h1>
+<div id="summary" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> <em>Summary</em></h2>
+<p>In the workshop we did the following:</p>
+<ul>
+<li><p>Student presentations on first ideas RQs and literature</p></li>
+<li><p>Ashwin presentation on his data</p></li>
+<li><p>Started figuring out some descriptive statistics</p></li>
+</ul>
+</div>
+<div id="current-to-do-list" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> <em>Current to-do
+list</em></h2>
+<ul>
+<li><p>Update my RQs and prepare presentation for next time</p>
+<ul>
+<li><p>Start writing introduction</p></li>
+<li><p>Think about data</p></li>
+</ul></li>
+<li><p>Read chapter 6 (and scan 8) of SNASS</p></li>
+<li><p>Continue figuring out the descriptives</p></li>
+<li><p>Update lab journal and website</p></li>
+</ul>
+</div>
+</div>
+<div id="lab-journal" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Lab Journal</h1>
+<div id="installing-and-prepping-packages" class="section level2"
+number="2.1">
+<h2><span class="header-section-number">2.1</span> Installing and
+prepping packages</h2>
+<pre class="r"><code># install.packages(&quot;RSiena&quot;)
+# install.packages(&quot;igraph&quot;)
+# install.packages(&quot;styler&quot;)
+# install.packages(&quot;network&quot;)
+library(RSiena)</code></pre>
+<pre><code>## Warning: package &#39;RSiena&#39; was built under R version 4.5.3</code></pre>
+<pre class="r"><code>library(igraph)</code></pre>
+<pre><code>## Warning: package &#39;igraph&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;igraph&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     decompose, spectrum</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     union</code></pre>
+<pre class="r"><code>library(network)</code></pre>
+<pre><code>## Warning: package &#39;network&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## &#39;network&#39; 1.20.0 (2026-02-06), part of the Statnet Project
+## * &#39;news(package=&quot;network&quot;)&#39; for changes since last version
+## * &#39;citation(&quot;network&quot;)&#39; for citation information
+## * &#39;https://statnet.org&#39; for help, support, and other information</code></pre>
+<pre><code>## 
+## Attaching package: &#39;network&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:igraph&#39;:
+## 
+##     %c%, %s%, add.edges, add.vertices, delete.edges, delete.vertices,
+##     get.edge.attribute, get.edges, get.vertex.attribute, is.bipartite,
+##     is.directed, list.edge.attributes, list.vertex.attributes,
+##     set.edge.attribute, set.vertex.attribute</code></pre>
+</div>
+<div id="descriptive-statistics" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Descriptive
+statistics</h2>
+<p>More info here: <a href="https://rpubs.com/bunnificent/862631"
+class="uri">https://rpubs.com/bunnificent/862631</a></p>
+<pre class="r"><code># the data
+s501</code></pre>
+<pre><code>##    V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21
+## 1   0  0  0  0  0  0  0  0  0   0   1   0   0   1   0   0   0   0   0   0   0
+## 2   0  0  0  0  0  0  1  0  0   0   1   0   0   0   0   0   0   0   0   0   0
+## 3   0  0  0  1  0  0  0  0  1   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0  0  1  0  0  0  0  0  1   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0  0  0  0  0  0  0  1  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 7   0  1  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 8   0  0  0  0  0  1  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 9   0  0  1  1  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 10  0  0  0  0  0  0  0  0  0   0   1   0   0   0   1   0   0   0   0   0   0
+## 11  0  1  0  0  0  0  0  0  0   0   0   0   0   0   1   1   0   0   0   0   0
+## 12  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 13  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 14  1  0  0  0  0  0  0  0  0   1   1   0   0   0   0   0   0   0   0   0   0
+## 15  0  0  0  0  0  0  0  0  0   1   1   0   0   0   0   1   0   0   0   0   0
+## 16  0  0  0  0  0  0  0  0  0   0   1   0   0   0   1   0   0   0   0   0   0
+## 17  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   1   1   0   1
+## 18  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   1   0   0
+## 19  0  0  0  0  0  0  0  0  0   0   1   0   0   0   0   0   0   0   0   0   0
+## 20  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 21  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 22  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   1   0   0   0   1
+## 23  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 24  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   1   0   1   0   1
+## 25  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 26  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 27  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 28  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 29  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 30  0  0  0  0  0  0  0  0  0   0   1   0   0   0   0   0   0   0   0   0   0
+## 31  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   1
+## 32  0  0  0  0  1  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   1
+## 33  0  0  0  0  0  0  0  0  0   1   0   0   0   0   0   0   0   0   0   0   0
+## 34  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 35  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   1   0   0   0
+## 36  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 37  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 38  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 39  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 40  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 41  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 42  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 43  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 44  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 45  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 46  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 47  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 48  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 49  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+## 50  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0
+##    V22 V23 V24 V25 V26 V27 V28 V29 V30 V31 V32 V33 V34 V35 V36 V37 V38 V39 V40
+## 1    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5    0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0
+## 6    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 7    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 8    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 9    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 10   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0
+## 11   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 12   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 13   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 14   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 15   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 17   1   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 18   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0
+## 19   0   0   1   0   1   0   0   0   1   0   0   0   0   0   0   0   0   0   0
+## 20   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 21   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 22   0   0   0   0   0   0   0   0   0   1   0   0   1   0   0   0   0   0   0
+## 23   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 24   1   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 25   1   0   0   0   0   0   0   0   0   1   1   0   0   0   0   0   0   0   0
+## 26   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0
+## 27   0   0   0   0   0   0   1   1   1   0   0   0   0   0   0   0   0   0   0
+## 28   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 29   0   0   0   0   1   0   0   0   1   0   0   1   0   0   0   0   0   0   0
+## 30   0   0   0   0   1   0   0   1   0   0   0   1   0   0   0   0   0   0   0
+## 31   0   0   0   1   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0
+## 32   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   1   0   0   0
+## 33   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0
+## 34   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   1   0   0   0
+## 35   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 36   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0
+## 37   0   0   0   0   0   0   0   0   0   1   1   0   1   0   0   0   0   0   0
+## 38   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0
+## 39   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 40   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 41   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   1   0   0
+## 42   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 43   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0
+## 44   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 45   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+## 46   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+## 47   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 48   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 49   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 50   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##    V41 V42 V43 V44 V45 V46 V47 V48 V49 V50
+## 1    0   0   0   0   0   0   0   0   0   0
+## 2    0   0   0   0   0   0   0   0   0   0
+## 3    0   0   0   0   0   0   0   0   0   0
+## 4    0   0   0   0   0   0   0   0   0   0
+## 5    0   0   0   0   0   0   0   0   0   0
+## 6    0   0   0   0   0   0   0   0   0   0
+## 7    0   1   0   1   0   0   0   0   0   0
+## 8    0   0   0   0   0   0   0   0   0   0
+## 9    0   0   0   0   0   0   0   0   0   0
+## 10   0   0   0   0   0   0   0   0   0   0
+## 11   0   0   0   0   0   0   0   0   0   0
+## 12   0   1   0   1   0   0   0   0   0   0
+## 13   0   0   0   0   0   0   0   0   0   0
+## 14   0   0   0   0   0   0   0   0   0   0
+## 15   0   0   0   0   0   0   0   0   0   0
+## 16   0   0   0   0   0   0   0   0   0   0
+## 17   0   0   0   0   0   0   0   0   0   0
+## 18   0   0   0   0   0   0   0   0   0   0
+## 19   0   0   0   0   0   0   0   0   0   0
+## 20   0   0   0   0   0   0   0   0   0   0
+## 21   0   0   0   0   0   0   0   0   0   0
+## 22   0   0   0   0   0   0   0   0   0   0
+## 23   0   0   0   0   0   0   0   0   0   0
+## 24   0   0   0   0   0   0   0   0   0   0
+## 25   0   0   0   0   0   0   0   0   0   0
+## 26   0   0   0   1   0   0   0   0   0   0
+## 27   0   0   0   0   0   0   0   0   0   0
+## 28   0   0   0   0   0   0   0   0   0   0
+## 29   0   0   0   0   0   0   0   0   0   0
+## 30   0   0   0   0   0   0   0   0   0   0
+## 31   0   0   0   0   0   0   0   0   0   0
+## 32   0   0   0   0   0   0   0   0   0   0
+## 33   0   0   0   0   0   0   0   0   0   0
+## 34   0   0   0   0   0   0   0   0   0   0
+## 35   0   0   0   0   0   0   0   0   0   0
+## 36   1   0   0   0   0   0   0   0   0   0
+## 37   0   0   0   0   0   0   0   0   0   0
+## 38   1   0   0   0   0   0   0   0   0   0
+## 39   0   0   1   0   0   0   0   0   0   0
+## 40   0   0   0   0   1   1   1   0   0   0
+## 41   0   0   0   0   0   0   0   0   0   0
+## 42   0   0   0   1   0   0   0   0   0   0
+## 43   0   0   0   0   0   0   0   0   0   0
+## 44   0   1   0   0   0   0   0   0   0   0
+## 45   0   0   0   0   0   1   1   0   0   0
+## 46   0   0   0   0   1   0   0   0   1   0
+## 47   0   0   0   0   0   0   0   0   0   0
+## 48   0   0   0   0   0   1   0   0   1   0
+## 49   0   0   0   0   0   1   0   1   0   0
+## 50   0   0   0   0   0   0   0   0   0   0</code></pre>
+<pre class="r"><code>?s501</code></pre>
+<pre><code>## starting httpd help server ... done</code></pre>
+<pre class="r"><code>summary(s501)</code></pre>
+<pre><code>##        V1             V2             V3             V4             V5      
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.02   Mean   :0.04   Mean   :0.04   Mean   :0.04   Mean   :0.02  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##        V6             V7            V8             V9            V10      
+##  Min.   :0.00   Min.   :0.0   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.0   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.0   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.02   Mean   :0.1   Mean   :0.02   Mean   :0.04   Mean   :0.06  
+##  3rd Qu.:0.00   3rd Qu.:0.0   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.0   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V11            V12         V13         V14            V15      
+##  Min.   :0.00   Min.   :0   Min.   :0   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0   1st Qu.:0   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0   Median :0   Median :0.00   Median :0.00  
+##  Mean   :0.16   Mean   :0   Mean   :0   Mean   :0.02   Mean   :0.06  
+##  3rd Qu.:0.00   3rd Qu.:0   3rd Qu.:0   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :0   Max.   :0   Max.   :1.00   Max.   :1.00  
+##       V16            V17            V18            V19            V20   
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0  
+##  Mean   :0.04   Mean   :0.04   Mean   :0.04   Mean   :0.06   Mean   :0  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :0  
+##       V21           V22           V23            V24            V25      
+##  Min.   :0.0   Min.   :0.0   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.0   1st Qu.:0.0   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.0   Median :0.0   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.1   Mean   :0.1   Mean   :0.02   Mean   :0.06   Mean   :0.02  
+##  3rd Qu.:0.0   3rd Qu.:0.0   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.0   Max.   :1.0   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V26            V27            V28            V29            V30      
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.06   Mean   :0.02   Mean   :0.02   Mean   :0.06   Mean   :0.08  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V31           V32            V33            V34            V35      
+##  Min.   :0.0   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.0   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.0   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.1   Mean   :0.08   Mean   :0.06   Mean   :0.04   Mean   :0.02  
+##  3rd Qu.:0.0   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.0   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V36            V37            V38            V39            V40      
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.04   Mean   :0.04   Mean   :0.04   Mean   :0.02   Mean   :0.04  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V41            V42            V43            V44            V45      
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.04   Mean   :0.06   Mean   :0.02   Mean   :0.08   Mean   :0.04  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V46            V47            V48            V49            V50   
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0  
+##  Mean   :0.08   Mean   :0.04   Mean   :0.02   Mean   :0.04   Mean   :0  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :0</code></pre>
+<pre class="r"><code>str(s501)</code></pre>
+<pre><code>##  int [1:50, 1:50] 0 0 0 0 0 0 0 0 0 0 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 2
+##   ..$ : chr [1:50] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   ..$ : chr [1:50] &quot;V1&quot; &quot;V2&quot; &quot;V3&quot; &quot;V4&quot; ...</code></pre>
+<pre class="r"><code>attributes(s501)</code></pre>
+<pre><code>## $dim
+## [1] 50 50
+## 
+## $dimnames
+## $dimnames[[1]]
+##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot; &quot;15&quot;
+## [16] &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot; &quot;21&quot; &quot;22&quot; &quot;23&quot; &quot;24&quot; &quot;25&quot; &quot;26&quot; &quot;27&quot; &quot;28&quot; &quot;29&quot; &quot;30&quot;
+## [31] &quot;31&quot; &quot;32&quot; &quot;33&quot; &quot;34&quot; &quot;35&quot; &quot;36&quot; &quot;37&quot; &quot;38&quot; &quot;39&quot; &quot;40&quot; &quot;41&quot; &quot;42&quot; &quot;43&quot; &quot;44&quot; &quot;45&quot;
+## [46] &quot;46&quot; &quot;47&quot; &quot;48&quot; &quot;49&quot; &quot;50&quot;
+## 
+## $dimnames[[2]]
+##  [1] &quot;V1&quot;  &quot;V2&quot;  &quot;V3&quot;  &quot;V4&quot;  &quot;V5&quot;  &quot;V6&quot;  &quot;V7&quot;  &quot;V8&quot;  &quot;V9&quot;  &quot;V10&quot; &quot;V11&quot; &quot;V12&quot;
+## [13] &quot;V13&quot; &quot;V14&quot; &quot;V15&quot; &quot;V16&quot; &quot;V17&quot; &quot;V18&quot; &quot;V19&quot; &quot;V20&quot; &quot;V21&quot; &quot;V22&quot; &quot;V23&quot; &quot;V24&quot;
+## [25] &quot;V25&quot; &quot;V26&quot; &quot;V27&quot; &quot;V28&quot; &quot;V29&quot; &quot;V30&quot; &quot;V31&quot; &quot;V32&quot; &quot;V33&quot; &quot;V34&quot; &quot;V35&quot; &quot;V36&quot;
+## [37] &quot;V37&quot; &quot;V38&quot; &quot;V39&quot; &quot;V40&quot; &quot;V41&quot; &quot;V42&quot; &quot;V43&quot; &quot;V44&quot; &quot;V45&quot; &quot;V46&quot; &quot;V47&quot; &quot;V48&quot;
+## [49] &quot;V49&quot; &quot;V50&quot;</code></pre>
+<pre class="r"><code>rm(list = ls())
+
+network(s501)</code></pre>
+<pre><code>##  Network attributes:
+##   vertices = 50 
+##   directed = TRUE 
+##   hyper = FALSE 
+##   loops = FALSE 
+##   multiple = FALSE 
+##   bipartite = FALSE 
+##   total edges= 113 
+##     missing edges= 0 
+##     non-missing edges= 113 
+## 
+##  Vertex attribute names: 
+##     vertex.names 
+## 
+## No edge attributes</code></pre>
+<pre class="r"><code> summary(s501,
+          print.adj = TRUE
+          )</code></pre>
+<pre><code>##        V1             V2             V3             V4             V5      
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.02   Mean   :0.04   Mean   :0.04   Mean   :0.04   Mean   :0.02  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##        V6             V7            V8             V9            V10      
+##  Min.   :0.00   Min.   :0.0   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.0   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.0   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.02   Mean   :0.1   Mean   :0.02   Mean   :0.04   Mean   :0.06  
+##  3rd Qu.:0.00   3rd Qu.:0.0   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.0   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V11            V12         V13         V14            V15      
+##  Min.   :0.00   Min.   :0   Min.   :0   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0   1st Qu.:0   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0   Median :0   Median :0.00   Median :0.00  
+##  Mean   :0.16   Mean   :0   Mean   :0   Mean   :0.02   Mean   :0.06  
+##  3rd Qu.:0.00   3rd Qu.:0   3rd Qu.:0   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :0   Max.   :0   Max.   :1.00   Max.   :1.00  
+##       V16            V17            V18            V19            V20   
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0  
+##  Mean   :0.04   Mean   :0.04   Mean   :0.04   Mean   :0.06   Mean   :0  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :0  
+##       V21           V22           V23            V24            V25      
+##  Min.   :0.0   Min.   :0.0   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.0   1st Qu.:0.0   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.0   Median :0.0   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.1   Mean   :0.1   Mean   :0.02   Mean   :0.06   Mean   :0.02  
+##  3rd Qu.:0.0   3rd Qu.:0.0   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.0   Max.   :1.0   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V26            V27            V28            V29            V30      
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.06   Mean   :0.02   Mean   :0.02   Mean   :0.06   Mean   :0.08  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V31           V32            V33            V34            V35      
+##  Min.   :0.0   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.0   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.0   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.1   Mean   :0.08   Mean   :0.06   Mean   :0.04   Mean   :0.02  
+##  3rd Qu.:0.0   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.0   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V36            V37            V38            V39            V40      
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.04   Mean   :0.04   Mean   :0.04   Mean   :0.02   Mean   :0.04  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V41            V42            V43            V44            V45      
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0.00  
+##  Mean   :0.04   Mean   :0.06   Mean   :0.02   Mean   :0.08   Mean   :0.04  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##       V46            V47            V48            V49            V50   
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0  
+##  Median :0.00   Median :0.00   Median :0.00   Median :0.00   Median :0  
+##  Mean   :0.08   Mean   :0.04   Mean   :0.02   Mean   :0.04   Mean   :0  
+##  3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0  
+##  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :0</code></pre>
+<pre class="r"><code> flo.stat&lt;-
+        network(
+        s501,
+        directed=F,
+        matrix.type=&quot;adjacency&quot;
+        )
+
+?igraph
+require(igraph)
+graph &lt;- graph_from_adjacency_matrix(s501, mode = &quot;directed&quot;)
+graph</code></pre>
+<pre><code>## IGRAPH df752af DN-- 50 113 -- 
+## + attr: name (v/c)
+## + edges from df752af (vertex names):
+##  [1] V1 -&gt;V11 V1 -&gt;V14 V2 -&gt;V7  V2 -&gt;V11 V3 -&gt;V4  V3 -&gt;V9  V4 -&gt;V3  V4 -&gt;V9 
+##  [9] V5 -&gt;V32 V6 -&gt;V8  V7 -&gt;V2  V7 -&gt;V42 V7 -&gt;V44 V8 -&gt;V6  V9 -&gt;V3  V9 -&gt;V4 
+## [17] V10-&gt;V11 V10-&gt;V15 V10-&gt;V33 V11-&gt;V2  V11-&gt;V15 V11-&gt;V16 V12-&gt;V7  V12-&gt;V42
+## [25] V12-&gt;V44 V14-&gt;V1  V14-&gt;V10 V14-&gt;V11 V15-&gt;V10 V15-&gt;V11 V15-&gt;V16 V16-&gt;V11
+## [33] V16-&gt;V15 V17-&gt;V18 V17-&gt;V19 V17-&gt;V21 V17-&gt;V22 V17-&gt;V24 V18-&gt;V19 V18-&gt;V35
+## [41] V19-&gt;V11 V19-&gt;V24 V19-&gt;V26 V19-&gt;V30 V21-&gt;V22 V22-&gt;V17 V22-&gt;V21 V22-&gt;V31
+## [49] V22-&gt;V34 V23-&gt;V24 V24-&gt;V17 V24-&gt;V19 V24-&gt;V21 V24-&gt;V22 V24-&gt;V23 V25-&gt;V22
+## [57] V25-&gt;V31 V25-&gt;V32 V26-&gt;V7  V26-&gt;V29 V26-&gt;V44 V27-&gt;V28 V27-&gt;V29 V27-&gt;V30
+## + ... omitted several edges</code></pre>
+<pre class="r"><code>vcount(graph) # count vertices / actors</code></pre>
+<pre><code>## [1] 50</code></pre>
+<pre class="r"><code>ecount(graph) # count edges / ties</code></pre>
+<pre><code>## [1] 113</code></pre>
+<pre class="r"><code>is_bipartite(graph) # is the network unimodal or multi?</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>is_weighted(graph) # are edges weigthed or unweighted?</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code># EGO CHARACTERISTICS -------------------------------------------------------
+# indegrees, outdegrees, skewness van distributions
+
+# ts_degree(net = options[[1]], ego = ego) # number of ties ego sends to alters = outdegrees
+# lapply(options, ts_recip, ego = ego) # number of reciprocated ties
+
+
+# DYADS / TRIADS ------------------------------------------------------------
+# dyad and triad census
+?triad_census
+triad_census(graph)</code></pre>
+<pre><code>##  [1] 16243  1470  1724     5    18    21    42    30     5     0    15     6
+## [13]     5     2     9     5</code></pre>
+<pre class="r"><code>?dyad_census
+dyad_census(graph)</code></pre>
+<pre><code>## $mut
+## [1] 39
+## 
+## $asym
+## [1] 35
+## 
+## $null
+## [1] 1151</code></pre>
+<pre class="r"><code># $mut = number of pairs with mutual connections = 39
+# $asym = number of pairs with non-mutual connections = 35
+# $null = number of pairs with no connections between them = 1151
+
+# PATH LENGTH
+# calculate for each path length the proportion of nodes each node can reach and take the average value of that
+mean((ego_size(graph, order = 2, mode = &quot;out&quot;) - 1)/vcount(graph)) # 0.0944</code></pre>
+<pre><code>## [1] 0.0944</code></pre>
+<pre class="r"><code># path length is set to 2 here</code></pre>
+<p><img src="images/clipboard-2120527547.png" /></p>
+</div>
+<div id="morans-i" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Moran’s I</h2>
+<p>From <span class="citation">@SNASS</span> Chapter 6</p>
+<pre class="r"><code># RQ: Is the network segregated based on drinking behavior?
+
+# OPTION 1: WITH PACKAGE &#39;SNA&#39;
+# install.packages(&quot;sna&quot;)
+require(RSiena)
+library(network)
+friend.data.w1 &lt;- s501
+friend.data.w2 &lt;- s502
+friend.data.w3 &lt;- s503
+drink &lt;- s50a
+smoke &lt;- s50s
+
+net1 &lt;- network::as.network(friend.data.w1)
+net2 &lt;- network::as.network(friend.data.w2)
+net3 &lt;- network::as.network(friend.data.w3)
+
+# nacf does not row standardize!
+snam1 &lt;- sna::nacf(net1, drink[, 1], type = &quot;moran&quot;, neighborhood.type = &quot;out&quot;, demean = TRUE)
+snam1[2]  #the first order matrix is stored in second list-element</code></pre>
+<pre><code>##         1 
+## 0.4331431</code></pre>
+<pre class="r"><code># Moran&#39;s I = 0.433
+
+
+# OPTION 2: WITH PACKAGE &#39;APE&#39;
+# install.packages(&quot;ape&quot;)
+require(ape)</code></pre>
+<pre><code>## Loading required package: ape</code></pre>
+<pre><code>## Warning: package &#39;ape&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ape&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:igraph&#39;:
+## 
+##     degree, edges, mst, ring</code></pre>
+<pre class="r"><code>require(sna)</code></pre>
+<pre><code>## Loading required package: sna</code></pre>
+<pre><code>## Warning: package &#39;sna&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Loading required package: statnet.common</code></pre>
+<pre><code>## Warning: package &#39;statnet.common&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;statnet.common&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     attr, order, replace</code></pre>
+<pre><code>## sna: Tools for Social Network Analysis
+## Version 2.8 created on 2024-09-07.
+## copyright (c) 2005, Carter T. Butts, University of California-Irvine
+##  For citation information, type citation(&quot;sna&quot;).
+##  Type help(package=&quot;sna&quot;) to get started.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;sna&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:ape&#39;:
+## 
+##     consensus, degree</code></pre>
+<pre><code>## The following objects are masked from &#39;package:igraph&#39;:
+## 
+##     betweenness, bonpow, closeness, components, degree, dyad.census,
+##     evcent, hierarchy, is.connected, neighborhood, triad.census</code></pre>
+<pre class="r"><code>geodistances &lt;- geodist(net1, count.paths = TRUE)
+geodistances &lt;- geodistances$gdist
+
+# first define a nb based on distance 1.
+weights1 &lt;- geodistances == 1
+
+# this function rowstandardizes by default
+ape::Moran.I(drink[, 1], scaled = FALSE, weight = weights1, na.rm = TRUE)</code></pre>
+<pre><code>## $observed
+## [1] 0.486134
+## 
+## $expected
+## [1] -0.02040816
+## 
+## $sd
+## [1] 0.132727
+## 
+## $p.value
+## [1] 0.000135401</code></pre>
+<pre class="r"><code># Moran&#39;s I = 0.486
+
+
+# OPTION 3: JOCHEM&#39;S OWN FUNCTION
+# without rowstandardize
+fMoran.I &lt;- function(x, weight, scaled = FALSE, na.rm = FALSE, alternative = &quot;two.sided&quot;, rowstandardize = TRUE) {
+    if (rowstandardize) {
+        if (dim(weight)[1] != dim(weight)[2])
+            stop(&quot;&#39;weight&#39; must be a square matrix&quot;)
+        n &lt;- length(x)
+        if (dim(weight)[1] != n)
+            stop(&quot;&#39;weight&#39; must have as many rows as observations in &#39;x&#39;&quot;)
+        ei &lt;- -1/(n - 1)
+        nas &lt;- is.na(x)
+        if (any(nas)) {
+            if (na.rm) {
+                x &lt;- x[!nas]
+                n &lt;- length(x)
+                weight &lt;- weight[!nas, !nas]
+            } else {
+                warning(&quot;&#39;x&#39; has missing values: maybe you wanted to set na.rm = TRUE?&quot;)
+                return(list(observed = NA, expected = ei, sd = NA, p.value = NA))
+            }
+        }
+        ROWSUM &lt;- rowSums(weight)
+        ROWSUM[ROWSUM == 0] &lt;- 1
+        weight &lt;- weight/ROWSUM
+        s &lt;- sum(weight)
+        m &lt;- mean(x)
+        y &lt;- x - m
+        cv &lt;- sum(weight * y %o% y)
+        v &lt;- sum(y^2)
+        obs &lt;- (n/s) * (cv/v)
+        if (scaled) {
+            i.max &lt;- (n/s) * (sd(rowSums(weight) * y)/sqrt(v/(n - 1)))
+            obs &lt;- obs/i.max
+        }
+        S1 &lt;- 0.5 * sum((weight + t(weight))^2)
+        S2 &lt;- sum((apply(weight, 1, sum) + apply(weight, 2, sum))^2)
+        s.sq &lt;- s^2
+        k &lt;- (sum(y^4)/n)/(v/n)^2
+        sdi &lt;- sqrt((n * ((n^2 - 3 * n + 3) * S1 - n * S2 + 3 * s.sq) - k * (n * (n - 1) * S1 - 2 * n *
+            S2 + 6 * s.sq))/((n - 1) * (n - 2) * (n - 3) * s.sq) - 1/((n - 1)^2))
+        alternative &lt;- match.arg(alternative, c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;))
+        pv &lt;- pnorm(obs, mean = ei, sd = sdi)
+        if (alternative == &quot;two.sided&quot;)
+            pv &lt;- if (obs &lt;= ei)
+                2 * pv else 2 * (1 - pv)
+        if (alternative == &quot;greater&quot;)
+            pv &lt;- 1 - pv
+        list(observed = obs, expected = ei, sd = sdi, p.value = pv)
+    } else {
+        if (dim(weight)[1] != dim(weight)[2])
+            stop(&quot;&#39;weight&#39; must be a square matrix&quot;)
+        n &lt;- length(x)
+        if (dim(weight)[1] != n)
+            stop(&quot;&#39;weight&#39; must have as many rows as observations in &#39;x&#39;&quot;)
+        ei &lt;- -1/(n - 1)
+        nas &lt;- is.na(x)
+        if (any(nas)) {
+            if (na.rm) {
+                x &lt;- x[!nas]
+                n &lt;- length(x)
+                weight &lt;- weight[!nas, !nas]
+            } else {
+                warning(&quot;&#39;x&#39; has missing values: maybe you wanted to set na.rm = TRUE?&quot;)
+                return(list(observed = NA, expected = ei, sd = NA, p.value = NA))
+            }
+        }
+        # ROWSUM &lt;- rowSums(weight) ROWSUM[ROWSUM == 0] &lt;- 1 weight &lt;- weight/ROWSUM
+        s &lt;- sum(weight)
+        m &lt;- mean(x)
+        y &lt;- x - m
+        cv &lt;- sum(weight * y %o% y)
+        v &lt;- sum(y^2)
+        obs &lt;- (n/s) * (cv/v)
+        if (scaled) {
+            i.max &lt;- (n/s) * (sd(rowSums(weight) * y)/sqrt(v/(n - 1)))
+            obs &lt;- obs/i.max
+        }
+        S1 &lt;- 0.5 * sum((weight + t(weight))^2)
+        S2 &lt;- sum((apply(weight, 1, sum) + apply(weight, 2, sum))^2)
+        s.sq &lt;- s^2
+        k &lt;- (sum(y^4)/n)/(v/n)^2
+        sdi &lt;- sqrt((n * ((n^2 - 3 * n + 3) * S1 - n * S2 + 3 * s.sq) - k * (n * (n - 1) * S1 - 2 * n *
+            S2 + 6 * s.sq))/((n - 1) * (n - 2) * (n - 3) * s.sq) - 1/((n - 1)^2))
+        alternative &lt;- match.arg(alternative, c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;))
+        pv &lt;- pnorm(obs, mean = ei, sd = sdi)
+        if (alternative == &quot;two.sided&quot;)
+            pv &lt;- if (obs &lt;= ei)
+                2 * pv else 2 * (1 - pv)
+        if (alternative == &quot;greater&quot;)
+            pv &lt;- 1 - pv
+        list(observed = obs, expected = ei, sd = sdi, p.value = pv)
+    }
+
+
+}
+
+fMoran.I(drink[, 1], scaled = FALSE, weight = weights1, na.rm = TRUE, rowstandardize = FALSE)</code></pre>
+<pre><code>## $observed
+## [1] 0.4331431
+## 
+## $expected
+## [1] -0.02040816
+## 
+## $sd
+## [1] 0.1181079
+## 
+## $p.value
+## [1] 0.000122962</code></pre>
+<pre class="r"><code># Moran&#39;s I = 0.4331
+# same result as nacf function (in option 1)
+
+
+# Finally, calculate a correlation where connected actors further away from i weigh less
+
+# step 1: calculate distances
+geodistances &lt;- geodist(net1, count.paths = TRUE)
+geodistances &lt;- geodistances$gdist
+# set the distance to yourself as Inf
+diag(geodistances) &lt;- Inf
+
+
+# step 2: define a distance decay function. This one is pretty standard in the spatial autocorrelation literature but actually pretty arbitrary.
+weights2 &lt;- exp(-geodistances)
+
+# step 3: I dont want to rowstandardize.
+fMoran.I(drink[, 1], scaled = FALSE, weight = weights2, na.rm = TRUE, rowstandardize = FALSE)</code></pre>
+<pre><code>## $observed
+## [1] 0.2817188
+## 
+## $expected
+## [1] -0.02040816
+## 
+## $sd
+## [1] 0.07532918
+## 
+## $p.value
+## [1] 6.052458e-05</code></pre>
+<pre class="r"><code># Corr = 0.281
+# Conclusion: yes, pupils closer to one another are more alike! And ‘closer’ here means a shorter path length. You also observe that the correlation is lower than we calculated previously. Apparently, we are similar to alters very close by (path length one) and less so (or even dissimilar) to alters further off.</code></pre>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIioqTGFiIGpvdXJuYWwgd2VlayAyKioiDQphdXRob3I6ICJBbm5hIEJlaWpsIg0KZGF0ZTogIjggU2VwdGVtYmVyIDIwMjYiDQpvdXRwdXQ6IGh0bWxfZG9jdW1lbnQNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmBgYA0KDQojIFdvcmtzaG9wIDA3LTA5LTIwMjYNCg0KIyMgKlN1bW1hcnkqDQoNCkluIHRoZSB3b3Jrc2hvcCB3ZSBkaWQgdGhlIGZvbGxvd2luZzoNCg0KLSAgIFN0dWRlbnQgcHJlc2VudGF0aW9ucyBvbiBmaXJzdCBpZGVhcyBSUXMgYW5kIGxpdGVyYXR1cmUNCg0KLSAgIEFzaHdpbiBwcmVzZW50YXRpb24gb24gaGlzIGRhdGENCg0KLSAgIFN0YXJ0ZWQgZmlndXJpbmcgb3V0IHNvbWUgZGVzY3JpcHRpdmUgc3RhdGlzdGljcw0KDQojIyAqQ3VycmVudCB0by1kbyBsaXN0Kg0KDQotICAgVXBkYXRlIG15IFJRcyBhbmQgcHJlcGFyZSBwcmVzZW50YXRpb24gZm9yIG5leHQgdGltZQ0KDQogICAgLSAgIFN0YXJ0IHdyaXRpbmcgaW50cm9kdWN0aW9uDQoNCiAgICAtICAgVGhpbmsgYWJvdXQgZGF0YQ0KDQotICAgUmVhZCBjaGFwdGVyIDYgKGFuZCBzY2FuIDgpIG9mIFNOQVNTDQoNCi0gICBDb250aW51ZSBmaWd1cmluZyBvdXQgdGhlIGRlc2NyaXB0aXZlcw0KDQotICAgVXBkYXRlIGxhYiBqb3VybmFsIGFuZCB3ZWJzaXRlDQoNCiMgTGFiIEpvdXJuYWwNCg0KIyMgSW5zdGFsbGluZyBhbmQgcHJlcHBpbmcgcGFja2FnZXMNCg0KYGBge3J9DQojIGluc3RhbGwucGFja2FnZXMoIlJTaWVuYSIpDQojIGluc3RhbGwucGFja2FnZXMoImlncmFwaCIpDQojIGluc3RhbGwucGFja2FnZXMoInN0eWxlciIpDQojIGluc3RhbGwucGFja2FnZXMoIm5ldHdvcmsiKQ0KbGlicmFyeShSU2llbmEpDQpsaWJyYXJ5KGlncmFwaCkNCmxpYnJhcnkobmV0d29yaykNCmBgYA0KDQojIyBEZXNjcmlwdGl2ZSBzdGF0aXN0aWNzDQoNCk1vcmUgaW5mbyBoZXJlOiA8aHR0cHM6Ly9ycHVicy5jb20vYnVubmlmaWNlbnQvODYyNjMxPg0KDQpgYGB7cn0NCiMgdGhlIGRhdGENCnM1MDENCj9zNTAxDQpzdW1tYXJ5KHM1MDEpDQpzdHIoczUwMSkNCmF0dHJpYnV0ZXMoczUwMSkNCnJtKGxpc3QgPSBscygpKQ0KDQpuZXR3b3JrKHM1MDEpDQogc3VtbWFyeShzNTAxLA0KICAgICAgICAgIHByaW50LmFkaiA9IFRSVUUNCiAgICAgICAgICApDQogDQogZmxvLnN0YXQ8LQ0KICAgICAgICBuZXR3b3JrKA0KICAgICAgICBzNTAxLA0KICAgICAgICBkaXJlY3RlZD1GLA0KICAgICAgICBtYXRyaXgudHlwZT0iYWRqYWNlbmN5Ig0KICAgICAgICApDQoNCj9pZ3JhcGgNCnJlcXVpcmUoaWdyYXBoKQ0KZ3JhcGggPC0gZ3JhcGhfZnJvbV9hZGphY2VuY3lfbWF0cml4KHM1MDEsIG1vZGUgPSAiZGlyZWN0ZWQiKQ0KZ3JhcGgNCg0KdmNvdW50KGdyYXBoKSAjIGNvdW50IHZlcnRpY2VzIC8gYWN0b3JzDQplY291bnQoZ3JhcGgpICMgY291bnQgZWRnZXMgLyB0aWVzDQppc19iaXBhcnRpdGUoZ3JhcGgpICMgaXMgdGhlIG5ldHdvcmsgdW5pbW9kYWwgb3IgbXVsdGk/DQppc193ZWlnaHRlZChncmFwaCkgIyBhcmUgZWRnZXMgd2VpZ3RoZWQgb3IgdW53ZWlnaHRlZD8NCg0KIyBFR08gQ0hBUkFDVEVSSVNUSUNTIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCiMgaW5kZWdyZWVzLCBvdXRkZWdyZWVzLCBza2V3bmVzcyB2YW4gZGlzdHJpYnV0aW9ucw0KDQojIHRzX2RlZ3JlZShuZXQgPSBvcHRpb25zW1sxXV0sIGVnbyA9IGVnbykgIyBudW1iZXIgb2YgdGllcyBlZ28gc2VuZHMgdG8gYWx0ZXJzID0gb3V0ZGVncmVlcw0KIyBsYXBwbHkob3B0aW9ucywgdHNfcmVjaXAsIGVnbyA9IGVnbykgIyBudW1iZXIgb2YgcmVjaXByb2NhdGVkIHRpZXMNCg0KDQojIERZQURTIC8gVFJJQURTIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KIyBkeWFkIGFuZCB0cmlhZCBjZW5zdXMNCj90cmlhZF9jZW5zdXMNCnRyaWFkX2NlbnN1cyhncmFwaCkNCg0KP2R5YWRfY2Vuc3VzDQpkeWFkX2NlbnN1cyhncmFwaCkNCiMgJG11dCA9IG51bWJlciBvZiBwYWlycyB3aXRoIG11dHVhbCBjb25uZWN0aW9ucyA9IDM5DQojICRhc3ltID0gbnVtYmVyIG9mIHBhaXJzIHdpdGggbm9uLW11dHVhbCBjb25uZWN0aW9ucyA9IDM1DQojICRudWxsID0gbnVtYmVyIG9mIHBhaXJzIHdpdGggbm8gY29ubmVjdGlvbnMgYmV0d2VlbiB0aGVtID0gMTE1MQ0KDQojIFBBVEggTEVOR1RIDQojIGNhbGN1bGF0ZSBmb3IgZWFjaCBwYXRoIGxlbmd0aCB0aGUgcHJvcG9ydGlvbiBvZiBub2RlcyBlYWNoIG5vZGUgY2FuIHJlYWNoIGFuZCB0YWtlIHRoZSBhdmVyYWdlIHZhbHVlIG9mIHRoYXQNCm1lYW4oKGVnb19zaXplKGdyYXBoLCBvcmRlciA9IDIsIG1vZGUgPSAib3V0IikgLSAxKS92Y291bnQoZ3JhcGgpKSAjIDAuMDk0NA0KIyBwYXRoIGxlbmd0aCBpcyBzZXQgdG8gMiBoZXJlDQpgYGANCg0KIVtdKGltYWdlcy9jbGlwYm9hcmQtMjEyMDUyNzU0Ny5wbmcpDQoNCiMjIE1vcmFuJ3MgSQ0KDQpGcm9tIEBTTkFTUyBDaGFwdGVyIDYNCg0KYGBge3J9DQojIFJROiBJcyB0aGUgbmV0d29yayBzZWdyZWdhdGVkIGJhc2VkIG9uIGRyaW5raW5nIGJlaGF2aW9yPw0KDQojIE9QVElPTiAxOiBXSVRIIFBBQ0tBR0UgJ1NOQScNCiMgaW5zdGFsbC5wYWNrYWdlcygic25hIikNCnJlcXVpcmUoUlNpZW5hKQ0KbGlicmFyeShuZXR3b3JrKQ0KZnJpZW5kLmRhdGEudzEgPC0gczUwMQ0KZnJpZW5kLmRhdGEudzIgPC0gczUwMg0KZnJpZW5kLmRhdGEudzMgPC0gczUwMw0KZHJpbmsgPC0gczUwYQ0Kc21va2UgPC0gczUwcw0KDQpuZXQxIDwtIG5ldHdvcms6OmFzLm5ldHdvcmsoZnJpZW5kLmRhdGEudzEpDQpuZXQyIDwtIG5ldHdvcms6OmFzLm5ldHdvcmsoZnJpZW5kLmRhdGEudzIpDQpuZXQzIDwtIG5ldHdvcms6OmFzLm5ldHdvcmsoZnJpZW5kLmRhdGEudzMpDQoNCiMgbmFjZiBkb2VzIG5vdCByb3cgc3RhbmRhcmRpemUhDQpzbmFtMSA8LSBzbmE6Om5hY2YobmV0MSwgZHJpbmtbLCAxXSwgdHlwZSA9ICJtb3JhbiIsIG5laWdoYm9yaG9vZC50eXBlID0gIm91dCIsIGRlbWVhbiA9IFRSVUUpDQpzbmFtMVsyXSAgI3RoZSBmaXJzdCBvcmRlciBtYXRyaXggaXMgc3RvcmVkIGluIHNlY29uZCBsaXN0LWVsZW1lbnQNCiMgTW9yYW4ncyBJID0gMC40MzMNCg0KDQojIE9QVElPTiAyOiBXSVRIIFBBQ0tBR0UgJ0FQRScNCiMgaW5zdGFsbC5wYWNrYWdlcygiYXBlIikNCnJlcXVpcmUoYXBlKQ0KcmVxdWlyZShzbmEpDQpnZW9kaXN0YW5jZXMgPC0gZ2VvZGlzdChuZXQxLCBjb3VudC5wYXRocyA9IFRSVUUpDQpnZW9kaXN0YW5jZXMgPC0gZ2VvZGlzdGFuY2VzJGdkaXN0DQoNCiMgZmlyc3QgZGVmaW5lIGEgbmIgYmFzZWQgb24gZGlzdGFuY2UgMS4NCndlaWdodHMxIDwtIGdlb2Rpc3RhbmNlcyA9PSAxDQoNCiMgdGhpcyBmdW5jdGlvbiByb3dzdGFuZGFyZGl6ZXMgYnkgZGVmYXVsdA0KYXBlOjpNb3Jhbi5JKGRyaW5rWywgMV0sIHNjYWxlZCA9IEZBTFNFLCB3ZWlnaHQgPSB3ZWlnaHRzMSwgbmEucm0gPSBUUlVFKQ0KIyBNb3JhbidzIEkgPSAwLjQ4Ng0KDQoNCiMgT1BUSU9OIDM6IEpPQ0hFTSdTIE9XTiBGVU5DVElPTg0KIyB3aXRob3V0IHJvd3N0YW5kYXJkaXplDQpmTW9yYW4uSSA8LSBmdW5jdGlvbih4LCB3ZWlnaHQsIHNjYWxlZCA9IEZBTFNFLCBuYS5ybSA9IEZBTFNFLCBhbHRlcm5hdGl2ZSA9ICJ0d28uc2lkZWQiLCByb3dzdGFuZGFyZGl6ZSA9IFRSVUUpIHsNCiAgICBpZiAocm93c3RhbmRhcmRpemUpIHsNCiAgICAgICAgaWYgKGRpbSh3ZWlnaHQpWzFdICE9IGRpbSh3ZWlnaHQpWzJdKQ0KICAgICAgICAgICAgc3RvcCgiJ3dlaWdodCcgbXVzdCBiZSBhIHNxdWFyZSBtYXRyaXgiKQ0KICAgICAgICBuIDwtIGxlbmd0aCh4KQ0KICAgICAgICBpZiAoZGltKHdlaWdodClbMV0gIT0gbikNCiAgICAgICAgICAgIHN0b3AoIid3ZWlnaHQnIG11c3QgaGF2ZSBhcyBtYW55IHJvd3MgYXMgb2JzZXJ2YXRpb25zIGluICd4JyIpDQogICAgICAgIGVpIDwtIC0xLyhuIC0gMSkNCiAgICAgICAgbmFzIDwtIGlzLm5hKHgpDQogICAgICAgIGlmIChhbnkobmFzKSkgew0KICAgICAgICAgICAgaWYgKG5hLnJtKSB7DQogICAgICAgICAgICAgICAgeCA8LSB4WyFuYXNdDQogICAgICAgICAgICAgICAgbiA8LSBsZW5ndGgoeCkNCiAgICAgICAgICAgICAgICB3ZWlnaHQgPC0gd2VpZ2h0WyFuYXMsICFuYXNdDQogICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgIHdhcm5pbmcoIid4JyBoYXMgbWlzc2luZyB2YWx1ZXM6IG1heWJlIHlvdSB3YW50ZWQgdG8gc2V0IG5hLnJtID0gVFJVRT8iKQ0KICAgICAgICAgICAgICAgIHJldHVybihsaXN0KG9ic2VydmVkID0gTkEsIGV4cGVjdGVkID0gZWksIHNkID0gTkEsIHAudmFsdWUgPSBOQSkpDQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICAgICAgUk9XU1VNIDwtIHJvd1N1bXMod2VpZ2h0KQ0KICAgICAgICBST1dTVU1bUk9XU1VNID09IDBdIDwtIDENCiAgICAgICAgd2VpZ2h0IDwtIHdlaWdodC9ST1dTVU0NCiAgICAgICAgcyA8LSBzdW0od2VpZ2h0KQ0KICAgICAgICBtIDwtIG1lYW4oeCkNCiAgICAgICAgeSA8LSB4IC0gbQ0KICAgICAgICBjdiA8LSBzdW0od2VpZ2h0ICogeSAlbyUgeSkNCiAgICAgICAgdiA8LSBzdW0oeV4yKQ0KICAgICAgICBvYnMgPC0gKG4vcykgKiAoY3YvdikNCiAgICAgICAgaWYgKHNjYWxlZCkgew0KICAgICAgICAgICAgaS5tYXggPC0gKG4vcykgKiAoc2Qocm93U3Vtcyh3ZWlnaHQpICogeSkvc3FydCh2LyhuIC0gMSkpKQ0KICAgICAgICAgICAgb2JzIDwtIG9icy9pLm1heA0KICAgICAgICB9DQogICAgICAgIFMxIDwtIDAuNSAqIHN1bSgod2VpZ2h0ICsgdCh3ZWlnaHQpKV4yKQ0KICAgICAgICBTMiA8LSBzdW0oKGFwcGx5KHdlaWdodCwgMSwgc3VtKSArIGFwcGx5KHdlaWdodCwgMiwgc3VtKSleMikNCiAgICAgICAgcy5zcSA8LSBzXjINCiAgICAgICAgayA8LSAoc3VtKHleNCkvbikvKHYvbileMg0KICAgICAgICBzZGkgPC0gc3FydCgobiAqICgobl4yIC0gMyAqIG4gKyAzKSAqIFMxIC0gbiAqIFMyICsgMyAqIHMuc3EpIC0gayAqIChuICogKG4gLSAxKSAqIFMxIC0gMiAqIG4gKg0KICAgICAgICAgICAgUzIgKyA2ICogcy5zcSkpLygobiAtIDEpICogKG4gLSAyKSAqIChuIC0gMykgKiBzLnNxKSAtIDEvKChuIC0gMSleMikpDQogICAgICAgIGFsdGVybmF0aXZlIDwtIG1hdGNoLmFyZyhhbHRlcm5hdGl2ZSwgYygidHdvLnNpZGVkIiwgImxlc3MiLCAiZ3JlYXRlciIpKQ0KICAgICAgICBwdiA8LSBwbm9ybShvYnMsIG1lYW4gPSBlaSwgc2QgPSBzZGkpDQogICAgICAgIGlmIChhbHRlcm5hdGl2ZSA9PSAidHdvLnNpZGVkIikNCiAgICAgICAgICAgIHB2IDwtIGlmIChvYnMgPD0gZWkpDQogICAgICAgICAgICAgICAgMiAqIHB2IGVsc2UgMiAqICgxIC0gcHYpDQogICAgICAgIGlmIChhbHRlcm5hdGl2ZSA9PSAiZ3JlYXRlciIpDQogICAgICAgICAgICBwdiA8LSAxIC0gcHYNCiAgICAgICAgbGlzdChvYnNlcnZlZCA9IG9icywgZXhwZWN0ZWQgPSBlaSwgc2QgPSBzZGksIHAudmFsdWUgPSBwdikNCiAgICB9IGVsc2Ugew0KICAgICAgICBpZiAoZGltKHdlaWdodClbMV0gIT0gZGltKHdlaWdodClbMl0pDQogICAgICAgICAgICBzdG9wKCInd2VpZ2h0JyBtdXN0IGJlIGEgc3F1YXJlIG1hdHJpeCIpDQogICAgICAgIG4gPC0gbGVuZ3RoKHgpDQogICAgICAgIGlmIChkaW0od2VpZ2h0KVsxXSAhPSBuKQ0KICAgICAgICAgICAgc3RvcCgiJ3dlaWdodCcgbXVzdCBoYXZlIGFzIG1hbnkgcm93cyBhcyBvYnNlcnZhdGlvbnMgaW4gJ3gnIikNCiAgICAgICAgZWkgPC0gLTEvKG4gLSAxKQ0KICAgICAgICBuYXMgPC0gaXMubmEoeCkNCiAgICAgICAgaWYgKGFueShuYXMpKSB7DQogICAgICAgICAgICBpZiAobmEucm0pIHsNCiAgICAgICAgICAgICAgICB4IDwtIHhbIW5hc10NCiAgICAgICAgICAgICAgICBuIDwtIGxlbmd0aCh4KQ0KICAgICAgICAgICAgICAgIHdlaWdodCA8LSB3ZWlnaHRbIW5hcywgIW5hc10NCiAgICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAgICAgd2FybmluZygiJ3gnIGhhcyBtaXNzaW5nIHZhbHVlczogbWF5YmUgeW91IHdhbnRlZCB0byBzZXQgbmEucm0gPSBUUlVFPyIpDQogICAgICAgICAgICAgICAgcmV0dXJuKGxpc3Qob2JzZXJ2ZWQgPSBOQSwgZXhwZWN0ZWQgPSBlaSwgc2QgPSBOQSwgcC52YWx1ZSA9IE5BKSkNCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KICAgICAgICAjIFJPV1NVTSA8LSByb3dTdW1zKHdlaWdodCkgUk9XU1VNW1JPV1NVTSA9PSAwXSA8LSAxIHdlaWdodCA8LSB3ZWlnaHQvUk9XU1VNDQogICAgICAgIHMgPC0gc3VtKHdlaWdodCkNCiAgICAgICAgbSA8LSBtZWFuKHgpDQogICAgICAgIHkgPC0geCAtIG0NCiAgICAgICAgY3YgPC0gc3VtKHdlaWdodCAqIHkgJW8lIHkpDQogICAgICAgIHYgPC0gc3VtKHleMikNCiAgICAgICAgb2JzIDwtIChuL3MpICogKGN2L3YpDQogICAgICAgIGlmIChzY2FsZWQpIHsNCiAgICAgICAgICAgIGkubWF4IDwtIChuL3MpICogKHNkKHJvd1N1bXMod2VpZ2h0KSAqIHkpL3NxcnQodi8obiAtIDEpKSkNCiAgICAgICAgICAgIG9icyA8LSBvYnMvaS5tYXgNCiAgICAgICAgfQ0KICAgICAgICBTMSA8LSAwLjUgKiBzdW0oKHdlaWdodCArIHQod2VpZ2h0KSleMikNCiAgICAgICAgUzIgPC0gc3VtKChhcHBseSh3ZWlnaHQsIDEsIHN1bSkgKyBhcHBseSh3ZWlnaHQsIDIsIHN1bSkpXjIpDQogICAgICAgIHMuc3EgPC0gc14yDQogICAgICAgIGsgPC0gKHN1bSh5XjQpL24pLyh2L24pXjINCiAgICAgICAgc2RpIDwtIHNxcnQoKG4gKiAoKG5eMiAtIDMgKiBuICsgMykgKiBTMSAtIG4gKiBTMiArIDMgKiBzLnNxKSAtIGsgKiAobiAqIChuIC0gMSkgKiBTMSAtIDIgKiBuICoNCiAgICAgICAgICAgIFMyICsgNiAqIHMuc3EpKS8oKG4gLSAxKSAqIChuIC0gMikgKiAobiAtIDMpICogcy5zcSkgLSAxLygobiAtIDEpXjIpKQ0KICAgICAgICBhbHRlcm5hdGl2ZSA8LSBtYXRjaC5hcmcoYWx0ZXJuYXRpdmUsIGMoInR3by5zaWRlZCIsICJsZXNzIiwgImdyZWF0ZXIiKSkNCiAgICAgICAgcHYgPC0gcG5vcm0ob2JzLCBtZWFuID0gZWksIHNkID0gc2RpKQ0KICAgICAgICBpZiAoYWx0ZXJuYXRpdmUgPT0gInR3by5zaWRlZCIpDQogICAgICAgICAgICBwdiA8LSBpZiAob2JzIDw9IGVpKQ0KICAgICAgICAgICAgICAgIDIgKiBwdiBlbHNlIDIgKiAoMSAtIHB2KQ0KICAgICAgICBpZiAoYWx0ZXJuYXRpdmUgPT0gImdyZWF0ZXIiKQ0KICAgICAgICAgICAgcHYgPC0gMSAtIHB2DQogICAgICAgIGxpc3Qob2JzZXJ2ZWQgPSBvYnMsIGV4cGVjdGVkID0gZWksIHNkID0gc2RpLCBwLnZhbHVlID0gcHYpDQogICAgfQ0KDQoNCn0NCg0KZk1vcmFuLkkoZHJpbmtbLCAxXSwgc2NhbGVkID0gRkFMU0UsIHdlaWdodCA9IHdlaWdodHMxLCBuYS5ybSA9IFRSVUUsIHJvd3N0YW5kYXJkaXplID0gRkFMU0UpDQojIE1vcmFuJ3MgSSA9IDAuNDMzMQ0KIyBzYW1lIHJlc3VsdCBhcyBuYWNmIGZ1bmN0aW9uIChpbiBvcHRpb24gMSkNCg0KDQojIEZpbmFsbHksIGNhbGN1bGF0ZSBhIGNvcnJlbGF0aW9uIHdoZXJlIGNvbm5lY3RlZCBhY3RvcnMgZnVydGhlciBhd2F5IGZyb20gaSB3ZWlnaCBsZXNzDQoNCiMgc3RlcCAxOiBjYWxjdWxhdGUgZGlzdGFuY2VzDQpnZW9kaXN0YW5jZXMgPC0gZ2VvZGlzdChuZXQxLCBjb3VudC5wYXRocyA9IFRSVUUpDQpnZW9kaXN0YW5jZXMgPC0gZ2VvZGlzdGFuY2VzJGdkaXN0DQojIHNldCB0aGUgZGlzdGFuY2UgdG8geW91cnNlbGYgYXMgSW5mDQpkaWFnKGdlb2Rpc3RhbmNlcykgPC0gSW5mDQoNCg0KIyBzdGVwIDI6IGRlZmluZSBhIGRpc3RhbmNlIGRlY2F5IGZ1bmN0aW9uLiBUaGlzIG9uZSBpcyBwcmV0dHkgc3RhbmRhcmQgaW4gdGhlIHNwYXRpYWwgYXV0b2NvcnJlbGF0aW9uIGxpdGVyYXR1cmUgYnV0IGFjdHVhbGx5IHByZXR0eSBhcmJpdHJhcnkuDQp3ZWlnaHRzMiA8LSBleHAoLWdlb2Rpc3RhbmNlcykNCg0KIyBzdGVwIDM6IEkgZG9udCB3YW50IHRvIHJvd3N0YW5kYXJkaXplLg0KZk1vcmFuLkkoZHJpbmtbLCAxXSwgc2NhbGVkID0gRkFMU0UsIHdlaWdodCA9IHdlaWdodHMyLCBuYS5ybSA9IFRSVUUsIHJvd3N0YW5kYXJkaXplID0gRkFMU0UpDQoNCiMgQ29yciA9IDAuMjgxDQojIENvbmNsdXNpb246IHllcywgcHVwaWxzIGNsb3NlciB0byBvbmUgYW5vdGhlciBhcmUgbW9yZSBhbGlrZSEgQW5kIOKAmGNsb3NlcuKAmSBoZXJlIG1lYW5zIGEgc2hvcnRlciBwYXRoIGxlbmd0aC4gWW91IGFsc28gb2JzZXJ2ZSB0aGF0IHRoZSBjb3JyZWxhdGlvbiBpcyBsb3dlciB0aGFuIHdlIGNhbGN1bGF0ZWQgcHJldmlvdXNseS4gQXBwYXJlbnRseSwgd2UgYXJlIHNpbWlsYXIgdG8gYWx0ZXJzIHZlcnkgY2xvc2UgYnkgKHBhdGggbGVuZ3RoIG9uZSkgYW5kIGxlc3Mgc28gKG9yIGV2ZW4gZGlzc2ltaWxhcikgdG8gYWx0ZXJzIGZ1cnRoZXIgb2ZmLg0KYGBgDQo=</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Week2.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

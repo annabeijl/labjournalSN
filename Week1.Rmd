@@ -22,8 +22,6 @@ In the workshop we did the following:
 
 -   Intro to Rmd / Github and setting up the lab journal and website
 
--   x
-
 I started working through the R tutorial in Appendix A of the SNASS textbook. I also started thinking about research questions, and started looking for literature.
 
 ## *Current to do list*
@@ -55,29 +53,73 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
 
 ## *Two articles*
 
-1.  @chávez2021a
+1.  @zingora2026
+
+    *Outgroup friendships and social influence in the development of adolescent attitudes toward secondary outgroups*
+
+    1.  **Central question**: secondary transfer effects \> due to generalization / transfer of intergroup contact (classic idea), or actually social influence as friends shape each other's outgroup attitudes?
+    2.  **Theory**
+        -   Social influence is not just positive! If your friend from outgroup A is negative about outgroup B; you will become more negative too
+
+        -   Adolescents adopt friends' attitudes because of e.g. frequent observation, to avoid social exclusion
+
+        -   It is possible that previously documented STEs (including null-effects) are actually due to social influence!
+
+        -   Hypotheses
+
+            -   Classic intergroup contact hypos: number of outgroup A friends –\> number of outgroup B friends
+
+            -   Social influence hypos: *attitudes* toward outgroup B of outgroup A friends –\> attitudes of ego toward outgroup B
+    3.  **Data**: 3 studies, 2 empirical and 1 simulation. Longitudinal network data on adolescents (in NL *n* = 812, and DE *n* = 2,559)
+        -   *"Whereas SAOM allows us to test which processes take place in adolescent social networks, the ABM simulation approach enables us to capture the implications of these simultaneous processes for the development of the wider network and the spread of outgroup attitudes (1) and to further advance theory by generating hypotheses for future research (2)"* –\> Micro-macro link
+
+        -   The Arnhem School Study (TASS) and adolescents in Germany, 2013-2014
+
+        -   Measures: intergroup attitudes *and* friendships
+    4.  **Method**: stochastic actor-oriented models in RSiena
+        -   Control for effects of ingroup friends on secondary outgroup attitudes + network dynamics
+
+        -   Simulation: to test whether the social influence mechanisms vary for adolescents with negative, neutral, and positive attitudes when their primary outgroup friends hold negative, neutral, or positive attitudes
+    5.  **Results**:
+        -   Social influence mechanism supported \> 'attitudes on secondary outgroups become more similar to those of primary outgroup friends'
+
+        -   Secondary transfer effect of intergroup contact *not supported* \> 'attitudes on secondary ougroups become more inclusive when having more outgroup friends'
+
+            -   These findings hold for both ethnic majority and ethnic minority adolescents!
+
+-   Social networks perspective:
+
+    -   **Theoretical mechanisms**: very present, new angle in this field; focus on social influence and interdependence
+
+    -   **Data**: complete network data? idk...
+
+        -   "Adolescents (N=1,314,12–13 years old, 46% female) completed an online questionnaire in their school’s computer lab under a teacher’s supervision. Data were collected in 58 classrooms nested in 11 schools."
+
+    -   **Method**: seems great
+
+2.  @chávez2021
 
     *The role of perspective-taking and low social class prejudice on cross-ethnic friendship formation*
 
     1.  **Central question**: Are people with low prejudice on social class level + perspective-taking abilities, also more likely to have low prejudice on ethnicity level? And thus engage in cross-ethnic friendships?
 
-        -   My interest: intersectionality social class x ethnicity / spillover effects of inclusion towards other out groups?
+        -   My interest: intersectionality social class x ethnicity / secondary transfer effects towards other out groups?
 
     2.  **Theory**: social networks perspective
 
         -   Micro-level explanatory mechanisms: propinquity (availability of options)? (ethnic) homophily? Individual attitudes! Perspective-taking + social class prejudice
 
-        -   A multicultural context does not imply that positive inter-group contact will take place. Instead, we can expect that, by default, individuals will spendtime and interact with peers from their own ingroup. Thus: focus on *perspective taking* and *prejudice* \> And shared context effects are not likely
-
-        -   "Social class shapes and affects the life experiences regarding other social categories, such as ethnicity" \> "Members of minority groups in Chile (i.e., indigenous and immigrant students) are usually seen as belonging to a lower status"
+        -   A multicultural context does not imply that positive inter-group contact will take place. Instead, we can expect that, by default, individuals will spend time and interact with peers from their own ingroup. Thus: focus on *perspective taking* and *prejudice* \> And shared context effects are not likely
 
         -   Intersectional?
+
+            -   "Social class shapes and affects the life experiences regarding other social categories, such as ethnicity" \> "Members of minority groups in Chile (i.e., indigenous and immigrant students) are usually seen as belonging to a lower status" \> "the discriminatory ethnic experience could be mainly based on the socioeconomic exclusion of these marginalized groups"
 
     3.  **Data:** 242 students (M age = 12, all relatively low SES) from ﬁve multicultural classrooms in Chile, longitudinal data on 3 time points, from 2017
 
     4.  **Method**: longitudinal multiplex social network models implemented in RSiena
 
-        -   Reciprocity, indegree popularity, in-degree activity, similarity, density, transitivity
+        -   Controlled for structural network effects: reciprocity, transitivity, ego/alter/similarity effects, indegree popularity, in-degree activity
 
     5.  **Results**: all hypotheses supported
 
@@ -85,11 +127,7 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
 
         -   But also: more cross-ethnic friendship among students with high perspective taking and low social class prejudice
 
-        -   When social class prejudice is low, this allows students to break down the barrier of ethnicity and, consequently, to build friendships with low social class peers who, importantly, belong to a different ethnic group
-
-![](images/clipboard-4134755329.png){width="582"}
-
-![](images/clipboard-2313438997.png){width="584"}
+        -   "When social class prejudice is low, this allows students to break down the barrier of ethnicity and, consequently, to build friendships with low social class peers who, importantly, belong to a different ethnic group"
 
 -   Social networks perspective
 
@@ -103,60 +141,18 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
 
     -   **Method**: also seems fitting, don't know enough RSiena yet
 
-2.  a\. @zingora2026 **NO ACCESS :(**
-
-    *Outgroup friendships and social influence in the development of adolescent attitudes toward secondary outgroups*
-
-    1.  **Central question**: secondary transfer effects \> due to generalization of intergroup contact, or social influence as friends shape each other's outgroup attitudes?
-    2.  **Data**: 3 studies, 2 empirical and 1 simulation. Longitudinal network data on adolescents (*n* = 812, *n* = 2,559)
-    3.  **Method**: stochastic actor-oriented models (?)
-    4.  **Results**: support social influence mechanism ('attitudes on secondary outgroups become more similar to those of primary outgroup friends') more than generalization of intergroup contact ('attitudes on secondary ougroups become more inclusive when having more outgroup friends')
-
--   Social networks perspective:
-
-    -   **Theoretical mechanisms**: seems okay, focus on social influence
-
-    -   **Data**: complete network data? idk...
-
-    -   **Method**: seems okay
-
-2.  b\. @bracegirdle2026
-
-    *From Mate to Hate? Prejudice Socialization in Friendship Networks*
-
-    1.  **Central question**: To what extent does socialization among low-, medium-, and high-prejudice individuals lead to changes in prejudice (toward ethnic and religious outgroups) in a social network?
-    2.  **Theory**:
-        -   Socialization ("increase in similarity between friends over time through mutual influence")
-
-        -   Size of the socialization effect? And does this vary based on someone's initial levels of prejudice?
-
-            -   People may break ties with dissimilar friends \> echo chambers that reinforce existing views + no exposure to others \> attitude polarization?
-
-            -   Ties with dissimilar friends are maintained \> adjust opinions based on new info (especially from friends) \> attitude convergence?
-
-        -   Selection vs influence (!)
-    3.  **Data**: longitudinal survey data on German adolescents friendships, 2013-2017 + network simulations
-        -   No clear predictions on whether socialization will be stronger, weaker, or equivalent depending on the initial levels of prejudice among individuals and their friends \> simulations
-    4.  **Method**: stochastic actor-oriented models in RSiena (incl. simulation)
-    5.  **Results**: social influence supported
-        -   Individuals’ levels of prejudice became more similar to their friends’ levels of prejudice over time (= positive influence)
-
-        -   Socialization was strongest when friends had initially opposing attitudes and weakest when friends had initially concordant attitudes.
-
--   Social networks perspective:
-
-    -   **Theory**: social networks + relations (social influence), but "link microlevel mechanisms (e.g., socialization) to macrolevel outcomes (e.g., prejudice in a given social context)." \> again, macro starting conditions are missing, focus on micro mechanisms
-
-    -   **Data**: again, possibly egonet instead of socionet data? But not sure
-
-    -   **Method**: seems okay
-
 ## *First setup RQs*
 
--   **Descriptive (macro / network level)** \> Diversity in students' social networks based on [outgroup]?
+-   **Descriptive (macro / network level)** \> *Diversity* in students' social networks based on [secondary outgroup]? What is the *distribution* of secondary out-group attitudes / friendships in the students' network?
 
--   **Explanatory (micro level)** \> To what extent is cross-group friendship / diversity in students' social networks explained by secondary transfer (spillover) effects of prejudice? *Social influence processes*
+-   **Explanatory (micro level)** \> To what extent are secondary out-group attitudes / friendships (diversity in network) explained by *social influence effects* (vs. secondary transfer effects of intergroup contact)?
 
     -   Macro X / starting conditions?
 
-    -   Social influence: arrow, not micro X or Y
+    -   Social influence: where in the GTF? Arrow instead of micro X or Y?
+
+-   Who are the outgroups?
+
+    -   From ethnic minority perspective?
+
+    -   Completely different type of outgroup, not based on ethnicity?

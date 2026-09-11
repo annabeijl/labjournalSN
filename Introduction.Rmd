@@ -1,0 +1,77 @@
+---
+title: "**Introduction**"
+author: "Anna Beijl"
+date: "10 September 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+First (rough) draft of my introduction, 11-09-2026
+
+-   Intergroup contact theory is one of the most established theories in contemporary Sociology (Allport, 1954; Pettigrew & Tropp); If people have more contact with out-group members, they are more likely to develop positive attitudes on this out-group (**member? checken**) as well. 
+
+-   Over time, the theoretical model has been extended to include all out-group members (bron), and even members of other out-groups that were not directly involved in the contact at all. The latter is known as a secondary transfer effect of intergroup contact (Pettigrew, 2009), and has been tested / studied extensively. 
+
+    -   But: conditional → when the secondary out-group is similar in culture, stigma, status (= generalization gradient effect)
+
+    -   Growing bodies of research on indirect contact (**extended**=simply knowing an in-group member has out-group friend, Zhou et al., 2018; **vicarious**=observing other in-group members, online, reading stories) - see Tropp et al., 2022; Stark et al., 2025
+
+    -   Experimental research even shows support for secondary transfer effects when contact with the primary group was merely observed or even imagined (Harwood et al., 2011; Vezzali et al., 2014)
+
+-   The most important underlying mechanism seems to be attitude generalization (Tausch et al., 2010), where [uitleg].... However, contacts with the secondary out-group can also predict attitudes towards the primary out-group. And more importantly, maybe this represents truly a selection effect where more tolerant people become friends with a range of out-group members. This raises an important question:
+
+    -   “Given this complex, bidirectional nature of the contact and prejudice relationship, we must focus on this problem: Do primary contact effects typically generalize to other, noncontacted out-groups? Or does the secondary transfer effect largely reflect the nonrecursive phenomenon whereby more tolerant people engage in more intergroup contact generally and harbor less prejudice against a wide variety of outgroups?” (Pettigrew, 2009, p. 56).
+
+    -   In other (social network) words: selection or influence?
+
+    -   Longitudinal data + social network data!
+
+-   Another important factor remains understudied: The social embeddedness and interdependence of people engaged in this contact. The secondary out-group friendship formation may depend on individual out-group attitudes, but may also depend on opportunity structures, existing relations, having friends in common, or structural network effects, such as reciprocity, transitivity, or clustering. To disentangle [xxx], social network data can form an important addition to the literature on secondary transfer of intergroup contact. 
+
+    -   Results from social network analysis on extended contact support this: extended contact reduces prejudice only when some of the outgroup friends of one’s ingroup friends are known → so: only in mixed triads, not in open triads (Stark, 2019)
+
+    -   Wölfer et al. 2017
+
+    -   “How social networks shape opportunities to form intergroup friendships, influence intergroup attitudes, and affect ongoing intergroup interactions and relationships. This emerging work reveals how friendships across group lines are shaped not only by the individuals involved but also by their other friends, the attitudes of those around them, and the structure and context of their broader social network” (Turetsky & Shelton, 2024)
+
+-   So: is this secondary transfer effect of intergroup contact actually because of generalization, or could it actually (partially) reflect network dynamics, such as social influence? (cf. Zingora et al. 2026)
+
+    -   Recent studies says: it’s actually fully influence, not transfer.
+
+        -   “Friendships with primary outgroup members may have negative implications for secondary outgroups when those friends hold more negative attitudes” (Zingora et al., 2026).
+
+        -   Having outgroup friends was not linked to more positive intergroup attitudes once social influence (i.e., ingroup friends’ attitudes) was accounted for (for a meta-analysis, see Zingora, 2025).
+
+    -   The importance of social influence is further demonstrated by Bracegirdle et al. 2026: “Socialization was strongest among friends who held initially opposing attitudes, which led both high- and low-prejudice individuals to become more neutral over time. The findings thus suggest that socialization has a neutralizing effect, rather than a polarizing effect”
+
+        -   **Big conclusion** = Friends’ out-group attitudes become more similar to each other. If the friends are negative: you will become more negative (and vice versa).
+
+<!-- -->
+
+-   Social influence in this context has the strongest effects when friends have initially opposing attitudes: \
+    “What mattered most was not whether adolescents or their friends held positive or negative views, but the size of the initial difference between them. Change in adolescents’ attitudes was largest when attitudes were opposed (e.g., positive vs. negative), smaller when one was neutral, and minimal when they were similar” (Zingora et al. 2026)
+
+<!-- -->
+
+-   Secondary transfer effects are not always found → social influence can help explain this; who influences who? (is it all kinds of friends, or just in- or out-group friends?)
+
+    -   “Some studies reported social influence from ingroup but not from outgroup friends (Bracegirdle et al., 2023), implying that having outgroup friends is not associated with outgroup attitudes. Others found influence of outgroup friends’ attitudes on generalized prejudice (Zingora & Flache, 2025).”
+
+    -   Most recent research shows → people’s attitudes to secondary outgroups changed not due to having friends from the primary outgroup but due to the attitudes that those primary outgroup friends hold toward secondary outgroups **!!!**
+
+-   Data / context justification:
+
+    -   Schools are shown to play an important role in stimulating positive contact between (ethnic) groups, both within and outside of the school environment (Karataş et al., 2023). → offering a secure environment with the facilitative conditions (see Allport; Pettigrew & Tropp). Can be transferred or ‘spilled over’ into other contexts
+
+    -   “In addition, schools also bring together young people from di-verse ethnic and cultural backgrounds and are, therefore,also an important acculturative context (Schachneret al., 2018).”
+
+    -   “Intergroup contact is often proposed as one of the main strategies for curbing these undesirable outcomes and en-hancing the development of inclusive attitudes, especially among adolescents (Tropp et al., 2022; Wölfer et al., 2016)”
+
+    -   “We focused on interethnic friendships during adolescence because adolescents’ attitudes toward ethnic outgroups are more malleable than adults’ attitudes (Wölfer et al., 2016) and because adolescents are especially motivated to adopt the attitudes of significant peers and friends (Brechwald & Prinstein, 2011; Steinberg & Monahan, 2007).”
+
+<!-- -->
+
+-   “By bridging insights from intergroup contact theory and social network analysis, our research offers a novel perspective on attitude change in multicultural environments.” (Zingora et al. 2026)
