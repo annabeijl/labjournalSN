@@ -9,6 +9,24 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# RQs and ideas
+
+**Micro X**: attitudes of primary out-group friends toward secondary out-group
+
+**Micro Y**: attitudes of ego toward secondary out-group
+
+**Macro Y**: distribution of secondary out-group attitudes / secondary out-group friendships in the network
+
+-   From ethnic minority perspective?
+
+-   Or completely different type of out-group, not related to ethnicity?
+
+**RQ1**: What is the distribution of secondary out-group attitudes / friendships in the network?
+
+**RQ2**: To what extent are secondary out-group attitudes / friendships explained by social influence effects (rather than secondary transfer effects of intergroup contact)?
+
+# Introduction
+
 First (rough) draft of my introduction, 11-09-2026
 
 -   Intergroup contact theory is one of the most established theories in contemporary Sociology (Allport, 1954; Pettigrew & Tropp); If people have more contact with out-group members, they are more likely to develop positive attitudes on this out-group (**member? checken**) as well. 
@@ -39,7 +57,9 @@ First (rough) draft of my introduction, 11-09-2026
 
 -   So: is this secondary transfer effect of intergroup contact actually because of generalization, or could it actually (partially) reflect network dynamics, such as social influence? (cf. Zingora et al. 2026)
 
-    -   Recent studies says: it’s actually fully influence, not transfer.
+    -   Recent studies say: it’s actually fully influence, not transfer.
+
+        -   Zingora 2025 –\> meta-analysis of SOAM studies
 
         -   “Friendships with primary outgroup members may have negative implications for secondary outgroups when those friends hold more negative attitudes” (Zingora et al., 2026).
 
@@ -51,7 +71,7 @@ First (rough) draft of my introduction, 11-09-2026
 
 <!-- -->
 
--   Social influence in this context has the strongest effects when friends have initially opposing attitudes: \
+-   Social influence in this context has the strongest effects when friends have initially opposing attitudes:\
     “What mattered most was not whether adolescents or their friends held positive or negative views, but the size of the initial difference between them. Change in adolescents’ attitudes was largest when attitudes were opposed (e.g., positive vs. negative), smaller when one was neutral, and minimal when they were similar” (Zingora et al. 2026)
 
 <!-- -->
@@ -75,3 +95,27 @@ First (rough) draft of my introduction, 11-09-2026
 <!-- -->
 
 -   “By bridging insights from intergroup contact theory and social network analysis, our research offers a novel perspective on attitude change in multicultural environments.” (Zingora et al. 2026)
+
+# Data
+
+Necessary components:
+
+-   adolescents in school classes
+
+-   longitudinal
+
+-   3 types of groups (in-group, primary out, secondary out-group)
+
+-   attitudes on all these 3 groups / friendships
+
+From available options:
+
+-   **FIS data** → 1/2/3 generation migrants (but maybe too in-group-y?) / social class / religion / intergroup attitudes and contact / acculturation and *perceived discrimination*
+
+    -   Possibly extend logic of social influence effects to perceived discrimination?
+
+    -   Some literature: <https://doi.org/10.1177/21568693241271289>, <https://doi.org/10.1037/pspi0000426>, <https://link.springer.com/article/10.1007/s10964-023-01746-1>
+
+    -   But: a LOT less literature + it would mean to drop the secondary group thing
+
+-   **MRCS data** → 

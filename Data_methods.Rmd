@@ -1,0 +1,92 @@
+---
+title: "**Data**"
+author: "Anna Beijl"
+date: "17 September 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# First ideas
+
+What type of data do I need?
+
+-   3 types of groups, at least 2 different outgroups
+
+-   Demographics about individuals
+
+# Data options
+
+*The Nijmegen School Study (TNSS)*
+
+-   Vooroordelen en positief/negatief contact obv etniciteit en gender
+
+    -   O.a. thermometerschalen, percentages, ook contact ouders
+
+-   'Hoeveel van je goede vrienden zijn x?' –\> is dit genoeg (compleet) netwerkdata?
+
+    -   Ik vrees het niet.....
+
+    -   Matrix is alleen over pesten, ingevuld door mentoren
+
+-   Pesten dan als behavioral DV nemen?
+
+*The Arnhem School Study (TASS)*
+
+-   Geen toegang tot codeboek online (<https://ssh.datastations.nl/dataset.xhtml?persistentId=doi:10.17026/DANS-ZC6-JHDK>) –\> via Jochem?
+
+*FIS data*
+
+-   1/2/3 generation migrants (but maybe too in-group-y?)
+
+-   Intergroup attitudes based on religion and ethnicity
+
+-   Other option: Perceived discrimination
+
+    -   Also only based on migration background / ethnicity though
+
+    -   Possibly extend logic of social influence effects to perceived discrimination?
+
+    -   Some literature: <https://doi.org/10.1177/21568693241271289>, <https://doi.org/10.1037/pspi0000426>, <https://link.springer.com/article/10.1007/s10964-023-01746-1>
+
+-   But: a LOT less literature + it would mean to drop the secondary group thing
+
+*MRCS data*
+
+-   Salience of social identity elements
+
+-   Intergroup contact attitudes (broad!) \> "people of other social identities"
+
+# Data descriptions
+
+Should include:
+
+-   Context and participants
+
+-   Waves: how many, what years?
+
+-   Directed / undirected adjacency matrix
+
+-   DV and IVs
+
+    -   The dependent variable in the stochastic actor oriented model (SOAM) is the network structure in wave two and three
+
+    -   Ego-level (monadic) covariates: constant/varying
+
+    -   IV: attitudes of ego / students towards [secondary outgroup]
+
+-   Interaction model? Ego's attitudes lead to ego's friendships, but this is conditional on friends' (from primary outgroup) opinions
+
+    -   Two-step influence effects?
+
+-   Control variables –\> structural network effects such as transitivity / triadic closure, reciprocity, inPop, outAct, isolateNet
+
+-   Corresponding to which effects (i.e. technical names) in the RSiena model?
+
+# Updated RQs
+
+-   **Descriptive (macro / network level)** \> What is the diversity in students' social networks based on [secondary outgroup]?
+
+-   **Explanatory (micro level)** \> To what extent are secondary out-group attitudes / friendships (diversity in network) explained by *social influence effects* (vs. secondary transfer effects of intergroup contact)?

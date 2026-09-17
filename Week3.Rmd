@@ -1,0 +1,340 @@
+---
+title: "**Lab Journal Week 3**"
+author: "Anna Beijl"
+date: "17 September 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Workshop 14-09-2026
+
+## *Summary*
+
+In the workshop we did the following:
+
+-   Last student presentations on RQs and ideas
+-   RSiena tutorial - logic of RSiena (see below)
+-   RSiena tutorial - first analyses (see below)
+
+## *Current to-do list*
+
+-   Complete / walk through tutorials again + revise everything from workshop
+-   Start reading through the RSiena manual (chapters 2 + 5)
+-   Read SNASS chapter 7 (RSiena) and 8 (webscraping)
+-   Try to get data ready for my project
+-   Update RQ and necessary data / variables for my project
+    -   Start writing this down for data section: levels of variables, time path
+    -   Some descriptive statistics
+    -   Also look at lab journals from previous years + published papers
+-   Update lab journal and website
+
+# Lab journal
+
+## RSiena tutorial - Simulation logic
+
+This is the same as the example described in Chapter 7 of @SNASS
+
+### Getting started
+
+```{r}
+rm(list = ls()) # clean workspace
+
+# custom functions
+
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+} # Check if packages are installed (and install if not) in R
+
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+} # Save to processed data in repository
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+} # To load the files back after an fsave
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+} # To print objects (tibbles / data.frame) nicely on screen in .rmd
+
+# Packages
+packages = c("RSiena", "devtools", "igraph")
+fpackage.check(packages)
+# devtools::install_github('JochemTolsma/RsienaTwoStep', build_vignettes=TRUE)
+packages = c("RsienaTwoStep")
+fpackage.check(packages)
+```
+
+### Sample an ego
+
+```{r}
+ts_net1
+net1g <- graph_from_adjacency_matrix(ts_net1, mode = "directed")
+coords <- layout_(net1g, nicely())  #let us keep the layout
+par(mar = c(0.1, 0.1, 0.1, 0.1))
+{
+    plot.igraph(net1g, layout = coords)
+    graphics::box()
+}
+
+set.seed(24553253)
+ego <- ts_select(net = ts_net1, steps = 1)  #in rsienatwostep two actors may make a change together but here not
+ego
+```
+
+### Possible network alternatives
+
+```{r}
+options <- ts_alternatives_ministep(net = ts_net1, ego = ego)
+# all options for future networks
+plots <- lapply(options, graph_from_adjacency_matrix, mode = "directed")
+par(mar = c(0, 0, 0, 0) + 0.1)
+par(mfrow = c(1, 2))
+
+fplot <- function(x) {
+    plot.igraph(x, layout = coords, margin = 0)
+    graphics::box()
+}
+
+lapply(plots, fplot)
+```
+
+### Network statistics
+
+Which option will ego choose? Naturally this will depend on which network characteristics (or statistics), ego finds relevant. Let us suppose that ego bases its decision solely on the number of ties it sends to others and the number of reciprocated ties it has with others
+
+```{r}
+ts_degree(net = options[[1]], ego = ego) # number of ties ego sends to alters
+lapply(options, ts_degree, ego = ego) # for all options
+lapply(options, ts_recip, ego = ego) # number of reciprocated ties
+```
+
+### Evaluation function
+
+But what evaluation value does ego attach to these network statistics and consequently to the network (in its vicinity) as a whole? Well these are the parameters, β i , you will normally estimate with RSiena::siena07()
+
+```{r}
+option <- 4
+ts_degree(options[[option]], ego = ego) * -1 + ts_recip(options[[option]], ego = ego) * 1.5
+
+# or alternatively:
+eval <- ts_eval(net = options[[option]], ego = ego, statistics = list(ts_degree, ts_recip), parameters = c(-1,
+    1.5))
+eval
+
+# evaluations of all possible networks:
+eval <- sapply(options, FUN = ts_eval, ego = ego, statistics = list(ts_degree, ts_recip), parameters = c(-1,
+    1.5))
+eval
+print("network with maximum evaluation score:")
+which.max(eval)
+# so, network 4
+```
+
+### Choice function
+
+So which option will ego choose? Naturally this will be a stochastic process (= not fully deterministic, such as 'always choose the highest evaluation score'). But we see that option 4 has the highest evaluation. We use McFadden’s choice function to calculate with random component.
+
+```{r}
+# let's force ego to make a decision
+choice <- sample(1:length(eval), size = 1, prob = exp(eval)/sum(exp(eval)))
+print("choice:")
+choice
+# print('network:') options[[choice]]
+```
+
+### Simulation example
+
+Let us now simulate how the network could evolve given:
+
+-   Starting point at T1 is ts_net1
+
+-   Rate is set to 2
+
+-   We as scientists think only the network statistics degree and reciprocity are important
+
+-   RSiena::siena07 has determined the parameters for these statistics, which are -1 and 1.5 respectively
+
+-   We adhere to the ministep assumption and hence set p2step to c(1,0,0)
+
+```{r}
+rate <- 2
+degree <- -1
+recip <- 1.5
+ts_sims(nsims = 1, net = ts_net1, startvalues = c(rate, degree, recip), statistics = list(ts_degree,
+    ts_recip), p2step = c(1, 0, 0), chain = FALSE)  #not that rate parameter is automatically included. 
+```
+
+## RSiena tutorial - Analyses
+
+This is the same example described in Chapter 7 of @SNASS
+
+```{r}
+# [ADD THIS PART OF TUTORIAL FROM OTHER FILE]
+```
+
+## RSiena - Estimation + Interpretation
+
+### Estimation example
+
+```{r}
+# let's assume s501 developed into s502. To estimate this network:
+# ans <- ts_estim(net1 = s501, net2 = s502, statistics = list(ts_degree, ts_recip), p2step = c(1, 0, 0), conv = 0.01, phase3 = TRUE, itef3 = 50, verbose = TRUE)
+# ans # final results
+```
+
+### Interpretation of parameters
+
+#### Rate parameter
+
+The waiting times of actors i, j and k are exponentially distributed with rate parameter λ. What do these exponential distribution look like?
+
+```{r}
+par(mfrow = c(1, 3))
+
+dist_5 <- rexp(10000, rate = 5)
+hist(dist_5, main = "rate = lambda_i = 5", freq = FALSE, xlab = "waiting times", xlim = c(0, 2), ylim = c(0,
+    9))
+abline(v = 1/5, col = "red")
+
+dist_10 <- rexp(10000, rate = 10)
+hist(dist_10, main = "rate= lambda_j = 10", freq = FALSE, xlab = "waiting times", xlim = c(0, 2), ylim = c(0,
+    9))
+abline(v = 1/10, col = "red")
+
+dist_15 <- rexp(10000, rate = 15)
+hist(dist_10, main = "rate = lambda_k = 15", freq = FALSE, xlab = "waiting times", xlim = c(0, 2), ylim = c(0,
+    9))
+abline(v = 1/15, col = "red")
+```
+
+We now want to determine who will be allowed to take the next ministep. We thus need to sample a waiting time for each actor. Thus each actor gets a waiting time sampled from the exponential distribution with the specified rate parameter:
+
+```{r}
+set.seed(34641)
+waitingtimes <- NA
+waitingtimes[1] <- rexp(1, rate = 5)
+waitingtimes[2] <- rexp(1, rate = 10)
+waitingtimes[3] <- rexp(1, rate = 15)
+print(paste("waitingtime_", c("i: ", "j: ", "k: "), round(waitingtimes, 3), sep = ""))
+```
+
+Actor *k* has the shortest waiting time and is allowed to take a ministep. In the example above we only took one draw out of each exponential distribution. If we would take many draws the expected value of the waiting time is 1/λ and these values are added as vertical lines in the figure above. **Thus with a higher rate parameter λ the shorter the expected waiting time.**
+
+Now let us repeat this process of determining who is allowed to take a ministep a couple of times and keep track of who will make the ministep and the time that has passed:
+
+```{r}
+set.seed(245651)
+sam_waitingtimes <- NA
+time <- 0
+for (ministeps in 1:50) {
+    waitingtimes <- NA
+    waitingtimes[1] <- rexp(1, rate = 5)
+    waitingtimes[2] <- rexp(1, rate = 10)
+    waitingtimes[3] <- rexp(1, rate = 15)
+    actor <- which(waitingtimes == min(waitingtimes))
+    time <- time + waitingtimes[actor]
+    sam_waitingtimes[ministeps] <- waitingtimes[actor]
+    print(paste("ministep nr.: ", ministeps, sep = ""))
+    print(paste("waitingtime_", c("i: ", "j: ", "k: ")[actor], round(waitingtimes, 3)[actor], sep = ""))
+    print(paste("time past: ", round(time, 3), sep = ""))
+}
+```
+
+Sample some more waiting times and plot the distribution:
+
+```{r}
+set.seed(245651)
+sam_waitingtimes <- NA
+for (ministeps in 1:5000) {
+    waitingtimes <- NA
+    waitingtimes[1] <- rexp(1, rate = 5)
+    waitingtimes[2] <- rexp(1, rate = 10)
+    waitingtimes[3] <- rexp(1, rate = 15)
+    actor <- which(waitingtimes == min(waitingtimes))
+    sam_waitingtimes[ministeps] <- waitingtimes[actor]
+}
+
+par(mfrow = c(1, 2))
+hist(sam_waitingtimes, freq = FALSE, xlab = "waiting times", main = "sampled waiting times")
+abline(v = mean(sam_waitingtimes), col = "red")
+
+hist(rexp(5000, rate = 30), freq = FALSE, xlab = "waiting times", main = "rate=30")
+abline(v = 1/30, col = "red")
+```
+
+**The larger the rate parameter the more opportunities for change there are within a given time period**. So how many opportunities for change do we have before the total time exceeds 1? Please have a look above with the example of actors *i*, *j* and *k* with rate parameters of 5, 10 and 15 respectively. We see that after ministep 38 time exceeds 1. Of course this was only one run. We could repeat the simulation a couple of times and keep track of the total ministeps and the ministeps for each actor. Let us plot the number of ministeps for actors *i*, *j* and *k* for 1000 simulations.
+
+```{r}
+set.seed(245651)
+
+results <- list()
+for (nsim in 1:1000) {
+    time <- 0
+    steps_tot <- 0
+    steps_i <- 0
+    steps_j <- 0
+    steps_k <- 0
+    actors <- NA
+    while (time < 1) {
+        steps_tot <- steps_tot + 1
+        waitingtimes <- NA
+        waitingtimes[1] <- rexp(1, rate = 5)
+        waitingtimes[2] <- rexp(1, rate = 10)
+        waitingtimes[3] <- rexp(1, rate = 15)
+        actor <- which(waitingtimes == min(waitingtimes))
+        time <- time + waitingtimes[actor]
+        actors[steps_tot] <- actor
+    }
+    results[[nsim]] <- actors
+}
+
+# sum(results[[1]]==1) hist(sapply(results, length))
+
+par(mfrow = c(1, 3))
+{
+    hist(sapply(results, function(x) {
+        sum(x == 1)
+    }), xlab = "nsteps", main = "actor i: lambda=5")
+    abline(v = mean(sapply(results, function(x) {
+        sum(x == 1)
+    })), col = "red")
+}
+
+{
+    hist(sapply(results, function(x) {
+        sum(x == 2)
+    }), xlab = "nsteps", main = "actor j: lambda=10")
+    abline(v = mean(sapply(results, function(x) {
+        sum(x == 2)
+    })), col = "red")
+}
+
+{
+    hist(sapply(results, function(x) {
+        sum(x == 3)
+    }), xlab = "nsteps", main = "actor k: lambda=15")
+    abline(v = mean(sapply(results, function(x) {
+        sum(x == 3)
+    })), col = "red")
+}
+```
+
+So, actor k has the highest rate parameter = shortest waiting time = highest probability for an opportunity of change.

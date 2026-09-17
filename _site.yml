@@ -22,8 +22,8 @@ navbar:
       menu: 
       - text: "Introduction"
         href: Introduction.html
-        
-        # here, other .Rmds can be added
+      - text: "Data"
+        href: Data_methods.html
 
 
   right:
@@ -31,7 +31,7 @@ navbar:
     href: https://github.com/annabeijl/labjournalSN
 output:
   html_document:
-    theme: journal # options: flatly / journal
+    theme: journal # options: brite / journal / minty
     highlight: default
     toc:  true # table of contents
     toc_float: true

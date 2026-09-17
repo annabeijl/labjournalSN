@@ -4,7 +4,7 @@ author: "by: Anna Beijl"
 bibliography: references.bib
 ---
 
-Welcome to my lab journal <3
+Welcome to my lab journal \<3
 
 ```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
 # install.packages("remotes")
@@ -54,7 +54,6 @@ Last compiled on `r format(Sys.time(), '%B, %Y')`
 ## Open Science
 
 Everyone can fork this repository. Use this example to journal your lab work and assignments.
-
 :::
 
 ::: {.column width="50%"}
