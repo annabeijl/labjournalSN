@@ -25,6 +25,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **RQ2**: To what extent are secondary out-group attitudes / friendships explained by social influence effects (rather than secondary transfer effects of intergroup contact)?
 
+<br>
+
 # Introduction
 
 First (rough) draft of my introduction, 11-09-2026
@@ -95,6 +97,8 @@ First (rough) draft of my introduction, 11-09-2026
 <!-- -->
 
 -   “By bridging insights from intergroup contact theory and social network analysis, our research offers a novel perspective on attitude change in multicultural environments.” (Zingora et al. 2026)
+
+<br>
 
 # Data
 
