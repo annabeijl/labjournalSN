@@ -15,7 +15,7 @@ What type of data do I need?
 
 -   3 types of groups, at least 2 different outgroups
 
--   Demographics about individuals
+<br>
 
 # Data options
 
@@ -27,11 +27,9 @@ What type of data do I need?
 
 -   'Hoeveel van je goede vrienden zijn x?' –\> is dit genoeg (compleet) netwerkdata?
 
-    -   Ik vrees het niet.....
+    -   Matrix lijkt alleen over pesten, ingevuld door mentoren
 
-    -   Matrix is alleen over pesten, ingevuld door mentoren
-
--   Pesten dan als behavioral DV nemen?
+    -   Pesten dan als behavioral DV nemen?
 
 *The Arnhem School Study (TASS)*
 
@@ -59,6 +57,8 @@ What type of data do I need?
 
 -   Intergroup contact attitudes (broad!) \> "people of other social identities"
 
+<br>
+
 # Data descriptions
 
 Should include:
@@ -73,6 +73,8 @@ Should include:
 
     -   The dependent variable in the stochastic actor oriented model (SOAM) is the network structure in wave two and three
 
+        -   In mijn geval dus niet! Alleen een behavioral DV en netwerk is vaststaand
+
     -   Ego-level (monadic) covariates: constant/varying
 
     -   IV: attitudes of ego / students towards [secondary outgroup]
@@ -85,8 +87,223 @@ Should include:
 
 -   Corresponding to which effects (i.e. technical names) in the RSiena model?
 
+<br>
+
 # Updated RQs
 
 -   **Descriptive (macro / network level)** \> What is the diversity in students' social networks based on [secondary outgroup]?
 
 -   **Explanatory (micro level)** \> To what extent are secondary out-group attitudes / friendships (diversity in network) explained by *social influence effects* (vs. secondary transfer effects of intergroup contact)?
+
+    -   What is the primary vs secondary outgroup?
+
+        -   Similar in stigma/marginalization?? (condition for STE)
+
+    -   Is the outgroup fixed (e.g. always 'women' and 'ethnic minorities') or dynamic based on who ego is (e.g. for an ethnic minority woman, the outgroups would be 'men' and 'ethnic majorities')?
+
+    -   Selection vs. influence no longer possible?
+
+<br>
+
+# Describing my data
+
+## Loading / preparing data 
+
+```{r}
+rm(list = ls()) # clean workspace
+
+# custom functions
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+packages = c("RSiena", "tidyverse", "stringdist", "stringi")
+
+fpackage.check(packages)
+
+library(haven)
+tnss_net <- read_sav("./data/TNSS_wave_2010_mentors.sav")
+tnss_pup10 <- read_sav("./data/TNSS_wave_2010_pupils.sav")
+tnss_pup11 <- read_sav("./data/TNSS_wave_2011_pupils.sav")
+# using 'foreign' I got warnings and didn't seem to load well. 'haven' works nicely
+
+view(tnss_net)
+view(tnss_pup10)
+view(tnss_pup11) # all looks good
+
+class(tnss_net) # tibble/data frame
+class(tnss_pup10)
+class(tnss_pup11)
+
+#join datasets
+# gaat automatisch goed gelukkig (obv IDClass en IDresp)
+tnss <- left_join(tnss_net, tnss_pup10)
+view(tnss)
+
+#selecteer class 5 (of een andere leuke grote klas met weinig missings)
+c5 <- tnss %>% 
+  filter(IDClass == 5)
+
+c9 <- tnss %>% 
+  filter(IDClass == 9)
+
+c3 <- tnss %>% 
+  filter(IDClass == 3)
+
+#aantal leerlingen in class 5
+max(c5$order) # 28
+max(c9$order) # 20
+max(c3$order) # 27
+
+#vis het nominatienetwerk er uit. Nu beetje handwerk. Kan vast slimmer. 
+c5_net <- c5 %>%
+  select(fr_1:fr_28)
+c3_net <- c3 %>%
+  select(fr_1:fr_28)
+view(c5_net)
+class(c5_net) # tibble/data frame
+```
+
+## Descriptive stats
+
+```{r}
+require(igraph)
+g1 <- graph_from_adjacency_matrix(as.matrix(c5_net))
+#kleur op basis van gender. staat in goede volgorde. 
+V(g1)$color <- ifelse(c5$gender == 1, "red", "green")
+plot(g1)
+
+vcount(g1) # count vertices / actors
+ecount(g1) # count edges / ties
+is_bipartite(g1) # is the network unimodal or multi? # F
+is_weighted(g1) # F
+
+require(RsienaTwoStep)
+ts_recip(g1) # 68
+ts_outAct(g1) # 6724
+ts_inAct(g1) # same number
+triad_census(g1)
+dyad_census(g1)
+# $mut = number of pairs with mutual connections 
+# $asym = number of pairs with non-mutual connections 
+# $null = number of pairs with no connections between them 
+
+gmat <- as_adjacency_matrix(g1, type = "both", sparse = FALSE)
+isSymmetric(gmat) # F, dus directed!
+```
+
+## Visualization
+
+```{r}
+# transivitity
+igraph::transitivity(g1, type = c("localundirected"), isolates = c("NaN", "zero"))
+
+# betweenness
+igraph::betweenness(g1, directed = T)
+
+
+# Let’s make size proportional to betweenness score:
+# changing V
+V(g1)$size = betweenness(g1, normalized = T, directed = T) * 60 + 10  #after some trial and error
+plot(g1, mode = "directed")
+
+view(tnss_pup10)
+
+# making it prettier
+#GENDER
+plot(g1 ,
+     vertex.color = ifelse(c5$gender == 1, "hotpink", "olivedrab2"), # gold = nice color for the vertices
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  # 20 we'll vertices a bit smaller
+     vertex.frame.color = "gray",  # we'll put a gray frame around vertices
+     vertex.label.color = "black",  # not that ugly blue color for the labels (names)
+     vertex.label.family = "Helvetica", # not a fan of times new roman in figures
+     vertex.label.cex = 0.5,  # make the label a bit smaller too
+     vertex.label.dist = 0.8,  # we'll pull the labels a bit away from the vertices
+     edge.curved = 0, # curved edges is always a nice touch
+     edge.arrow.size = 0.4) # make arrow size (direction of edge) smaller
+
+plot(g1 ,
+     vertex.color = ifelse(c5$ethnicity == 1, "orange", "olivedrab2"), # gold = nice color for the vertices
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  # 20 we'll vertices a bit smaller
+     vertex.frame.color = "gray",  # we'll put a gray frame around vertices
+     vertex.label.color = "black",  # not that ugly blue color for the labels (names)
+     vertex.label.family = "Helvetica", # not a fan of times new roman in figures
+     vertex.label.cex = 0.5,  # make the label a bit smaller too
+     vertex.label.dist = 0.8,  # we'll pull the labels a bit away from the vertices
+     edge.curved = 0, # curved edges is always a nice touch
+     edge.arrow.size = 0.4) # make arrow size (direction of edge) smaller
+```
+
+What do we see:
+
+-   A lot of clustering!
+
+    -   It seems strongly based on gender
+
+    -   Also (but less) based on ethnicity
+
+-   A couple of students with really high levels of betweenness (15, 14, 4, 3) –\> connecting the different clusters; brokers / bridges
+
+    -   One very central actor: 15 (male + Dutch origin)
+
+    -   Not much variation among the other students
+
+<br>
+
+## Defining data + RSiena object
+
+tbd later
+
+```{r}
+# diag(c5_net) <- 0
+length(tnss) #173
+length(c5_net)
+# hoe verder, want ik heb maar 1 wave
+# tnss_array <- array(data = c(wave1, wave2), dim = c(dim(wave1), 2))
+# net <- sienaDependent(tnss_array)
+
+# INDEPENDENT VARIABLE ----------------------------------------------------
+# gender
+# gender <- as.numeric(c5$gender == "female")
+# gender <- coCovar # = constant covariate, kan ook dyad, time varying, etc
+
+# samenvoegen in één data object voor Siena
+# mydata <- sienaDataCreate(net, gender)
+```
+
+## Effects structure and initial description
+
+tbd later
+
+```{r}
+# myeff <- getEffects(mydata)
+# effectsDocumentation(myeff) # dit zijn alle mogelijke effecten die je kunt opnemen voor dit data object
+# ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+# print01Report(mydata, modelname = "./results/tnss") # goed bekijken
+```

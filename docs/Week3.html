@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Anna Beijl" />
+
+<meta name="date" content="2026-09-17" />
+
+<title>Lab Journal Week 3</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lab journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Week1.html">Week 1</a>
+    </li>
+    <li>
+      <a href="Week2.html">Week 2</a>
+    </li>
+    <li>
+      <a href="Week3.html">Week 3</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="Data_methods.html">Data</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/annabeijl/labjournalSN">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><strong>Lab Journal Week 3</strong></h1>
+<h4 class="author">Anna Beijl</h4>
+<h4 class="date">17 September 2026</h4>
+
+</div>
+
+
+<div id="workshop-14-09-2026" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Workshop
+14-09-2026</h1>
+<div id="summary" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> <em>Summary</em></h2>
+<p>In the workshop we did the following:</p>
+<ul>
+<li>Last student presentations on RQs and ideas</li>
+<li>RSiena tutorial - logic of RSiena (see below)</li>
+<li>RSiena tutorial - first analyses (see below)</li>
+</ul>
+</div>
+<div id="current-to-do-list" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> <em>Current to-do
+list</em></h2>
+<ul>
+<li>Complete / walk through tutorials again + revise everything from
+workshop</li>
+<li>Start reading through the RSiena manual (chapters 2 + 5)</li>
+<li>Read SNASS chapter 7 (RSiena) and 8 (webscraping)</li>
+<li>Try to get data ready for my project</li>
+<li>Update RQ and necessary data / variables for my project
+<ul>
+<li>Start writing this down for data section: levels of variables, time
+path</li>
+<li>Some descriptive statistics</li>
+<li>Also look at lab journals from previous years + published
+papers</li>
+</ul></li>
+<li>Update lab journal and website</li>
+</ul>
+</div>
+</div>
+<div id="lab-journal" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Lab journal</h1>
+<div id="rsiena-tutorial---simulation-logic" class="section level2"
+number="2.1">
+<h2><span class="header-section-number">2.1</span> RSiena tutorial -
+Simulation logic</h2>
+<p>This is the same as the example described in Chapter 7 of <span
+class="citation">@SNASS</span></p>
+<div id="getting-started" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Getting
+started</h3>
+<pre class="r"><code>rm(list = ls()) # clean workspace
+
+# custom functions
+
+fpackage.check &lt;- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+} # Check if packages are installed (and install if not) in R
+
+fsave &lt;- function(x, file = NULL, location = &quot;./data/processed/&quot;) {
+    ifelse(!dir.exists(&quot;data&quot;), dir.create(&quot;data&quot;), FALSE)
+    ifelse(!dir.exists(&quot;data&quot;), dir.create(&quot;data&quot;), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename &lt;- substr(gsub(&quot;[:-]&quot;, &quot;&quot;, Sys.time()), 1, 8)
+    totalname &lt;- paste(location, datename, file, &quot;.rda&quot;, sep = &quot;&quot;)
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+} # Save to processed data in repository
+
+fload &lt;- function(filename) {
+    load(filename)
+    get(ls()[ls() != &quot;filename&quot;])
+} # To load the files back after an fsave
+
+fshowdf &lt;- function(x, ...) {
+    knitr::kable(x, digits = 2, &quot;html&quot;, ...) %&gt;%
+        kableExtra::kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;)) %&gt;%
+        kableExtra::scroll_box(width = &quot;100%&quot;, height = &quot;300px&quot;)
+} # To print objects (tibbles / data.frame) nicely on screen in .rmd
+
+# Packages
+packages = c(&quot;RSiena&quot;, &quot;devtools&quot;, &quot;igraph&quot;)
+fpackage.check(packages)</code></pre>
+<pre><code>## Loading required package: RSiena</code></pre>
+<pre><code>## Warning: package &#39;RSiena&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Loading required package: devtools</code></pre>
+<pre><code>## Warning: package &#39;devtools&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Loading required package: usethis</code></pre>
+<pre><code>## Warning: package &#39;usethis&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Loading required package: igraph</code></pre>
+<pre><code>## Warning: package &#39;igraph&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;igraph&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     decompose, spectrum</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     union</code></pre>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL</code></pre>
+<pre class="r"><code># devtools::install_github(&#39;JochemTolsma/RsienaTwoStep&#39;, build_vignettes=TRUE)
+packages = c(&quot;RsienaTwoStep&quot;)
+fpackage.check(packages)</code></pre>
+<pre><code>## Loading required package: RsienaTwoStep</code></pre>
+<pre><code>## Loading required package: foreach</code></pre>
+<pre><code>## [[1]]
+## NULL</code></pre>
+</div>
+<div id="sample-an-ego" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Sample an ego</h3>
+<pre class="r"><code>ts_net1</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]    0    0    0    0    0    0    0    0    0     0
+##  [2,]    0    0    1    0    0    0    0    0    0     0
+##  [3,]    1    0    0    0    0    1    0    0    0     0
+##  [4,]    0    0    0    0    0    0    0    0    1     0
+##  [5,]    0    0    0    0    0    0    0    0    0     0
+##  [6,]    0    0    0    0    0    0    0    0    1     1
+##  [7,]    1    0    0    0    0    0    0    0    0     0
+##  [8,]    0    0    0    0    0    0    0    0    0     1
+##  [9,]    0    0    0    1    0    0    0    1    0     0
+## [10,]    0    0    0    0    0    0    0    1    1     0</code></pre>
+<pre class="r"><code>net1g &lt;- graph_from_adjacency_matrix(ts_net1, mode = &quot;directed&quot;)
+coords &lt;- layout_(net1g, nicely())  #let us keep the layout
+par(mar = c(0.1, 0.1, 0.1, 0.1))
+{
+    plot.igraph(net1g, layout = coords)
+    graphics::box()
+}</code></pre>
+<p><img src="Week3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>set.seed(24553253)
+ego &lt;- ts_select(net = ts_net1, steps = 1)  #in rsienatwostep two actors may make a change together but here not
+ego</code></pre>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="possible-network-alternatives" class="section level3"
+number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Possible network
+alternatives</h3>
+<pre class="r"><code>options &lt;- ts_alternatives_ministep(net = ts_net1, ego = ego)
+# all options for future networks
+plots &lt;- lapply(options, graph_from_adjacency_matrix, mode = &quot;directed&quot;)
+par(mar = c(0, 0, 0, 0) + 0.1)
+par(mfrow = c(1, 2))
+
+fplot &lt;- function(x) {
+    plot.igraph(x, layout = coords, margin = 0)
+    graphics::box()
+}
+
+lapply(plots, fplot)</code></pre>
+<p><img src="Week3_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="Week3_files/figure-html/unnamed-chunk-3-2.png" width="672" /><img src="Week3_files/figure-html/unnamed-chunk-3-3.png" width="672" /><img src="Week3_files/figure-html/unnamed-chunk-3-4.png" width="672" /><img src="Week3_files/figure-html/unnamed-chunk-3-5.png" width="672" /></p>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL
+## 
+## [[4]]
+## NULL
+## 
+## [[5]]
+## NULL
+## 
+## [[6]]
+## NULL
+## 
+## [[7]]
+## NULL
+## 
+## [[8]]
+## NULL
+## 
+## [[9]]
+## NULL
+## 
+## [[10]]
+## NULL</code></pre>
+</div>
+<div id="network-statistics" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Network
+statistics</h3>
+<p>Which option will ego choose? Naturally this will depend on which
+network characteristics (or statistics), ego finds relevant. Let us
+suppose that ego bases its decision solely on the number of ties it
+sends to others and the number of reciprocated ties it has with
+others</p>
+<pre class="r"><code>ts_degree(net = options[[1]], ego = ego) # number of ties ego sends to alters</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>lapply(options, ts_degree, ego = ego) # for all options</code></pre>
+<pre><code>## [[1]]
+## [1] 2
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 2
+## 
+## [[4]]
+## [1] 1
+## 
+## [[5]]
+## [1] 2
+## 
+## [[6]]
+## [1] 2
+## 
+## [[7]]
+## [1] 2
+## 
+## [[8]]
+## [1] 2
+## 
+## [[9]]
+## [1] 0
+## 
+## [[10]]
+## [1] 2</code></pre>
+<pre class="r"><code>lapply(options, ts_recip, ego = ego) # number of reciprocated ties</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 1
+## 
+## [[3]]
+## [1] 1
+## 
+## [[4]]
+## [1] 1
+## 
+## [[5]]
+## [1] 1
+## 
+## [[6]]
+## [1] 1
+## 
+## [[7]]
+## [1] 1
+## 
+## [[8]]
+## [1] 1
+## 
+## [[9]]
+## [1] 0
+## 
+## [[10]]
+## [1] 1</code></pre>
+</div>
+<div id="evaluation-function" class="section level3" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Evaluation
+function</h3>
+<p>But what evaluation value does ego attach to these network statistics
+and consequently to the network (in its vicinity) as a whole? Well these
+are the parameters, β i , you will normally estimate with
+RSiena::siena07()</p>
+<pre class="r"><code>option &lt;- 4
+ts_degree(options[[option]], ego = ego) * -1 + ts_recip(options[[option]], ego = ego) * 1.5</code></pre>
+<pre><code>## [1] 0.5</code></pre>
+<pre class="r"><code># or alternatively:
+eval &lt;- ts_eval(net = options[[option]], ego = ego, statistics = list(ts_degree, ts_recip), parameters = c(-1,
+    1.5))
+eval</code></pre>
+<pre><code>## [1] 0.5</code></pre>
+<pre class="r"><code># evaluations of all possible networks:
+eval &lt;- sapply(options, FUN = ts_eval, ego = ego, statistics = list(ts_degree, ts_recip), parameters = c(-1,
+    1.5))
+eval</code></pre>
+<pre><code>##  [1] -0.5 -0.5 -0.5  0.5 -0.5 -0.5 -0.5 -0.5  0.0 -0.5</code></pre>
+<pre class="r"><code>print(&quot;network with maximum evaluation score:&quot;)</code></pre>
+<pre><code>## [1] &quot;network with maximum evaluation score:&quot;</code></pre>
+<pre class="r"><code>which.max(eval)</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code># so, network 4</code></pre>
+</div>
+<div id="choice-function" class="section level3" number="2.1.6">
+<h3><span class="header-section-number">2.1.6</span> Choice
+function</h3>
+<p>So which option will ego choose? Naturally this will be a stochastic
+process (= not fully deterministic, such as ‘always choose the highest
+evaluation score’). But we see that option 4 has the highest evaluation.
+We use McFadden’s choice function to calculate with random
+component.</p>
+<pre class="r"><code># let&#39;s force ego to make a decision
+choice &lt;- sample(1:length(eval), size = 1, prob = exp(eval)/sum(exp(eval)))
+print(&quot;choice:&quot;)</code></pre>
+<pre><code>## [1] &quot;choice:&quot;</code></pre>
+<pre class="r"><code>choice</code></pre>
+<pre><code>## [1] 10</code></pre>
+<pre class="r"><code># print(&#39;network:&#39;) options[[choice]]</code></pre>
+</div>
+<div id="simulation-example" class="section level3" number="2.1.7">
+<h3><span class="header-section-number">2.1.7</span> Simulation
+example</h3>
+<p>Let us now simulate how the network could evolve given:</p>
+<ul>
+<li><p>Starting point at T1 is ts_net1</p></li>
+<li><p>Rate is set to 2</p></li>
+<li><p>We as scientists think only the network statistics degree and
+reciprocity are important</p></li>
+<li><p>RSiena::siena07 has determined the parameters for these
+statistics, which are -1 and 1.5 respectively</p></li>
+<li><p>We adhere to the ministep assumption and hence set p2step to
+c(1,0,0)</p></li>
+</ul>
+<pre class="r"><code>rate &lt;- 2
+degree &lt;- -1
+recip &lt;- 1.5
+ts_sims(nsims = 1, net = ts_net1, startvalues = c(rate, degree, recip), statistics = list(ts_degree,
+    ts_recip), p2step = c(1, 0, 0), chain = FALSE)  #not that rate parameter is automatically included. </code></pre>
+<pre><code>## [1] &quot;nsim: 1&quot;</code></pre>
+<pre><code>## [[1]]
+##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]    0    0    0    0    1    1    0    0    0     0
+##  [2,]    0    0    1    0    0    1    0    0    0     0
+##  [3,]    0    0    0    0    1    1    0    0    0     0
+##  [4,]    0    0    0    0    0    1    0    0    1     1
+##  [5,]    0    0    0    0    0    0    0    0    0     0
+##  [6,]    0    0    0    0    0    0    0    0    1     1
+##  [7,]    0    0    0    0    0    0    0    0    0     0
+##  [8,]    0    0    0    0    0    0    0    0    0     0
+##  [9,]    1    0    0    1    0    0    0    0    0     0
+## [10,]    0    0    0    0    0    0    0    1    0     0</code></pre>
+</div>
+</div>
+<div id="rsiena-tutorial---analyses" class="section level2"
+number="2.2">
+<h2><span class="header-section-number">2.2</span> RSiena tutorial -
+Analyses</h2>
+<p>This is the same example described in Chapter 7 of <span
+class="citation">@SNASS</span></p>
+<pre class="r"><code># [ADD THIS PART OF TUTORIAL FROM OTHER FILE]</code></pre>
+</div>
+<div id="rsiena---estimation-interpretation" class="section level2"
+number="2.3">
+<h2><span class="header-section-number">2.3</span> RSiena - Estimation +
+Interpretation</h2>
+<div id="estimation-example" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Estimation
+example</h3>
+<pre class="r"><code># let&#39;s assume s501 developed into s502. To estimate this network:
+# ans &lt;- ts_estim(net1 = s501, net2 = s502, statistics = list(ts_degree, ts_recip), p2step = c(1, 0, 0), conv = 0.01, phase3 = TRUE, itef3 = 50, verbose = TRUE)
+# ans # final results</code></pre>
+</div>
+<div id="interpretation-of-parameters" class="section level3"
+number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Interpretation of
+parameters</h3>
+<div id="rate-parameter" class="section level4" number="2.3.2.1">
+<h4><span class="header-section-number">2.3.2.1</span> Rate
+parameter</h4>
+<p>The waiting times of actors i, j and k are exponentially distributed
+with rate parameter λ. What do these exponential distribution look
+like?</p>
+<pre class="r"><code>par(mfrow = c(1, 3))
+
+dist_5 &lt;- rexp(10000, rate = 5)
+hist(dist_5, main = &quot;rate = lambda_i = 5&quot;, freq = FALSE, xlab = &quot;waiting times&quot;, xlim = c(0, 2), ylim = c(0,
+    9))
+abline(v = 1/5, col = &quot;red&quot;)
+
+dist_10 &lt;- rexp(10000, rate = 10)
+hist(dist_10, main = &quot;rate= lambda_j = 10&quot;, freq = FALSE, xlab = &quot;waiting times&quot;, xlim = c(0, 2), ylim = c(0,
+    9))
+abline(v = 1/10, col = &quot;red&quot;)
+
+dist_15 &lt;- rexp(10000, rate = 15)
+hist(dist_10, main = &quot;rate = lambda_k = 15&quot;, freq = FALSE, xlab = &quot;waiting times&quot;, xlim = c(0, 2), ylim = c(0,
+    9))
+abline(v = 1/15, col = &quot;red&quot;)</code></pre>
+<p><img src="Week3_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>We now want to determine who will be allowed to take the next
+ministep. We thus need to sample a waiting time for each actor. Thus
+each actor gets a waiting time sampled from the exponential distribution
+with the specified rate parameter:</p>
+<pre class="r"><code>set.seed(34641)
+waitingtimes &lt;- NA
+waitingtimes[1] &lt;- rexp(1, rate = 5)
+waitingtimes[2] &lt;- rexp(1, rate = 10)
+waitingtimes[3] &lt;- rexp(1, rate = 15)
+print(paste(&quot;waitingtime_&quot;, c(&quot;i: &quot;, &quot;j: &quot;, &quot;k: &quot;), round(waitingtimes, 3), sep = &quot;&quot;))</code></pre>
+<pre><code>## [1] &quot;waitingtime_i: 0.264&quot; &quot;waitingtime_j: 0.414&quot; &quot;waitingtime_k: 0.028&quot;</code></pre>
+<p>Actor <em>k</em> has the shortest waiting time and is allowed to take
+a ministep. In the example above we only took one draw out of each
+exponential distribution. If we would take many draws the expected value
+of the waiting time is 1/λ and these values are added as vertical lines
+in the figure above. <strong>Thus with a higher rate parameter λ the
+shorter the expected waiting time.</strong></p>
+<p>Now let us repeat this process of determining who is allowed to take
+a ministep a couple of times and keep track of who will make the
+ministep and the time that has passed:</p>
+<pre class="r"><code>set.seed(245651)
+sam_waitingtimes &lt;- NA
+time &lt;- 0
+for (ministeps in 1:50) {
+    waitingtimes &lt;- NA
+    waitingtimes[1] &lt;- rexp(1, rate = 5)
+    waitingtimes[2] &lt;- rexp(1, rate = 10)
+    waitingtimes[3] &lt;- rexp(1, rate = 15)
+    actor &lt;- which(waitingtimes == min(waitingtimes))
+    time &lt;- time + waitingtimes[actor]
+    sam_waitingtimes[ministeps] &lt;- waitingtimes[actor]
+    print(paste(&quot;ministep nr.: &quot;, ministeps, sep = &quot;&quot;))
+    print(paste(&quot;waitingtime_&quot;, c(&quot;i: &quot;, &quot;j: &quot;, &quot;k: &quot;)[actor], round(waitingtimes, 3)[actor], sep = &quot;&quot;))
+    print(paste(&quot;time past: &quot;, round(time, 3), sep = &quot;&quot;))
+}</code></pre>
+<pre><code>## [1] &quot;ministep nr.: 1&quot;
+## [1] &quot;waitingtime_i: 0.012&quot;
+## [1] &quot;time past: 0.012&quot;
+## [1] &quot;ministep nr.: 2&quot;
+## [1] &quot;waitingtime_k: 0.003&quot;
+## [1] &quot;time past: 0.014&quot;
+## [1] &quot;ministep nr.: 3&quot;
+## [1] &quot;waitingtime_k: 0.013&quot;
+## [1] &quot;time past: 0.027&quot;
+## [1] &quot;ministep nr.: 4&quot;
+## [1] &quot;waitingtime_i: 0&quot;
+## [1] &quot;time past: 0.027&quot;
+## [1] &quot;ministep nr.: 5&quot;
+## [1] &quot;waitingtime_j: 0.052&quot;
+## [1] &quot;time past: 0.08&quot;
+## [1] &quot;ministep nr.: 6&quot;
+## [1] &quot;waitingtime_j: 0.073&quot;
+## [1] &quot;time past: 0.153&quot;
+## [1] &quot;ministep nr.: 7&quot;
+## [1] &quot;waitingtime_k: 0.054&quot;
+## [1] &quot;time past: 0.207&quot;
+## [1] &quot;ministep nr.: 8&quot;
+## [1] &quot;waitingtime_i: 0.016&quot;
+## [1] &quot;time past: 0.223&quot;
+## [1] &quot;ministep nr.: 9&quot;
+## [1] &quot;waitingtime_k: 0.006&quot;
+## [1] &quot;time past: 0.229&quot;
+## [1] &quot;ministep nr.: 10&quot;
+## [1] &quot;waitingtime_k: 0.019&quot;
+## [1] &quot;time past: 0.248&quot;
+## [1] &quot;ministep nr.: 11&quot;
+## [1] &quot;waitingtime_k: 0.044&quot;
+## [1] &quot;time past: 0.292&quot;
+## [1] &quot;ministep nr.: 12&quot;
+## [1] &quot;waitingtime_k: 0.024&quot;
+## [1] &quot;time past: 0.316&quot;
+## [1] &quot;ministep nr.: 13&quot;
+## [1] &quot;waitingtime_i: 0.022&quot;
+## [1] &quot;time past: 0.338&quot;
+## [1] &quot;ministep nr.: 14&quot;
+## [1] &quot;waitingtime_k: 0.038&quot;
+## [1] &quot;time past: 0.376&quot;
+## [1] &quot;ministep nr.: 15&quot;
+## [1] &quot;waitingtime_i: 0.027&quot;
+## [1] &quot;time past: 0.403&quot;
+## [1] &quot;ministep nr.: 16&quot;
+## [1] &quot;waitingtime_k: 0.002&quot;
+## [1] &quot;time past: 0.405&quot;
+## [1] &quot;ministep nr.: 17&quot;
+## [1] &quot;waitingtime_i: 0.045&quot;
+## [1] &quot;time past: 0.45&quot;
+## [1] &quot;ministep nr.: 18&quot;
+## [1] &quot;waitingtime_k: 0.023&quot;
+## [1] &quot;time past: 0.473&quot;
+## [1] &quot;ministep nr.: 19&quot;
+## [1] &quot;waitingtime_i: 0&quot;
+## [1] &quot;time past: 0.474&quot;
+## [1] &quot;ministep nr.: 20&quot;
+## [1] &quot;waitingtime_i: 0.024&quot;
+## [1] &quot;time past: 0.498&quot;
+## [1] &quot;ministep nr.: 21&quot;
+## [1] &quot;waitingtime_k: 0.013&quot;
+## [1] &quot;time past: 0.511&quot;
+## [1] &quot;ministep nr.: 22&quot;
+## [1] &quot;waitingtime_j: 0.018&quot;
+## [1] &quot;time past: 0.529&quot;
+## [1] &quot;ministep nr.: 23&quot;
+## [1] &quot;waitingtime_j: 0.027&quot;
+## [1] &quot;time past: 0.556&quot;
+## [1] &quot;ministep nr.: 24&quot;
+## [1] &quot;waitingtime_j: 0.061&quot;
+## [1] &quot;time past: 0.617&quot;
+## [1] &quot;ministep nr.: 25&quot;
+## [1] &quot;waitingtime_k: 0.018&quot;
+## [1] &quot;time past: 0.635&quot;
+## [1] &quot;ministep nr.: 26&quot;
+## [1] &quot;waitingtime_j: 0.097&quot;
+## [1] &quot;time past: 0.732&quot;
+## [1] &quot;ministep nr.: 27&quot;
+## [1] &quot;waitingtime_j: 0.007&quot;
+## [1] &quot;time past: 0.739&quot;
+## [1] &quot;ministep nr.: 28&quot;
+## [1] &quot;waitingtime_j: 0.009&quot;
+## [1] &quot;time past: 0.748&quot;
+## [1] &quot;ministep nr.: 29&quot;
+## [1] &quot;waitingtime_k: 0.001&quot;
+## [1] &quot;time past: 0.75&quot;
+## [1] &quot;ministep nr.: 30&quot;
+## [1] &quot;waitingtime_j: 0.009&quot;
+## [1] &quot;time past: 0.759&quot;
+## [1] &quot;ministep nr.: 31&quot;
+## [1] &quot;waitingtime_i: 0.012&quot;
+## [1] &quot;time past: 0.77&quot;
+## [1] &quot;ministep nr.: 32&quot;
+## [1] &quot;waitingtime_i: 0.056&quot;
+## [1] &quot;time past: 0.826&quot;
+## [1] &quot;ministep nr.: 33&quot;
+## [1] &quot;waitingtime_k: 0.031&quot;
+## [1] &quot;time past: 0.857&quot;
+## [1] &quot;ministep nr.: 34&quot;
+## [1] &quot;waitingtime_j: 0.051&quot;
+## [1] &quot;time past: 0.908&quot;
+## [1] &quot;ministep nr.: 35&quot;
+## [1] &quot;waitingtime_k: 0.014&quot;
+## [1] &quot;time past: 0.923&quot;
+## [1] &quot;ministep nr.: 36&quot;
+## [1] &quot;waitingtime_j: 0.021&quot;
+## [1] &quot;time past: 0.943&quot;
+## [1] &quot;ministep nr.: 37&quot;
+## [1] &quot;waitingtime_k: 0.021&quot;
+## [1] &quot;time past: 0.965&quot;
+## [1] &quot;ministep nr.: 38&quot;
+## [1] &quot;waitingtime_k: 0.059&quot;
+## [1] &quot;time past: 1.024&quot;
+## [1] &quot;ministep nr.: 39&quot;
+## [1] &quot;waitingtime_k: 0.029&quot;
+## [1] &quot;time past: 1.053&quot;
+## [1] &quot;ministep nr.: 40&quot;
+## [1] &quot;waitingtime_j: 0.013&quot;
+## [1] &quot;time past: 1.065&quot;
+## [1] &quot;ministep nr.: 41&quot;
+## [1] &quot;waitingtime_j: 0.044&quot;
+## [1] &quot;time past: 1.11&quot;
+## [1] &quot;ministep nr.: 42&quot;
+## [1] &quot;waitingtime_k: 0.069&quot;
+## [1] &quot;time past: 1.178&quot;
+## [1] &quot;ministep nr.: 43&quot;
+## [1] &quot;waitingtime_i: 0.066&quot;
+## [1] &quot;time past: 1.244&quot;
+## [1] &quot;ministep nr.: 44&quot;
+## [1] &quot;waitingtime_j: 0.003&quot;
+## [1] &quot;time past: 1.248&quot;
+## [1] &quot;ministep nr.: 45&quot;
+## [1] &quot;waitingtime_j: 0.01&quot;
+## [1] &quot;time past: 1.258&quot;
+## [1] &quot;ministep nr.: 46&quot;
+## [1] &quot;waitingtime_k: 0.086&quot;
+## [1] &quot;time past: 1.343&quot;
+## [1] &quot;ministep nr.: 47&quot;
+## [1] &quot;waitingtime_k: 0.046&quot;
+## [1] &quot;time past: 1.389&quot;
+## [1] &quot;ministep nr.: 48&quot;
+## [1] &quot;waitingtime_k: 0.031&quot;
+## [1] &quot;time past: 1.42&quot;
+## [1] &quot;ministep nr.: 49&quot;
+## [1] &quot;waitingtime_i: 0.007&quot;
+## [1] &quot;time past: 1.427&quot;
+## [1] &quot;ministep nr.: 50&quot;
+## [1] &quot;waitingtime_j: 0.066&quot;
+## [1] &quot;time past: 1.493&quot;</code></pre>
+<p>Sample some more waiting times and plot the distribution:</p>
+<pre class="r"><code>set.seed(245651)
+sam_waitingtimes &lt;- NA
+for (ministeps in 1:5000) {
+    waitingtimes &lt;- NA
+    waitingtimes[1] &lt;- rexp(1, rate = 5)
+    waitingtimes[2] &lt;- rexp(1, rate = 10)
+    waitingtimes[3] &lt;- rexp(1, rate = 15)
+    actor &lt;- which(waitingtimes == min(waitingtimes))
+    sam_waitingtimes[ministeps] &lt;- waitingtimes[actor]
+}
+
+par(mfrow = c(1, 2))
+hist(sam_waitingtimes, freq = FALSE, xlab = &quot;waiting times&quot;, main = &quot;sampled waiting times&quot;)
+abline(v = mean(sam_waitingtimes), col = &quot;red&quot;)
+
+hist(rexp(5000, rate = 30), freq = FALSE, xlab = &quot;waiting times&quot;, main = &quot;rate=30&quot;)
+abline(v = 1/30, col = &quot;red&quot;)</code></pre>
+<p><img src="Week3_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><strong>The larger the rate parameter the more opportunities for
+change there are within a given time period</strong>. So how many
+opportunities for change do we have before the total time exceeds 1?
+Please have a look above with the example of actors <em>i</em>,
+<em>j</em> and <em>k</em> with rate parameters of 5, 10 and 15
+respectively. We see that after ministep 38 time exceeds 1. Of course
+this was only one run. We could repeat the simulation a couple of times
+and keep track of the total ministeps and the ministeps for each actor.
+Let us plot the number of ministeps for actors <em>i</em>, <em>j</em>
+and <em>k</em> for 1000 simulations.</p>
+<pre class="r"><code>set.seed(245651)
+
+results &lt;- list()
+for (nsim in 1:1000) {
+    time &lt;- 0
+    steps_tot &lt;- 0
+    steps_i &lt;- 0
+    steps_j &lt;- 0
+    steps_k &lt;- 0
+    actors &lt;- NA
+    while (time &lt; 1) {
+        steps_tot &lt;- steps_tot + 1
+        waitingtimes &lt;- NA
+        waitingtimes[1] &lt;- rexp(1, rate = 5)
+        waitingtimes[2] &lt;- rexp(1, rate = 10)
+        waitingtimes[3] &lt;- rexp(1, rate = 15)
+        actor &lt;- which(waitingtimes == min(waitingtimes))
+        time &lt;- time + waitingtimes[actor]
+        actors[steps_tot] &lt;- actor
+    }
+    results[[nsim]] &lt;- actors
+}
+
+# sum(results[[1]]==1) hist(sapply(results, length))
+
+par(mfrow = c(1, 3))
+{
+    hist(sapply(results, function(x) {
+        sum(x == 1)
+    }), xlab = &quot;nsteps&quot;, main = &quot;actor i: lambda=5&quot;)
+    abline(v = mean(sapply(results, function(x) {
+        sum(x == 1)
+    })), col = &quot;red&quot;)
+}
+
+{
+    hist(sapply(results, function(x) {
+        sum(x == 2)
+    }), xlab = &quot;nsteps&quot;, main = &quot;actor j: lambda=10&quot;)
+    abline(v = mean(sapply(results, function(x) {
+        sum(x == 2)
+    })), col = &quot;red&quot;)
+}
+
+{
+    hist(sapply(results, function(x) {
+        sum(x == 3)
+    }), xlab = &quot;nsteps&quot;, main = &quot;actor k: lambda=15&quot;)
+    abline(v = mean(sapply(results, function(x) {
+        sum(x == 3)
+    })), col = &quot;red&quot;)
+}</code></pre>
+<p><img src="Week3_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>So, actor k has the highest rate parameter = shortest waiting time =
+highest probability for an opportunity of change.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIioqTGFiIEpvdXJuYWwgV2VlayAzKioiDQphdXRob3I6ICJBbm5hIEJlaWpsIg0KZGF0ZTogIjE3IFNlcHRlbWJlciAyMDI2Ig0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KIyBXb3Jrc2hvcCAxNC0wOS0yMDI2DQoNCiMjICpTdW1tYXJ5Kg0KDQpJbiB0aGUgd29ya3Nob3Agd2UgZGlkIHRoZSBmb2xsb3dpbmc6DQoNCi0gICBMYXN0IHN0dWRlbnQgcHJlc2VudGF0aW9ucyBvbiBSUXMgYW5kIGlkZWFzDQotICAgUlNpZW5hIHR1dG9yaWFsIC0gbG9naWMgb2YgUlNpZW5hIChzZWUgYmVsb3cpDQotICAgUlNpZW5hIHR1dG9yaWFsIC0gZmlyc3QgYW5hbHlzZXMgKHNlZSBiZWxvdykNCg0KIyMgKkN1cnJlbnQgdG8tZG8gbGlzdCoNCg0KLSAgIENvbXBsZXRlIC8gd2FsayB0aHJvdWdoIHR1dG9yaWFscyBhZ2FpbiArIHJldmlzZSBldmVyeXRoaW5nIGZyb20gd29ya3Nob3ANCi0gICBTdGFydCByZWFkaW5nIHRocm91Z2ggdGhlIFJTaWVuYSBtYW51YWwgKGNoYXB0ZXJzIDIgKyA1KQ0KLSAgIFJlYWQgU05BU1MgY2hhcHRlciA3IChSU2llbmEpIGFuZCA4ICh3ZWJzY3JhcGluZykNCi0gICBUcnkgdG8gZ2V0IGRhdGEgcmVhZHkgZm9yIG15IHByb2plY3QNCi0gICBVcGRhdGUgUlEgYW5kIG5lY2Vzc2FyeSBkYXRhIC8gdmFyaWFibGVzIGZvciBteSBwcm9qZWN0DQogICAgLSAgIFN0YXJ0IHdyaXRpbmcgdGhpcyBkb3duIGZvciBkYXRhIHNlY3Rpb246IGxldmVscyBvZiB2YXJpYWJsZXMsIHRpbWUgcGF0aA0KICAgIC0gICBTb21lIGRlc2NyaXB0aXZlIHN0YXRpc3RpY3MNCiAgICAtICAgQWxzbyBsb29rIGF0IGxhYiBqb3VybmFscyBmcm9tIHByZXZpb3VzIHllYXJzICsgcHVibGlzaGVkIHBhcGVycw0KLSAgIFVwZGF0ZSBsYWIgam91cm5hbCBhbmQgd2Vic2l0ZQ0KDQojIExhYiBqb3VybmFsDQoNCiMjIFJTaWVuYSB0dXRvcmlhbCAtIFNpbXVsYXRpb24gbG9naWMNCg0KVGhpcyBpcyB0aGUgc2FtZSBhcyB0aGUgZXhhbXBsZSBkZXNjcmliZWQgaW4gQ2hhcHRlciA3IG9mIEBTTkFTUw0KDQojIyMgR2V0dGluZyBzdGFydGVkDQoNCmBgYHtyfQ0Kcm0obGlzdCA9IGxzKCkpICMgY2xlYW4gd29ya3NwYWNlDQoNCiMgY3VzdG9tIGZ1bmN0aW9ucw0KDQpmcGFja2FnZS5jaGVjayA8LSBmdW5jdGlvbihwYWNrYWdlcykgew0KICAgIGxhcHBseShwYWNrYWdlcywgRlVOID0gZnVuY3Rpb24oeCkgew0KICAgICAgICBpZiAoIXJlcXVpcmUoeCwgY2hhcmFjdGVyLm9ubHkgPSBUUlVFKSkgew0KICAgICAgICAgICAgaW5zdGFsbC5wYWNrYWdlcyh4LCBkZXBlbmRlbmNpZXMgPSBUUlVFKQ0KICAgICAgICAgICAgbGlicmFyeSh4LCBjaGFyYWN0ZXIub25seSA9IFRSVUUpDQogICAgICAgIH0NCiAgICB9KQ0KfSAjIENoZWNrIGlmIHBhY2thZ2VzIGFyZSBpbnN0YWxsZWQgKGFuZCBpbnN0YWxsIGlmIG5vdCkgaW4gUg0KDQpmc2F2ZSA8LSBmdW5jdGlvbih4LCBmaWxlID0gTlVMTCwgbG9jYXRpb24gPSAiLi9kYXRhL3Byb2Nlc3NlZC8iKSB7DQogICAgaWZlbHNlKCFkaXIuZXhpc3RzKCJkYXRhIiksIGRpci5jcmVhdGUoImRhdGEiKSwgRkFMU0UpDQogICAgaWZlbHNlKCFkaXIuZXhpc3RzKCJkYXRhIiksIGRpci5jcmVhdGUoImRhdGEiKSwgRkFMU0UpDQogICAgaWYgKGlzLm51bGwoZmlsZSkpDQogICAgICAgIGZpbGUgPSBkZXBhcnNlKHN1YnN0aXR1dGUoeCkpDQogICAgZGF0ZW5hbWUgPC0gc3Vic3RyKGdzdWIoIls6LV0iLCAiIiwgU3lzLnRpbWUoKSksIDEsIDgpDQogICAgdG90YWxuYW1lIDwtIHBhc3RlKGxvY2F0aW9uLCBkYXRlbmFtZSwgZmlsZSwgIi5yZGEiLCBzZXAgPSAiIikNCiAgICBzYXZlKHgsIGZpbGUgPSB0b3RhbG5hbWUpICAjbmVlZCB0byBmaXggaWYgZmlsZSBpcyByZWxvYWRlZCBhcyBpbnB1dCBuYW1lLCBub3QgYXMgeC4gDQp9ICMgU2F2ZSB0byBwcm9jZXNzZWQgZGF0YSBpbiByZXBvc2l0b3J5DQoNCmZsb2FkIDwtIGZ1bmN0aW9uKGZpbGVuYW1lKSB7DQogICAgbG9hZChmaWxlbmFtZSkNCiAgICBnZXQobHMoKVtscygpICE9ICJmaWxlbmFtZSJdKQ0KfSAjIFRvIGxvYWQgdGhlIGZpbGVzIGJhY2sgYWZ0ZXIgYW4gZnNhdmUNCg0KZnNob3dkZiA8LSBmdW5jdGlvbih4LCAuLi4pIHsNCiAgICBrbml0cjo6a2FibGUoeCwgZGlnaXRzID0gMiwgImh0bWwiLCAuLi4pICU+JQ0KICAgICAgICBrYWJsZUV4dHJhOjprYWJsZV9zdHlsaW5nKGJvb3RzdHJhcF9vcHRpb25zID0gYygic3RyaXBlZCIsICJob3ZlciIpKSAlPiUNCiAgICAgICAga2FibGVFeHRyYTo6c2Nyb2xsX2JveCh3aWR0aCA9ICIxMDAlIiwgaGVpZ2h0ID0gIjMwMHB4IikNCn0gIyBUbyBwcmludCBvYmplY3RzICh0aWJibGVzIC8gZGF0YS5mcmFtZSkgbmljZWx5IG9uIHNjcmVlbiBpbiAucm1kDQoNCiMgUGFja2FnZXMNCnBhY2thZ2VzID0gYygiUlNpZW5hIiwgImRldnRvb2xzIiwgImlncmFwaCIpDQpmcGFja2FnZS5jaGVjayhwYWNrYWdlcykNCiMgZGV2dG9vbHM6Omluc3RhbGxfZ2l0aHViKCdKb2NoZW1Ub2xzbWEvUnNpZW5hVHdvU3RlcCcsIGJ1aWxkX3ZpZ25ldHRlcz1UUlVFKQ0KcGFja2FnZXMgPSBjKCJSc2llbmFUd29TdGVwIikNCmZwYWNrYWdlLmNoZWNrKHBhY2thZ2VzKQ0KYGBgDQoNCiMjIyBTYW1wbGUgYW4gZWdvDQoNCmBgYHtyfQ0KdHNfbmV0MQ0KbmV0MWcgPC0gZ3JhcGhfZnJvbV9hZGphY2VuY3lfbWF0cml4KHRzX25ldDEsIG1vZGUgPSAiZGlyZWN0ZWQiKQ0KY29vcmRzIDwtIGxheW91dF8obmV0MWcsIG5pY2VseSgpKSAgI2xldCB1cyBrZWVwIHRoZSBsYXlvdXQNCnBhcihtYXIgPSBjKDAuMSwgMC4xLCAwLjEsIDAuMSkpDQp7DQogICAgcGxvdC5pZ3JhcGgobmV0MWcsIGxheW91dCA9IGNvb3JkcykNCiAgICBncmFwaGljczo6Ym94KCkNCn0NCg0Kc2V0LnNlZWQoMjQ1NTMyNTMpDQplZ28gPC0gdHNfc2VsZWN0KG5ldCA9IHRzX25ldDEsIHN0ZXBzID0gMSkgICNpbiByc2llbmF0d29zdGVwIHR3byBhY3RvcnMgbWF5IG1ha2UgYSBjaGFuZ2UgdG9nZXRoZXIgYnV0IGhlcmUgbm90DQplZ28NCmBgYA0KDQojIyMgUG9zc2libGUgbmV0d29yayBhbHRlcm5hdGl2ZXMNCg0KYGBge3J9DQpvcHRpb25zIDwtIHRzX2FsdGVybmF0aXZlc19taW5pc3RlcChuZXQgPSB0c19uZXQxLCBlZ28gPSBlZ28pDQojIGFsbCBvcHRpb25zIGZvciBmdXR1cmUgbmV0d29ya3MNCnBsb3RzIDwtIGxhcHBseShvcHRpb25zLCBncmFwaF9mcm9tX2FkamFjZW5jeV9tYXRyaXgsIG1vZGUgPSAiZGlyZWN0ZWQiKQ0KcGFyKG1hciA9IGMoMCwgMCwgMCwgMCkgKyAwLjEpDQpwYXIobWZyb3cgPSBjKDEsIDIpKQ0KDQpmcGxvdCA8LSBmdW5jdGlvbih4KSB7DQogICAgcGxvdC5pZ3JhcGgoeCwgbGF5b3V0ID0gY29vcmRzLCBtYXJnaW4gPSAwKQ0KICAgIGdyYXBoaWNzOjpib3goKQ0KfQ0KDQpsYXBwbHkocGxvdHMsIGZwbG90KQ0KYGBgDQoNCiMjIyBOZXR3b3JrIHN0YXRpc3RpY3MNCg0KV2hpY2ggb3B0aW9uIHdpbGwgZWdvIGNob29zZT8gTmF0dXJhbGx5IHRoaXMgd2lsbCBkZXBlbmQgb24gd2hpY2ggbmV0d29yayBjaGFyYWN0ZXJpc3RpY3MgKG9yIHN0YXRpc3RpY3MpLCBlZ28gZmluZHMgcmVsZXZhbnQuIExldCB1cyBzdXBwb3NlIHRoYXQgZWdvIGJhc2VzIGl0cyBkZWNpc2lvbiBzb2xlbHkgb24gdGhlIG51bWJlciBvZiB0aWVzIGl0IHNlbmRzIHRvIG90aGVycyBhbmQgdGhlIG51bWJlciBvZiByZWNpcHJvY2F0ZWQgdGllcyBpdCBoYXMgd2l0aCBvdGhlcnMNCg0KYGBge3J9DQp0c19kZWdyZWUobmV0ID0gb3B0aW9uc1tbMV1dLCBlZ28gPSBlZ28pICMgbnVtYmVyIG9mIHRpZXMgZWdvIHNlbmRzIHRvIGFsdGVycw0KbGFwcGx5KG9wdGlvbnMsIHRzX2RlZ3JlZSwgZWdvID0gZWdvKSAjIGZvciBhbGwgb3B0aW9ucw0KbGFwcGx5KG9wdGlvbnMsIHRzX3JlY2lwLCBlZ28gPSBlZ28pICMgbnVtYmVyIG9mIHJlY2lwcm9jYXRlZCB0aWVzDQpgYGANCg0KIyMjIEV2YWx1YXRpb24gZnVuY3Rpb24NCg0KQnV0IHdoYXQgZXZhbHVhdGlvbiB2YWx1ZSBkb2VzIGVnbyBhdHRhY2ggdG8gdGhlc2UgbmV0d29yayBzdGF0aXN0aWNzIGFuZCBjb25zZXF1ZW50bHkgdG8gdGhlIG5ldHdvcmsgKGluIGl0cyB2aWNpbml0eSkgYXMgYSB3aG9sZT8gV2VsbCB0aGVzZSBhcmUgdGhlIHBhcmFtZXRlcnMsIM6yIGkgLCB5b3Ugd2lsbCBub3JtYWxseSBlc3RpbWF0ZSB3aXRoIFJTaWVuYTo6c2llbmEwNygpDQoNCmBgYHtyfQ0Kb3B0aW9uIDwtIDQNCnRzX2RlZ3JlZShvcHRpb25zW1tvcHRpb25dXSwgZWdvID0gZWdvKSAqIC0xICsgdHNfcmVjaXAob3B0aW9uc1tbb3B0aW9uXV0sIGVnbyA9IGVnbykgKiAxLjUNCg0KIyBvciBhbHRlcm5hdGl2ZWx5Og0KZXZhbCA8LSB0c19ldmFsKG5ldCA9IG9wdGlvbnNbW29wdGlvbl1dLCBlZ28gPSBlZ28sIHN0YXRpc3RpY3MgPSBsaXN0KHRzX2RlZ3JlZSwgdHNfcmVjaXApLCBwYXJhbWV0ZXJzID0gYygtMSwNCiAgICAxLjUpKQ0KZXZhbA0KDQojIGV2YWx1YXRpb25zIG9mIGFsbCBwb3NzaWJsZSBuZXR3b3JrczoNCmV2YWwgPC0gc2FwcGx5KG9wdGlvbnMsIEZVTiA9IHRzX2V2YWwsIGVnbyA9IGVnbywgc3RhdGlzdGljcyA9IGxpc3QodHNfZGVncmVlLCB0c19yZWNpcCksIHBhcmFtZXRlcnMgPSBjKC0xLA0KICAgIDEuNSkpDQpldmFsDQpwcmludCgibmV0d29yayB3aXRoIG1heGltdW0gZXZhbHVhdGlvbiBzY29yZToiKQ0Kd2hpY2gubWF4KGV2YWwpDQojIHNvLCBuZXR3b3JrIDQNCmBgYA0KDQojIyMgQ2hvaWNlIGZ1bmN0aW9uDQoNClNvIHdoaWNoIG9wdGlvbiB3aWxsIGVnbyBjaG9vc2U/IE5hdHVyYWxseSB0aGlzIHdpbGwgYmUgYSBzdG9jaGFzdGljIHByb2Nlc3MgKD0gbm90IGZ1bGx5IGRldGVybWluaXN0aWMsIHN1Y2ggYXMgJ2Fsd2F5cyBjaG9vc2UgdGhlIGhpZ2hlc3QgZXZhbHVhdGlvbiBzY29yZScpLiBCdXQgd2Ugc2VlIHRoYXQgb3B0aW9uIDQgaGFzIHRoZSBoaWdoZXN0IGV2YWx1YXRpb24uIFdlIHVzZSBNY0ZhZGRlbuKAmXMgY2hvaWNlIGZ1bmN0aW9uIHRvIGNhbGN1bGF0ZSB3aXRoIHJhbmRvbSBjb21wb25lbnQuDQoNCmBgYHtyfQ0KIyBsZXQncyBmb3JjZSBlZ28gdG8gbWFrZSBhIGRlY2lzaW9uDQpjaG9pY2UgPC0gc2FtcGxlKDE6bGVuZ3RoKGV2YWwpLCBzaXplID0gMSwgcHJvYiA9IGV4cChldmFsKS9zdW0oZXhwKGV2YWwpKSkNCnByaW50KCJjaG9pY2U6IikNCmNob2ljZQ0KIyBwcmludCgnbmV0d29yazonKSBvcHRpb25zW1tjaG9pY2VdXQ0KYGBgDQoNCiMjIyBTaW11bGF0aW9uIGV4YW1wbGUNCg0KTGV0IHVzIG5vdyBzaW11bGF0ZSBob3cgdGhlIG5ldHdvcmsgY291bGQgZXZvbHZlIGdpdmVuOg0KDQotICAgU3RhcnRpbmcgcG9pbnQgYXQgVDEgaXMgdHNfbmV0MQ0KDQotICAgUmF0ZSBpcyBzZXQgdG8gMg0KDQotICAgV2UgYXMgc2NpZW50aXN0cyB0aGluayBvbmx5IHRoZSBuZXR3b3JrIHN0YXRpc3RpY3MgZGVncmVlIGFuZCByZWNpcHJvY2l0eSBhcmUgaW1wb3J0YW50DQoNCi0gICBSU2llbmE6OnNpZW5hMDcgaGFzIGRldGVybWluZWQgdGhlIHBhcmFtZXRlcnMgZm9yIHRoZXNlIHN0YXRpc3RpY3MsIHdoaWNoIGFyZSAtMSBhbmQgMS41IHJlc3BlY3RpdmVseQ0KDQotICAgV2UgYWRoZXJlIHRvIHRoZSBtaW5pc3RlcCBhc3N1bXB0aW9uIGFuZCBoZW5jZSBzZXQgcDJzdGVwIHRvIGMoMSwwLDApDQoNCmBgYHtyfQ0KcmF0ZSA8LSAyDQpkZWdyZWUgPC0gLTENCnJlY2lwIDwtIDEuNQ0KdHNfc2ltcyhuc2ltcyA9IDEsIG5ldCA9IHRzX25ldDEsIHN0YXJ0dmFsdWVzID0gYyhyYXRlLCBkZWdyZWUsIHJlY2lwKSwgc3RhdGlzdGljcyA9IGxpc3QodHNfZGVncmVlLA0KICAgIHRzX3JlY2lwKSwgcDJzdGVwID0gYygxLCAwLCAwKSwgY2hhaW4gPSBGQUxTRSkgICNub3QgdGhhdCByYXRlIHBhcmFtZXRlciBpcyBhdXRvbWF0aWNhbGx5IGluY2x1ZGVkLiANCmBgYA0KDQojIyBSU2llbmEgdHV0b3JpYWwgLSBBbmFseXNlcw0KDQpUaGlzIGlzIHRoZSBzYW1lIGV4YW1wbGUgZGVzY3JpYmVkIGluIENoYXB0ZXIgNyBvZiBAU05BU1MNCg0KYGBge3J9DQojIFtBREQgVEhJUyBQQVJUIE9GIFRVVE9SSUFMIEZST00gT1RIRVIgRklMRV0NCmBgYA0KDQojIyBSU2llbmEgLSBFc3RpbWF0aW9uICsgSW50ZXJwcmV0YXRpb24NCg0KIyMjIEVzdGltYXRpb24gZXhhbXBsZQ0KDQpgYGB7cn0NCiMgbGV0J3MgYXNzdW1lIHM1MDEgZGV2ZWxvcGVkIGludG8gczUwMi4gVG8gZXN0aW1hdGUgdGhpcyBuZXR3b3JrOg0KIyBhbnMgPC0gdHNfZXN0aW0obmV0MSA9IHM1MDEsIG5ldDIgPSBzNTAyLCBzdGF0aXN0aWNzID0gbGlzdCh0c19kZWdyZWUsIHRzX3JlY2lwKSwgcDJzdGVwID0gYygxLCAwLCAwKSwgY29udiA9IDAuMDEsIHBoYXNlMyA9IFRSVUUsIGl0ZWYzID0gNTAsIHZlcmJvc2UgPSBUUlVFKQ0KIyBhbnMgIyBmaW5hbCByZXN1bHRzDQpgYGANCg0KIyMjIEludGVycHJldGF0aW9uIG9mIHBhcmFtZXRlcnMNCg0KIyMjIyBSYXRlIHBhcmFtZXRlcg0KDQpUaGUgd2FpdGluZyB0aW1lcyBvZiBhY3RvcnMgaSwgaiBhbmQgayBhcmUgZXhwb25lbnRpYWxseSBkaXN0cmlidXRlZCB3aXRoIHJhdGUgcGFyYW1ldGVyIM67LiBXaGF0IGRvIHRoZXNlIGV4cG9uZW50aWFsIGRpc3RyaWJ1dGlvbiBsb29rIGxpa2U/DQoNCmBgYHtyfQ0KcGFyKG1mcm93ID0gYygxLCAzKSkNCg0KZGlzdF81IDwtIHJleHAoMTAwMDAsIHJhdGUgPSA1KQ0KaGlzdChkaXN0XzUsIG1haW4gPSAicmF0ZSA9IGxhbWJkYV9pID0gNSIsIGZyZXEgPSBGQUxTRSwgeGxhYiA9ICJ3YWl0aW5nIHRpbWVzIiwgeGxpbSA9IGMoMCwgMiksIHlsaW0gPSBjKDAsDQogICAgOSkpDQphYmxpbmUodiA9IDEvNSwgY29sID0gInJlZCIpDQoNCmRpc3RfMTAgPC0gcmV4cCgxMDAwMCwgcmF0ZSA9IDEwKQ0KaGlzdChkaXN0XzEwLCBtYWluID0gInJhdGU9IGxhbWJkYV9qID0gMTAiLCBmcmVxID0gRkFMU0UsIHhsYWIgPSAid2FpdGluZyB0aW1lcyIsIHhsaW0gPSBjKDAsIDIpLCB5bGltID0gYygwLA0KICAgIDkpKQ0KYWJsaW5lKHYgPSAxLzEwLCBjb2wgPSAicmVkIikNCg0KZGlzdF8xNSA8LSByZXhwKDEwMDAwLCByYXRlID0gMTUpDQpoaXN0KGRpc3RfMTAsIG1haW4gPSAicmF0ZSA9IGxhbWJkYV9rID0gMTUiLCBmcmVxID0gRkFMU0UsIHhsYWIgPSAid2FpdGluZyB0aW1lcyIsIHhsaW0gPSBjKDAsIDIpLCB5bGltID0gYygwLA0KICAgIDkpKQ0KYWJsaW5lKHYgPSAxLzE1LCBjb2wgPSAicmVkIikNCmBgYA0KDQpXZSBub3cgd2FudCB0byBkZXRlcm1pbmUgd2hvIHdpbGwgYmUgYWxsb3dlZCB0byB0YWtlIHRoZSBuZXh0IG1pbmlzdGVwLiBXZSB0aHVzIG5lZWQgdG8gc2FtcGxlIGEgd2FpdGluZyB0aW1lIGZvciBlYWNoIGFjdG9yLiBUaHVzIGVhY2ggYWN0b3IgZ2V0cyBhIHdhaXRpbmcgdGltZSBzYW1wbGVkIGZyb20gdGhlIGV4cG9uZW50aWFsIGRpc3RyaWJ1dGlvbiB3aXRoIHRoZSBzcGVjaWZpZWQgcmF0ZSBwYXJhbWV0ZXI6DQoNCmBgYHtyfQ0Kc2V0LnNlZWQoMzQ2NDEpDQp3YWl0aW5ndGltZXMgPC0gTkENCndhaXRpbmd0aW1lc1sxXSA8LSByZXhwKDEsIHJhdGUgPSA1KQ0Kd2FpdGluZ3RpbWVzWzJdIDwtIHJleHAoMSwgcmF0ZSA9IDEwKQ0Kd2FpdGluZ3RpbWVzWzNdIDwtIHJleHAoMSwgcmF0ZSA9IDE1KQ0KcHJpbnQocGFzdGUoIndhaXRpbmd0aW1lXyIsIGMoImk6ICIsICJqOiAiLCAiazogIiksIHJvdW5kKHdhaXRpbmd0aW1lcywgMyksIHNlcCA9ICIiKSkNCmBgYA0KDQpBY3RvciAqayogaGFzIHRoZSBzaG9ydGVzdCB3YWl0aW5nIHRpbWUgYW5kIGlzIGFsbG93ZWQgdG8gdGFrZSBhIG1pbmlzdGVwLiBJbiB0aGUgZXhhbXBsZSBhYm92ZSB3ZSBvbmx5IHRvb2sgb25lIGRyYXcgb3V0IG9mIGVhY2ggZXhwb25lbnRpYWwgZGlzdHJpYnV0aW9uLiBJZiB3ZSB3b3VsZCB0YWtlIG1hbnkgZHJhd3MgdGhlIGV4cGVjdGVkIHZhbHVlIG9mIHRoZSB3YWl0aW5nIHRpbWUgaXMgMS/OuyBhbmQgdGhlc2UgdmFsdWVzIGFyZSBhZGRlZCBhcyB2ZXJ0aWNhbCBsaW5lcyBpbiB0aGUgZmlndXJlIGFib3ZlLiAqKlRodXMgd2l0aCBhIGhpZ2hlciByYXRlIHBhcmFtZXRlciDOuyB0aGUgc2hvcnRlciB0aGUgZXhwZWN0ZWQgd2FpdGluZyB0aW1lLioqDQoNCk5vdyBsZXQgdXMgcmVwZWF0IHRoaXMgcHJvY2VzcyBvZiBkZXRlcm1pbmluZyB3aG8gaXMgYWxsb3dlZCB0byB0YWtlIGEgbWluaXN0ZXAgYSBjb3VwbGUgb2YgdGltZXMgYW5kIGtlZXAgdHJhY2sgb2Ygd2hvIHdpbGwgbWFrZSB0aGUgbWluaXN0ZXAgYW5kIHRoZSB0aW1lIHRoYXQgaGFzIHBhc3NlZDoNCg0KYGBge3J9DQpzZXQuc2VlZCgyNDU2NTEpDQpzYW1fd2FpdGluZ3RpbWVzIDwtIE5BDQp0aW1lIDwtIDANCmZvciAobWluaXN0ZXBzIGluIDE6NTApIHsNCiAgICB3YWl0aW5ndGltZXMgPC0gTkENCiAgICB3YWl0aW5ndGltZXNbMV0gPC0gcmV4cCgxLCByYXRlID0gNSkNCiAgICB3YWl0aW5ndGltZXNbMl0gPC0gcmV4cCgxLCByYXRlID0gMTApDQogICAgd2FpdGluZ3RpbWVzWzNdIDwtIHJleHAoMSwgcmF0ZSA9IDE1KQ0KICAgIGFjdG9yIDwtIHdoaWNoKHdhaXRpbmd0aW1lcyA9PSBtaW4od2FpdGluZ3RpbWVzKSkNCiAgICB0aW1lIDwtIHRpbWUgKyB3YWl0aW5ndGltZXNbYWN0b3JdDQogICAgc2FtX3dhaXRpbmd0aW1lc1ttaW5pc3RlcHNdIDwtIHdhaXRpbmd0aW1lc1thY3Rvcl0NCiAgICBwcmludChwYXN0ZSgibWluaXN0ZXAgbnIuOiAiLCBtaW5pc3RlcHMsIHNlcCA9ICIiKSkNCiAgICBwcmludChwYXN0ZSgid2FpdGluZ3RpbWVfIiwgYygiaTogIiwgImo6ICIsICJrOiAiKVthY3Rvcl0sIHJvdW5kKHdhaXRpbmd0aW1lcywgMylbYWN0b3JdLCBzZXAgPSAiIikpDQogICAgcHJpbnQocGFzdGUoInRpbWUgcGFzdDogIiwgcm91bmQodGltZSwgMyksIHNlcCA9ICIiKSkNCn0NCmBgYA0KDQpTYW1wbGUgc29tZSBtb3JlIHdhaXRpbmcgdGltZXMgYW5kIHBsb3QgdGhlIGRpc3RyaWJ1dGlvbjoNCg0KYGBge3J9DQpzZXQuc2VlZCgyNDU2NTEpDQpzYW1fd2FpdGluZ3RpbWVzIDwtIE5BDQpmb3IgKG1pbmlzdGVwcyBpbiAxOjUwMDApIHsNCiAgICB3YWl0aW5ndGltZXMgPC0gTkENCiAgICB3YWl0aW5ndGltZXNbMV0gPC0gcmV4cCgxLCByYXRlID0gNSkNCiAgICB3YWl0aW5ndGltZXNbMl0gPC0gcmV4cCgxLCByYXRlID0gMTApDQogICAgd2FpdGluZ3RpbWVzWzNdIDwtIHJleHAoMSwgcmF0ZSA9IDE1KQ0KICAgIGFjdG9yIDwtIHdoaWNoKHdhaXRpbmd0aW1lcyA9PSBtaW4od2FpdGluZ3RpbWVzKSkNCiAgICBzYW1fd2FpdGluZ3RpbWVzW21pbmlzdGVwc10gPC0gd2FpdGluZ3RpbWVzW2FjdG9yXQ0KfQ0KDQpwYXIobWZyb3cgPSBjKDEsIDIpKQ0KaGlzdChzYW1fd2FpdGluZ3RpbWVzLCBmcmVxID0gRkFMU0UsIHhsYWIgPSAid2FpdGluZyB0aW1lcyIsIG1haW4gPSAic2FtcGxlZCB3YWl0aW5nIHRpbWVzIikNCmFibGluZSh2ID0gbWVhbihzYW1fd2FpdGluZ3RpbWVzKSwgY29sID0gInJlZCIpDQoNCmhpc3QocmV4cCg1MDAwLCByYXRlID0gMzApLCBmcmVxID0gRkFMU0UsIHhsYWIgPSAid2FpdGluZyB0aW1lcyIsIG1haW4gPSAicmF0ZT0zMCIpDQphYmxpbmUodiA9IDEvMzAsIGNvbCA9ICJyZWQiKQ0KYGBgDQoNCioqVGhlIGxhcmdlciB0aGUgcmF0ZSBwYXJhbWV0ZXIgdGhlIG1vcmUgb3Bwb3J0dW5pdGllcyBmb3IgY2hhbmdlIHRoZXJlIGFyZSB3aXRoaW4gYSBnaXZlbiB0aW1lIHBlcmlvZCoqLiBTbyBob3cgbWFueSBvcHBvcnR1bml0aWVzIGZvciBjaGFuZ2UgZG8gd2UgaGF2ZSBiZWZvcmUgdGhlIHRvdGFsIHRpbWUgZXhjZWVkcyAxPyBQbGVhc2UgaGF2ZSBhIGxvb2sgYWJvdmUgd2l0aCB0aGUgZXhhbXBsZSBvZiBhY3RvcnMgKmkqLCAqaiogYW5kICprKiB3aXRoIHJhdGUgcGFyYW1ldGVycyBvZiA1LCAxMCBhbmQgMTUgcmVzcGVjdGl2ZWx5LiBXZSBzZWUgdGhhdCBhZnRlciBtaW5pc3RlcCAzOCB0aW1lIGV4Y2VlZHMgMS4gT2YgY291cnNlIHRoaXMgd2FzIG9ubHkgb25lIHJ1bi4gV2UgY291bGQgcmVwZWF0IHRoZSBzaW11bGF0aW9uIGEgY291cGxlIG9mIHRpbWVzIGFuZCBrZWVwIHRyYWNrIG9mIHRoZSB0b3RhbCBtaW5pc3RlcHMgYW5kIHRoZSBtaW5pc3RlcHMgZm9yIGVhY2ggYWN0b3IuIExldCB1cyBwbG90IHRoZSBudW1iZXIgb2YgbWluaXN0ZXBzIGZvciBhY3RvcnMgKmkqLCAqaiogYW5kICprKiBmb3IgMTAwMCBzaW11bGF0aW9ucy4NCg0KYGBge3J9DQpzZXQuc2VlZCgyNDU2NTEpDQoNCnJlc3VsdHMgPC0gbGlzdCgpDQpmb3IgKG5zaW0gaW4gMToxMDAwKSB7DQogICAgdGltZSA8LSAwDQogICAgc3RlcHNfdG90IDwtIDANCiAgICBzdGVwc19pIDwtIDANCiAgICBzdGVwc19qIDwtIDANCiAgICBzdGVwc19rIDwtIDANCiAgICBhY3RvcnMgPC0gTkENCiAgICB3aGlsZSAodGltZSA8IDEpIHsNCiAgICAgICAgc3RlcHNfdG90IDwtIHN0ZXBzX3RvdCArIDENCiAgICAgICAgd2FpdGluZ3RpbWVzIDwtIE5BDQogICAgICAgIHdhaXRpbmd0aW1lc1sxXSA8LSByZXhwKDEsIHJhdGUgPSA1KQ0KICAgICAgICB3YWl0aW5ndGltZXNbMl0gPC0gcmV4cCgxLCByYXRlID0gMTApDQogICAgICAgIHdhaXRpbmd0aW1lc1szXSA8LSByZXhwKDEsIHJhdGUgPSAxNSkNCiAgICAgICAgYWN0b3IgPC0gd2hpY2god2FpdGluZ3RpbWVzID09IG1pbih3YWl0aW5ndGltZXMpKQ0KICAgICAgICB0aW1lIDwtIHRpbWUgKyB3YWl0aW5ndGltZXNbYWN0b3JdDQogICAgICAgIGFjdG9yc1tzdGVwc190b3RdIDwtIGFjdG9yDQogICAgfQ0KICAgIHJlc3VsdHNbW25zaW1dXSA8LSBhY3RvcnMNCn0NCg0KIyBzdW0ocmVzdWx0c1tbMV1dPT0xKSBoaXN0KHNhcHBseShyZXN1bHRzLCBsZW5ndGgpKQ0KDQpwYXIobWZyb3cgPSBjKDEsIDMpKQ0Kew0KICAgIGhpc3Qoc2FwcGx5KHJlc3VsdHMsIGZ1bmN0aW9uKHgpIHsNCiAgICAgICAgc3VtKHggPT0gMSkNCiAgICB9KSwgeGxhYiA9ICJuc3RlcHMiLCBtYWluID0gImFjdG9yIGk6IGxhbWJkYT01IikNCiAgICBhYmxpbmUodiA9IG1lYW4oc2FwcGx5KHJlc3VsdHMsIGZ1bmN0aW9uKHgpIHsNCiAgICAgICAgc3VtKHggPT0gMSkNCiAgICB9KSksIGNvbCA9ICJyZWQiKQ0KfQ0KDQp7DQogICAgaGlzdChzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgew0KICAgICAgICBzdW0oeCA9PSAyKQ0KICAgIH0pLCB4bGFiID0gIm5zdGVwcyIsIG1haW4gPSAiYWN0b3IgajogbGFtYmRhPTEwIikNCiAgICBhYmxpbmUodiA9IG1lYW4oc2FwcGx5KHJlc3VsdHMsIGZ1bmN0aW9uKHgpIHsNCiAgICAgICAgc3VtKHggPT0gMikNCiAgICB9KSksIGNvbCA9ICJyZWQiKQ0KfQ0KDQp7DQogICAgaGlzdChzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgew0KICAgICAgICBzdW0oeCA9PSAzKQ0KICAgIH0pLCB4bGFiID0gIm5zdGVwcyIsIG1haW4gPSAiYWN0b3IgazogbGFtYmRhPTE1IikNCiAgICBhYmxpbmUodiA9IG1lYW4oc2FwcGx5KHJlc3VsdHMsIGZ1bmN0aW9uKHgpIHsNCiAgICAgICAgc3VtKHggPT0gMykNCiAgICB9KSksIGNvbCA9ICJyZWQiKQ0KfQ0KYGBgDQoNClNvLCBhY3RvciBrIGhhcyB0aGUgaGlnaGVzdCByYXRlIHBhcmFtZXRlciA9IHNob3J0ZXN0IHdhaXRpbmcgdGltZSA9IGhpZ2hlc3QgcHJvYmFiaWxpdHkgZm9yIGFuIG9wcG9ydHVuaXR5IG9mIGNoYW5nZS4NCg==</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Week3.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Anna Beijl" />
+
+<meta name="date" content="2026-09-21" />
+
+<title>Lab Journal Week 4</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-heart"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lab journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Week1.html">Week 1</a>
+    </li>
+    <li>
+      <a href="Week2.html">Week 2</a>
+    </li>
+    <li>
+      <a href="Week3.html">Week 3</a>
+    </li>
+    <li>
+      <a href="Week4.html">Week 4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="Data_methods.html">Data</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/annabeijl/labjournalSN">
+    <span class="fa fa-smile-o"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><strong>Lab Journal Week 4</strong></h1>
+<h4 class="author">Anna Beijl</h4>
+<h4 class="date">21 September 2026</h4>
+
+</div>
+
+
+<div id="workshop-21-09-2026" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Workshop
+21-09-2026</h1>
+<div id="summary" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> <em>Summary</em></h2>
+<p>In the workshop we did the following:</p>
+<ul>
+<li><p>A few student presentations on RQ and data</p></li>
+<li><p>Intro to network visualization</p></li>
+<li><p>Intro to web scraping</p></li>
+<li><p>Working with our own data, making first few plots</p></li>
+</ul>
+</div>
+<div id="current-to-do-list" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> <em>Current to-do
+list:</em></h2>
+<ul>
+<li>Repeat everything from this (and previous) week(s)</li>
+<li>Tidy up notes, lab journal, and website</li>
+<li>SNASS chapter 8 and 9</li>
+<li>Edit RQs</li>
+<li>Prepare data for RSiena analysis
+<ul>
+<li>Descriptive stats</li>
+<li>Visualization</li>
+<li>Think about modeling strategy</li>
+</ul></li>
+<li>Read papers on stationary SAOM / figure out analysis</li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="lab-journal" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Lab journal</h1>
+<div id="network-visualization" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Network
+visualization</h2>
+<p>Based on the tutorial in <span class="citation">@SNASS</span> chapter
+9</p>
+<div id="zacharys-karate-club" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Zachary’s karate
+club</h3>
+<div id="loading-data" class="section level4" number="2.1.1.1">
+<h4><span class="header-section-number">2.1.1.1</span> <em>Loading
+data</em></h4>
+<pre class="r"><code># loading the data - Zachary&#39;s karate club
+require(igraph)</code></pre>
+<pre><code>## Loading required package: igraph</code></pre>
+<pre><code>## Warning: package &#39;igraph&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;igraph&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     decompose, spectrum</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     union</code></pre>
+<pre class="r"><code>g &lt;- make_graph(&quot;Zachary&quot;)
+plot(g)</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code># &#39;g&#39; is een igraph object
+
+# adjacency matrix van maken
+gmat &lt;- as_adjacency_matrix(g, type = &quot;both&quot;, sparse = FALSE)
+gmat</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]
+##  [1,]    0    1    1    1    1    1    1    1    1     0     1     1     1
+##  [2,]    1    0    1    1    0    0    0    1    0     0     0     0     0
+##  [3,]    1    1    0    1    0    0    0    1    1     1     0     0     0
+##  [4,]    1    1    1    0    0    0    0    1    0     0     0     0     1
+##  [5,]    1    0    0    0    0    0    1    0    0     0     1     0     0
+##  [6,]    1    0    0    0    0    0    1    0    0     0     1     0     0
+##  [7,]    1    0    0    0    1    1    0    0    0     0     0     0     0
+##  [8,]    1    1    1    1    0    0    0    0    0     0     0     0     0
+##  [9,]    1    0    1    0    0    0    0    0    0     0     0     0     0
+## [10,]    0    0    1    0    0    0    0    0    0     0     0     0     0
+## [11,]    1    0    0    0    1    1    0    0    0     0     0     0     0
+## [12,]    1    0    0    0    0    0    0    0    0     0     0     0     0
+## [13,]    1    0    0    1    0    0    0    0    0     0     0     0     0
+## [14,]    1    1    1    1    0    0    0    0    0     0     0     0     0
+## [15,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [16,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [17,]    0    0    0    0    0    1    1    0    0     0     0     0     0
+## [18,]    1    1    0    0    0    0    0    0    0     0     0     0     0
+## [19,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [20,]    1    1    0    0    0    0    0    0    0     0     0     0     0
+## [21,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [22,]    1    1    0    0    0    0    0    0    0     0     0     0     0
+## [23,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [24,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [25,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [26,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [27,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [28,]    0    0    1    0    0    0    0    0    0     0     0     0     0
+## [29,]    0    0    1    0    0    0    0    0    0     0     0     0     0
+## [30,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+## [31,]    0    1    0    0    0    0    0    0    1     0     0     0     0
+## [32,]    1    0    0    0    0    0    0    0    0     0     0     0     0
+## [33,]    0    0    1    0    0    0    0    0    1     0     0     0     0
+## [34,]    0    0    0    0    0    0    0    0    1     1     0     0     0
+##       [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25]
+##  [1,]     1     0     0     0     1     0     1     0     1     0     0     0
+##  [2,]     1     0     0     0     1     0     1     0     1     0     0     0
+##  [3,]     1     0     0     0     0     0     0     0     0     0     0     0
+##  [4,]     1     0     0     0     0     0     0     0     0     0     0     0
+##  [5,]     0     0     0     0     0     0     0     0     0     0     0     0
+##  [6,]     0     0     0     1     0     0     0     0     0     0     0     0
+##  [7,]     0     0     0     1     0     0     0     0     0     0     0     0
+##  [8,]     0     0     0     0     0     0     0     0     0     0     0     0
+##  [9,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [10,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [11,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [12,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [13,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [14,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [15,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [16,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [17,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [18,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [19,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [20,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [21,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [22,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [23,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [24,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [25,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [26,]     0     0     0     0     0     0     0     0     0     0     1     1
+## [27,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [28,]     0     0     0     0     0     0     0     0     0     0     1     1
+## [29,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [30,]     0     0     0     0     0     0     0     0     0     0     1     0
+## [31,]     0     0     0     0     0     0     0     0     0     0     0     0
+## [32,]     0     0     0     0     0     0     0     0     0     0     0     1
+## [33,]     0     1     1     0     0     1     0     1     0     1     1     0
+## [34,]     1     1     1     0     0     1     1     1     0     1     1     0
+##       [,26] [,27] [,28] [,29] [,30] [,31] [,32] [,33] [,34]
+##  [1,]     0     0     0     0     0     0     1     0     0
+##  [2,]     0     0     0     0     0     1     0     0     0
+##  [3,]     0     0     1     1     0     0     0     1     0
+##  [4,]     0     0     0     0     0     0     0     0     0
+##  [5,]     0     0     0     0     0     0     0     0     0
+##  [6,]     0     0     0     0     0     0     0     0     0
+##  [7,]     0     0     0     0     0     0     0     0     0
+##  [8,]     0     0     0     0     0     0     0     0     0
+##  [9,]     0     0     0     0     0     1     0     1     1
+## [10,]     0     0     0     0     0     0     0     0     1
+## [11,]     0     0     0     0     0     0     0     0     0
+## [12,]     0     0     0     0     0     0     0     0     0
+## [13,]     0     0     0     0     0     0     0     0     0
+## [14,]     0     0     0     0     0     0     0     0     1
+## [15,]     0     0     0     0     0     0     0     1     1
+## [16,]     0     0     0     0     0     0     0     1     1
+## [17,]     0     0     0     0     0     0     0     0     0
+## [18,]     0     0     0     0     0     0     0     0     0
+## [19,]     0     0     0     0     0     0     0     1     1
+## [20,]     0     0     0     0     0     0     0     0     1
+## [21,]     0     0     0     0     0     0     0     1     1
+## [22,]     0     0     0     0     0     0     0     0     0
+## [23,]     0     0     0     0     0     0     0     1     1
+## [24,]     1     0     1     0     1     0     0     1     1
+## [25,]     1     0     1     0     0     0     1     0     0
+## [26,]     0     0     0     0     0     0     1     0     0
+## [27,]     0     0     0     0     1     0     0     0     1
+## [28,]     0     0     0     0     0     0     0     0     1
+## [29,]     0     0     0     0     0     0     1     0     1
+## [30,]     0     1     0     0     0     0     0     1     1
+## [31,]     0     0     0     0     0     0     0     1     1
+## [32,]     1     0     0     1     0     0     0     1     1
+## [33,]     0     0     0     0     1     1     1     0     1
+## [34,]     0     1     1     1     1     1     1     1     0</code></pre>
+<pre class="r"><code>isSymmetric(gmat) # symmetrisch, dus undirected!</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="descriptive-statistics" class="section level4"
+number="2.1.1.2">
+<h4><span class="header-section-number">2.1.1.2</span> <em>Descriptive
+statistics</em></h4>
+<pre class="r"><code># size
+
+# degree
+
+# TRANSITVITY
+# hoeveel gesloten driehoekjes van alle mogelijke driehoekjes?
+# be aware that directed graphs are considered as undirected. but g is undirected.
+igraph::transitivity(g, type = c(&quot;localundirected&quot;), isolates = c(&quot;NaN&quot;, &quot;zero&quot;))</code></pre>
+<pre><code>##  [1] 0.1500000 0.3333333 0.2444444 0.6666667 0.6666667 0.5000000 0.5000000
+##  [8] 1.0000000 0.5000000 0.0000000 0.6666667       NaN 1.0000000 0.6000000
+## [15] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 0.3333333 1.0000000
+## [22] 1.0000000 1.0000000 0.4000000 0.3333333 0.3333333 1.0000000 0.1666667
+## [29] 0.3333333 0.6666667 0.5000000 0.2000000 0.1969697 0.1102941</code></pre>
+<pre class="r"><code># BETWEENNESS
+# hoe vaak zit ego op de kortste paden tussen 2 actoren
+igraph::betweenness(g, directed = FALSE)</code></pre>
+<pre><code>##  [1] 231.0714286  28.4785714  75.8507937   6.2880952   0.3333333  15.8333333
+##  [7]  15.8333333   0.0000000  29.5293651   0.4476190   0.3333333   0.0000000
+## [13]   0.0000000  24.2158730   0.0000000   0.0000000   0.0000000   0.0000000
+## [19]   0.0000000  17.1468254   0.0000000   0.0000000   0.0000000   9.3000000
+## [25]   1.1666667   2.0277778   0.0000000  11.7920635   0.9476190   1.5428571
+## [31]   7.6095238  73.0095238  76.6904762 160.5515873</code></pre>
+<pre class="r"><code># actor 1, 3 en 34 springen er heel erg uit, maar op het plaatje zie je niet veel verschil tussen 33 en 34. hier kun je mee spelen in het plot; als je betweenness centraal wil stellen, wil je meer nadruk leggen op actoren 1 en 34. bijvoorbeeld: door andere kleuren/intensiteit, grootte of layout obv betweenness
+
+igraph::dyad_census(g)</code></pre>
+<pre><code>## Warning: `dyad_census()` requires a directed graph.</code></pre>
+<pre><code>## $mut
+## [1] 78
+## 
+## $asym
+## [1] 0
+## 
+## $null
+## [1] 483</code></pre>
+<pre class="r"><code>igraph::triad_census(g)</code></pre>
+<pre><code>## Warning in triad_census_impl(graph = graph): Triad census called on an undirected graph. All connections will be treated as mutual.
+## Source: misc/motifs.c:1157</code></pre>
+<pre><code>##  [1] 3971    0 1575    0    0    0    0    0    0    0  393    0    0    0    0
+## [16]   45</code></pre>
+<pre class="r"><code># I will use sna because it shows the names of the triads as well.
+sna::triad.census(gmat)</code></pre>
+<pre><code>##       003 012  102 021D 021U 021C 111D 111U 030T 030C 201 120D 120U 120C 210
+## [1,] 3971   0 1575    0    0    0    0    0    0    0 393    0    0    0   0
+##      300
+## [1,]  45</code></pre>
+<pre class="r"><code>unloadNamespace(&quot;sna&quot;)  #I will detach this package again, otherwise it will interfere with all kind of functions from igraph, and my students will hate me for that.
+
+# GLOBAL TRANSITIVITY
+igraph::transitivity(g, type = &quot;global&quot;)</code></pre>
+<pre><code>## [1] 0.2556818</code></pre>
+<pre class="r"><code>sna::gtrans(gmat)</code></pre>
+<pre><code>## [1] 0.2556818</code></pre>
+<pre class="r"><code>triad_g &lt;- data.frame(sna::triad.census(gmat))
+
+transitivity_g &lt;- (3 * triad_g$X300)/(triad_g$X201 + 3 * triad_g$X300)
+transitivity_g</code></pre>
+<pre><code>## [1] 0.2556818</code></pre>
+<p>We zien nu dat er verschillen zijn in lokale transitiviteit en in
+betweenness, en er zijn 2 nodes die eruit springen (= met hoge
+betweenness, lage local transitivity). Maar die twee nodes zijn niet met
+elkaar verbonden; interessant!</p>
+</div>
+<div id="network-visualization-1" class="section level4"
+number="2.1.1.3">
+<h4><span class="header-section-number">2.1.1.3</span> <em>Network
+visualization</em></h4>
+<pre class="r"><code># Let’s make size proportional to betweenness score:
+# changing V
+V(g)$size = betweenness(g, normalized = T, directed = FALSE) * 60 + 10  #after some trial and error
+plot(g, mode = &quot;undirected&quot;)</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code># we willen actor 1 en 34 toch nog wat verder uit elkaar. dit doen we obv een algoritme
+set.seed(2345)
+l &lt;- layout_with_mds(g)  #https://igraph.org/r/doc/layout_with_mds.html
+plot(g, layout = l)</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<pre class="r"><code>l  #let us take a look at the coordinates</code></pre>
+<pre><code>##               [,1]         [,2]
+##  [1,]  1.070931935 -0.172458113
+##  [2,]  0.732844464  0.754023309
+##  [3,]  0.100582299  0.397693607
+##  [4,]  0.708246655  0.570205545
+##  [5,]  1.816293170 -0.120778206
+##  [6,]  1.881329566 -0.135518854
+##  [7,]  1.881329566 -0.135518854
+##  [8,]  0.812606714  0.472619437
+##  [9,] -0.003769996  0.615513628
+## [10,] -0.685680315  0.621065149
+## [11,]  1.816293170 -0.120778206
+## [12,]  1.621247830 -0.065820692
+## [13,]  1.637845123  0.001789972
+## [14,]  0.067317230  0.681421148
+## [15,] -1.796316404  0.351417630
+## [16,] -1.796316404  0.351417630
+## [17,]  2.775260452 -0.124317652
+## [18,]  1.616210024  0.182510197
+## [19,] -1.796316404  0.351417630
+## [20,]  0.048362858  0.566654982
+## [21,] -1.796316404  0.351417630
+## [22,]  1.616210024  0.182510197
+## [23,] -1.796316404  0.351417630
+## [24,] -1.891240567 -0.799574907
+## [25,] -0.258345165 -2.006346563
+## [26,] -0.360530857 -2.131642875
+## [27,] -1.865177401  0.128596564
+## [28,] -0.760226022 -0.529392331
+## [29,] -0.710979936 -0.299960128
+## [30,] -1.898426916 -0.149398746
+## [31,] -0.568691923  0.804189411
+## [32,] -0.048136037 -0.870967614
+## [33,] -1.023681000 -0.035802363
+## [34,] -1.146442924 -0.037605192</code></pre>
+<pre class="r"><code>l[1, 1] &lt;- 4
+l[34, 1] &lt;- -3.5
+plot(g, layout = l)
+
+# notitie toevoegen om te laten zien dat we hebben &#39;gemanipuleerd&#39;:
+plot(g, layout = l, margin = c(0, 0, 0, 0))
+legend(x = -2, y = -1.5, c(&quot;Note: the position of nodes 1 and 34 have been set by Jochem Tolsma \n for visualisation purposes only and do not reflect network properties&quot;),bty = &quot;n&quot;, cex = 0.8)</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+</div>
+</div>
+<div id="co-author-networks" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Co-author
+networks</h3>
+<div id="loading-data-1" class="section level4" number="2.1.2.1">
+<h4><span class="header-section-number">2.1.2.1</span> <em>Loading
+data</em></h4>
+<pre class="r"><code># load the necessary datasets
+load(&quot;./data/soc_df.RData&quot;)
+load(&quot;./data/soc_collabs1.RData&quot;)
+load(&quot;./data/soc_collabs2.RData&quot;)
+
+# get unique collaborators of soc staff first
+soc_collabs_unique &lt;- unique(soc_collabs[, 4])  # so 229 unique collaborators for RU staff?
+soc_collabs_unique &lt;- c(soc_collabs_unique, soc_df$gs_id)  # add the soc staff themselves.
+soc_collabs_unique &lt;- data.frame(soc_collabs_unique)
+soc_collabs_unique$v1 &lt;- 1  # convenient to select on after the merge
+soc_collabs_unique &lt;- unique(soc_collabs_unique)
+
+# so this is a very important step, we join the unique soc collaborators to the collaborators of collaborators
+require(tidyverse)</code></pre>
+<pre><code>## Loading required package: tidyverse</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Warning: package &#39;lubridate&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.6
+## ✔ forcats   1.0.1     ✔ stringr   1.6.0
+## ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+## ✔ lubridate 1.9.5     ✔ tidyr     1.3.1
+## ✔ purrr     1.2.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ lubridate::%--%()      masks igraph::%--%()
+## ✖ dplyr::as_data_frame() masks tibble::as_data_frame(), igraph::as_data_frame()
+## ✖ purrr::compose()       masks igraph::compose()
+## ✖ tidyr::crossing()      masks igraph::crossing()
+## ✖ dplyr::filter()        masks stats::filter()
+## ✖ dplyr::lag()           masks stats::lag()
+## ✖ purrr::simplify()      masks igraph::simplify()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>onefivedegree &lt;- left_join(collabs_1deep, soc_collabs_unique, by = c(coauth_id = &quot;soc_collabs_unique&quot;))
+
+# Then, we drop those that are not among sociology collaborators and who don&#39;t lsit coauthors
+# regardless
+onefivedegree &lt;- onefivedegree[!is.na(onefivedegree$v1), ]
+onefivedegree &lt;- onefivedegree[!is.na(onefivedegree$coauth), ]
+
+# we pick those columns and have an edgelist of soc collaborators and whether they collaborate with
+# those same collaborators the 1.5 degree network
+onefivedegree &lt;- onefivedegree[, c(&quot;name&quot;, &quot;coauth&quot;)]
+names(onefivedegree) &lt;- c(&quot;from&quot;, &quot;to&quot;)
+
+# we get soc collaborators and add those to the data above and end up with a nice edgelist!
+socc &lt;- soc_collabs[!is.na(soc_collabs$coauth), ]
+socc &lt;- socc[, c(&quot;name&quot;, &quot;coauth&quot;)]
+names(socc) &lt;- c(&quot;from&quot;, &quot;to&quot;)
+onefivedegree &lt;- rbind(socc, onefivedegree)
+save(onefivedegree, file = &quot;./data/soc_onefivedegree.RData&quot;)</code></pre>
+</div>
+<div id="network-visualization-2" class="section level4"
+number="2.1.2.2">
+<h4><span class="header-section-number">2.1.2.2</span> <em>Network
+visualization</em></h4>
+<pre class="r"><code>onefivedegree &lt;- as.matrix(onefivedegree)  # matrix because igraph wants that
+library(igraph)  # Notice that we call igraph here, in anticipation of the viz tutorial.
+net1 &lt;- graph_from_edgelist(onefivedegree, directed = TRUE)  # Notice the igraph function here!
+
+plot(net1)  # pretty ugly!</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="making-it-prettier" class="section level4" number="2.1.2.3">
+<h4><span class="header-section-number">2.1.2.3</span> <em>Making it
+prettier</em></h4>
+<pre class="r"><code>plot(net1 ,
+     vertex.color = &quot;gold&quot;, # nice color for the vertices
+     vertex.size = 4,  # we&#39;ll vertices a bit smaller
+     vertex.frame.color = &quot;gray&quot;,  # we&#39;ll put a gray frame around vertices
+     vertex.label.color = &quot;black&quot;,  # not that ugly blue color for the labels (names)
+     vertex.label.family = &quot;Helvetica&quot;, # not a fan of times new roman in figures
+     vertex.label.cex = 0.4,  # make the label a bit smaller too
+     vertex.label.dist = 0.5,  # we&#39;ll pull the labels a bit away from the vertices
+     edge.curved = 0.2, # curved edges is always a nice touch
+     edge.arrow.size = 0.1) # make arrow size (direction of edge) smaller</code></pre>
+<pre><code>## Warning in text.default(x0, y0, labels = lbl, col = col, family = fam, font =
+## fnt, : font family not found in Windows font database</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="extracting-node-attributes" class="section level4"
+number="2.1.2.4">
+<h4><span class="header-section-number">2.1.2.4</span> <em>Extracting
+node attributes</em></h4>
+<p>Selecting Radboud sociology nodes and give them a different
+color.</p>
+<pre class="r"><code>in_network &lt;- data.frame(as_ids(V(net1)))
+names(in_network)[1] &lt;- &quot;name&quot;
+
+#soc_df$total_cites &lt;- soc_df$total_cites.x
+ru_nodes &lt;- soc_df[, c(&quot;name&quot;, &quot;total_cites&quot;)]
+in_network &lt;- left_join(in_network, ru_nodes, by = c(&quot;name&quot; = &quot;name&quot;))
+in_network$vcol &lt;- ifelse(is.na(in_network$total_cites), &quot;#E69F00&quot;, &quot;#56B4E9&quot;)
+
+plot(net1,
+     vertex.color = in_network$vcol, #THIS WAS WHAT WE DID THE LAST CODEBLOCK FOR!
+     vertex.size = 4,  # we&#39;ll make them a bit smaller
+     vertex.frame.color = &quot;gray&quot;,  # we&#39;ll put a frame around it
+     vertex.label.color = &quot;black&quot;,  # not that ugly blue color for the names
+     vertex.label.family = &quot;Helvetica&quot;, # not a fan of times in figures
+     vertex.label.cex = 0.4,  # a bit smaller too
+     vertex.label.dist = 0.5,  # we&#39;ll pull the labels a bit away from the vertices
+     edge.curved = 0.2,  # curved edges is always a nice tough
+     edge.arrow.size = 0.1) # arrow size smaller</code></pre>
+<pre><code>## Warning in text.default(x0, y0, labels = lbl, col = col, family = fam, font =
+## fnt, : font family not found in Windows font database</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Show only the labels of RU sociology staff</p>
+<pre class="r"><code>plot(net1,
+     vertex.color = in_network$vcol, 
+     #NOTICE THESE CONDITIONAL STATEMENTS BELOW
+     vertex.label = ifelse(!is.na(in_network$total_cites), in_network$name, NA),
+     vertex.size = 4,  # we&#39;ll make them a bit smaller
+     vertex.frame.color = &quot;gray&quot;,  # we&#39;ll put a frame around it
+     vertex.label.color = &quot;black&quot;,  # not that ugly blue color for the names
+     vertex.label.family = &quot;Helvetica&quot;, # not a fan of times in figures
+     vertex.label.cex = 0.65,  # a bit smaller too
+     vertex.label.dist = 0.5,  # we&#39;ll pull the labels a bit away from the vertices
+     edge.curved = 0.2, # curved edges is always a nice tough
+     edge.arrow.size = 0.1) # arrow size smaller</code></pre>
+<pre><code>## Warning in text.default(x0, y0, labels = lbl, col = col, family = fam, font =
+## fnt, : font family not found in Windows font database</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Vertex size adjusted for citation</p>
+<pre class="r"><code>plot(net1,
+     vertex.color = in_network$vcol, 
+     vertex.label = ifelse(!is.na(in_network$total_cites), in_network$name, NA),
+     # SAME HERE, TRY TO SMOOTH THE TOTAL_CITES A BIT WITH LOGSCALE
+     vertex.size = ifelse(!is.na(in_network$total_cites), log(in_network$total_cites), 2),
+     vertex.frame.color = &quot;gray&quot;,  # we&#39;ll put a frame around it
+     vertex.label.color = &quot;black&quot;,  # not that ugly blue color for the names
+     vertex.label.family = &quot;Helvetica&quot;, # not a fan of times in figures
+     vertex.label.cex = 0.65,  # a bit smaller too
+     vertex.label.dist = 0.5,  # we&#39;ll pull the labels a bit away from the vertices
+     edge.curved = 0.2, # curved edges is always a nice tough
+     edge.arrow.size = 0.1) # arrow size smaller</code></pre>
+<pre><code>## Warning in text.default(x0, y0, labels = lbl, col = col, family = fam, font =
+## fnt, : font family not found in Windows font database</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Identify the nodes of RU sociology staff members</p>
+<pre class="r"><code>net1_mat &lt;- igraph::as_adjacency_matrix(net1, sparse = FALSE)
+
+net1_un &lt;- (net1_mat + t(net1_mat)) &gt; 0
+
+net1_un &lt;- graph_from_adjacency_matrix(net1_un, mode = &quot;undirected&quot;)
+
+net_sel &lt;- induced.subgraph(net1_un, vids = (in_network$vcol == &quot;#56B4E9&quot;))</code></pre>
+<pre><code>## Warning: `induced.subgraph()` was deprecated in igraph 2.0.0.
+## ℹ Please use `induced_subgraph()` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code>plot(net_sel)</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Now cluster them (based on what though?)</p>
+<pre class="r"><code>clp &lt;- cluster_optimal(net_sel)
+
+plot(clp, net_sel)</code></pre>
+<p><img src="Week4_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="web-scraping" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Web scraping</h2>
+<pre class="r"><code># start with clean workspace
+rm(list = ls())
+
+# install.packages(&#39;data.table&#39;)
+library(data.table)  # mainly for faster data handling</code></pre>
+<pre><code>## 
+## Attaching package: &#39;data.table&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
+## 
+##     hour, isoweek, mday, minute, month, quarter, second, wday, week,
+##     yday, year</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     between, first, last</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     transpose</code></pre>
+<pre class="r"><code>library(tidyverse)  # I assume you already installed this one!
+# install.packages(&#39;httr&#39;) # we don&#39;t need this for now require(httr)
+# install.packages(&quot;xml2&quot;)
+require(xml2)</code></pre>
+<pre><code>## Loading required package: xml2</code></pre>
+<pre><code>## Warning: package &#39;xml2&#39; was built under R version 4.5.3</code></pre>
+<pre class="r"><code># install.packages(&quot;rvest&quot;)
+require(rvest)</code></pre>
+<pre><code>## Loading required package: rvest</code></pre>
+<pre><code>## Warning: package &#39;rvest&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;rvest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     guess_encoding</code></pre>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+require(devtools)</code></pre>
+<pre><code>## Loading required package: devtools</code></pre>
+<pre><code>## Warning: package &#39;devtools&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Loading required package: usethis</code></pre>
+<pre><code>## Warning: package &#39;usethis&#39; was built under R version 4.5.3</code></pre>
+<pre class="r"><code># Note we&#39;re doing something different here. We&#39;re installing a *latest* version directly from
+# GitHub This is because the released version of this packages contains some errors!
+# devtools::install_github(&quot;jkeirstead/scholar&quot;)
+
+require(scholar)</code></pre>
+<pre><code>## Loading required package: scholar</code></pre>
+<pre class="r"><code>url &lt;- &quot;https://nos.nl/zoeken?q=jochem+tolsma&amp;page=1&quot;
+nos &lt;- read_html(url)
+nos</code></pre>
+<pre><code>## {html_document}
+## &lt;html data-theme=&quot;light&quot; lang=&quot;nl&quot;&gt;
+## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
+## [2] &lt;body&gt;\n&lt;div id=&quot;__next&quot;&gt;\n&lt;nav data-tracking=&quot;nestType1=header&quot; aria-lab ...</code></pre>
+<pre class="r"><code>lijst &lt;- nos %&gt;% html_elements(&quot;main&quot;) %&gt;%
+  html_elements(&quot;ul&quot;) %&gt;%
+  html_elements(&quot;li&quot;)
+
+lijst[1] %&gt;% html_children %&gt;% html_attr(name=&quot;href&quot;) # nu hebben we de titels van de artikelen</code></pre>
+<pre><code>## [1] &quot;/artikel/2448644-camperbewoners-ontmoeten-elkaar-dezelfde-levensstijl-en-je-leert-van-elkaar&quot;</code></pre>
+<pre class="r"><code># het kost meestal heel veel tijd om het juiste element te vinden
+
+?rvest</code></pre>
+<pre><code>## starting httpd help server ... done</code></pre>
+<pre class="r"><code>lijst[1] %&gt;% 
+  html_children %&gt;%
+  html_children %&gt;% 
+  html_children %&gt;%
+  html_children %&gt;%
+  html_children %&gt;%
+  html_attr(name=&quot;datetime&quot;)</code></pre>
+<pre><code>## [1] NA                         NA                        
+## [3] &quot;2022-10-16T19:36:52+0200&quot;</code></pre>
+<pre class="r"><code># &lt;time&gt; = de naam van het blokje
+# datetime = een attribuut van de data in het blokje
+
+lijst[1] %&gt;% html_element(&quot;time&quot;) </code></pre>
+<pre><code>## {xml_nodeset (1)}
+## [1] &lt;time datetime=&quot;2022-10-16T19:36:52+0200&quot;&gt;zondag 16 oktober 2022, 19:36&lt;/ ...</code></pre>
+<pre class="r"><code>lijst[1] %&gt;% html_element(&quot;time&quot;) %&gt;% html_attr(name=&quot;datetime&quot;)</code></pre>
+<pre><code>## [1] &quot;2022-10-16T19:36:52+0200&quot;</code></pre>
+<pre class="r"><code>lijst[1] %&gt;% html_element(&quot;time&quot;) %&gt;% html_text</code></pre>
+<pre><code>## [1] &quot;zondag 16 oktober 2022, 19:36&quot;</code></pre>
+<pre class="r"><code>artikel1 &lt;- lijst[1] %&gt;% html_children %&gt;% html_attr(name=&quot;href&quot;)
+url &lt;- paste0(&quot;https://nos.nl&quot;, artikel1)
+url</code></pre>
+<pre><code>## [1] &quot;https://nos.nl/artikel/2448644-camperbewoners-ontmoeten-elkaar-dezelfde-levensstijl-en-je-leert-van-elkaar&quot;</code></pre>
+</div>
+<div id="mijn-project---tnss-met-1-wave" class="section level2"
+number="2.3">
+<h2><span class="header-section-number">2.3</span> Mijn project - TNSS
+met 1 wave</h2>
+<div id="testing-if-rsiena-accepts-static-network-data"
+class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> <em>Testing if
+RSiena accepts static network data</em></h3>
+<pre class="r"><code>library(RSiena)</code></pre>
+<pre><code>## Warning: package &#39;RSiena&#39; was built under R version 4.5.3</code></pre>
+<pre class="r"><code>net &lt;- matrix(sample(0:1, size=100, replace=TRUE), nrow=10, ncol=10)
+diag(net) &lt;- 0 
+
+net1 &lt;- net2 &lt;- net
+
+beh1 &lt;- sample(1:5, size=10, replace=T)
+beh2 &lt;- sample(1:5, size=10, replace=T)
+
+beh &lt;- sienaDependent(as.array(cbind(beh1, beh2)), type= &quot;behavior&quot;)
+
+
+ynet &lt;- array(data = c(net1, net2), dim = c(dim(net1), 2))
+ynet &lt;- sienaDependent(ynet)
+
+net &lt;- coDyadCovar(net)
+
+mydata &lt;- sienaDataCreate(beh, ynet)</code></pre>
+<pre><code>## For dependent variable ynet, in some periods,</code></pre>
+<pre><code>## there are only increases, or only decreases.</code></pre>
+<pre><code>## This will be respected in the simulations.</code></pre>
+<pre><code>## If this is not desired,
+##  use allowOnly=FALSE when creating the dependent variable.</code></pre>
+<pre class="r"><code>getEffects(mydata)</code></pre>
+<pre><code>##   name effectName                include fix   test  initialValue parm
+## 1 ynet basic rate parameter ynet TRUE    FALSE FALSE    0.10000   0   
+## 2 ynet reciprocity               TRUE    FALSE FALSE    0.00000   0   
+## 3 beh  rate beh period 1         TRUE    FALSE FALSE    5.73333   0   
+## 4 beh  beh linear shape          TRUE    FALSE FALSE    0.03490   0   
+## 5 beh  beh quadratic shape       TRUE    FALSE FALSE    0.00000   0</code></pre>
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIioqTGFiIEpvdXJuYWwgV2VlayA0KioiDQphdXRob3I6ICJBbm5hIEJlaWpsIg0KZGF0ZTogIjIxIFNlcHRlbWJlciAyMDI2Ig0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KIyBXb3Jrc2hvcCAyMS0wOS0yMDI2DQoNCiMjICpTdW1tYXJ5Kg0KDQpJbiB0aGUgd29ya3Nob3Agd2UgZGlkIHRoZSBmb2xsb3dpbmc6DQoNCi0gICBBIGZldyBzdHVkZW50IHByZXNlbnRhdGlvbnMgb24gUlEgYW5kIGRhdGENCg0KLSAgIEludHJvIHRvIG5ldHdvcmsgdmlzdWFsaXphdGlvbg0KDQotICAgSW50cm8gdG8gd2ViIHNjcmFwaW5nDQoNCi0gICBXb3JraW5nIHdpdGggb3VyIG93biBkYXRhLCBtYWtpbmcgZmlyc3QgZmV3IHBsb3RzDQoNCiMjICpDdXJyZW50IHRvLWRvIGxpc3Q6Kg0KDQotICAgUmVwZWF0IGV2ZXJ5dGhpbmcgZnJvbSB0aGlzIChhbmQgcHJldmlvdXMpIHdlZWsocykNCi0gICBUaWR5IHVwIG5vdGVzLCBsYWIgam91cm5hbCwgYW5kIHdlYnNpdGUNCi0gICBTTkFTUyBjaGFwdGVyIDggYW5kIDkNCi0gICBFZGl0IFJRcw0KLSAgIFByZXBhcmUgZGF0YSBmb3IgUlNpZW5hIGFuYWx5c2lzDQogICAgLSAgIERlc2NyaXB0aXZlIHN0YXRzDQogICAgLSAgIFZpc3VhbGl6YXRpb24NCiAgICAtICAgVGhpbmsgYWJvdXQgbW9kZWxpbmcgc3RyYXRlZ3kNCi0gICBSZWFkIHBhcGVycyBvbiBzdGF0aW9uYXJ5IFNBT00gLyBmaWd1cmUgb3V0IGFuYWx5c2lzDQoNCjxicj4NCg0KIyBMYWIgam91cm5hbA0KDQojIyBOZXR3b3JrIHZpc3VhbGl6YXRpb24NCg0KQmFzZWQgb24gdGhlIHR1dG9yaWFsIGluIEBTTkFTUyBjaGFwdGVyIDkNCg0KIyMjIFphY2hhcnnigJlzIGthcmF0ZSBjbHViDQoNCiMjIyMgKkxvYWRpbmcgZGF0YSoNCg0KYGBge3J9DQojIGxvYWRpbmcgdGhlIGRhdGEgLSBaYWNoYXJ5J3Mga2FyYXRlIGNsdWINCnJlcXVpcmUoaWdyYXBoKQ0KZyA8LSBtYWtlX2dyYXBoKCJaYWNoYXJ5IikNCnBsb3QoZykNCiMgJ2cnIGlzIGVlbiBpZ3JhcGggb2JqZWN0DQoNCiMgYWRqYWNlbmN5IG1hdHJpeCB2YW4gbWFrZW4NCmdtYXQgPC0gYXNfYWRqYWNlbmN5X21hdHJpeChnLCB0eXBlID0gImJvdGgiLCBzcGFyc2UgPSBGQUxTRSkNCmdtYXQNCmlzU3ltbWV0cmljKGdtYXQpICMgc3ltbWV0cmlzY2gsIGR1cyB1bmRpcmVjdGVkIQ0KYGBgDQoNCiMjIyMgKkRlc2NyaXB0aXZlIHN0YXRpc3RpY3MqDQoNCmBgYHtyfQ0KIyBzaXplDQoNCiMgZGVncmVlDQoNCiMgVFJBTlNJVFZJVFkNCiMgaG9ldmVlbCBnZXNsb3RlbiBkcmllaG9la2plcyB2YW4gYWxsZSBtb2dlbGlqa2UgZHJpZWhvZWtqZXM/DQojIGJlIGF3YXJlIHRoYXQgZGlyZWN0ZWQgZ3JhcGhzIGFyZSBjb25zaWRlcmVkIGFzIHVuZGlyZWN0ZWQuIGJ1dCBnIGlzIHVuZGlyZWN0ZWQuDQppZ3JhcGg6OnRyYW5zaXRpdml0eShnLCB0eXBlID0gYygibG9jYWx1bmRpcmVjdGVkIiksIGlzb2xhdGVzID0gYygiTmFOIiwgInplcm8iKSkNCg0KIyBCRVRXRUVOTkVTUw0KIyBob2UgdmFhayB6aXQgZWdvIG9wIGRlIGtvcnRzdGUgcGFkZW4gdHVzc2VuIDIgYWN0b3Jlbg0KaWdyYXBoOjpiZXR3ZWVubmVzcyhnLCBkaXJlY3RlZCA9IEZBTFNFKQ0KIyBhY3RvciAxLCAzIGVuIDM0IHNwcmluZ2VuIGVyIGhlZWwgZXJnIHVpdCwgbWFhciBvcCBoZXQgcGxhYXRqZSB6aWUgamUgbmlldCB2ZWVsIHZlcnNjaGlsIHR1c3NlbiAzMyBlbiAzNC4gaGllciBrdW4gamUgbWVlIHNwZWxlbiBpbiBoZXQgcGxvdDsgYWxzIGplIGJldHdlZW5uZXNzIGNlbnRyYWFsIHdpbCBzdGVsbGVuLCB3aWwgamUgbWVlciBuYWRydWsgbGVnZ2VuIG9wIGFjdG9yZW4gMSBlbiAzNC4gYmlqdm9vcmJlZWxkOiBkb29yIGFuZGVyZSBrbGV1cmVuL2ludGVuc2l0ZWl0LCBncm9vdHRlIG9mIGxheW91dCBvYnYgYmV0d2Vlbm5lc3MNCg0KaWdyYXBoOjpkeWFkX2NlbnN1cyhnKQ0KDQppZ3JhcGg6OnRyaWFkX2NlbnN1cyhnKQ0KIyBJIHdpbGwgdXNlIHNuYSBiZWNhdXNlIGl0IHNob3dzIHRoZSBuYW1lcyBvZiB0aGUgdHJpYWRzIGFzIHdlbGwuDQpzbmE6OnRyaWFkLmNlbnN1cyhnbWF0KQ0KdW5sb2FkTmFtZXNwYWNlKCJzbmEiKSAgI0kgd2lsbCBkZXRhY2ggdGhpcyBwYWNrYWdlIGFnYWluLCBvdGhlcndpc2UgaXQgd2lsbCBpbnRlcmZlcmUgd2l0aCBhbGwga2luZCBvZiBmdW5jdGlvbnMgZnJvbSBpZ3JhcGgsIGFuZCBteSBzdHVkZW50cyB3aWxsIGhhdGUgbWUgZm9yIHRoYXQuDQoNCiMgR0xPQkFMIFRSQU5TSVRJVklUWQ0KaWdyYXBoOjp0cmFuc2l0aXZpdHkoZywgdHlwZSA9ICJnbG9iYWwiKQ0Kc25hOjpndHJhbnMoZ21hdCkNCg0KdHJpYWRfZyA8LSBkYXRhLmZyYW1lKHNuYTo6dHJpYWQuY2Vuc3VzKGdtYXQpKQ0KDQp0cmFuc2l0aXZpdHlfZyA8LSAoMyAqIHRyaWFkX2ckWDMwMCkvKHRyaWFkX2ckWDIwMSArIDMgKiB0cmlhZF9nJFgzMDApDQp0cmFuc2l0aXZpdHlfZw0KYGBgDQoNCldlIHppZW4gbnUgZGF0IGVyIHZlcnNjaGlsbGVuIHppam4gaW4gbG9rYWxlIHRyYW5zaXRpdml0ZWl0IGVuIGluIGJldHdlZW5uZXNzLCBlbiBlciB6aWpuIDIgbm9kZXMgZGllIGVydWl0IHNwcmluZ2VuICg9IG1ldCBob2dlIGJldHdlZW5uZXNzLCBsYWdlIGxvY2FsIHRyYW5zaXRpdml0eSkuIE1hYXIgZGllIHR3ZWUgbm9kZXMgemlqbiBuaWV0IG1ldCBlbGthYXIgdmVyYm9uZGVuOyBpbnRlcmVzc2FudCENCg0KIyMjIyAqTmV0d29yayB2aXN1YWxpemF0aW9uKg0KDQpgYGB7cn0NCiMgTGV04oCZcyBtYWtlIHNpemUgcHJvcG9ydGlvbmFsIHRvIGJldHdlZW5uZXNzIHNjb3JlOg0KIyBjaGFuZ2luZyBWDQpWKGcpJHNpemUgPSBiZXR3ZWVubmVzcyhnLCBub3JtYWxpemVkID0gVCwgZGlyZWN0ZWQgPSBGQUxTRSkgKiA2MCArIDEwICAjYWZ0ZXIgc29tZSB0cmlhbCBhbmQgZXJyb3INCnBsb3QoZywgbW9kZSA9ICJ1bmRpcmVjdGVkIikNCg0KIyB3ZSB3aWxsZW4gYWN0b3IgMSBlbiAzNCB0b2NoIG5vZyB3YXQgdmVyZGVyIHVpdCBlbGthYXIuIGRpdCBkb2VuIHdlIG9idiBlZW4gYWxnb3JpdG1lDQpzZXQuc2VlZCgyMzQ1KQ0KbCA8LSBsYXlvdXRfd2l0aF9tZHMoZykgICNodHRwczovL2lncmFwaC5vcmcvci9kb2MvbGF5b3V0X3dpdGhfbWRzLmh0bWwNCnBsb3QoZywgbGF5b3V0ID0gbCkNCg0KbCAgI2xldCB1cyB0YWtlIGEgbG9vayBhdCB0aGUgY29vcmRpbmF0ZXMNCmxbMSwgMV0gPC0gNA0KbFszNCwgMV0gPC0gLTMuNQ0KcGxvdChnLCBsYXlvdXQgPSBsKQ0KDQojIG5vdGl0aWUgdG9ldm9lZ2VuIG9tIHRlIGxhdGVuIHppZW4gZGF0IHdlIGhlYmJlbiAnZ2VtYW5pcHVsZWVyZCc6DQpwbG90KGcsIGxheW91dCA9IGwsIG1hcmdpbiA9IGMoMCwgMCwgMCwgMCkpDQpsZWdlbmQoeCA9IC0yLCB5ID0gLTEuNSwgYygiTm90ZTogdGhlIHBvc2l0aW9uIG9mIG5vZGVzIDEgYW5kIDM0IGhhdmUgYmVlbiBzZXQgYnkgSm9jaGVtIFRvbHNtYSBcbiBmb3IgdmlzdWFsaXNhdGlvbiBwdXJwb3NlcyBvbmx5IGFuZCBkbyBub3QgcmVmbGVjdCBuZXR3b3JrIHByb3BlcnRpZXMiKSxidHkgPSAibiIsIGNleCA9IDAuOCkNCmBgYA0KDQojIyMgQ28tYXV0aG9yIG5ldHdvcmtzDQoNCiMjIyMgKkxvYWRpbmcgZGF0YSoNCg0KYGBge3J9DQojIGxvYWQgdGhlIG5lY2Vzc2FyeSBkYXRhc2V0cw0KbG9hZCgiLi9kYXRhL3NvY19kZi5SRGF0YSIpDQpsb2FkKCIuL2RhdGEvc29jX2NvbGxhYnMxLlJEYXRhIikNCmxvYWQoIi4vZGF0YS9zb2NfY29sbGFiczIuUkRhdGEiKQ0KDQojIGdldCB1bmlxdWUgY29sbGFib3JhdG9ycyBvZiBzb2Mgc3RhZmYgZmlyc3QNCnNvY19jb2xsYWJzX3VuaXF1ZSA8LSB1bmlxdWUoc29jX2NvbGxhYnNbLCA0XSkgICMgc28gMjI5IHVuaXF1ZSBjb2xsYWJvcmF0b3JzIGZvciBSVSBzdGFmZj8NCnNvY19jb2xsYWJzX3VuaXF1ZSA8LSBjKHNvY19jb2xsYWJzX3VuaXF1ZSwgc29jX2RmJGdzX2lkKSAgIyBhZGQgdGhlIHNvYyBzdGFmZiB0aGVtc2VsdmVzLg0Kc29jX2NvbGxhYnNfdW5pcXVlIDwtIGRhdGEuZnJhbWUoc29jX2NvbGxhYnNfdW5pcXVlKQ0Kc29jX2NvbGxhYnNfdW5pcXVlJHYxIDwtIDEgICMgY29udmVuaWVudCB0byBzZWxlY3Qgb24gYWZ0ZXIgdGhlIG1lcmdlDQpzb2NfY29sbGFic191bmlxdWUgPC0gdW5pcXVlKHNvY19jb2xsYWJzX3VuaXF1ZSkNCg0KIyBzbyB0aGlzIGlzIGEgdmVyeSBpbXBvcnRhbnQgc3RlcCwgd2Ugam9pbiB0aGUgdW5pcXVlIHNvYyBjb2xsYWJvcmF0b3JzIHRvIHRoZSBjb2xsYWJvcmF0b3JzIG9mIGNvbGxhYm9yYXRvcnMNCnJlcXVpcmUodGlkeXZlcnNlKQ0Kb25lZml2ZWRlZ3JlZSA8LSBsZWZ0X2pvaW4oY29sbGFic18xZGVlcCwgc29jX2NvbGxhYnNfdW5pcXVlLCBieSA9IGMoY29hdXRoX2lkID0gInNvY19jb2xsYWJzX3VuaXF1ZSIpKQ0KDQojIFRoZW4sIHdlIGRyb3AgdGhvc2UgdGhhdCBhcmUgbm90IGFtb25nIHNvY2lvbG9neSBjb2xsYWJvcmF0b3JzIGFuZCB3aG8gZG9uJ3QgbHNpdCBjb2F1dGhvcnMNCiMgcmVnYXJkbGVzcw0Kb25lZml2ZWRlZ3JlZSA8LSBvbmVmaXZlZGVncmVlWyFpcy5uYShvbmVmaXZlZGVncmVlJHYxKSwgXQ0Kb25lZml2ZWRlZ3JlZSA8LSBvbmVmaXZlZGVncmVlWyFpcy5uYShvbmVmaXZlZGVncmVlJGNvYXV0aCksIF0NCg0KIyB3ZSBwaWNrIHRob3NlIGNvbHVtbnMgYW5kIGhhdmUgYW4gZWRnZWxpc3Qgb2Ygc29jIGNvbGxhYm9yYXRvcnMgYW5kIHdoZXRoZXIgdGhleSBjb2xsYWJvcmF0ZSB3aXRoDQojIHRob3NlIHNhbWUgY29sbGFib3JhdG9ycyB0aGUgMS41IGRlZ3JlZSBuZXR3b3JrDQpvbmVmaXZlZGVncmVlIDwtIG9uZWZpdmVkZWdyZWVbLCBjKCJuYW1lIiwgImNvYXV0aCIpXQ0KbmFtZXMob25lZml2ZWRlZ3JlZSkgPC0gYygiZnJvbSIsICJ0byIpDQoNCiMgd2UgZ2V0IHNvYyBjb2xsYWJvcmF0b3JzIGFuZCBhZGQgdGhvc2UgdG8gdGhlIGRhdGEgYWJvdmUgYW5kIGVuZCB1cCB3aXRoIGEgbmljZSBlZGdlbGlzdCENCnNvY2MgPC0gc29jX2NvbGxhYnNbIWlzLm5hKHNvY19jb2xsYWJzJGNvYXV0aCksIF0NCnNvY2MgPC0gc29jY1ssIGMoIm5hbWUiLCAiY29hdXRoIildDQpuYW1lcyhzb2NjKSA8LSBjKCJmcm9tIiwgInRvIikNCm9uZWZpdmVkZWdyZWUgPC0gcmJpbmQoc29jYywgb25lZml2ZWRlZ3JlZSkNCnNhdmUob25lZml2ZWRlZ3JlZSwgZmlsZSA9ICIuL2RhdGEvc29jX29uZWZpdmVkZWdyZWUuUkRhdGEiKQ0KYGBgDQoNCiMjIyMgKk5ldHdvcmsgdmlzdWFsaXphdGlvbioNCg0KYGBge3J9DQpvbmVmaXZlZGVncmVlIDwtIGFzLm1hdHJpeChvbmVmaXZlZGVncmVlKSAgIyBtYXRyaXggYmVjYXVzZSBpZ3JhcGggd2FudHMgdGhhdA0KbGlicmFyeShpZ3JhcGgpICAjIE5vdGljZSB0aGF0IHdlIGNhbGwgaWdyYXBoIGhlcmUsIGluIGFudGljaXBhdGlvbiBvZiB0aGUgdml6IHR1dG9yaWFsLg0KbmV0MSA8LSBncmFwaF9mcm9tX2VkZ2VsaXN0KG9uZWZpdmVkZWdyZWUsIGRpcmVjdGVkID0gVFJVRSkgICMgTm90aWNlIHRoZSBpZ3JhcGggZnVuY3Rpb24gaGVyZSENCg0KcGxvdChuZXQxKSAgIyBwcmV0dHkgdWdseSENCmBgYA0KDQojIyMjICpNYWtpbmcgaXQgcHJldHRpZXIqDQoNCmBgYHtyfQ0KcGxvdChuZXQxICwNCiAgICAgdmVydGV4LmNvbG9yID0gImdvbGQiLCAjIG5pY2UgY29sb3IgZm9yIHRoZSB2ZXJ0aWNlcw0KICAgICB2ZXJ0ZXguc2l6ZSA9IDQsICAjIHdlJ2xsIHZlcnRpY2VzIGEgYml0IHNtYWxsZXINCiAgICAgdmVydGV4LmZyYW1lLmNvbG9yID0gImdyYXkiLCAgIyB3ZSdsbCBwdXQgYSBncmF5IGZyYW1lIGFyb3VuZCB2ZXJ0aWNlcw0KICAgICB2ZXJ0ZXgubGFiZWwuY29sb3IgPSAiYmxhY2siLCAgIyBub3QgdGhhdCB1Z2x5IGJsdWUgY29sb3IgZm9yIHRoZSBsYWJlbHMgKG5hbWVzKQ0KICAgICB2ZXJ0ZXgubGFiZWwuZmFtaWx5ID0gIkhlbHZldGljYSIsICMgbm90IGEgZmFuIG9mIHRpbWVzIG5ldyByb21hbiBpbiBmaWd1cmVzDQogICAgIHZlcnRleC5sYWJlbC5jZXggPSAwLjQsICAjIG1ha2UgdGhlIGxhYmVsIGEgYml0IHNtYWxsZXIgdG9vDQogICAgIHZlcnRleC5sYWJlbC5kaXN0ID0gMC41LCAgIyB3ZSdsbCBwdWxsIHRoZSBsYWJlbHMgYSBiaXQgYXdheSBmcm9tIHRoZSB2ZXJ0aWNlcw0KICAgICBlZGdlLmN1cnZlZCA9IDAuMiwgIyBjdXJ2ZWQgZWRnZXMgaXMgYWx3YXlzIGEgbmljZSB0b3VjaA0KICAgICBlZGdlLmFycm93LnNpemUgPSAwLjEpICMgbWFrZSBhcnJvdyBzaXplIChkaXJlY3Rpb24gb2YgZWRnZSkgc21hbGxlcg0KYGBgDQoNCiMjIyMgKkV4dHJhY3Rpbmcgbm9kZSBhdHRyaWJ1dGVzKg0KDQpTZWxlY3RpbmcgUmFkYm91ZCBzb2Npb2xvZ3kgbm9kZXMgYW5kIGdpdmUgdGhlbSBhIGRpZmZlcmVudCBjb2xvci4NCg0KYGBge3J9DQppbl9uZXR3b3JrIDwtIGRhdGEuZnJhbWUoYXNfaWRzKFYobmV0MSkpKQ0KbmFtZXMoaW5fbmV0d29yaylbMV0gPC0gIm5hbWUiDQoNCiNzb2NfZGYkdG90YWxfY2l0ZXMgPC0gc29jX2RmJHRvdGFsX2NpdGVzLngNCnJ1X25vZGVzIDwtIHNvY19kZlssIGMoIm5hbWUiLCAidG90YWxfY2l0ZXMiKV0NCmluX25ldHdvcmsgPC0gbGVmdF9qb2luKGluX25ldHdvcmssIHJ1X25vZGVzLCBieSA9IGMoIm5hbWUiID0gIm5hbWUiKSkNCmluX25ldHdvcmskdmNvbCA8LSBpZmVsc2UoaXMubmEoaW5fbmV0d29yayR0b3RhbF9jaXRlcyksICIjRTY5RjAwIiwgIiM1NkI0RTkiKQ0KDQpwbG90KG5ldDEsDQogICAgIHZlcnRleC5jb2xvciA9IGluX25ldHdvcmskdmNvbCwgI1RISVMgV0FTIFdIQVQgV0UgRElEIFRIRSBMQVNUIENPREVCTE9DSyBGT1IhDQogICAgIHZlcnRleC5zaXplID0gNCwgICMgd2UnbGwgbWFrZSB0aGVtIGEgYml0IHNtYWxsZXINCiAgICAgdmVydGV4LmZyYW1lLmNvbG9yID0gImdyYXkiLCAgIyB3ZSdsbCBwdXQgYSBmcmFtZSBhcm91bmQgaXQNCiAgICAgdmVydGV4LmxhYmVsLmNvbG9yID0gImJsYWNrIiwgICMgbm90IHRoYXQgdWdseSBibHVlIGNvbG9yIGZvciB0aGUgbmFtZXMNCiAgICAgdmVydGV4LmxhYmVsLmZhbWlseSA9ICJIZWx2ZXRpY2EiLCAjIG5vdCBhIGZhbiBvZiB0aW1lcyBpbiBmaWd1cmVzDQogICAgIHZlcnRleC5sYWJlbC5jZXggPSAwLjQsICAjIGEgYml0IHNtYWxsZXIgdG9vDQogICAgIHZlcnRleC5sYWJlbC5kaXN0ID0gMC41LCAgIyB3ZSdsbCBwdWxsIHRoZSBsYWJlbHMgYSBiaXQgYXdheSBmcm9tIHRoZSB2ZXJ0aWNlcw0KICAgICBlZGdlLmN1cnZlZCA9IDAuMiwgICMgY3VydmVkIGVkZ2VzIGlzIGFsd2F5cyBhIG5pY2UgdG91Z2gNCiAgICAgZWRnZS5hcnJvdy5zaXplID0gMC4xKSAjIGFycm93IHNpemUgc21hbGxlcg0KYGBgDQoNClNob3cgb25seSB0aGUgbGFiZWxzIG9mIFJVIHNvY2lvbG9neSBzdGFmZg0KDQpgYGB7cn0NCnBsb3QobmV0MSwNCiAgICAgdmVydGV4LmNvbG9yID0gaW5fbmV0d29yayR2Y29sLCANCiAgICAgI05PVElDRSBUSEVTRSBDT05ESVRJT05BTCBTVEFURU1FTlRTIEJFTE9XDQogICAgIHZlcnRleC5sYWJlbCA9IGlmZWxzZSghaXMubmEoaW5fbmV0d29yayR0b3RhbF9jaXRlcyksIGluX25ldHdvcmskbmFtZSwgTkEpLA0KICAgICB2ZXJ0ZXguc2l6ZSA9IDQsICAjIHdlJ2xsIG1ha2UgdGhlbSBhIGJpdCBzbWFsbGVyDQogICAgIHZlcnRleC5mcmFtZS5jb2xvciA9ICJncmF5IiwgICMgd2UnbGwgcHV0IGEgZnJhbWUgYXJvdW5kIGl0DQogICAgIHZlcnRleC5sYWJlbC5jb2xvciA9ICJibGFjayIsICAjIG5vdCB0aGF0IHVnbHkgYmx1ZSBjb2xvciBmb3IgdGhlIG5hbWVzDQogICAgIHZlcnRleC5sYWJlbC5mYW1pbHkgPSAiSGVsdmV0aWNhIiwgIyBub3QgYSBmYW4gb2YgdGltZXMgaW4gZmlndXJlcw0KICAgICB2ZXJ0ZXgubGFiZWwuY2V4ID0gMC42NSwgICMgYSBiaXQgc21hbGxlciB0b28NCiAgICAgdmVydGV4LmxhYmVsLmRpc3QgPSAwLjUsICAjIHdlJ2xsIHB1bGwgdGhlIGxhYmVscyBhIGJpdCBhd2F5IGZyb20gdGhlIHZlcnRpY2VzDQogICAgIGVkZ2UuY3VydmVkID0gMC4yLCAjIGN1cnZlZCBlZGdlcyBpcyBhbHdheXMgYSBuaWNlIHRvdWdoDQogICAgIGVkZ2UuYXJyb3cuc2l6ZSA9IDAuMSkgIyBhcnJvdyBzaXplIHNtYWxsZXINCmBgYA0KDQpWZXJ0ZXggc2l6ZSBhZGp1c3RlZCBmb3IgY2l0YXRpb24NCg0KYGBge3J9DQpwbG90KG5ldDEsDQogICAgIHZlcnRleC5jb2xvciA9IGluX25ldHdvcmskdmNvbCwgDQogICAgIHZlcnRleC5sYWJlbCA9IGlmZWxzZSghaXMubmEoaW5fbmV0d29yayR0b3RhbF9jaXRlcyksIGluX25ldHdvcmskbmFtZSwgTkEpLA0KICAgICAjIFNBTUUgSEVSRSwgVFJZIFRPIFNNT09USCBUSEUgVE9UQUxfQ0lURVMgQSBCSVQgV0lUSCBMT0dTQ0FMRQ0KICAgICB2ZXJ0ZXguc2l6ZSA9IGlmZWxzZSghaXMubmEoaW5fbmV0d29yayR0b3RhbF9jaXRlcyksIGxvZyhpbl9uZXR3b3JrJHRvdGFsX2NpdGVzKSwgMiksDQogICAgIHZlcnRleC5mcmFtZS5jb2xvciA9ICJncmF5IiwgICMgd2UnbGwgcHV0IGEgZnJhbWUgYXJvdW5kIGl0DQogICAgIHZlcnRleC5sYWJlbC5jb2xvciA9ICJibGFjayIsICAjIG5vdCB0aGF0IHVnbHkgYmx1ZSBjb2xvciBmb3IgdGhlIG5hbWVzDQogICAgIHZlcnRleC5sYWJlbC5mYW1pbHkgPSAiSGVsdmV0aWNhIiwgIyBub3QgYSBmYW4gb2YgdGltZXMgaW4gZmlndXJlcw0KICAgICB2ZXJ0ZXgubGFiZWwuY2V4ID0gMC42NSwgICMgYSBiaXQgc21hbGxlciB0b28NCiAgICAgdmVydGV4LmxhYmVsLmRpc3QgPSAwLjUsICAjIHdlJ2xsIHB1bGwgdGhlIGxhYmVscyBhIGJpdCBhd2F5IGZyb20gdGhlIHZlcnRpY2VzDQogICAgIGVkZ2UuY3VydmVkID0gMC4yLCAjIGN1cnZlZCBlZGdlcyBpcyBhbHdheXMgYSBuaWNlIHRvdWdoDQogICAgIGVkZ2UuYXJyb3cuc2l6ZSA9IDAuMSkgIyBhcnJvdyBzaXplIHNtYWxsZXINCmBgYA0KDQpJZGVudGlmeSB0aGUgbm9kZXMgb2YgUlUgc29jaW9sb2d5IHN0YWZmIG1lbWJlcnMNCg0KYGBge3J9DQpuZXQxX21hdCA8LSBpZ3JhcGg6OmFzX2FkamFjZW5jeV9tYXRyaXgobmV0MSwgc3BhcnNlID0gRkFMU0UpDQoNCm5ldDFfdW4gPC0gKG5ldDFfbWF0ICsgdChuZXQxX21hdCkpID4gMA0KDQpuZXQxX3VuIDwtIGdyYXBoX2Zyb21fYWRqYWNlbmN5X21hdHJpeChuZXQxX3VuLCBtb2RlID0gInVuZGlyZWN0ZWQiKQ0KDQpuZXRfc2VsIDwtIGluZHVjZWQuc3ViZ3JhcGgobmV0MV91biwgdmlkcyA9IChpbl9uZXR3b3JrJHZjb2wgPT0gIiM1NkI0RTkiKSkNCg0KDQpwbG90KG5ldF9zZWwpDQpgYGANCg0KTm93IGNsdXN0ZXIgdGhlbSAoYmFzZWQgb24gd2hhdCB0aG91Z2g/KQ0KDQpgYGB7cn0NCmNscCA8LSBjbHVzdGVyX29wdGltYWwobmV0X3NlbCkNCg0KcGxvdChjbHAsIG5ldF9zZWwpDQpgYGANCg0KPGJyPg0KDQojIyBXZWIgc2NyYXBpbmcNCg0KYGBge3J9DQojIHN0YXJ0IHdpdGggY2xlYW4gd29ya3NwYWNlDQpybShsaXN0ID0gbHMoKSkNCg0KIyBpbnN0YWxsLnBhY2thZ2VzKCdkYXRhLnRhYmxlJykNCmxpYnJhcnkoZGF0YS50YWJsZSkgICMgbWFpbmx5IGZvciBmYXN0ZXIgZGF0YSBoYW5kbGluZw0KbGlicmFyeSh0aWR5dmVyc2UpICAjIEkgYXNzdW1lIHlvdSBhbHJlYWR5IGluc3RhbGxlZCB0aGlzIG9uZSENCiMgaW5zdGFsbC5wYWNrYWdlcygnaHR0cicpICMgd2UgZG9uJ3QgbmVlZCB0aGlzIGZvciBub3cgcmVxdWlyZShodHRyKQ0KIyBpbnN0YWxsLnBhY2thZ2VzKCJ4bWwyIikNCnJlcXVpcmUoeG1sMikNCiMgaW5zdGFsbC5wYWNrYWdlcygicnZlc3QiKQ0KcmVxdWlyZShydmVzdCkNCiMgaW5zdGFsbC5wYWNrYWdlcygiZGV2dG9vbHMiKQ0KcmVxdWlyZShkZXZ0b29scykNCiMgTm90ZSB3ZSdyZSBkb2luZyBzb21ldGhpbmcgZGlmZmVyZW50IGhlcmUuIFdlJ3JlIGluc3RhbGxpbmcgYSAqbGF0ZXN0KiB2ZXJzaW9uIGRpcmVjdGx5IGZyb20NCiMgR2l0SHViIFRoaXMgaXMgYmVjYXVzZSB0aGUgcmVsZWFzZWQgdmVyc2lvbiBvZiB0aGlzIHBhY2thZ2VzIGNvbnRhaW5zIHNvbWUgZXJyb3JzIQ0KIyBkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoImprZWlyc3RlYWQvc2Nob2xhciIpDQoNCnJlcXVpcmUoc2Nob2xhcikNCg0KYGBgDQoNCmBgYHtyfQ0KdXJsIDwtICJodHRwczovL25vcy5ubC96b2VrZW4/cT1qb2NoZW0rdG9sc21hJnBhZ2U9MSINCm5vcyA8LSByZWFkX2h0bWwodXJsKQ0Kbm9zDQoNCmxpanN0IDwtIG5vcyAlPiUgaHRtbF9lbGVtZW50cygibWFpbiIpICU+JQ0KICBodG1sX2VsZW1lbnRzKCJ1bCIpICU+JQ0KICBodG1sX2VsZW1lbnRzKCJsaSIpDQoNCmxpanN0WzFdICU+JSBodG1sX2NoaWxkcmVuICU+JSBodG1sX2F0dHIobmFtZT0iaHJlZiIpICMgbnUgaGViYmVuIHdlIGRlIHRpdGVscyB2YW4gZGUgYXJ0aWtlbGVuDQoNCiMgaGV0IGtvc3QgbWVlc3RhbCBoZWVsIHZlZWwgdGlqZCBvbSBoZXQganVpc3RlIGVsZW1lbnQgdGUgdmluZGVuDQoNCj9ydmVzdA0KDQpsaWpzdFsxXSAlPiUgDQogIGh0bWxfY2hpbGRyZW4gJT4lDQogIGh0bWxfY2hpbGRyZW4gJT4lIA0KICBodG1sX2NoaWxkcmVuICU+JQ0KICBodG1sX2NoaWxkcmVuICU+JQ0KICBodG1sX2NoaWxkcmVuICU+JQ0KICBodG1sX2F0dHIobmFtZT0iZGF0ZXRpbWUiKQ0KDQojIDx0aW1lPiA9IGRlIG5hYW0gdmFuIGhldCBibG9ramUNCiMgZGF0ZXRpbWUgPSBlZW4gYXR0cmlidXV0IHZhbiBkZSBkYXRhIGluIGhldCBibG9ramUNCg0KbGlqc3RbMV0gJT4lIGh0bWxfZWxlbWVudCgidGltZSIpIA0KbGlqc3RbMV0gJT4lIGh0bWxfZWxlbWVudCgidGltZSIpICU+JSBodG1sX2F0dHIobmFtZT0iZGF0ZXRpbWUiKQ0KbGlqc3RbMV0gJT4lIGh0bWxfZWxlbWVudCgidGltZSIpICU+JSBodG1sX3RleHQNCg0KYXJ0aWtlbDEgPC0gbGlqc3RbMV0gJT4lIGh0bWxfY2hpbGRyZW4gJT4lIGh0bWxfYXR0cihuYW1lPSJocmVmIikNCnVybCA8LSBwYXN0ZTAoImh0dHBzOi8vbm9zLm5sIiwgYXJ0aWtlbDEpDQp1cmwNCg0KYGBgDQoNCiMjIE1pam4gcHJvamVjdCAtIFROU1MgbWV0IDEgd2F2ZQ0KDQojIyMgKlRlc3RpbmcgaWYgUlNpZW5hIGFjY2VwdHMgc3RhdGljIG5ldHdvcmsgZGF0YSoNCg0KYGBge3J9DQpsaWJyYXJ5KFJTaWVuYSkNCg0KbmV0IDwtIG1hdHJpeChzYW1wbGUoMDoxLCBzaXplPTEwMCwgcmVwbGFjZT1UUlVFKSwgbnJvdz0xMCwgbmNvbD0xMCkNCmRpYWcobmV0KSA8LSAwIA0KDQpuZXQxIDwtIG5ldDIgPC0gbmV0DQoNCmJlaDEgPC0gc2FtcGxlKDE6NSwgc2l6ZT0xMCwgcmVwbGFjZT1UKQ0KYmVoMiA8LSBzYW1wbGUoMTo1LCBzaXplPTEwLCByZXBsYWNlPVQpDQoNCmJlaCA8LSBzaWVuYURlcGVuZGVudChhcy5hcnJheShjYmluZChiZWgxLCBiZWgyKSksIHR5cGU9ICJiZWhhdmlvciIpDQoNCg0KeW5ldCA8LSBhcnJheShkYXRhID0gYyhuZXQxLCBuZXQyKSwgZGltID0gYyhkaW0obmV0MSksIDIpKQ0KeW5ldCA8LSBzaWVuYURlcGVuZGVudCh5bmV0KQ0KDQpuZXQgPC0gY29EeWFkQ292YXIobmV0KQ0KDQpteWRhdGEgPC0gc2llbmFEYXRhQ3JlYXRlKGJlaCwgeW5ldCkNCg0KDQpnZXRFZmZlY3RzKG15ZGF0YSkNCmBgYA0K</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Week4.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

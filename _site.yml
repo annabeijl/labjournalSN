@@ -8,7 +8,7 @@ exclude:
 bibliography: references.bib
 navbar:
   left:
-    - icon: fa-home
+    - icon: fa-heart # fa-home
       href: index.html # dont change this!
     - text: "Lab journal"
       menu:
@@ -18,6 +18,8 @@ navbar:
         href: Week2.html
       - text: "Week 3"
         href: Week3.html
+      - text: "Week 4"
+        href: Week4.html
     - text: "Final project"
       menu: 
       - text: "Introduction"
@@ -27,7 +29,7 @@ navbar:
 
 
   right:
-  - icon: fab fa-github
+  - icon: fa-smile-o # fa-camera-retro # see https://fontawesome.com/v4/icons/
     href: https://github.com/annabeijl/labjournalSN
 output:
   html_document:
