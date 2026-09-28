@@ -101,7 +101,24 @@ Should include:
 
     -   Is the outgroup fixed (e.g. always 'women' and 'ethnic minorities') or dynamic based on who ego is (e.g. for an ethnic minority woman, the outgroups would be 'men' and 'ethnic majorities')?
 
-    -   Selection vs. influence no longer possible?
+    -   Selection vs. influence no longer possible? (only 1 wave)
+
+<br>
+
+# Effects to include
+
+Probably more (and check TNSS again), but most important ones:
+
+1.  Ego: gender, ethnicity, thermometer gender / thermometer ethnicity (which one X and which one Y?), number of gender / ethnic minority friends
+    -   Also control for some kind of 'tolerance' / selection? Is this even possible in 1 wave?
+2.  Alters: gender, ethnicity, thermometer gender / thermometer ethnicity
+3.  Dyadic: reciprocity, transitivity, popularity, activity
+
+<br>
+
+-   How to model outgroup?
+
+-   How to model network as 1 wave constant?
 
 <br>
 
@@ -230,7 +247,7 @@ igraph::betweenness(g1, directed = T)
 
 # Let’s make size proportional to betweenness score:
 # changing V
-V(g1)$size = betweenness(g1, normalized = T, directed = T) * 60 + 10  #after some trial and error
+V(g1)$size = betweenness(g1, normalized = T, directed = T) * 60 + 10 
 plot(g1, mode = "directed")
 
 view(tnss_pup10)
