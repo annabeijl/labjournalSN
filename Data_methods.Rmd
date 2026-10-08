@@ -124,7 +124,7 @@ Probably more (and check TNSS again), but most important ones:
 
 # Describing my data
 
-## Loading / preparing data 
+## Loading / preparing data
 
 ```{r}
 rm(list = ls()) # clean workspace
@@ -187,24 +187,21 @@ view(tnss)
 c5 <- tnss %>% 
   filter(IDClass == 5)
 
-c9 <- tnss %>% 
-  filter(IDClass == 9)
-
 c3 <- tnss %>% 
   filter(IDClass == 3)
 
 #aantal leerlingen in class 5
 max(c5$order) # 28
-max(c9$order) # 20
 max(c3$order) # 27
 
 #vis het nominatienetwerk er uit. Nu beetje handwerk. Kan vast slimmer. 
 c5_net <- c5 %>%
   select(fr_1:fr_28)
 c3_net <- c3 %>%
-  select(fr_1:fr_28)
+  select(fr_1:fr_27)
 view(c5_net)
 class(c5_net) # tibble/data frame
+view(c3_net)
 ```
 
 ## Descriptive stats
@@ -212,12 +209,13 @@ class(c5_net) # tibble/data frame
 ```{r}
 require(igraph)
 g1 <- graph_from_adjacency_matrix(as.matrix(c5_net))
+g2 <- graph_from_adjacency_matrix(as.matrix(c3_net))
 #kleur op basis van gender. staat in goede volgorde. 
 V(g1)$color <- ifelse(c5$gender == 1, "red", "green")
 plot(g1)
 
-vcount(g1) # count vertices / actors
-ecount(g1) # count edges / ties
+vcount(g1) # count vertices / actors #28
+ecount(g1) # count edges / ties #82
 is_bipartite(g1) # is the network unimodal or multi? # F
 is_weighted(g1) # F
 
@@ -227,12 +225,12 @@ ts_outAct(g1) # 6724
 ts_inAct(g1) # same number
 triad_census(g1)
 dyad_census(g1)
-# $mut = number of pairs with mutual connections 
-# $asym = number of pairs with non-mutual connections 
-# $null = number of pairs with no connections between them 
+# $mut = number of pairs with mutual connections #34
+# $asym = number of pairs with non-mutual connections #14
+# $null = number of pairs with no connections between them #330
 
 gmat <- as_adjacency_matrix(g1, type = "both", sparse = FALSE)
-isSymmetric(gmat) # F, dus directed!
+isSymmetric(gmat) # F, dus directed
 ```
 
 ## Visualization
@@ -243,6 +241,10 @@ igraph::transitivity(g1, type = c("localundirected"), isolates = c("NaN", "zero"
 
 # betweenness
 igraph::betweenness(g1, directed = T)
+
+# density
+igraph::edge_density(g1) # 0.11
+igraph::edge_density(g2) # 0.098
 
 
 # Let’s make size proportional to betweenness score:
@@ -295,32 +297,100 @@ What do we see:
 
 ## Defining data + RSiena object
 
-tbd later
-
 ```{r}
-# diag(c5_net) <- 0
-length(tnss) #173
-length(c5_net)
-# hoe verder, want ik heb maar 1 wave
-# tnss_array <- array(data = c(wave1, wave2), dim = c(dim(wave1), 2))
-# net <- sienaDependent(tnss_array)
+# DV: NETWORK
+net <- as.matrix(c5_net)
+sum(diag(net) != 0)
 
-# INDEPENDENT VARIABLE ----------------------------------------------------
+view(c5_net)
+length(c5_net)
+
+net2 <- net
+
+net2[1,2] <- 1
+
+snet <- sienaDependent(array(data = c(net, net2), dim = c(dim(net), 2)), allowOnly = FALSE)
+mydata <- sienaDataCreate(snet)
+myeff <- getEffects(mydata)
+effectsDocumentation(myeff)
+myeff <- includeEffects(myeff, inPop)
+
+myeff[1,]$fix <- TRUE
+myeff[1,]$initialValue <- 5
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "net", cond = F)
+ans <- siena07(myAlgorithm, data = mydata, effects = myeff)
+?sienaAlgorithmCreate
+
+# DV: BEHAVIOR (ETHNIC MINORITY ATTITUDES)
+behy <- tnss_pup10 %>% 
+  dplyr::select("comfyM", "comfyJ", "comfyEM", "comfyNL") %>% 
+  as.matrix()
+
+behy <- sienaDependent(behy, type = c("behavior"))
+
+
+# INDEPENDENT VARIABLES ----------------------------------------------------
+view(tnss_pup10)
+
 # gender
-# gender <- as.numeric(c5$gender == "female")
-# gender <- coCovar # = constant covariate, kan ook dyad, time varying, etc
+class(c5$gender)
+gender_n <- as.numeric(c5$gender)
+class(gender_n)
+gender_n <- coCovar # = constant covariate, kan ook dyad, time varying, etc
+
+# ethnicity
+class(c5$ethnicity)
+ethnicity_n <- as.numeric(ifelse(c5$ethnicity == 1, 1, 0))
+ethnicity_n <- coCovar                      
+
+# comfy girls
+class(c5$comfyM)
+comfyg <- as.numeric(c5$comfyM)
+comfyg <- varCovar
+
+# comfy boys
+comfyb <- as.numeric(c5$comfyJ)
+comfyb <- varCovar
+
+# comfy ethnic minority
+comfymin <- as.numeric(c5$comfyEM)
+comfymin <- varCovar
+
+# comfy ethnic majority
+comfymaj <- as.numeric(c5$comfyNL)
+comfymaj <- varCovar
 
 # samenvoegen in één data object voor Siena
-# mydata <- sienaDataCreate(net, gender)
 ```
 
 ## Effects structure and initial description
 
-tbd later
+```{r}
+myeff <- getEffects(mydata)
+# effectsDocumentation(myeff) # dit zijn alle mogelijke effecten die je kunt opnemen voor dit data object
+??RsienaTwoStep
+ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+print01Report(mydata, modelname = "./results/tnss") # goed bekijken
+```
+
+## Specify model
 
 ```{r}
-# myeff <- getEffects(mydata)
-# effectsDocumentation(myeff) # dit zijn alle mogelijke effecten die je kunt opnemen voor dit data object
-# ifelse(!dir.exists("results"), dir.create("results"), FALSE)
-# print01Report(mydata, modelname = "./results/tnss") # goed bekijken
+myeff <- includeEffects(myeff, snet, inPop, outAct, inAct, transTrip, sameX, egoX, altX, interaction1 = "gender_n") 
+
+myeff <- includeEffects(myeff, avAlt, name = "behy", interaction1="nety") # You use nety to predict behy
+# ans <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# returndeps betekent dat hij de ministeps opslaat. dan runt je model sneller
+# ans
 ```
+
+Ik wil opnemen als effect:
+
+-   Reciprocity
+
+-   Transitivity
+
+-   Betweenness
+
+-   Influence

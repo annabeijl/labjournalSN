@@ -1,0 +1,300 @@
+---
+title: "***Results***"
+author: "Anna Beijl"
+date: "8 October 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+<br>
+
+# Descriptive results
+
+## Loading and preparing the data
+
+```{r}
+rm(list = ls()) # clean workspace
+
+# custom functions
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+packages = c("RSiena", "tidyverse", "stringdist", "stringi")
+
+fpackage.check(packages)
+
+library(haven)
+tnss_net <- read_sav("./data/TNSS_wave_2010_mentors.sav")
+tnss_pup10 <- read_sav("./data/TNSS_wave_2010_pupils.sav")
+tnss_pup11 <- read_sav("./data/TNSS_wave_2011_pupils.sav")
+# using 'foreign' I got warnings and didn't seem to load well. 'haven' works nicely
+
+# view(tnss_net)
+# view(tnss_pup10)
+# view(tnss_pup11) # all looks good
+
+class(tnss_net) # tibble/data frame
+class(tnss_pup10)
+class(tnss_pup11)
+
+#join datasets obv IDClass en IDresp
+tnss <- left_join(tnss_net, tnss_pup10)
+# view(tnss)
+
+tnss_pup10 <- tnss_pup10 %>% 
+  rownames_to_column(var = "id") 
+
+tnss_pup11 <- tnss_pup11 %>% 
+  rownames_to_column(var = "id") 
+
+tnss_2waves <- left_join(tnss_pup10, tnss_pup11, by=c("id"))
+# view(tnss_2waves)
+
+#selecteer class 5 (of een andere leuke grote klas met weinig missings)
+c5 <- tnss %>% 
+  filter(IDClass == 5)
+
+c3 <- tnss %>% 
+  filter(IDClass == 3)
+
+#aantal leerlingen in class 5
+max(c5$order) # 28
+max(c3$order) # 27
+
+#vis het nominatienetwerk er uit.  
+c5_net <- c5 %>%
+  select(fr_1:fr_28)
+c3_net <- c3 %>%
+  select(fr_1:fr_27)
+view(c5_net)
+class(c5_net) # tibble/data frame
+view(c3_net)
+```
+
+<br>
+
+## Descriptive statistics 
+
+```{r}
+require(igraph)
+g1 <- graph_from_adjacency_matrix(as.matrix(c5_net))
+g2 <- graph_from_adjacency_matrix(as.matrix(c3_net))
+
+vcount(g1) # count vertices / actors #28
+ecount(g1) # count edges / ties #82
+is_bipartite(g1) # is the network unimodal or multi? # F
+is_weighted(g1) # F
+
+require(RsienaTwoStep)
+ts_recip(g1) # 68
+ts_outAct(g1) # 6724
+ts_inAct(g1) # same number
+triad_census(g1)
+dyad_census(g1)
+# $mut = number of pairs with mutual connections #34
+# $asym = number of pairs with non-mutual connections #14
+# $null = number of pairs with no connections between them #330
+
+gmat <- as_adjacency_matrix(g1, type = "both", sparse = FALSE)
+isSymmetric(gmat) # F, dus directed
+
+# transivitity
+igraph::transitivity(g1, type = c("localundirected"), isolates = c("NaN", "zero"))
+
+# betweenness
+igraph::betweenness(g1, directed = T)
+
+# density
+igraph::edge_density(g1) # 0.11
+igraph::edge_density(g2) # 0.098
+```
+
+to do:
+
+-   Welke descriptive stats?
+
+-   Interpretatie / in tekst?
+
+<br>
+
+## Network visualization
+
+```{r}
+colorgender <- ifelse(c5$gender == 1, "hotpink", "olivedrab2")
+colorattgen <- ifelse(c5$comfyM == 1 | c5$comfyM == 2, "pink", "red") # rood = minder comfy met meisjes. 
+coloratteth <- ifelse(c5$comfyEM == 1 | c5$comfyEM == 2, "lightblue", "blue") # donkerblauw = minder comfy met ethnic minorities
+
+
+# COLOR (FILL) BASED ON COMFY WITH ETHNIC MINORITIES
+# FRAME COLOR (OUTLINE) BASED ON OWN ETHNICITY
+# SIZE BASED ON BETWEENNESS
+plot(g1,
+     vertex.color = adjustcolor(coloratteth, alpha.f = 4),
+     vertex.frame.color = ifelse(c5$ethnicity == 1, "darkorange", "olivedrab3"),
+     vertex.frame.width = 3.5,
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.label = NA,
+     edge.curved = 0, 
+     edge.arrow.size = 0.4) 
+
+
+# COLOR (FILL) BASED ON COMFY WITH GIRLS
+# FRAME COLOR (OUTLINE) BASED ON OWN GENDER
+# SIZE BASED ON BETWEENESS
+plot(g1,
+     vertex.color = adjustcolor(colorattgen, alpha.f = 4),
+     vertex.frame.color = ifelse(c5$gender == 1, "magenta", "darkblue"),
+     vertex.frame.width = 3.5,
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.label = NA,
+     edge.curved = 0, 
+     edge.arrow.size = 0.4) 
+
+```
+
+To do:
+
+-   *Twee ego-kenmerken in één node (kleur en rand)*
+
+-   Legenda toevoegen in plot (size = betweenness, kleur = x)
+
+-   Graph window vastzetten
+
+<br>
+
+------------------------------------------------------------------------
+
+# RSiena results
+
+## Prepare data for RSiena
+
+```{r}
+# DEPENDENT VARIABLES ---------------------------------------------------------
+# DV: NETWORK
+net <- as.matrix(c5_net)
+sum(diag(net) != 0)
+
+view(c5_net)
+length(c5_net)
+
+net2 <- net
+
+net2[1,2] <- 1
+
+nety <- sienaDependent(array(data = c(net, net2), dim = c(dim(net), 2)), allowOnly = FALSE)
+
+# DV: BEHAVIOR (ETHNIC MINORITY ATTITUDES)
+behy <- tnss_2waves %>% 
+  dplyr::select("comfyEM") %>% 
+  as.matrix()
+
+# behy <- sienaDependent(behy, type = c("behavior"))
+
+mydata <- sienaDataCreate(nety)
+# mydata <- sienaDataCreate(nety, behy)
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, inPop)
+
+myeff[1,]$fix <- TRUE # fix the rate parameter because of stationary SAOM
+myeff[1,]$initialValue <- 25
+myeff
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "net", cond = F)
+ans <- siena07(myAlgorithm, data = mydata, effects = myeff)
+ans
+# ?sienaAlgorithmCreate
+
+# COVARIATES --------------------------------------------------------------
+#view(tnss_pup10)
+
+# gender
+class(c5$gender)
+gender <- as.numeric(c5$gender)
+class(gender)
+gender <- coCovar # = constant covariate, kan ook dyad, time varying, etc
+
+# ethnicity
+class(c5$ethnicity)
+ethnic <- as.numeric(ifelse(c5$ethnicity == 1, 1, 0))
+ethnic <- coCovar                      
+
+# comfy girls
+class(c5$comfyM)
+comfyg <- as.numeric(c5$comfyM)
+comfyg <- varCovar
+
+# samenvoegen in één data object voor Siena
+mydata <- sienaDataCreate(nety)
+```
+
+## Specify effects and model
+
+```{r}
+myeff <- getEffects(mydata)
+# effectsDocumentation(myeff) 
+# ??RsienaTwoStep
+ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+print01Report(mydata, modelname = "./results/tnss") # goed bekijken
+
+myeff <- includeEffects(myeff, effFrom, avXAlt, name = "behy", interaction1="nety")
+# effectsDocumentation()
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "net", cond = F)
+# ans <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# returndeps betekent dat hij de ministeps opslaat. dan runt je model sneller
+# ans
+```
+
+## Relative influence
+
+```{r}
+# get parameters
+theta.eval <- ans$theta
+# and effects
+myeff.eval <- ans$effects
+
+# use sienaRI()
+library(RsienaTwoStep)
+?sienaRI
+# RI <- interpret_size(data = snet, theta = theta.eval, algorithm = myAlgorithm, effects = myeff.eval)
+# RI <- RsienaTwoStep::sienaRI(data = mydata, ans = ansM1)
+
+# and plot
+# plot(RI, addPieChart = TRUE, legendColumns = 3)
+```
+
+## Goodness of fit
+
+```{r}
+
+```

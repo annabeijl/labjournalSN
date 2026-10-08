@@ -4,8 +4,6 @@ author: "by: Anna Beijl"
 bibliography: references.bib
 ---
 
-Welcome to my lab journal \<3
-
 ```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
 # install.packages("remotes")
 # remotes::install_github("rlesur/klippy")
@@ -39,40 +37,20 @@ see here: https://bookdown.org/yihui/rmarkdown-cookbook/multi-column.html
 But please note, we are not here to make a beautiful website, our intention is just to have a quick lab journal up and running --->
 ```
 
-::::: columns
-::: {.column width="50%"}
 # Lab Journal - Social Networks
 
-Last compiled on `r format(Sys.time(), '%B, %Y')`
+Last compiled on October 2026
+
+Welcome to my lab journal! On this website, I document my progress for the Social Networks course. I have my progress per week, as well as my final assignment, divided in chapters.
 
 *Use the top menu to navigate through the journal.*
 
 <br>
 
-------------------------------------------------------------------------
-
 ## Open Science
 
 Everyone can fork this repository. Use this example to journal your lab work and assignments.
-:::
-
-::: {.column width="80%"}
-![](%22./images/anna%22)
-:::
-:::::
-
-## How to use
-
-1.  Fork the repository for this website and follow instructions on `README` to get started [here](https://github.com/JochemTolsma/labjournal).
-
-2.  Journal your work, by editing the .Rmd-files
-
-3.  ...
-
-4.  Change everything to make it your own!
 
 <br>
 
-------------------------------------------------------------------------
-
-# References
+![](images/anna.jpg)

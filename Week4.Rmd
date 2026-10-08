@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = F, echo = T)
 ```
 
 # Workshop 21-09-2026
@@ -47,7 +47,7 @@ Based on the tutorial in @SNASS chapter 9
 
 #### *Loading data*
 
-```{r}
+```{r, warning = F}
 # loading the data - Zachary's karate club
 require(igraph)
 g <- make_graph("Zachary")
@@ -62,7 +62,7 @@ isSymmetric(gmat) # symmetrisch, dus undirected!
 
 #### *Descriptive statistics*
 
-```{r}
+```{r, warning = F}
 # size
 
 # degree
@@ -98,7 +98,7 @@ We zien nu dat er verschillen zijn in lokale transitiviteit en in betweenness, e
 
 #### *Network visualization*
 
-```{r}
+```{r, warning = F}
 # Let’s make size proportional to betweenness score:
 # changing V
 V(g)$size = betweenness(g, normalized = T, directed = FALSE) * 60 + 10  #after some trial and error
@@ -123,7 +123,7 @@ legend(x = -2, y = -1.5, c("Note: the position of nodes 1 and 34 have been set b
 
 #### *Loading data*
 
-```{r}
+```{r, warning = F}
 # load the necessary datasets
 load("./data/soc_df.RData")
 load("./data/soc_collabs1.RData")
@@ -160,7 +160,7 @@ save(onefivedegree, file = "./data/soc_onefivedegree.RData")
 
 #### *Network visualization*
 
-```{r}
+```{r, warning = F}
 onefivedegree <- as.matrix(onefivedegree)  # matrix because igraph wants that
 library(igraph)  # Notice that we call igraph here, in anticipation of the viz tutorial.
 net1 <- graph_from_edgelist(onefivedegree, directed = TRUE)  # Notice the igraph function here!
@@ -170,7 +170,7 @@ plot(net1)  # pretty ugly!
 
 #### *Making it prettier*
 
-```{r}
+```{r, warning=F}
 plot(net1 ,
      vertex.color = "gold", # nice color for the vertices
      vertex.size = 4,  # we'll vertices a bit smaller
@@ -187,7 +187,7 @@ plot(net1 ,
 
 Selecting Radboud sociology nodes and give them a different color.
 
-```{r}
+```{r, warning=F}
 in_network <- data.frame(as_ids(V(net1)))
 names(in_network)[1] <- "name"
 
@@ -210,7 +210,7 @@ plot(net1,
 
 Show only the labels of RU sociology staff
 
-```{r}
+```{r, warning=F}
 plot(net1,
      vertex.color = in_network$vcol, 
      #NOTICE THESE CONDITIONAL STATEMENTS BELOW
@@ -227,7 +227,7 @@ plot(net1,
 
 Vertex size adjusted for citation
 
-```{r}
+```{r, warning=F}
 plot(net1,
      vertex.color = in_network$vcol, 
      vertex.label = ifelse(!is.na(in_network$total_cites), in_network$name, NA),
@@ -244,7 +244,7 @@ plot(net1,
 
 Identify the nodes of RU sociology staff members
 
-```{r}
+```{r, warning=F}
 net1_mat <- igraph::as_adjacency_matrix(net1, sparse = FALSE)
 
 net1_un <- (net1_mat + t(net1_mat)) > 0

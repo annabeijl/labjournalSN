@@ -1,0 +1,69 @@
+---
+title: "**Lab Journal Week 6**"
+author: "Anna Beijl"
+date: "5 October 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Workshop 05-10-2026
+
+## *Summary*
+
+In the workshop we did the following:
+
+-   Explanation on interpretation of parameters
+
+-   Explanation on interpretation of Moran's I
+
+-   Student presentations + discussion on network statistics
+
+## *Current to-do list:*
+
+-   Figure out my effects structure
+    -   Check Zingora et al. paper and supplement
+    -   72 main covariate effect (effFrom)
+    -   73 alter’s covariate average effect on behavior z (avXAlt), formerlycalled(AltsAvAlt)
+-   Run some RSiena models: not just theory!!
+    -   Start simple, not full model from drawings
+    -   Still behavioral Y: attitude on outgroup 2 (ethnicity)
+    -   Mediation effect: via ego attitudes to ego behavior
+
+<br>
+
+# Lab journal
+
+## Moran's I
+
+```{r}
+# Moran's I
+require(RSiena)
+library(network)
+friend.data.w1 <- s501
+friend.data.w2 <- s502
+friend.data.w3 <- s503
+drink <- s50a
+smoke <- s50s
+
+net1 <- network::as.network(friend.data.w1)
+net2 <- network::as.network(friend.data.w2)
+net3 <- network::as.network(friend.data.w3)
+
+# nacf does not row standardize!
+snam1 <- sna::nacf(net1, drink[, 1], type = "moran", neighborhood.type = "out", demean = TRUE)
+snam1[2]  #the first order matrix is stored in second list-element
+
+require(ape)
+require(sna)
+geodistances <- geodist(net1, count.paths = TRUE)
+geodistances <- geodistances$gdist
+
+# first define a nb based on distance 1.
+weights1 <- geodistances == 1
+
+# this function rowstandardizes by default
+ape::Moran.I(drink[, 1], scaled = FALSE, weight = weights1, na.rm = TRUE)
+```

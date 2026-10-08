@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Anna Beijl" />
+
+<meta name="date" content="2026-09-28" />
+
+<title>Week5</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-heart"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lab journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Week1.html">Week 1</a>
+    </li>
+    <li>
+      <a href="Week2.html">Week 2</a>
+    </li>
+    <li>
+      <a href="Week3.html">Week 3</a>
+    </li>
+    <li>
+      <a href="Week4.html">Week 4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="Data_methods.html">Data</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/annabeijl/labjournalSN">
+    <span class="fa fa-smile-o"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Week5</h1>
+<h4 class="author">Anna Beijl</h4>
+<h4 class="date">2026-09-28</h4>
+
+</div>
+
+
+<div id="workshop-28-09-2026" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Workshop
+28-09-2026</h1>
+<div id="summary" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> <em>Summary</em></h2>
+<p>In the workshop we did the following:</p>
+<ul>
+<li><p>Student presentations on network visualization</p></li>
+<li></li>
+</ul>
+</div>
+<div id="current-to-do-list" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> <em>Current to-do
+list:</em></h2>
+<ul>
+<li>x</li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="lab-journal" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Lab journal</h1>
+<pre class="r"><code>rm(list = ls()) # clean workspace
+
+# custom functions
+fpackage.check &lt;- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave &lt;- function(x, file = NULL, location = &quot;./data/&quot;) {
+    ifelse(!dir.exists(&quot;data&quot;), dir.create(&quot;data&quot;), FALSE)
+    ifelse(!dir.exists(&quot;data&quot;), dir.create(&quot;data&quot;), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename &lt;- substr(gsub(&quot;[:-]&quot;, &quot;&quot;, Sys.time()), 1, 8)
+    totalname &lt;- paste(location, datename, file, &quot;.rda&quot;, sep = &quot;&quot;)
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload &lt;- function(filename) {
+    load(filename)
+    get(ls()[ls() != &quot;filename&quot;])
+}
+
+fshowdf &lt;- function(x, ...) {
+    knitr::kable(x, digits = 2, &quot;html&quot;, ...) %&gt;%
+        kableExtra::kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;)) %&gt;%
+        kableExtra::scroll_box(width = &quot;100%&quot;, height = &quot;300px&quot;)
+}
+
+packages = c(&quot;RSiena&quot;, &quot;tidyverse&quot;, &quot;stringdist&quot;, &quot;stringi&quot;)
+
+fpackage.check(packages)</code></pre>
+<pre><code>## Loading required package: RSiena</code></pre>
+<pre><code>## Warning: package &#39;RSiena&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Loading required package: tidyverse</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Warning: package &#39;lubridate&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.6
+## ✔ forcats   1.0.1     ✔ stringr   1.6.0
+## ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+## ✔ lubridate 1.9.5     ✔ tidyr     1.3.1
+## ✔ purrr     1.2.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+## Loading required package: stringdist
+## 
+## 
+## Attaching package: &#39;stringdist&#39;
+## 
+## 
+## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract
+## 
+## 
+## Loading required package: stringi</code></pre>
+<pre><code>## Warning: package &#39;stringi&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL
+## 
+## [[4]]
+## NULL</code></pre>
+<pre class="r"><code>library(haven)
+tnss_net &lt;- read_sav(&quot;./data/TNSS_wave_2010_mentors.sav&quot;)
+tnss_pup10 &lt;- read_sav(&quot;./data/TNSS_wave_2010_pupils.sav&quot;)
+tnss_pup11 &lt;- read_sav(&quot;./data/TNSS_wave_2011_pupils.sav&quot;)
+# using &#39;foreign&#39; I got warnings and didn&#39;t seem to load well. &#39;haven&#39; works nicely
+
+#join datasets
+# gaat automatisch goed gelukkig (obv IDClass en IDresp)
+tnss &lt;- left_join(tnss_net, tnss_pup10)</code></pre>
+<pre><code>## Joining with `by = join_by(IDClass, IDresp)`</code></pre>
+<pre class="r"><code>view(tnss)
+
+#selecteer class 5 (of een andere leuke grote klas met weinig missings)
+c5 &lt;- tnss %&gt;% 
+  filter(IDClass == 5)
+
+c9 &lt;- tnss %&gt;% 
+  filter(IDClass == 9)
+
+c3 &lt;- tnss %&gt;% 
+  filter(IDClass == 3)
+
+#aantal leerlingen in class 5
+max(c5$order) # 28</code></pre>
+<pre><code>## [1] 28</code></pre>
+<pre class="r"><code>max(c9$order) # 20</code></pre>
+<pre><code>## [1] 20</code></pre>
+<pre class="r"><code>max(c3$order) # 27</code></pre>
+<pre><code>## [1] 27</code></pre>
+<pre class="r"><code>#vis het nominatienetwerk er uit. Nu beetje handwerk. Kan vast slimmer. 
+c5_net &lt;- c5 %&gt;%
+  select(fr_1:fr_28)
+c3_net &lt;- c3 %&gt;%
+  select(fr_1:fr_28)
+view(c5_net)
+class(c5_net) # tibble/data frame</code></pre>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>library(igraph)</code></pre>
+<pre><code>## Warning: package &#39;igraph&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;igraph&#39;
+## 
+## The following objects are masked from &#39;package:lubridate&#39;:
+## 
+##     %--%, union
+## 
+## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     as_data_frame, groups, union
+## 
+## The following objects are masked from &#39;package:purrr&#39;:
+## 
+##     compose, simplify
+## 
+## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     crossing
+## 
+## The following object is masked from &#39;package:tibble&#39;:
+## 
+##     as_data_frame
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     decompose, spectrum
+## 
+## The following object is masked from &#39;package:base&#39;:
+## 
+##     union</code></pre>
+<pre class="r"><code>g1 &lt;- graph_from_adjacency_matrix(as.matrix(c5_net))
+plot(g1 ,
+     vertex.color = ifelse(c5$gender == 1, &quot;hotpink&quot;, &quot;olivedrab2&quot;), # gold = nice color for the vertices
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  # 20 we&#39;ll vertices a bit smaller
+     vertex.frame.color = &quot;gray&quot;,  # we&#39;ll put a gray frame around vertices
+     vertex.label.color = &quot;black&quot;,  # not that ugly blue color for the labels (names)
+     vertex.label.family = &quot;Helvetica&quot;, # not a fan of times new roman in figures
+     vertex.label.cex = 0.5,  # make the label a bit smaller too
+     vertex.label.dist = 0.8,  # we&#39;ll pull the labels a bit away from the vertices
+     edge.curved = 0, # curved edges is always a nice touch
+     edge.arrow.size = 0.4) # make arrow size (direction of edge) smaller</code></pre>
+<pre><code>## Warning in text.default(x0, y0, labels = lbl, col = col, family = fam, font =
+## fnt, : font family not found in Windows font database</code></pre>
+<p><img src="Week5_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>clp &lt;- cluster_optimal(g1)
+plot(clp, g1)</code></pre>
+<p><img src="Week5_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlZWs1Ig0KYXV0aG9yOiAiQW5uYSBCZWlqbCINCmRhdGU6ICIyMDI2LTA5LTI4Ig0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KIyBXb3Jrc2hvcCAyOC0wOS0yMDI2DQoNCiMjICpTdW1tYXJ5Kg0KDQpJbiB0aGUgd29ya3Nob3Agd2UgZGlkIHRoZSBmb2xsb3dpbmc6DQoNCi0gICBTdHVkZW50IHByZXNlbnRhdGlvbnMgb24gbmV0d29yayB2aXN1YWxpemF0aW9uDQoNCi0gICANCg0KIyMgKkN1cnJlbnQgdG8tZG8gbGlzdDoqDQoNCi0gICB4DQoNCjxicj4NCg0KIyBMYWIgam91cm5hbA0KDQpgYGB7cn0NCnJtKGxpc3QgPSBscygpKSAjIGNsZWFuIHdvcmtzcGFjZQ0KDQojIGN1c3RvbSBmdW5jdGlvbnMNCmZwYWNrYWdlLmNoZWNrIDwtIGZ1bmN0aW9uKHBhY2thZ2VzKSB7DQogICAgbGFwcGx5KHBhY2thZ2VzLCBGVU4gPSBmdW5jdGlvbih4KSB7DQogICAgICAgIGlmICghcmVxdWlyZSh4LCBjaGFyYWN0ZXIub25seSA9IFRSVUUpKSB7DQogICAgICAgICAgICBpbnN0YWxsLnBhY2thZ2VzKHgsIGRlcGVuZGVuY2llcyA9IFRSVUUpDQogICAgICAgICAgICBsaWJyYXJ5KHgsIGNoYXJhY3Rlci5vbmx5ID0gVFJVRSkNCiAgICAgICAgfQ0KICAgIH0pDQp9DQoNCmZzYXZlIDwtIGZ1bmN0aW9uKHgsIGZpbGUgPSBOVUxMLCBsb2NhdGlvbiA9ICIuL2RhdGEvIikgew0KICAgIGlmZWxzZSghZGlyLmV4aXN0cygiZGF0YSIpLCBkaXIuY3JlYXRlKCJkYXRhIiksIEZBTFNFKQ0KICAgIGlmZWxzZSghZGlyLmV4aXN0cygiZGF0YSIpLCBkaXIuY3JlYXRlKCJkYXRhIiksIEZBTFNFKQ0KICAgIGlmIChpcy5udWxsKGZpbGUpKQ0KICAgICAgICBmaWxlID0gZGVwYXJzZShzdWJzdGl0dXRlKHgpKQ0KICAgIGRhdGVuYW1lIDwtIHN1YnN0cihnc3ViKCJbOi1dIiwgIiIsIFN5cy50aW1lKCkpLCAxLCA4KQ0KICAgIHRvdGFsbmFtZSA8LSBwYXN0ZShsb2NhdGlvbiwgZGF0ZW5hbWUsIGZpbGUsICIucmRhIiwgc2VwID0gIiIpDQogICAgc2F2ZSh4LCBmaWxlID0gdG90YWxuYW1lKSAgI25lZWQgdG8gZml4IGlmIGZpbGUgaXMgcmVsb2FkZWQgYXMgaW5wdXQgbmFtZSwgbm90IGFzIHguIA0KfQ0KDQpmbG9hZCA8LSBmdW5jdGlvbihmaWxlbmFtZSkgew0KICAgIGxvYWQoZmlsZW5hbWUpDQogICAgZ2V0KGxzKClbbHMoKSAhPSAiZmlsZW5hbWUiXSkNCn0NCg0KZnNob3dkZiA8LSBmdW5jdGlvbih4LCAuLi4pIHsNCiAgICBrbml0cjo6a2FibGUoeCwgZGlnaXRzID0gMiwgImh0bWwiLCAuLi4pICU+JQ0KICAgICAgICBrYWJsZUV4dHJhOjprYWJsZV9zdHlsaW5nKGJvb3RzdHJhcF9vcHRpb25zID0gYygic3RyaXBlZCIsICJob3ZlciIpKSAlPiUNCiAgICAgICAga2FibGVFeHRyYTo6c2Nyb2xsX2JveCh3aWR0aCA9ICIxMDAlIiwgaGVpZ2h0ID0gIjMwMHB4IikNCn0NCg0KcGFja2FnZXMgPSBjKCJSU2llbmEiLCAidGlkeXZlcnNlIiwgInN0cmluZ2Rpc3QiLCAic3RyaW5naSIpDQoNCmZwYWNrYWdlLmNoZWNrKHBhY2thZ2VzKQ0KDQpsaWJyYXJ5KGhhdmVuKQ0KdG5zc19uZXQgPC0gcmVhZF9zYXYoIi4vZGF0YS9UTlNTX3dhdmVfMjAxMF9tZW50b3JzLnNhdiIpDQp0bnNzX3B1cDEwIDwtIHJlYWRfc2F2KCIuL2RhdGEvVE5TU193YXZlXzIwMTBfcHVwaWxzLnNhdiIpDQp0bnNzX3B1cDExIDwtIHJlYWRfc2F2KCIuL2RhdGEvVE5TU193YXZlXzIwMTFfcHVwaWxzLnNhdiIpDQojIHVzaW5nICdmb3JlaWduJyBJIGdvdCB3YXJuaW5ncyBhbmQgZGlkbid0IHNlZW0gdG8gbG9hZCB3ZWxsLiAnaGF2ZW4nIHdvcmtzIG5pY2VseQ0KDQojam9pbiBkYXRhc2V0cw0KIyBnYWF0IGF1dG9tYXRpc2NoIGdvZWQgZ2VsdWtraWcgKG9idiBJRENsYXNzIGVuIElEcmVzcCkNCnRuc3MgPC0gbGVmdF9qb2luKHRuc3NfbmV0LCB0bnNzX3B1cDEwKQ0Kdmlldyh0bnNzKQ0KDQojc2VsZWN0ZWVyIGNsYXNzIDUgKG9mIGVlbiBhbmRlcmUgbGV1a2UgZ3JvdGUga2xhcyBtZXQgd2VpbmlnIG1pc3NpbmdzKQ0KYzUgPC0gdG5zcyAlPiUgDQogIGZpbHRlcihJRENsYXNzID09IDUpDQoNCmM5IDwtIHRuc3MgJT4lIA0KICBmaWx0ZXIoSURDbGFzcyA9PSA5KQ0KDQpjMyA8LSB0bnNzICU+JSANCiAgZmlsdGVyKElEQ2xhc3MgPT0gMykNCg0KI2FhbnRhbCBsZWVybGluZ2VuIGluIGNsYXNzIDUNCm1heChjNSRvcmRlcikgIyAyOA0KbWF4KGM5JG9yZGVyKSAjIDIwDQptYXgoYzMkb3JkZXIpICMgMjcNCg0KI3ZpcyBoZXQgbm9taW5hdGllbmV0d2VyayBlciB1aXQuIE51IGJlZXRqZSBoYW5kd2Vyay4gS2FuIHZhc3Qgc2xpbW1lci4gDQpjNV9uZXQgPC0gYzUgJT4lDQogIHNlbGVjdChmcl8xOmZyXzI4KQ0KYzNfbmV0IDwtIGMzICU+JQ0KICBzZWxlY3QoZnJfMTpmcl8yOCkNCnZpZXcoYzVfbmV0KQ0KY2xhc3MoYzVfbmV0KSAjIHRpYmJsZS9kYXRhIGZyYW1lDQoNCmxpYnJhcnkoaWdyYXBoKQ0KZzEgPC0gZ3JhcGhfZnJvbV9hZGphY2VuY3lfbWF0cml4KGFzLm1hdHJpeChjNV9uZXQpKQ0KcGxvdChnMSAsDQogICAgIHZlcnRleC5jb2xvciA9IGlmZWxzZShjNSRnZW5kZXIgPT0gMSwgImhvdHBpbmsiLCAib2xpdmVkcmFiMiIpLCAjIGdvbGQgPSBuaWNlIGNvbG9yIGZvciB0aGUgdmVydGljZXMNCiAgICAgdmVydGV4LnNpemUgPSBiZXR3ZWVubmVzcyhnMSwgbm9ybWFsaXplZCA9IFQsIGRpcmVjdGVkID0gVCkgKiA2MCArIDEwLCAgIyAyMCB3ZSdsbCB2ZXJ0aWNlcyBhIGJpdCBzbWFsbGVyDQogICAgIHZlcnRleC5mcmFtZS5jb2xvciA9ICJncmF5IiwgICMgd2UnbGwgcHV0IGEgZ3JheSBmcmFtZSBhcm91bmQgdmVydGljZXMNCiAgICAgdmVydGV4LmxhYmVsLmNvbG9yID0gImJsYWNrIiwgICMgbm90IHRoYXQgdWdseSBibHVlIGNvbG9yIGZvciB0aGUgbGFiZWxzIChuYW1lcykNCiAgICAgdmVydGV4LmxhYmVsLmZhbWlseSA9ICJIZWx2ZXRpY2EiLCAjIG5vdCBhIGZhbiBvZiB0aW1lcyBuZXcgcm9tYW4gaW4gZmlndXJlcw0KICAgICB2ZXJ0ZXgubGFiZWwuY2V4ID0gMC41LCAgIyBtYWtlIHRoZSBsYWJlbCBhIGJpdCBzbWFsbGVyIHRvbw0KICAgICB2ZXJ0ZXgubGFiZWwuZGlzdCA9IDAuOCwgICMgd2UnbGwgcHVsbCB0aGUgbGFiZWxzIGEgYml0IGF3YXkgZnJvbSB0aGUgdmVydGljZXMNCiAgICAgZWRnZS5jdXJ2ZWQgPSAwLCAjIGN1cnZlZCBlZGdlcyBpcyBhbHdheXMgYSBuaWNlIHRvdWNoDQogICAgIGVkZ2UuYXJyb3cuc2l6ZSA9IDAuNCkgIyBtYWtlIGFycm93IHNpemUgKGRpcmVjdGlvbiBvZiBlZGdlKSBzbWFsbGVyDQoNCmNscCA8LSBjbHVzdGVyX29wdGltYWwoZzEpDQpwbG90KGNscCwgZzEpDQpgYGANCg==</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Week5.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

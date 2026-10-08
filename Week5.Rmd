@@ -1,0 +1,220 @@
+---
+title: "Week5"
+author: "Anna Beijl"
+date: "2026-09-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Workshop 28-09-2026
+
+## *Summary*
+
+In the workshop we did the following:
+
+-   Student presentations on network visualization
+
+-   
+
+## *Current to-do list:*
+
+-   x
+
+<br>
+
+# Lab journal
+
+```{r}
+rm(list = ls()) # clean workspace
+
+# custom functions
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+packages = c("RSiena", "tidyverse", "stringdist", "stringi")
+
+fpackage.check(packages)
+
+library(haven)
+tnss_net <- read_sav("./data/TNSS_wave_2010_mentors.sav")
+tnss_pup10 <- read_sav("./data/TNSS_wave_2010_pupils.sav")
+tnss_pup11 <- read_sav("./data/TNSS_wave_2011_pupils.sav")
+# using 'foreign' I got warnings and didn't seem to load well. 'haven' works nicely
+
+#join datasets
+# gaat automatisch goed gelukkig (obv IDClass en IDresp)
+tnss <- left_join(tnss_net, tnss_pup10)
+view(tnss)
+
+#selecteer class 5 (of een andere leuke grote klas met weinig missings)
+c5 <- tnss %>% 
+  filter(IDClass == 5)
+
+c9 <- tnss %>% 
+  filter(IDClass == 9)
+
+c3 <- tnss %>% 
+  filter(IDClass == 3)
+
+#aantal leerlingen in class 5
+max(c5$order) # 28
+max(c9$order) # 20
+max(c3$order) # 27
+
+#vis het nominatienetwerk er uit. Nu beetje handwerk. Kan vast slimmer. 
+c5_net <- c5 %>%
+  select(fr_1:fr_28)
+c3_net <- c3 %>%
+  select(fr_1:fr_28)
+view(c5_net)
+class(c5_net) # tibble/data frame
+
+view(tnss_pup10)
+
+library(igraph)
+g1 <- graph_from_adjacency_matrix(as.matrix(c5_net))
+g2 <- graph_from_adjacency_matrix(as.matrix(c3_net))
+colorgender <- ifelse(c5$gender == 1, "hotpink", "olivedrab2")
+colorattgen <- ifelse(c5$comfyM == 1 | c5$comfyM == 2, "pink", "red") # rood = minder comfy met meisjes. kan dit ook met een gradient?
+coloratteth <- ifelse(c5$comfyEM == 1 | c5$comfyM == 2, "lightblue", "blue") # donkerblauw = minder comfy met ethnic minorities
+
+# to remove vertex labels:  vertex.label = NA,
+
+# COLOR BASED ON GENDER 
+plot(g1,
+     vertex.color = ifelse(c5$gender == 1, "hotpink", "olivedrab2"), 
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.frame.color = "gray",  
+     vertex.label.color = "black",  
+     vertex.label.family = "Helvetica", 
+     vertex.label.cex = 0.5,  
+     vertex.label.dist = 0.8,  
+     edge.curved = 0, 
+     edge.arrow.size = 0.4) 
+
+plot(g2,
+     vertex.color = ifelse(c5$gender == 1, "hotpink", "olivedrab2"), 
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.frame.color = "gray",  
+     vertex.label.color = "black",  
+     vertex.label.family = "Helvetica", 
+     vertex.label.cex = 0.5,  
+     vertex.label.dist = 0.8,  
+     edge.curved = 0, 
+     edge.arrow.size = 0.4) 
+
+# COLOR BASED ON ETHNICITY
+plot(g1 ,
+     vertex.color = ifelse(c5$ethnicity == 1, "orange", "olivedrab2"), 
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.frame.color = "gray",  
+     vertex.label.color = "black",  
+     vertex.label.family = "Helvetica", 
+     vertex.label.cex = 0.5,  
+     vertex.label.dist = 0.8,  
+     edge.curved = 0, 
+     edge.arrow.size = 0.4)
+
+plot(g2 ,
+     vertex.color = ifelse(c5$ethnicity == 1, "orange", "olivedrab2"), 
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.frame.color = "gray",  
+     vertex.label.color = "black",  
+     vertex.label.family = "Helvetica", 
+     vertex.label.cex = 0.5,  
+     vertex.label.dist = 0.8,  
+     edge.curved = 0, 
+     edge.arrow.size = 0.4)
+
+# COLOR BASED ON COMFY WITH ETHNIC MINORITIES
+plot(g1,
+     vertex.color = adjustcolor(coloratteth, alpha.f = 4),
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.frame.color = "gray",  
+     vertex.label.color = "black",  
+     vertex.label.family = "Helvetica", 
+     vertex.label.cex = 0.5,  
+     vertex.label.dist = 0.8, 
+     edge.curved = 0, 
+     edge.arrow.size = 0.4) 
+
+plot(g2,
+     vertex.color = adjustcolor(coloratteth, alpha.f = 4),
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.frame.color = "gray",  
+     vertex.label.color = "black",  
+     vertex.label.family = "Helvetica", 
+     vertex.label.cex = 0.5,  
+     vertex.label.dist = 0.8, 
+     edge.curved = 0, 
+     edge.arrow.size = 0.4) 
+
+# COLOR BASED ON COMFY WITH GIRLS
+plot(g1,
+     vertex.color = adjustcolor(colorattgen, alpha.f = 4),
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.frame.color = "gray", 
+     vertex.label.color = "black",  
+     vertex.label.family = "Helvetica", 
+     vertex.label.cex = 0.5,  
+     vertex.label.dist = 0.8, 
+     edge.curved = 0, 
+     edge.arrow.size = 0.4) 
+
+plot(g2,
+     vertex.color = adjustcolor(colorattgen, alpha.f = 4),
+     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+     vertex.frame.color = "gray", 
+     vertex.label.color = "black",  
+     vertex.label.family = "Helvetica", 
+     vertex.label.cex = 0.5,  
+     vertex.label.dist = 0.8, 
+     edge.curved = 0, 
+     edge.arrow.size = 0.4) 
+
+# kunnen deze twee gecombineerd worden in één plot?
+
+# clustering
+clp1 <- cluster_optimal(g1)
+plot(clp1, g1)
+
+clp2 <- cluster_optimal(g2)
+plot(clp2, g2)
+# kan ik clusteren obv een ego kenmerk?
+?cluster_optimal
+# 5 / 6 aparte groepjes in de klas
+```
+
+-   Er zijn maar een paar studenten die niet oke/comfy zijn met meisjes; meer die niet oke/comfy zijn met etnische minderheden. Tolerantie mbt gender lijkt dus 'makkelijker' dan etniciteit. Dus gender als primary outgroup, ethnicity secundary?
+
+-   In beide klassen: lage density, heel erg losse vriendschappen + aparte groepjes

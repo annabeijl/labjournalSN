@@ -1,0 +1,41 @@
+---
+title: "***Theory and Hypotheses***"
+author: "Anna Beijl"
+date: "28 September 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+## Hypotheses
+
+1.  **Classic STE** -\> Egos with more female friends (*primary outgroup*) in T1 are more likely to be friends with ethnic minority students (*secondary outgroup*) in T2
+
+    -   But what is the effect???? Outdegree activity?
+
+    1.  This effect is mediated by ego's tolerance (comfy with ethnic minorities)
+    2.  This effect is stronger when egos friends are tolerant (comfy with ethnic minorities) -\> **Influence effect?**
+    3.  This effect is stronger when ego is ethnic majority and/or male
+
+<br>
+
+1.  **Influence** -\> Egos with more tolerant friends (whose friends are comfy with ethnic minorities; *secondary outgroup attitudes*) are more likely to be friends with ethnic minority students (*secondary outgroup*) in T2
+    1.  This effect is mediated by ego's tolerance (omfy with ethnic minorities)
+    2.  This effect is stronger when egos friends are female -\> **Secondary transfer effect?**
+    3.  This effect is stronger when ego is ethnic majority and/or male
+
+<br>
+
+Questions
+
+-   How to measure these with RSiena effects though?
+
+    -   Which effects?
+
+    -   Out-groups fixed, or dependent on ego?
+
+-   Should hypotheses all be on micro level?
