@@ -10,7 +10,11 @@ bibliography: references.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<br>
+
 # Workshop 31-08-26
+
+<br>
 
 ## *Summary*
 
@@ -32,7 +36,13 @@ I started working through the R tutorial in Appendix A of the SNASS textbook. I 
 -   Finish the lab journal for this week
 -   Read chapters 1, 2, 3.3, 4 in SNASS textbook
 
+<br>
+
+------------------------------------------------------------------------
+
 # R and Github
+
+<br>
 
 ## *Setting up the lab journal*
 
@@ -48,6 +58,10 @@ library("usethis")
 ## *Working through the R tutorial*
 
 From the SNASS textbook, Appendix A. I saved the R code in a different script, to keep this one clean and legible.
+
+<br>
+
+------------------------------------------------------------------------
 
 # RQs and literature
 
@@ -97,6 +111,8 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
 
     -   **Method**: seems great
 
+<br>
+
 2.  @chávez2021
 
     *The role of perspective-taking and low social class prejudice on cross-ethnic friendship formation*
@@ -141,7 +157,13 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
 
     -   **Method**: also seems fitting, don't know enough RSiena yet
 
+<br>
+
+------------------------------------------------------------------------
+
 ## *First setup RQs*
+
+<br>
 
 -   **Descriptive (macro / network level)** \> *Diversity* in students' social networks based on [secondary outgroup]? What is the *distribution* of secondary out-group attitudes / friendships in the students' network?
 
@@ -156,3 +178,11 @@ From the SNASS textbook, Appendix A. I saved the R code in a different script, t
     -   From ethnic minority perspective?
 
     -   Completely different type of outgroup, not based on ethnicity?
+
+<br>
+
+------------------------------------------------------------------------
+
+# References
+
+<br>

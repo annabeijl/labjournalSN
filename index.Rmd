@@ -39,9 +39,11 @@ But please note, we are not here to make a beautiful website, our intention is j
 
 # Lab Journal - Social Networks
 
-Last compiled on October 2026
+Last compiled on November 2026
 
-Welcome to my lab journal! On this website, I document my progress for the Social Networks course. I have my progress per week, as well as my final assignment, divided in chapters.
+<br>
+
+Welcome to my lab journal! On this website, I document my progress for the course Social Networks. In the navigation bar above, you can find my progress per week, as well as my final assignment, divided in chapters.
 
 *Use the top menu to navigate through the journal.*
 
@@ -49,8 +51,12 @@ Welcome to my lab journal! On this website, I document my progress for the Socia
 
 ## Open Science
 
-Everyone can fork this repository. Use this example to journal your lab work and assignments.
+Everyone can fork this repository. Use this example to journal your lab work and assignments. I created this website and lab journal by forking the repository from Jochem Tolsma and Bas Hofstra (@SNASS).
 
 <br>
 
 ![](images/anna.jpg)
+
+------------------------------------------------------------------------
+
+## References

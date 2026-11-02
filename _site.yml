@@ -34,7 +34,9 @@ navbar:
         href: Theory.html
       - text: "Data"
         href: Data_methods.html
-      - text: "Results"
+      - text: "Descriptive Results"
+        href: Descriptive_results.html
+      - text: "RSiena Results"
         href: Results_interpretations.html
       - text: "Conclusion and Discussion"
         href: Discussion.html

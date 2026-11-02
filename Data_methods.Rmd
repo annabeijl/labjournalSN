@@ -1,396 +1,139 @@
 ---
-title: "**Data**"
+title: "**Data and Methods**"
 author: "Anna Beijl"
 date: "17 September 2026"
 output: html_document
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# First ideas
+<br>
 
-What type of data do I need?
-
--   3 types of groups, at least 2 different outgroups
+# Data and Methods
 
 <br>
 
-# Data options
+## Data
 
-*The Nijmegen School Study (TNSS)*
+To answer the research questions, I used social network data from The Nijmegen School Study (TNSS, see codebook by Tolsma & Pop, 2010). The data were collected in 2010 and 2011 among students in Nijmegen, the Netherlands. Data collection was focused on bullying, friendships, and prejudice among students in secondary education. All first- and second-year students registered at Mondial College, location Lindenholt, Nijmegen, Netherlands "were invited to participate in the study (384 potential respondents in 8 first year classes and 7 second year classes). The mentors of the classes were also invited to fill in a supplementary questionnaire", supplying the network and bullying nomination data. A total of 364 students, from **13 (check?)** classes, participated in the data collection (94.8% response rate), and 14 mentors (93.3%) completed the supplementary questionnaire.
 
--   Vooroordelen en positief/negatief contact obv etniciteit en gender
+-   Ik heb 1 klas eruit gekozen voor analyse. Deze klas heeft 28 leerlingen, waarvan 2 missings hebben op [wat??]. Het netwerk dat ik analyseer bestaat dus uit N=28. Directed network.
 
-    -   O.a. thermometerschalen, percentages, ook contact ouders
+TNSS consists of two waves, the first of which was collected in April 2010 and contains both student and mentor (i.e. network) data. Data collection of the second wave took place between April and May 2011. In storage, the network / mentor nomination data has been lost to time, which means that only the student (i.e. background / survey) data is available for this second wave.
 
--   'Hoeveel van je goede vrienden zijn x?' –\> is dit genoeg (compleet) netwerkdata?
+Practically, this means that the social network data only consists of one wave, and is therefore cross-sectional rather than longitudinal. Seeing as this departs from the standard approach in social network analysis - which uses longitudinal data - the current data will be analyzed using a stationary Stochastic Actor-Oriented Model (SAOM), or short-term dynamic equilibrium (see Snijders & Steglich, 2013). This means that the network at wave 1 will be used as the network at wave 2 as well. "the observed network is used as the starting as well as the ending observation, as a reflection of the equilibrium concept” (Simpson, 2022). “Put simply, “[cross-sectional] SAOMs assume that the network structure, although changing, is in a stochastically stable state.” (Krause, Huisman, and Snijders, p. 36–37). Thus, the estimated parameters β continue to summarise the rules by which ministeps unfold. However, the asynchronous, sequential, simulated tie changes, in a sense, “cancel out” and thus hold the network in “short-term dynamic equilibrium” (Simpson, 2022).
 
-    -   Matrix lijkt alleen over pesten, ingevuld door mentoren
-
-    -   Pesten dan als behavioral DV nemen?
-
-*The Arnhem School Study (TASS)*
-
--   Geen toegang tot codeboek online (<https://ssh.datastations.nl/dataset.xhtml?persistentId=doi:10.17026/DANS-ZC6-JHDK>) –\> via Jochem?
-
-*FIS data*
-
--   1/2/3 generation migrants (but maybe too in-group-y?)
-
--   Intergroup attitudes based on religion and ethnicity
-
--   Other option: Perceived discrimination
-
-    -   Also only based on migration background / ethnicity though
-
-    -   Possibly extend logic of social influence effects to perceived discrimination?
-
-    -   Some literature: <https://doi.org/10.1177/21568693241271289>, <https://doi.org/10.1037/pspi0000426>, <https://link.springer.com/article/10.1007/s10964-023-01746-1>
-
--   But: a LOT less literature + it would mean to drop the secondary group thing
-
-*MRCS data*
-
--   Salience of social identity elements
-
--   Intergroup contact attitudes (broad!) \> "people of other social identities"
+For more details about model specification, see the section 'Analytical strategy' below.
 
 <br>
 
-# Data descriptions
+### Dependent variables
 
-Should include:
+#### *Network: Friendships*
 
--   Context and participants
+Friendship networks between students were assessed through the supplementary questionnaire given to class mentors. This means that nomination data were not obtained by students themselves, but as observed by their mentor. The friendship network of the particular class that was analyzed is visually displayed below. *[Color/shape is based on gender/ethnicity, and x is based on outgroup attitudes (either girls or ethnic minorities)].* The network is relatively sparse (i.e. few ties between nodes) and contains a few very central students. There are no isolates.
 
--   Waves: how many, what years?
+(Note: this network structure could partially be explained by the mentor nomination data.)
 
--   Directed / undirected adjacency matrix
-
--   DV and IVs
-
-    -   The dependent variable in the stochastic actor oriented model (SOAM) is the network structure in wave two and three
-
-        -   In mijn geval dus niet! Alleen een behavioral DV en netwerk is vaststaand
-
-    -   Ego-level (monadic) covariates: constant/varying
-
-    -   IV: attitudes of ego / students towards [secondary outgroup]
-
--   Interaction model? Ego's attitudes lead to ego's friendships, but this is conditional on friends' (from primary outgroup) opinions
-
-    -   Two-step influence effects?
-
--   Control variables –\> structural network effects such as transitivity / triadic closure, reciprocity, inPop, outAct, isolateNet
-
--   Corresponding to which effects (i.e. technical names) in the RSiena model?
+*[insert figuur visualisatie]*
 
 <br>
 
-# Updated RQs
+#### *Behavior: Ethnic minority attitudes*
 
--   **Descriptive (macro / network level)** \> What is the diversity in students' social networks based on [secondary outgroup]?
-
--   **Explanatory (micro level)** \> To what extent are secondary out-group attitudes / friendships (diversity in network) explained by *social influence effects* (vs. secondary transfer effects of intergroup contact)?
-
-    -   What is the primary vs secondary outgroup?
-
-        -   Similar in stigma/marginalization?? (condition for STE)
-
-    -   Is the outgroup fixed (e.g. always 'women' and 'ethnic minorities') or dynamic based on who ego is (e.g. for an ethnic minority woman, the outgroups would be 'men' and 'ethnic majorities')?
-
-    -   Selection vs. influence no longer possible? (only 1 wave)
-
-<br>
-
-# Effects to include
-
-Probably more (and check TNSS again), but most important ones:
-
-1.  Ego: gender, ethnicity, thermometer gender / thermometer ethnicity (which one X and which one Y?), number of gender / ethnic minority friends
-    -   Also control for some kind of 'tolerance' / selection? Is this even possible in 1 wave?
-2.  Alters: gender, ethnicity, thermometer gender / thermometer ethnicity
-3.  Dyadic: reciprocity, transitivity, popularity, activity
-
-<br>
-
--   How to model outgroup?
-
--   How to model network as 1 wave constant?
-
-<br>
-
-# Describing my data
-
-## Loading / preparing data
+In addition to a network dependent variable, I also estimate a behavioral dependent. In this case, I use ethnic minority attitudes. Linking back to the theory on intergroup contact and transfer effects, we need to define a primary and secondary outgroup. The TNSS data contain multiple measures about attitudes based on both gender and ethnicity, which is why these outgroups were chosen. Gender was used as the primary outgroup, meaning that the secondary outgroup is based on ethnicity. For the behavioral Y, I used a thermometer measure from TNSS indicating ethnic minority attitudes. Respondents were given the following introduction: "There are different groups of people living in the Netherlands. Of course, Dutch people live there. There are also ethnic minorities in the Netherlands. Like for example Turkish Dutch people (Turks), Moroccan Dutch people (Moroccans), Surinamese Dutch people (Surinamese) and many more. These groups are called ethnic minorities. Please answer the following questions about ethnic minorities in the Netherlands." The thermometer scale question was asked as follows: "Please use the following thermometer to show what you think about ethnic minorities in the Netherlands", showing a line ranging from "cold (negative), 0" on the left, to "warm (positive), 100" on the right. (Please note that all items were translated to English by the author from the original Dutch questionnaire).
 
 ```{r}
-rm(list = ls()) # clean workspace
-
-# custom functions
-fpackage.check <- function(packages) {
-    lapply(packages, FUN = function(x) {
-        if (!require(x, character.only = TRUE)) {
-            install.packages(x, dependencies = TRUE)
-            library(x, character.only = TRUE)
-        }
-    })
-}
-
-fsave <- function(x, file = NULL, location = "./data/") {
-    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
-    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
-    if (is.null(file))
-        file = deparse(substitute(x))
-    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
-    totalname <- paste(location, datename, file, ".rda", sep = "")
-    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
-}
-
-fload <- function(filename) {
-    load(filename)
-    get(ls()[ls() != "filename"])
-}
-
-fshowdf <- function(x, ...) {
-    knitr::kable(x, digits = 2, "html", ...) %>%
-        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
-        kableExtra::scroll_box(width = "100%", height = "300px")
-}
-
-packages = c("RSiena", "tidyverse", "stringdist", "stringi")
-
-fpackage.check(packages)
-
-library(haven)
-tnss_net <- read_sav("./data/TNSS_wave_2010_mentors.sav")
-tnss_pup10 <- read_sav("./data/TNSS_wave_2010_pupils.sav")
-tnss_pup11 <- read_sav("./data/TNSS_wave_2011_pupils.sav")
-# using 'foreign' I got warnings and didn't seem to load well. 'haven' works nicely
-
-view(tnss_net)
-view(tnss_pup10)
-view(tnss_pup11) # all looks good
-
-class(tnss_net) # tibble/data frame
-class(tnss_pup10)
-class(tnss_pup11)
-
-#join datasets
-# gaat automatisch goed gelukkig (obv IDClass en IDresp)
-tnss <- left_join(tnss_net, tnss_pup10)
-view(tnss)
-
-#selecteer class 5 (of een andere leuke grote klas met weinig missings)
-c5 <- tnss %>% 
-  filter(IDClass == 5)
-
-c3 <- tnss %>% 
-  filter(IDClass == 3)
-
-#aantal leerlingen in class 5
-max(c5$order) # 28
-max(c3$order) # 27
-
-#vis het nominatienetwerk er uit. Nu beetje handwerk. Kan vast slimmer. 
-c5_net <- c5 %>%
-  select(fr_1:fr_28)
-c3_net <- c3 %>%
-  select(fr_1:fr_27)
-view(c5_net)
-class(c5_net) # tibble/data frame
-view(c3_net)
+knitr::include_graphics("plot2.png")
 ```
-
-## Descriptive stats
-
-```{r}
-require(igraph)
-g1 <- graph_from_adjacency_matrix(as.matrix(c5_net))
-g2 <- graph_from_adjacency_matrix(as.matrix(c3_net))
-#kleur op basis van gender. staat in goede volgorde. 
-V(g1)$color <- ifelse(c5$gender == 1, "red", "green")
-plot(g1)
-
-vcount(g1) # count vertices / actors #28
-ecount(g1) # count edges / ties #82
-is_bipartite(g1) # is the network unimodal or multi? # F
-is_weighted(g1) # F
-
-require(RsienaTwoStep)
-ts_recip(g1) # 68
-ts_outAct(g1) # 6724
-ts_inAct(g1) # same number
-triad_census(g1)
-dyad_census(g1)
-# $mut = number of pairs with mutual connections #34
-# $asym = number of pairs with non-mutual connections #14
-# $null = number of pairs with no connections between them #330
-
-gmat <- as_adjacency_matrix(g1, type = "both", sparse = FALSE)
-isSymmetric(gmat) # F, dus directed
-```
-
-## Visualization
-
-```{r}
-# transivitity
-igraph::transitivity(g1, type = c("localundirected"), isolates = c("NaN", "zero"))
-
-# betweenness
-igraph::betweenness(g1, directed = T)
-
-# density
-igraph::edge_density(g1) # 0.11
-igraph::edge_density(g2) # 0.098
-
-
-# Let’s make size proportional to betweenness score:
-# changing V
-V(g1)$size = betweenness(g1, normalized = T, directed = T) * 60 + 10 
-plot(g1, mode = "directed")
-
-view(tnss_pup10)
-
-# making it prettier
-#GENDER
-plot(g1 ,
-     vertex.color = ifelse(c5$gender == 1, "hotpink", "olivedrab2"), # gold = nice color for the vertices
-     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  # 20 we'll vertices a bit smaller
-     vertex.frame.color = "gray",  # we'll put a gray frame around vertices
-     vertex.label.color = "black",  # not that ugly blue color for the labels (names)
-     vertex.label.family = "Helvetica", # not a fan of times new roman in figures
-     vertex.label.cex = 0.5,  # make the label a bit smaller too
-     vertex.label.dist = 0.8,  # we'll pull the labels a bit away from the vertices
-     edge.curved = 0, # curved edges is always a nice touch
-     edge.arrow.size = 0.4) # make arrow size (direction of edge) smaller
-
-plot(g1 ,
-     vertex.color = ifelse(c5$ethnicity == 1, "orange", "olivedrab2"), # gold = nice color for the vertices
-     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  # 20 we'll vertices a bit smaller
-     vertex.frame.color = "gray",  # we'll put a gray frame around vertices
-     vertex.label.color = "black",  # not that ugly blue color for the labels (names)
-     vertex.label.family = "Helvetica", # not a fan of times new roman in figures
-     vertex.label.cex = 0.5,  # make the label a bit smaller too
-     vertex.label.dist = 0.8,  # we'll pull the labels a bit away from the vertices
-     edge.curved = 0, # curved edges is always a nice touch
-     edge.arrow.size = 0.4) # make arrow size (direction of edge) smaller
-```
-
-What do we see:
-
--   A lot of clustering!
-
-    -   It seems strongly based on gender
-
-    -   Also (but less) based on ethnicity
-
--   A couple of students with really high levels of betweenness (15, 14, 4, 3) –\> connecting the different clusters; brokers / bridges
-
-    -   One very central actor: 15 (male + Dutch origin)
-
-    -   Not much variation among the other students
 
 <br>
 
-## Defining data + RSiena object
+### Covariates
+
+#### *Monadic*
+
+I used **ethnicity** and **gender** of students and their friends as constant (i.e. not time-varying) covariates. Both were directly asked of respondents and were coded or recoded in a binary way (boy or girl; Dutch or non-Dutch / migration background). Gender was asked via: "I am a... [boy / girl]". For ethnicity, I used a set of questions asking where the respondent was born, as well as their mother and father. Answer options were: "The Netherlands", "Türkiye", "Morocco", "Suriname", "Dutch Antilles / Aruba", and "other, namely....". When one or more of these questions were answered with a country different from the Netherlands, a respondent was coded as having a migration background (cf. CBS, bron).
 
 ```{r}
-# DV: NETWORK
-net <- as.matrix(c5_net)
-sum(diag(net) != 0)
-
-view(c5_net)
-length(c5_net)
-
-net2 <- net
-
-net2[1,2] <- 1
-
-snet <- sienaDependent(array(data = c(net, net2), dim = c(dim(net), 2)), allowOnly = FALSE)
-mydata <- sienaDataCreate(snet)
-myeff <- getEffects(mydata)
-effectsDocumentation(myeff)
-myeff <- includeEffects(myeff, inPop)
-
-myeff[1,]$fix <- TRUE
-myeff[1,]$initialValue <- 5
-
-myAlgorithm <- sienaAlgorithmCreate(projname = "net", cond = F)
-ans <- siena07(myAlgorithm, data = mydata, effects = myeff)
-?sienaAlgorithmCreate
-
-# DV: BEHAVIOR (ETHNIC MINORITY ATTITUDES)
-behy <- tnss_pup10 %>% 
-  dplyr::select("comfyM", "comfyJ", "comfyEM", "comfyNL") %>% 
-  as.matrix()
-
-behy <- sienaDependent(behy, type = c("behavior"))
-
-
-# INDEPENDENT VARIABLES ----------------------------------------------------
-view(tnss_pup10)
-
-# gender
-class(c5$gender)
-gender_n <- as.numeric(c5$gender)
-class(gender_n)
-gender_n <- coCovar # = constant covariate, kan ook dyad, time varying, etc
-
-# ethnicity
-class(c5$ethnicity)
-ethnicity_n <- as.numeric(ifelse(c5$ethnicity == 1, 1, 0))
-ethnicity_n <- coCovar                      
-
-# comfy girls
-class(c5$comfyM)
-comfyg <- as.numeric(c5$comfyM)
-comfyg <- varCovar
-
-# comfy boys
-comfyb <- as.numeric(c5$comfyJ)
-comfyb <- varCovar
-
-# comfy ethnic minority
-comfymin <- as.numeric(c5$comfyEM)
-comfymin <- varCovar
-
-# comfy ethnic majority
-comfymaj <- as.numeric(c5$comfyNL)
-comfymaj <- varCovar
-
-# samenvoegen in één data object voor Siena
+knitr::include_graphics("plot1.png")
 ```
 
-## Effects structure and initial description
+I also controlled for the **number of ethnic minority friends**, and **primary outgroup attitudes**, i.e. a thermometer measure indicating attitudes towards women. The former was asked through an open question: "How many of your good friends in your school class are an ethnic minority? Like for example Turkish Dutch, Moroccan Dutch, or other groups." The latter was asked using a similar thermometer scale as before: "Please use the following thermometer to show what you think about women (girls)", again ranging from "cold (negative), 0" to "warm (positive), 100".
 
-```{r}
-myeff <- getEffects(mydata)
-# effectsDocumentation(myeff) # dit zijn alle mogelijke effecten die je kunt opnemen voor dit data object
-??RsienaTwoStep
-ifelse(!dir.exists("results"), dir.create("results"), FALSE)
-print01Report(mydata, modelname = "./results/tnss") # goed bekijken
-```
+<br>
 
-## Specify model
+#### *Dyadic*
 
-```{r}
-myeff <- includeEffects(myeff, snet, inPop, outAct, inAct, transTrip, sameX, egoX, altX, interaction1 = "gender_n") 
+In addition to monadic (i.e. individual, actor-based) covariates, I also included dyadic variables to map outgroup friendship. I manually constructed matrices where friendships between students with different genders were coded as 1, and same-gender friendships were coded as 0. This way, I created a dyadic covariate that represents **outgroup friendships based on gender** (following Bracegirdle et al. 2026).
 
-myeff <- includeEffects(myeff, avAlt, name = "behy", interaction1="nety") # You use nety to predict behy
-# ans <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
-# returndeps betekent dat hij de ministeps opslaat. dan runt je model sneller
-# ans
-```
+<br>
 
-Ik wil opnemen als effect:
+#### *Control variables*
 
--   Reciprocity
+Finally, I included a number of control variables to account for structural network effects. I included reciprocity, density, transitivity (transTrip), in-degree popularity, and out-degree activity. All covariates were added to the statistical models in a stepwise and cumulative manner. See the figure below for my full model specifications.
 
--   Transitivity
+<br>
 
--   Betweenness
+## Analytical strategy
 
--   Influence
+First, I conducted some descriptive analyses to get a feel for the data and for first insights. See the web page 'Descriptive results' in the top navigation bar for visualization of the network and descriptive statistics.
+
+Following the descriptives, I estimated Stochastic Actor-Oriented Models (SAOMs) using the R package RSiena [@RSiena]. SAOMs use an actor-based approach to simulate network evolution processes based on micro decisions. Specifically, it relies on the ministep assumption, stating that all observable network changes are the result of the smallest possible steps; i.e. one actor making one decision (making, breaking, or maintaining a tie). *"SAOMs model network evolution over time by simulating probabilistic changes in ties based on specified network statistics, which function as independent variables. RSiena distinguishes between structural effects (network-level tendencies, e.g., reciprocity, popularity, or triadic closure) and covariate effects (node characteristics, e.g., gender, prestige)." (Mylène)*
+
+As described above, I use cross-sectional network data, meaning that I can not use the usual longitudinal SAOM approach. Instead, my analysis is based on a "short-term dynamic equilibrium" or stationary SAOM approach (as described by Snijders & Steglich, 2013). Again, the observed network is used both as the starting and ending observation, reflecting the equilibrium concept. "Put simply, “[cross-sectional] SAOMs assume that the network structure, although changing, is in a stochastically stable state.” (Krause, Huisman, and Snijders, p. 36–37). Thus, the estimated parameters β continue to summarise the rules by which ministeps unfold. However, the asynchronous, sequential, simulated tie changes, in a sense, “cancel out” and thus hold the network in “short-term dynamic equilibrium” (Simpson, 2022). Concretely, this means that I used the network data on wave 1 as input for 'wave 2' (which is identical, except for one random tie change). To make sure the actors are able to make ministeps between these two time points, the rate parameter has to be fixed in a short-term dynamic equilibrium approach; to a "high but not too high value" (Simpson, 2022; Snijders & Steglich, 2013). Snijders & Steglich recommend an average value of λ = 20, which I followed. I also tried some robustness checks, fixing the rate parameter at lower (λ = 5) or higher (λ = 50) values.
+
+<br>
+
+### *Model specification*
+
+Defining the effects structure in RSiena consists of an iterative and cumulative process of adding effects one at a time (cf. Ripley et al. 2026; Snijders & Steglich, 2013). Models are built up with increasing complexity, starting from a simple model containing only structural network effects, and working up to more complex effects. Once a model with all desired effects has converged, I employ Goodness of Fit (GOF) tests to see whether the model accurately represents the observed network based on some auxiliary statistics (see 'RSiena results' page). New effects are then added to better fit the model to the observed outcomes.
+
+I followed this stepwise procedure, as recommended by the RSiena authors; starting with reciprocity and density (Model 01), followed by a transitive triplets effect (Model 02), indegree popularity and outdegree activity (Model 03), and homophily effects for gender (Model 04) and ethnicity (Model 05). Because of convergence issues, I started with fitting a model on the network dependent variable only, and later added effects for the behavioral Y as well. It is important to note that, to my knowledge, there have not been any studies that have applied the stationary (one-wave) SAOM approach to behavioral outcomes. My model specifications therefore consisted of quite some trial and error and have turned out simpler than first planned (i.e. I could not include all effects due to convergence issues). I also ended up fixing the rate parameter for the behavioral dependent variable, since it kept being estimated to unrealistically high values, and thereby substantially contributed to convergence issues. See the figure below for my model specifications.
+
+-   plaatje modelopbouw
+
+![](images/clipboard-2642257224.png)
+
+<br>
+
+As displayed in the table above, I included a number of effects to test my hypotheses. First, to account for homophily effects on the network level, I added covariate-ego (*egoX*), covariate-alter (*altX*), and same-covariate (*sameX*) effects. These were modelled for both gender and ethnicity, to test whether xxxxx. The effects are defined in the RSiena manual (Ripley et al., 2026) as follows:
+
+![](images/clipboard-3946163148.png)
+
+![](images/clipboard-299389826.png)
+
+![](images/clipboard-3661689997.png)
+
+<br>
+
+On the behavioral level, I first included a main covariate effect (*effFrom)* to account for xxxxx.
+
+![](images/clipboard-1683774324.png)
+
+Next, to examine **social influence** I need to include effects that take into account the effects of primary outgroup friends (i.e. based on gender) on the development of secondary outgroup (i.e. ethnic minority) attitudes. I included two effects, which I interacted with a dyadic covariate which specifies outgroup friendship based on gender (see section 'Covariates' \> 'Dyadic'). In doing so, I followed effects documentation of Bracegirdle et al. 2022 and Zingora et al. 2026.
+
+First, I included alter’s total of dyadic covariate W effect on behavior z (*totWAlt)*. When interacted with the dyadic covariate, this effect specifies the tendency for actors with more [outgroup gender] friends to develop more positive attitudes towards a secondary outgroup [ethnic minorities].
+
+![](images/clipboard-1677906397.png)
+
+Second, I included an effect for the average similarity weighted by dyadic covariate W (*avSimW)*. This effect represents the tendency for actors to adopt an average [ethnic minority] attitude of their [outgroup gender] friends (cf. Bracegirdle et al. 2022).
+
+![](images/clipboard-4185619727.png)
+
+![](images/clipboard-3045824979.png)
+
+<br>
+
+Finally, to account for **selection effects** or feedback mechanisms, I included xxxx. Here, the network is predicted by the behavioral dependent (i.e. ethnic minority attitudes).
+
+<br>
+
+------------------------------------------------------------------------
+
+# References
+
+<br>

@@ -74,6 +74,29 @@ if (window.hljs) {
 }
 </style>
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="tweaks.css" type="text/css" />
 
@@ -389,7 +412,10 @@ div.tocify {
       <a href="Data_methods.html">Data</a>
     </li>
     <li>
-      <a href="Results_interpretations.html">Results</a>
+      <a href="Descriptive_results.html">Descriptive Results</a>
+    </li>
+    <li>
+      <a href="Results_interpretations.html">RSiena Results</a>
     </li>
     <li>
       <a href="Discussion.html">Conclusion and Discussion</a>
@@ -443,22 +469,38 @@ But please note, we are not here to make a beautiful website, our intention is j
 number="1">
 <h1><span class="header-section-number">1</span> Lab Journal - Social
 Networks</h1>
-<p>Last compiled on October 2026</p>
+<p>Last compiled on November 2026</p>
+<p><br></p>
 <p>Welcome to my lab journal! On this website, I document my progress
-for the Social Networks course. I have my progress per week, as well as
-my final assignment, divided in chapters.</p>
+for the course Social Networks. In the navigation bar above, you can
+find my progress per week, as well as my final assignment, divided in
+chapters.</p>
 <p><em>Use the top menu to navigate through the journal.</em></p>
 <p><br></p>
 <div id="open-science" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Open Science</h2>
 <p>Everyone can fork this repository. Use this example to journal your
-lab work and assignments.</p>
+lab work and assignments. I created this website and lab journal by
+forking the repository from Jochem Tolsma and Bas Hofstra (<span
+class="citation">Tolsma and Hofstra (2022)</span>).</p>
 <p><br></p>
 <p><img src="images/anna.jpg" /></p>
+<hr />
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
+<div id="ref-SNASS" class="csl-entry">
+Tolsma, Jochem, and Bas Hofstra. 2022. <em>Social Network Analysis for
+Social Scientists</em>. <a
+href="https://jtolsma.nl/SNASS/">https://jtolsma.nl/SNASS/</a>.
+</div>
+</div>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxhYiBqb3VybmFsIC0gU29jaWFsIE5ldHdvcmtzIg0KYXV0aG9yOiAiYnk6IEFubmEgQmVpamwiDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQotLS0NCg0KYGBge3IsIGluc3RhbGwgcmVtb3RlbHksIGdsb2JhbHNldHRpbmdzLCBlY2hvPUZBTFNFLCB3YXJuaW5nPUZBTFNFLCByZXN1bHRzPSdoaWRlJ30NCiMgaW5zdGFsbC5wYWNrYWdlcygicmVtb3RlcyIpDQojIHJlbW90ZXM6Omluc3RhbGxfZ2l0aHViKCJybGVzdXIva2xpcHB5IikNCmBgYA0KDQpgYGB7ciwgZ2xvYmFsc2V0dGluZ3MsIGVjaG89RkFMU0UsIHdhcm5pbmc9RkFMU0UsIHJlc3VsdHM9J2hpZGUnfQ0KbGlicmFyeShrbml0cikNCg0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQ0Kb3B0c19jaHVuayRzZXQodGlkeS5vcHRzPWxpc3Qod2lkdGguY3V0b2ZmPTEwMCksdGlkeT1UUlVFLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSxjb21tZW50ID0gIiM+IiwgY2FjaGU9VFJVRSwgY2xhc3Muc291cmNlPWMoInRlc3QiKSwgY2xhc3Mub3V0cHV0PWMoInRlc3QyIikpDQpvcHRpb25zKHdpZHRoID0gMTAwKQ0KIyByZ2w6OnNldHVwS25pdHIoKQ0KYGBgDQoNCmBgYHtyIGtsaXBweSwgZWNobz1GQUxTRSwgaW5jbHVkZT1UUlVFfQ0Ka2xpcHB5OjprbGlwcHkocG9zaXRpb24gPSBjKCd0b3AnLCAncmlnaHQnKSkNCiNrbGlwcHk6OmtsaXBweShjb2xvciA9ICdkYXJrcmVkJykNCiNrbGlwcHk6OmtsaXBweSh0b29sdGlwX21lc3NhZ2UgPSAnQ2xpY2sgdG8gY29weScsIHRvb2x0aXBfc3VjY2VzcyA9ICdEb25lJykNCmBgYA0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KYGBgez1odG1sfQ0KPCEtLS0gVGhpcyBpcyB0aGUgYmVzdCB3YXkgdG8gd3JpdGUgYSBjb21tZW50LiANCkl0IGFsc28gZGVtb25zdHJhdGUsIHlvdSBjYW4gYWRkIGh0bWwgZGlyZWN0bHkgaW4geW91ciBybWFya2Rvd24gZmlsZS4gU2VlOiBodHRwczovL3d3dy53M3NjaG9vbHMuY29tL2h0bWwvaHRtbF9jb21tZW50cy5hc3AgLS0tPg0KYGBgDQoNCmBgYHs9aHRtbH0NCjwhLS0tIHRvIHVzZSBhIG11bHRpIGNvbHVtbiBwYWdlIHdlIHVzZSBQYW5kb2MncyBmZW5jZWQgRGl2LiANCnNlZSBoZXJlOiBodHRwczovL2Jvb2tkb3duLm9yZy95aWh1aS9ybWFya2Rvd24tY29va2Jvb2svbXVsdGktY29sdW1uLmh0bWwgDQpCdXQgcGxlYXNlIG5vdGUsIHdlIGFyZSBub3QgaGVyZSB0byBtYWtlIGEgYmVhdXRpZnVsIHdlYnNpdGUsIG91ciBpbnRlbnRpb24gaXMganVzdCB0byBoYXZlIGEgcXVpY2sgbGFiIGpvdXJuYWwgdXAgYW5kIHJ1bm5pbmcgLS0tPg0KYGBgDQoNCiMgTGFiIEpvdXJuYWwgLSBTb2NpYWwgTmV0d29ya3MNCg0KTGFzdCBjb21waWxlZCBvbiBPY3RvYmVyIDIwMjYNCg0KV2VsY29tZSB0byBteSBsYWIgam91cm5hbCEgT24gdGhpcyB3ZWJzaXRlLCBJIGRvY3VtZW50IG15IHByb2dyZXNzIGZvciB0aGUgU29jaWFsIE5ldHdvcmtzIGNvdXJzZS4gSSBoYXZlIG15IHByb2dyZXNzIHBlciB3ZWVrLCBhcyB3ZWxsIGFzIG15IGZpbmFsIGFzc2lnbm1lbnQsIGRpdmlkZWQgaW4gY2hhcHRlcnMuDQoNCipVc2UgdGhlIHRvcCBtZW51IHRvIG5hdmlnYXRlIHRocm91Z2ggdGhlIGpvdXJuYWwuKg0KDQo8YnI+DQoNCiMjIE9wZW4gU2NpZW5jZQ0KDQpFdmVyeW9uZSBjYW4gZm9yayB0aGlzIHJlcG9zaXRvcnkuIFVzZSB0aGlzIGV4YW1wbGUgdG8gam91cm5hbCB5b3VyIGxhYiB3b3JrIGFuZCBhc3NpZ25tZW50cy4NCg0KPGJyPg0KDQohW10oaW1hZ2VzL2FubmEuanBnKQ0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxhYiBqb3VybmFsIC0gU29jaWFsIE5ldHdvcmtzIg0KYXV0aG9yOiAiYnk6IEFubmEgQmVpamwiDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQotLS0NCg0KYGBge3IsIGluc3RhbGwgcmVtb3RlbHksIGdsb2JhbHNldHRpbmdzLCBlY2hvPUZBTFNFLCB3YXJuaW5nPUZBTFNFLCByZXN1bHRzPSdoaWRlJ30NCiMgaW5zdGFsbC5wYWNrYWdlcygicmVtb3RlcyIpDQojIHJlbW90ZXM6Omluc3RhbGxfZ2l0aHViKCJybGVzdXIva2xpcHB5IikNCmBgYA0KDQpgYGB7ciwgZ2xvYmFsc2V0dGluZ3MsIGVjaG89RkFMU0UsIHdhcm5pbmc9RkFMU0UsIHJlc3VsdHM9J2hpZGUnfQ0KbGlicmFyeShrbml0cikNCg0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQ0Kb3B0c19jaHVuayRzZXQodGlkeS5vcHRzPWxpc3Qod2lkdGguY3V0b2ZmPTEwMCksdGlkeT1UUlVFLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSxjb21tZW50ID0gIiM+IiwgY2FjaGU9VFJVRSwgY2xhc3Muc291cmNlPWMoInRlc3QiKSwgY2xhc3Mub3V0cHV0PWMoInRlc3QyIikpDQpvcHRpb25zKHdpZHRoID0gMTAwKQ0KIyByZ2w6OnNldHVwS25pdHIoKQ0KYGBgDQoNCmBgYHtyIGtsaXBweSwgZWNobz1GQUxTRSwgaW5jbHVkZT1UUlVFfQ0Ka2xpcHB5OjprbGlwcHkocG9zaXRpb24gPSBjKCd0b3AnLCAncmlnaHQnKSkNCiNrbGlwcHk6OmtsaXBweShjb2xvciA9ICdkYXJrcmVkJykNCiNrbGlwcHk6OmtsaXBweSh0b29sdGlwX21lc3NhZ2UgPSAnQ2xpY2sgdG8gY29weScsIHRvb2x0aXBfc3VjY2VzcyA9ICdEb25lJykNCmBgYA0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KYGBgez1odG1sfQ0KPCEtLS0gVGhpcyBpcyB0aGUgYmVzdCB3YXkgdG8gd3JpdGUgYSBjb21tZW50LiANCkl0IGFsc28gZGVtb25zdHJhdGUsIHlvdSBjYW4gYWRkIGh0bWwgZGlyZWN0bHkgaW4geW91ciBybWFya2Rvd24gZmlsZS4gU2VlOiBodHRwczovL3d3dy53M3NjaG9vbHMuY29tL2h0bWwvaHRtbF9jb21tZW50cy5hc3AgLS0tPg0KYGBgDQoNCmBgYHs9aHRtbH0NCjwhLS0tIHRvIHVzZSBhIG11bHRpIGNvbHVtbiBwYWdlIHdlIHVzZSBQYW5kb2MncyBmZW5jZWQgRGl2LiANCnNlZSBoZXJlOiBodHRwczovL2Jvb2tkb3duLm9yZy95aWh1aS9ybWFya2Rvd24tY29va2Jvb2svbXVsdGktY29sdW1uLmh0bWwgDQpCdXQgcGxlYXNlIG5vdGUsIHdlIGFyZSBub3QgaGVyZSB0byBtYWtlIGEgYmVhdXRpZnVsIHdlYnNpdGUsIG91ciBpbnRlbnRpb24gaXMganVzdCB0byBoYXZlIGEgcXVpY2sgbGFiIGpvdXJuYWwgdXAgYW5kIHJ1bm5pbmcgLS0tPg0KYGBgDQoNCiMgTGFiIEpvdXJuYWwgLSBTb2NpYWwgTmV0d29ya3MNCg0KTGFzdCBjb21waWxlZCBvbiBOb3ZlbWJlciAyMDI2DQoNCjxicj4NCg0KV2VsY29tZSB0byBteSBsYWIgam91cm5hbCEgT24gdGhpcyB3ZWJzaXRlLCBJIGRvY3VtZW50IG15IHByb2dyZXNzIGZvciB0aGUgY291cnNlIFNvY2lhbCBOZXR3b3Jrcy4gSW4gdGhlIG5hdmlnYXRpb24gYmFyIGFib3ZlLCB5b3UgY2FuIGZpbmQgbXkgcHJvZ3Jlc3MgcGVyIHdlZWssIGFzIHdlbGwgYXMgbXkgZmluYWwgYXNzaWdubWVudCwgZGl2aWRlZCBpbiBjaGFwdGVycy4NCg0KKlVzZSB0aGUgdG9wIG1lbnUgdG8gbmF2aWdhdGUgdGhyb3VnaCB0aGUgam91cm5hbC4qDQoNCjxicj4NCg0KIyMgT3BlbiBTY2llbmNlDQoNCkV2ZXJ5b25lIGNhbiBmb3JrIHRoaXMgcmVwb3NpdG9yeS4gVXNlIHRoaXMgZXhhbXBsZSB0byBqb3VybmFsIHlvdXIgbGFiIHdvcmsgYW5kIGFzc2lnbm1lbnRzLiBJIGNyZWF0ZWQgdGhpcyB3ZWJzaXRlIGFuZCBsYWIgam91cm5hbCBieSBmb3JraW5nIHRoZSByZXBvc2l0b3J5IGZyb20gSm9jaGVtIFRvbHNtYSBhbmQgQmFzIEhvZnN0cmEgKEBTTkFTUykuDQoNCjxicj4NCg0KIVtdKGltYWdlcy9hbm5hLmpwZykNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMjIFJlZmVyZW5jZXMNCg==</div>
 
 
 </div>

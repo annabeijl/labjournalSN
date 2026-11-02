@@ -9,7 +9,11 @@ output: html_document
 knitr::opts_chunk$set(warning = F, echo = T)
 ```
 
+<br>
+
 # Workshop 21-09-2026
+
+<br>
 
 ## *Summary*
 
@@ -37,11 +41,17 @@ In the workshop we did the following:
 
 <br>
 
+------------------------------------------------------------------------
+
 # Lab journal
+
+<br>
 
 ## Network visualization
 
 Based on the tutorial in @SNASS chapter 9
+
+<br>
 
 ### Zachary’s karate club
 
@@ -59,6 +69,8 @@ gmat <- as_adjacency_matrix(g, type = "both", sparse = FALSE)
 gmat
 isSymmetric(gmat) # symmetrisch, dus undirected!
 ```
+
+<br>
 
 #### *Descriptive statistics*
 
@@ -96,6 +108,8 @@ transitivity_g
 
 We zien nu dat er verschillen zijn in lokale transitiviteit en in betweenness, en er zijn 2 nodes die eruit springen (= met hoge betweenness, lage local transitivity). Maar die twee nodes zijn niet met elkaar verbonden; interessant!
 
+<br>
+
 #### *Network visualization*
 
 ```{r, warning = F}
@@ -118,6 +132,10 @@ plot(g, layout = l)
 plot(g, layout = l, margin = c(0, 0, 0, 0))
 legend(x = -2, y = -1.5, c("Note: the position of nodes 1 and 34 have been set by Jochem Tolsma \n for visualisation purposes only and do not reflect network properties"),bty = "n", cex = 0.8)
 ```
+
+<br>
+
+------------------------------------------------------------------------
 
 ### Co-author networks
 
@@ -158,6 +176,8 @@ onefivedegree <- rbind(socc, onefivedegree)
 save(onefivedegree, file = "./data/soc_onefivedegree.RData")
 ```
 
+<br>
+
 #### *Network visualization*
 
 ```{r, warning = F}
@@ -167,6 +187,8 @@ net1 <- graph_from_edgelist(onefivedegree, directed = TRUE)  # Notice the igraph
 
 plot(net1)  # pretty ugly!
 ```
+
+<br>
 
 #### *Making it prettier*
 
@@ -182,6 +204,8 @@ plot(net1 ,
      edge.curved = 0.2, # curved edges is always a nice touch
      edge.arrow.size = 0.1) # make arrow size (direction of edge) smaller
 ```
+
+<br>
 
 #### *Extracting node attributes*
 
@@ -267,6 +291,8 @@ plot(clp, net_sel)
 
 <br>
 
+------------------------------------------------------------------------
+
 ## Web scraping
 
 ```{r}
@@ -327,6 +353,10 @@ url
 
 ```
 
+<br>
+
+------------------------------------------------------------------------
+
 ## Mijn project - TNSS met 1 wave
 
 ### *Testing if RSiena accepts static network data*
@@ -355,3 +385,14 @@ mydata <- sienaDataCreate(beh, ynet)
 
 getEffects(mydata)
 ```
+
+<br>
+
+### *Effects to include*
+
+Probably more (and check TNSS again), but most important ones:
+
+1.  Ego: gender, ethnicity, thermometer gender / thermometer ethnicity (which one X and which one Y?), number of gender / ethnic minority friends
+    -   Also control for some kind of 'tolerance' / selection? Is this even possible in 1 wave?
+2.  Alters: gender, ethnicity, thermometer gender / thermometer ethnicity
+3.  Dyadic: reciprocity, transitivity, popularity, activity

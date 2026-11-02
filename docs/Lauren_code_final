@@ -1,0 +1,341 @@
+---
+title: "Code final assignment"
+author: "Lauren"
+date: "2026-09-25"
+output: html_document
+---
+
+This webpage combines all relevant code from all the weeks that I used for my final assignment, so it is all easily findable in one place, rather than scattered around in all pages for every separate week.
+
+```{r, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+klippy::klippy(color = 'purple')
+klippy::klippy(tooltip_message = 'Click to copy', tooltip_success = 'Done')
+```
+
+# Preparation
+Necessary packages
+```{r}
+library(knitr)
+library(styler)
+library(tidyverse)
+library(installr)
+library(foreign)
+library(network)
+library(RSiena)
+library(RsienaTwoStep)
+library(igraph)
+library(devtools)
+library(corrplot)
+library(ltm)
+library(psych)
+```
+
+<br>
+
+Load in data
+```{r}
+load("./data/IndividualCharacteristics.RData")
+load("./data/NetworkCharacteristics.RData")
+load("./data/CivicAttitudes.RData")
+```
+
+# Create network matrices
+```{r}
+# view(hanging[[1]])
+hanging_df_t1 <- as.data.frame(hanging[[1]][1])
+class(hanging_df_t1)
+# view(hanging_df_t1)
+strong_netw_t1 <- data.matrix(hanging_df_t1)
+strong_netw_t1[strong_netw_t1==9]<-NA
+class(strong_netw_t1)
+# view(strong_netw_t1)
+
+hanging_df_t2 <- as.data.frame(hanging[[1]][2])
+class(hanging_df_t2)
+# view(hanging_df_t2)
+strong_netw_t2 <- data.matrix(hanging_df_t2)
+strong_netw_t2[strong_netw_t2==9]<-NA
+class(strong_netw_t2)
+# view(strong_netw_t2)
+```
+
+<br>
+
+# Create civic engagement attitudes
+## Wave 1
+### Factor analysis
+```{r}
+IC_df <- as.data.frame(T1civeng[[1]])
+view(IC_df)
+
+# Sample size = 121 (has to be > 300)
+psych::KMO(IC_df) 
+# KMO = .77 (has to be > .5)
+det(cor(IC_df, use = "complete.obs")) 
+# Determinant = 0.1928592 (> 0.00001)
+ltm:: rcor.test(IC_df, use = "complete.obs")
+# Only positive correlations (as it should be)
+
+corrplot(cor(IC_df, use="complete.obs"), tl.col='black', tl.cex=.75) 
+
+Factors_w1 <- fa(IC_df, nfactors = 4, rotate = "none", fm = "minres")
+Factors_w1
+```
+### Reliability analysis
+```{r}
+reliability <- psych::alpha(IC_df[, c("T1CIVICENG1","T1CIVICENG2","T1CIVICENG3","T1CIVICENG4")])
+reliability
+# Raw alpha = 0.8096448
+# All r.drop are > .3
+
+reliability$alpha.drop 
+# Removing T1CIVICENG4 results in a small increase of the Cronbach's alpha (0.82 instead of 0.81)
+```
+
+### Make scale
+```{r}
+IC_df$missings <- rowSums(is.na(IC_df))
+
+IC_df$ce_t1 <- ifelse(IC_df$missings <= 1, rowMeans(IC_df[,1:4]), NA)
+
+# View(IC_df)
+```
+
+<br>
+
+## Wave 2
+### Factor analysis
+```{r}
+IC_df2 <- as.data.frame(T2civeng[[1]])
+#View(IC_df2)
+
+# Sample size = 121 (has to be > 300)
+psych::KMO(IC_df2) 
+# KMO = .81 (has to be > .5)
+det(cor(IC_df2, use = "complete.obs")) 
+# Determinant = 0.08336661 (> 0.00001)
+rcor.test(IC_df2, use = "complete.obs")
+# Only positive correlations (as it should be)
+
+corrplot(cor(IC_df2, use="complete.obs"), tl.col='black', tl.cex=.75) 
+
+Factors_w2 <- fa(IC_df2, nfactors = 4, rotate = "none", fm = "minres")
+Factors_w2
+```
+
+### Reliability analysis
+```{r}
+reliability2 <- psych::alpha(IC_df2[, c("T2CIVICENG1","T2CIVICENG2","T2CIVICENG3","T2CIVICENG4")])
+reliability2
+# Raw alpha = 0.8848902
+# All r.drop are > .3
+
+reliability2$alpha.drop 
+# Removing T1CIVICENG4 results in a small increase of the Cronbach's alpha (0.88 instead of 0.90)
+```
+
+### Make scale
+```{r}
+IC_df2$missings <- rowSums(is.na(IC_df2))
+
+IC_df2$ce_t1 <- ifelse(IC_df2$missings <= 1, rowMeans(IC_df2[,1:4]), NA)
+
+# View(IC_df2)
+```
+
+<br>
+
+# Descriptive statistics
+## Density
+```{r}
+# Wave 1
+netw1 <- as.network(strong_netw_t1)
+network.density(netw1)
+# 0.02720386
+
+# Wave 2
+netw2 <- as.network(strong_netw_t2)
+network.density(netw2)
+# 0.01859504
+```
+## Reciprocity
+```{r}
+#Wave 1
+hangingw1_nona <- na_if(hanging[[1]][[1]], 9)
+rowhangingw1 <- rowSums(is.na(hangingw1_nona)) == nrow(hangingw1_nona)
+colhangingw1 <- colSums(is.na(hangingw1_nona)) == ncol(hangingw1_nona)
+hangingw1_nona[which(rowhangingw1) , ] <- 0
+
+g_strong_t1 <- igraph:: graph_from_adjacency_matrix(hangingw1_nona, mode = "directed")
+
+reciprocity(g_strong_t1, ignore.loops = TRUE, mode = c("default", "ratio"))
+# 0.4708861
+
+# Wave 2
+hangingw2_nona <- na_if(hanging[[1]][[2]], 9)
+rowhangingw2 <- rowSums(is.na(hangingw2_nona)) == nrow(hangingw2_nona)
+colhangingw2 <- colSums(is.na(hangingw2_nona)) == ncol(hangingw2_nona)
+hangingw2_nona[which(rowhangingw2) , ] <- 0
+
+g_strong_t2 <- igraph:: graph_from_adjacency_matrix(hangingw2_nona, mode = "directed")
+
+reciprocity(g_strong_t2, ignore.loops = TRUE, mode = c("default", "ratio"))
+# 0.4444444
+```
+
+## Dyad configurations
+```{r}
+# Wave 1
+dyad_census(g_strong_t1)
+# Mutual ties: 93
+# Asymmetrical ties: 209
+# No tie: 6958
+
+# Wave 2
+dyad_census(g_strong_t2)
+# Mutual ties: 60
+# Asymmetrical ties: 150
+# No tie: 7050
+```
+## Triad configurations
+```{r}
+# Wave 1
+triad_census(g_strong_t1)
+# 003 = 253808
+# 012 = 22549
+# 102 = 10101
+# 021D = 235
+# 021U = 243
+# 021C = 219
+# 111D = 247
+# 111U = 254
+# 030T = 61
+# 030C = 2
+# 201 = 80
+# 120D = 40
+# 120U = 54
+# 120C = 2
+# 210 = 46
+# 300 = 39
+
+# Wave 2
+triad_census(g_strong_t2)
+# 003 = 263853
+# 012 = 16659
+# 102 = 6713
+# 021D = 133
+# 021U = 125
+# 021C = 123
+# 111D = 88
+# 111U = 132
+# 030T = 30
+# 030C = 0
+# 201 = 46
+# 120D = 9
+# 120U = 39
+# 120C = 2
+# 210 = 19
+# 300 = 9
+```
+## Transitivity
+```{r}
+# Wave 1
+transitivity(g_strong_t1)
+# 0.3641791
+
+# Wave 2
+transitivity(g_strong_t2)
+# 0.3336766
+```
+## Path length
+```{r}
+# Wave 1
+mean((ego_size(g_strong_t1, order = 2, mode = "out") - 1)/vcount(g_strong_t1))
+# 0.07820504
+
+# Wave 2
+mean((ego_size(g_strong_t2, order = 2, mode = "out") - 1)/vcount(g_strong_t2))
+# 0.0458302
+```
+## Segregation
+To be calculated when I get my dependent variable of interest :)
+```{r}
+
+```
+
+<br>
+
+# Data visualisation
+## T1
+Create an igraph object
+```{r}
+copy_strong_netw_t1 <- strong_netw_t1
+copy_strong_netw_t1[is.na(copy_strong_netw_t1)] <- 0 
+
+g_strong_t1 <- igraph:: graph_from_adjacency_matrix(copy_strong_netw_t1, mode = "directed")
+```
+
+<br>
+
+### Simple representation of the network
+```{r}
+pretty_graph_t1 <- simplify(g_strong_t1)
+
+V(pretty_graph_t1)$size = betweenness(pretty_graph_t1, normalized = T, directed = T) * 250 + 50
+
+plot(pretty_graph_t1,
+     vertex.color = "pink",
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.family = "Helvetica",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-10,10))
+```
+
+### Node colours based on civil service attitudes
+```{r}
+
+```
+
+<br>
+
+## T2
+Create an igraph object
+```{r}
+copy_strong_netw_t2 <- strong_netw_t2
+copy_strong_netw_t2[is.na(copy_strong_netw_t2)] <- 0 
+
+g_strong_t2 <- igraph:: graph_from_adjacency_matrix(copy_strong_netw_t2, mode = "directed")
+```
+
+<br>
+
+### Simple representation of the network
+```{r}
+pretty_graph_t2 <- simplify(g_strong_t2)
+
+V(pretty_graph_t2)$size = betweenness(pretty_graph_t2, normalized = T, directed = T) * 250 + 50
+
+plot(pretty_graph_t2,
+     vertex.color = "pink",
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.family = "Helvetica",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-9,9))
+```
+
+### Node colours based on civil service attitudes
+
+<br>
+
+# RSiena

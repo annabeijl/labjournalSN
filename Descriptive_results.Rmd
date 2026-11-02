@@ -1,0 +1,427 @@
+---
+title: "***Descriptive Results***"
+author: "Anna Beijl"
+date: "10 October 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+# Descriptive results
+
+<br>
+
+In this chapter, I visually and numerically describe my sample and network. Below, you can find the descriptives and my interpretations, as well as the corresponding R code.
+
+<br>
+
+## *Loading and preparing data*
+
+```{r}
+rm(list = ls()) # clean workspace
+
+# custom functions
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+packages = c("RSiena", "tidyverse", "stringdist", "stringi")
+
+fpackage.check(packages)
+
+# NETWORK DEPENDENT ---------------------------------------------------------------
+library(haven)
+tnss_net <- read_sav("./data/TNSS_wave_2010_mentors.sav")
+tnss_pup10 <- read_sav("./data/TNSS_wave_2010_pupils.sav")
+tnss_pup11 <- read_sav("./data/TNSS_wave_2011_pupils.sav")
+# using 'foreign' I got warnings and didn't seem to load well. 'haven' works nicely
+
+view(tnss_net)
+view(tnss_pup10)
+view(tnss_pup11) # all looks good
+
+class(tnss_net) # tibble/data frame
+class(tnss_pup10)
+class(tnss_pup11)
+
+#join datasets
+# gaat automatisch goed gelukkig (obv IDClass en IDresp)
+tnss <- left_join(tnss_net, tnss_pup10)
+# view(tnss)
+
+tnss_pup10 <- tnss_pup10 %>% 
+  rownames_to_column(var = "id") 
+
+tnss_pup11 <- tnss_pup11 %>% 
+  rownames_to_column(var = "id") 
+
+tnss_2waves <- left_join(tnss_pup10, tnss_pup11, by=c("id"))
+# view(tnss_2waves)
+
+
+#select class 5 (big class with few missings)
+c5 <- tnss %>% 
+  filter(IDClass == 5)
+
+# for exploratory purposes, I also looked at class 3. But did not end up using this in my analyses
+c3 <- tnss %>% 
+  filter(IDClass == 3)
+
+#aantal leerlingen in class 5
+max(c5$order) # 28
+max(c3$order) # 27
+
+#vis het nominatienetwerk er uit. Nu beetje handwerk. Kan vast slimmer. 
+c5_net <- c5 %>%
+  select(fr_1:fr_28)
+c3_net <- c3 %>%
+  select(fr_1:fr_27)
+# view(c5_net)
+class(c5_net) # tibble/data frame
+# view(c3_net)
+
+net <- as.matrix(c5_net)
+sum(diag(net) != 0)
+
+view(c5_net)
+length(c5_net)
+
+net2 <- net
+
+net2[1,2] <- 1
+
+
+# BEHAVIORAL DEPENDENT ------------------------------------------------------------
+id <- c5 %>% 
+  dplyr::select("IDresp")
+
+library(car)
+hist(tnss_2waves$comfyEM)
+hist(tnss_2waves$comfyEM_2)
+densityPlot(tnss_2waves$thermo_minority)
+densityPlot(tnss_2waves$thermo_minority_2)
+
+behy_pre <- tnss_2waves %>% 
+  filter(IDresp.x %in% c5$IDresp) %>% 
+  dplyr::select("IDresp.x", "thermo_minority", "thermo_minority_2") %>% 
+  as.matrix() %>% 
+  data.frame
+
+id <- left_join(id, behy_pre, by=join_by(IDresp == IDresp.x) )
+
+behy <- id %>% dplyr::select("thermo_minority", "thermo_minority_2") %>% 
+  as.matrix()
+   
+behy
+```
+
+-   Uitleggen dat ik één klas eruit pak; verwijzen naar data hoofdstuk
+-   behy constructie hier toevoegen
+
+<br>
+
+## *Descriptive statistics*
+
+### Sample description
+
+```{r}
+# SAMPLE DESCRIPTION
+summary(tnss_pup10)
+
+# frequencies
+hist(tnss_pup10$gender)
+table <- table(tnss_pup10$gender)
+prob_table <- table / sum(table)
+print(prob_table) # 49.7% boys, 50.3% girls
+
+hist(c5$gender)
+table_c5 <- table(c5$gender)
+prob_table_c5 <- table_c5 / sum(table_c5)
+print(prob_table_c5) # 53.8% boys, 46.2% girls
+
+library(car)
+densityPlot(tnss_pup10$ethnicity)
+table1 <- table(tnss_pup10$ethnicity)
+prob_table1 <- table1 / sum(table1)
+print(prob_table1) # 85.7% Dutch, 14.3% from various other backgrounds
+
+table1_c5 <- table(c5$ethnicity)
+prob_table1_c5 <- table1_c5 / sum(table1_c5)
+print(prob_table1_c5) # 73.1% Dutch
+
+# behavioral Y (wave 1 and 2)
+densityPlot(tnss_pup10$thermo_minority) 
+summary(tnss_pup10$thermo_minority) # mean = 61.5 (bit more leaning towards warm), median = 63. Two peaks at 50 and 80, very slightly negatively skewed.
+sd(tnss_pup10$thermo_minority) #23.6
+densityPlot(behy_pre$thermo_minority) # unimodal, normally distributed and peak is at 50
+summary(behy_pre$thermo_minority) # mean = 55.1, relatively low for the school
+
+densityPlot(tnss_pup11$thermo_minority_2) 
+summary(tnss_pup11$thermo_minority_2) # mean = 60.6, median = 60; slightly lower. Distribution in density plot does seem different though. Again seems multimodal, but peak is clearly at 50 (halfway point), slightly negatively skewed.
+sd(tnss_pup11$thermo_minority_2) 
+densityPlot(behy_pre$thermo_minority_2) # unimodal, normally distributed and peak is at 50. Bit more positively skewed though, somewhat of a peak at 80 as well.
+summary(behy_pre$thermo_minority_2) # mean = 59.2, still relatively low for the school, but increase from wave 1 (interesting compared to school average)
+```
+
+General description of the sample:
+
+-   The entire TNSS sample consists of 49.7% boys, 50.3% girls, 85.7% Dutch, 14.3% from various other backgrounds. In terms of the behavioral measure, the average level of ethnic minority attitudes is 61.5 in wave 1 and 60.3 in wave 2, indicating neutral to slightly more warm/positive attitudes.
+
+-   In the specific class that I use for the analyses, these descriptives are similar. Distribution of boys and girls is again quite equal, but relatively a bit more boys (53.8% boys, 46.2% girls). Relative to the school, this class contains more students with migration backgrounds (73.1% Dutch, 26.9% ethnic minorities).
+
+-   The level of ethnic minority attitudes is interestingly a bit lower in this class compared to the school average (mean in wave 1 = 55.1, and in wave 2 = 59.2). There is also an increase between the two waves, distinct from the school average again.
+
+<br>
+
+### Network description
+
+```{r}
+require(igraph)
+g1 <- graph_from_adjacency_matrix(as.matrix(c5_net))
+g2 <- graph_from_adjacency_matrix(as.matrix(c3_net))
+
+vcount(g1) # count vertices / actors #28
+ecount(g1) # count edges / ties #82
+is_bipartite(g1) # is the network unimodal or multi? # F
+is_weighted(g1) # F
+
+gmat <- as_adjacency_matrix(g1, type = "both", sparse = FALSE)
+isSymmetric(gmat) # F, dus directed
+
+require(RsienaTwoStep)
+ts_recip(g1) # 68
+ts_outAct(g1) # 6724
+ts_inAct(g1) # same number
+triad_census(g1)
+dyad_census(g1)
+# $mut = number of pairs with mutual connections #34
+# $asym = number of pairs with non-mutual connections #14
+# $null = number of pairs with no connections between them #330
+
+# transivitity
+igraph::transitivity(g1, type = c("localundirected"), isolates = c("NaN", "zero"))
+
+# betweenness
+igraph::betweenness(g1, directed = T)
+
+# density
+igraph::edge_density(g1) # 0.11
+```
+
+General description of the friendship network. Again: note that this is not self nominated data, but by mentors. And also note that I use a one-wave network, so all descriptives concern wave 1 - and I can not make comparisons between the networks at wave 1 and 2.
+
+-   As seen in the descriptives above, the friendship network in class 5 consists of 28 actors, who in total have 82 ties between them. The network is unimodal (i.e. only one type/level of actors), directed (i.e. directional from one actor to another) and not weighted (i.e. friendship ties are binary: 0-1, instead of continuous scales of more/less friends).
+
+-   Further, I looked at reciprocity, density, transitivity, and the dyad and triad censuses in the network (\@SNASS). There is a total of 68 reciprocated ties, and (based on the dyad census) the number of pairs with mutual connections is 34; number of pairs with non-mutual connections is 14; and finally there are 330 pairs with no ties between them. The level of density in the network is 0.11, which is a relatively low number (as also reflected in the visualizations below). This could have to do with the type of nomination data; as observed by mentors and perhaps not all underlying ties were mapped. In terms of the triad census, the most occuring triad was the 003, or in other words, a triad in which none of the actors have ties between them. Followed by the 102 (one reciprocated tie between two actors) and 012 (one outgoing tie from one actor to another).
+
+-   Finally, I inspected Moran's I as an indicator for segregation on the macro level. See below.
+
+<br>
+
+#### **Moran's I**
+
+```{r}
+# Moran's I
+require(RSiena)
+library(network)
+friend.data.w1 <- net
+friend.data.w2 <- net2
+moran_net1 <- network::as.network(friend.data.w1)
+moran_net2 <- network::as.network(friend.data.w2)
+em_att <- id
+class(em_att)
+
+# nacf does not row standardize!
+# snam1 <- sna::nacf(moran_net1, em_att[, 1], type = "moran", neighborhood.type = "out", demean = TRUE)
+# snam1[2]  #the first order matrix is stored in second list-element
+
+require(ape)
+require(sna)
+geodistances <- geodist(friend.data.w1, count.paths = TRUE)
+geodistances <- geodistances$gdist
+
+# first define a nb based on distance 1.
+weights1 <- geodistances == 1
+
+# this function rowstandardizes by default
+# ape::Moran.I(em_att[, 1], scaled = FALSE, weight = weights1, na.rm = TRUE)
+# observed = -0.21, expected = -0.04, SE = 0.15, p = 0.26
+```
+
+Interpretatie Moran's I: wat is het voor maat, en waarom gebruik ik hem? Heb ik row-standardize gedaan of niet, en waarom?
+
+------------------------------------------------------------------------
+
+<br>
+
+## *Network visualization*
+
+```{r}
+#kleur op basis van gender. staat in goede volgorde. 
+V(g1)$color <- ifelse(c5$gender == 1, "red", "green")
+plot(g1)
+
+#GENDER AND ETHNICITY OF STUDENTS
+layoutfr <- layout_with_fr(g1)
+layoutfr[15,1] <- 3
+layoutfr[16,1] <- -1
+layoutfr[3,1] <- -4
+layoutfr[22,1] <- -1
+layoutfr[4,1] <- 7
+layoutfr[12,1] <- 9
+
+V(g1)$size = igraph::betweenness(g1) * 0.2 + 9
+
+{png("plot1.png", width = 14, height = 7, units = "in", res = 300)
+
+par(mfrow = c(1, 2))
+
+plot(g1,
+     vertex.color = ifelse(c5$gender == 1, "hotpink", "olivedrab2"),
+     vertex.frame.color = "gray40",
+     vertex.frame.width = 2,
+     vertex.label = NA, 
+     edge.curved = 0.4,
+     edge.arrow.size = 0.4,
+     edge.color = "gray50",
+     layout = layoutfr, 
+     main = "Gender")
+
+legend("bottomleft", c("Girl", "Boy", "Missing"), pch = 21, col = "grey91", pt.bg = c("hotpink", "olivedrab2", "white"), pt.cex = 1.5, cex = 1.2, bty = "n", ncol = 1)
+
+plot(g1,
+     vertex.color = ifelse(c5$ethnicity == 1, "orange", "skyblue1"),
+     vertex.frame.color = "gray40",
+     vertex.frame.width = 2,
+     vertex.label = NA,
+     edge.curved = 0.4,
+     edge.arrow.size = 0.4,
+     edge.color = "gray50",
+     layout = layoutfr, 
+     main = "Ethnicity")
+
+legend("bottomleft", c("Dutch", "Non-Dutch", "Missing"), pch = 21, col = "grey91", pt.bg = c("orange", "skyblue1", "white"), pt.cex = 1.5, cex = 1.2, bty = "n", ncol = 1)
+
+dev.off()}
+
+
+# PRIMARY AND SECONDARY OUTGROUP ATTITUDES
+
+# first create a gradient for the attitude thermometers
+my_palette_w <- colorRampPalette(c("pink", "deeppink1", "deeppink4"))
+attitudew <- c5$thermo_vrouwen
+attitudew_color <- my_palette_w(length(attitudew))
+
+my_palette_e <- colorRampPalette(c("lightblue1", "lightslateblue", "darkslateblue"))
+attitudee <- c5$thermo_minority
+attitudee_color <- my_palette_e(length(attitudee))
+
+# still use size based on betweenness
+V(g1)$size = igraph::betweenness(g1) * 0.2 + 9
+
+# now plot as a png image
+{png("plot2.png", width = 14, height = 7, units = "in", res = 300)
+
+par(mfrow = c(1, 2))
+
+plot(g1,
+     vertex.color = attitudew_color,
+     vertex.frame.color = "gray40",
+     vertex.frame.width = 2,
+     vertex.label = NA, 
+     edge.curved = 0.4,
+     edge.arrow.size = 0.4,
+     edge.color = "gray50",
+     layout = layoutfr, 
+     main = "Thermometer scale: Women (girls)")
+
+legend("bottomleft", c("Cold (negative)", "Neutral", "Warm (positive"), pch = 21, col = "grey91", pt.bg = c("pink", "deeppink1", "deeppink4"), pt.cex = 1.5, cex = 1.2, bty = "n", ncol = 1)
+
+plot(g1,
+     vertex.color = attitudee_color,
+     vertex.frame.color = "gray40",
+     vertex.frame.width = 2,
+     vertex.label = NA,
+     edge.curved = 0.4,
+     edge.arrow.size = 0.4,
+     edge.color = "gray50",
+     layout = layoutfr, 
+     main = "Thermometer scale: Ethnic minorities")
+
+legend("bottomleft", c("Cold (negative)", "Neutral", "Warm (positive"), pch = 21, col = "grey91", pt.bg = c("lightblue1", "lightslateblue", "darkslateblue"), pt.cex = 1.5, cex = 1.2, bty = "n", ncol = 1)
+
+dev.off()}
+```
+
+**Figure 1**
+
+*Gender and ethnicity of TNSS students, wave 1*
+
+```{r}
+knitr::include_graphics("plot1.png")
+```
+
+**Figure 2**
+
+*Primary and secondary outgroup attitudes of TNSS students, wave 1*
+
+```{r}
+knitr::include_graphics("plot2.png")
+```
+
+Description of the plots:
+
+1.  Plot1 = gender (left) and ethnicity (right) of students. Color is based on gender (see legend), size is based on betweenness. Note: "Nodes were distributed in the graph based on the Fruchterman-Reingold forcedirected algorithm, which models repulsion between nodes and attraction between nodes that are connected. The nodes were fixed in their w2 location for both waves to visualise changes in specific ties." –\> I used an algorithm for layout and manually placed nodes further apart to highlight clustering.
+2.  Plot2 = attitudes towards primary outgroup / women (left) and secondary outgroup / ethnic minorities (right). Color is based on student's attitude and is a gradient based on the value. A darker color symbolizes a higher thermometer score and thus more positive attitudes. The same fixed layout for nodes was used for comparability between plots.
+
+<br>
+
+Interpretation of the plots:
+
+-   A lot of clustering! Very distinct friend groups, rather than one connected classroom. Again, note the mentor nomination data.
+
+    -   It seems strongly based on gender
+
+    -   Also to some extent (but less) based on ethnicity
+
+-   A couple of students with really high levels of betweenness (note size) –\> connecting the different clusters; they act as brokers / bridges
+
+    -   One very 'popular' central actor: male + Dutch origin. This student is somewhere in the middle of both thermometer scales. Interesting how he would influence his other classmates, who all are connected to him in some way.
+
+<br>
+
+------------------------------------------------------------------------
+
+## References
+
+<br>

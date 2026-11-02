@@ -9,7 +9,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<br>
+
 # Workshop 14-09-2026
+
+<br>
 
 ## *Summary*
 
@@ -31,7 +35,13 @@ In the workshop we did the following:
     -   Also look at lab journals from previous years + published papers
 -   Update lab journal and website
 
+<br>
+
+------------------------------------------------------------------------
+
 # Lab journal
+
+<br>
 
 ## RSiena tutorial - Simulation logic
 
@@ -338,3 +348,60 @@ par(mfrow = c(1, 3))
 ```
 
 So, actor k has the highest rate parameter = shortest waiting time = highest probability for an opportunity of change.
+
+<br>
+
+------------------------------------------------------------------------
+
+# Theory and hypotheses
+
+<br>
+
+## Updated RQs
+
+-   **Descriptive (macro / network level)** \> What is the diversity in students' social networks based on [secondary outgroup]?
+
+-   **Explanatory (micro level)** \> To what extent are secondary out-group attitudes / friendships (diversity in network) explained by *social influence effects* (vs. secondary transfer effects of intergroup contact)?
+
+    -   What is the primary vs secondary outgroup?
+
+        -   Similar in stigma/marginalization?? (condition for STE)
+
+    -   Is the outgroup fixed (e.g. always 'women' and 'ethnic minorities') or dynamic based on who ego is (e.g. for an ethnic minority woman, the outgroups would be 'men' and 'ethnic majorities')?
+
+    -   Selection vs. influence no longer possible? (only 1 wave)
+
+<br>
+
+## Hypotheses
+
+1.  **Classic STE** -\> Egos with more female friends (*primary outgroup*) in T1 are more likely to be friends with ethnic minority students (*secondary outgroup*) in T2
+
+    -   But what is the effect?
+
+    1.  This effect is mediated by ego's tolerance (comfy with ethnic minorities)
+    2.  This effect is stronger when egos friends are tolerant (comfy with ethnic minorities) -\> **Influence effect?**
+    3.  This effect is stronger when ego is ethnic majority and/or male
+
+<br>
+
+1.  **Influence** -\> Egos with more tolerant friends (whose friends are comfy with ethnic minorities; *secondary outgroup attitudes*) are more likely to be friends with ethnic minority students (*secondary outgroup*) in T2
+    1.  This effect is mediated by ego's tolerance (comfy with ethnic minorities)
+    2.  This effect is stronger when egos friends are female -\> **Secondary transfer effect?**
+    3.  This effect is stronger when ego is ethnic majority and/or male
+
+<br>
+
+**Questions**
+
+-   How to measure these with RSiena effects though?
+
+    -   Which effects?
+
+    -   Out-groups fixed, or dependent on ego?
+
+-   Should hypotheses all be on micro level?
+
+-   How to model outgroup?
+
+-   How to model network as 1 wave constant?

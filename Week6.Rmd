@@ -9,7 +9,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<br>
+
 # Workshop 05-10-2026
+
+<br>
 
 ## *Summary*
 
@@ -34,7 +38,11 @@ In the workshop we did the following:
 
 <br>
 
+------------------------------------------------------------------------
+
 # Lab journal
+
+<br>
 
 ## Moran's I
 
