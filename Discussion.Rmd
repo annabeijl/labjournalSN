@@ -1,0 +1,58 @@
+---
+title: "**Conclusion and Discussion**"
+author: "Anna Beijl"
+date: "30 October 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+# Discussion
+
+<br>
+
+In this paper, I examined ethnic minority attitudes among Dutch students using a social networks approach. Adding to a recent body of literature, the aim of this paper was to shed light on the interdependencies and peer influences in forming and changing attitudes. Specifically, I was interested in the transfer of intergroup attitudes from one outgroup to another. To model these primary and secondary outgroups, I looked at gender and ethnicity as forms of intergroup contact/attitudes. Using social network analysis and RSiena models, I examined the research question: *"To what extent are secondary outgroup (ethnic minority) attitudes clustered based on primary outgroup (gender) friendshps?"*. To further explain this macro question on a micro/network level, I asked: "*To what extent are ethnic minority attitudes explained by selection and influence effects?"* Based on a recent body literature that incorporates social network analysis and intergroup contact theory (see Zingora, Bracegirdle) I expected that ethnic minority attitudes could be explained by primary outgroup friendships (i.e. based on gender) (**Hypothesis 1**). Additionally, I expected that ethnic minority attitudes could be explained by attitudes that students - and especially their friends - hold towards a primary outgroup (i.e. women/girls) (**Hypothesis 2**).
+
+In addition to theoretical innovation, this paper also used a short-term dynamic equilibrium SAOM approach (Snijders & Steglich, 2013), contributing to statistical innovation as well. Stationary SAOM analyses using both a network and a behavioral dependent variable have, to my knowledge, not yet been performed previously. The outcomes of this paper thus present some preliminary results (as well as challenges) on how to succesfully combine these empirical approaches.
+
+<br>
+
+## Conclusions and contributions
+
+The results of descriptive analyses showed some level of segregation in ethnic minority attitudes, but only when incorporating friends of friends. **[iets over de visualization]** The RSiena models clearly highlighted the importance of incorporating this theoretical field with social networks perspective: structural network dynamics such as reciprocity and transitivity played an important role in friendship formation - not just attitudes. Further, the analyses showed indications for same-gender and same-ethnicity effects; students are likely to befriend others with the same gender (i.e. homophily), but are *less* likely to befriend others with the same ethnicity. This shows interethnic friendship in the sample was positively evaluated, which is especially interesting in light of the theoretical focus of this study. It could be argued that schools provide the four conditions that Allport (1954) described in his seminal work (see also Pettigrew & Tropp); equal status, common goals, intergroup cooperation, and support from authorities. Again highlighting the important role of schools in stimulating positive interethnic interactions (**literature**).
+
+Looking back to the theoretical expectations, this paper found no support for secondary transfer effects / spillover effects from primary (gender) to secondary (ethnic minority) outgroups. So contrary to theoretical expectations, attitudes towards women do not have an effect on attitudes towards ethnic minorities. Not from students themselves, nor from their friends.
+
+-   but: not equal in status, which is described as an important condition for the secondary transfer effect
+
+-   also: outgroup construction and conditionality: maybe this works differently for women/men and ethnic minorities/majorities. Also seen by sig effect of own ethnicity on em attitudes. Future research could further incorporate this through modelling interaction effects or dyadic covariates.
+
+Relating back to the question posed by Pettigrew years ago, there was also no support for selection effects. Meaning that in this sample, it was not the case that more tolerant students befriended each other.
+
+There is, however, support for influence effects. the number of ethnic minority friends does play an important role. Interestingly, this is a negative effect, meaning that more em friends leads to a lower thermometer score and therefore more negative em attitudes (?!)
+
+-   This could possibly be explained by, based on recent literature, the fact that it is not the mere *friendships* with these primary outgroup members that matters, but the *secondary outgroup attitudes of those friends*. This is actually supported by recent research that used simulations (Bracegirdle?)
+
+Iets over aanpak statistiek; belangrijk om ook behavioral rate parameter te fixen. Interessant om te zien hoe in vervolgonderzoek deze combinatie verwerkt wordt, van one-wave data met behavioral Y.
+
+<br>
+
+## Limitations
+
+First, as described in the data chapter, I made use of one-wave of network data. Although not explicitly criticized by the original authors, this means that I analyzed cross-sectional data *as if* it was longitudinal network data. In doing so, I make assumptions about stability of the network (that all network effects 'cancel each other out' which creates an almost identical network at T1 and T2), which might not be reflected by the actual network in T2. Another limitation of the network data lies in the nominations; instead of friendship nominations by students themselves, this was done by mentors. This was purposefully chosen since one of the focal points of the TNSS data was bullying, which presents more accurately by observed data. However, this could have further contributed to a biased picture of the social network data.
+
+Second, due to convergence issues, probably caused by the stationary SAOM approach, the full theorized model was not able to run. A model that includes all behavioral effects would have included my constructed dyadic covariate for outgroup friendships based on gender, interacted with alter effects. This would have shown [xxxxx]. However, after repeated trials, I was not able to succesfully run a model that converged. I have therefore not included the interpretations of this model in this paper, as the estimates are not to be trusted. Also, I could not run a model that included all network effects *and* all behavioral effects. Again, such models did not converge (even after following the stepwise cumulative model building approach as suggested by Snijders), which means that I estimated them separately. This means that I can draw conclusions about both models separately, but not controlled for each other.
+
+<br>
+
+In conclusion, this paper presents both theoretical and methodological innovations regarding the combination of intergroup contact theory and social network analysis. Using a short-term dynamic equilibrium approach, I uncovered [xxxx]. It is not friendships themselves that matter, but the attitudes of those friends.
+
+<br>
+
+------------------------------------------------------------------------
+
+## References
