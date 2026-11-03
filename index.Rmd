@@ -53,6 +53,8 @@ Welcome to my lab journal! On this website, I document my progress for the cours
 
 Everyone can fork this repository. Use this example to journal your lab work and assignments. I created this website and lab journal by forking the repository from Jochem Tolsma and Bas Hofstra (@SNASS).
 
+Also: a big thanks to all my lovely classmates for helping me out and struggling together on figuring out the R code and RSiena models :)
+
 <br>
 
 ![](images/anna.jpg)

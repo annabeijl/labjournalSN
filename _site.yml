@@ -37,8 +37,8 @@ navbar:
       - text: "Descriptive Results"
         href: Descriptive_results.html
       - text: "RSiena Results"
-        href: Results_interpretations.html
-      - text: "Conclusion and Discussion"
+        href: RSiena_results.html
+      - text: "Discussion"
         href: Discussion.html
 
 
