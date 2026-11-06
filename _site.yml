@@ -32,7 +32,7 @@ navbar:
         href: Introduction.html
       - text: "Theory and Hypotheses"
         href: Theory.html
-      - text: "Data"
+      - text: "Data and Method"
         href: Data_methods.html
       - text: "Descriptive Results"
         href: Descriptive_results.html
