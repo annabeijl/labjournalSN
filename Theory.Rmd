@@ -15,45 +15,64 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-Over time, the theoretical model has been extended to include all out-group members (bron), and even members of other out-groups that were not directly involved in the contact at all. The latter is known as a secondary transfer effect of intergroup contact (Pettigrew, 2009), and has been studied extensively. This secondary transfer effect seems to be conditional; only when the secondary out-group is similar in culture, stigma, or status (= generalization gradient effect).
+Intergroup contact theory has received a great deal of academic attention and has been extended a great deal since Allport's (1954) seminal work. For example, growing bodies of research study indirect contact where an individual is not part of the interaction. Concepts like *extended* contact, that is, simply knowing an in-group member has out-group friends (Zhou et al., 2018) or *vicarious* contact; observing other in-group members (e.g. online or through reading stories, Tropp et al., 2022; Stark et al., 2025) have been shown to be successful in prejudice reduction. Experimental research even shows support for secondary transfer effects when contact with the primary group was merely *observed* in others or even *imagined* (Harwood et al., 2011; Vezzali et al., 2014). This highlights the wide reach and broad support for the supposed secondary transfer effect. However, research also shows that the STE seems to be conditional; the attitude generalization process likely only works when the primary and secondary outgroups are similar in culture, stigma, or status (see e.g. Harwood et al., 2011). This importance of the level of group similarity is also known as the generalization gradient effect (Pettigrew, 2009).
 
-Additionally, growing bodies of research study indirect contact (**extended**=simply knowing an in-group member has out-group friend, Zhou et al., 2018; **vicarious**=observing other in-group members, online, reading stories) - see Tropp et al., 2022; Stark et al., 2025. Experimental research even shows support for secondary transfer effects when contact with the primary group was merely observed in others or even imagined (Harwood et al., 2011; Vezzali et al., 2014).
-
-Secondary transfer effects are not always found → social influence can help explain this; who influences who? (is it all kinds of friends, or just in- or out-group friends?) “Some studies reported social influence from ingroup but not from outgroup friends (Bracegirdle et al., 2023), implying that having outgroup friends is not associated with outgroup attitudes. Others found influence of outgroup friends’ attitudes on generalized prejudice (Zingora & Flache, 2025).” Most recent research shows → people’s attitudes to secondary outgroups changed not due to having friends from the primary outgroup but due to the attitudes that those primary outgroup friends hold toward secondary outgroups **!!!**
-
-research exists that combines intergroup contact theory (secondary transfer effects) and social network analysis (see bronnen). Results from social network analysis on extended contact support this idea: extended contact reduces prejudice only when some of the outgroup friends of one’s ingroup friends are known. So: only in mixed triads, not in open triads (Stark, 2019).
-
-Recent studies say: it’s actually fully influence, not transfer. “Friendships with primary outgroup members may have negative implications for secondary outgroups when those friends hold more negative attitudes” (Zingora et al., 2026). Having outgroup friends was not linked to more positive intergroup attitudes once social influence (i.e., ingroup friends’ attitudes) was accounted for (for a meta-analysis, see Zingora, 2025). The importance of social influence is further demonstrated by Bracegirdle et al. 2026: “Socialization was strongest among friends who held initially opposing attitudes, which led both high- and low-prejudice individuals to become more neutral over time. The findings thus suggest that socialization has a neutralizing effect, rather than a polarizing effect”. Big conclusion = Friends’ out-group attitudes become more similar to each other. If the friends are negative: you will become more negative (and vice versa).
+As described, the most important underlying mechanism of this STE of intergroup contact seems to be the generalization of attitudes from one outgroup to another (Pettigrew, 2009; Tausch et al., 2010). However, the literature also describes a number of alternative explanations and theoretical problems. For example, secondary transfer effects could also be explained by some respondents having more contact with (primary and secondary) outgroups in general (descibed as *the secondary contact problem* in Tausch et al., 2010); a *social desirability problem* (ibid); or a *causal sequence problem* where more tolerant repondents engage in more intergroup contact in general (ibid). Furthermore, secondary transfer effects are not always found for all groups and settings (see Zingora et al., 2026). Recent research proposes a social networks approach to tackle these problems in STE theory (Bracegirdle et al., 2021; Bracegirdle et al., 2026; Zingora, 2025; Zingora et al., 2026). The added value of a social networks perspective is already evident in other forms of contact research: for example, results from social network analysis show that extended contact reduces prejudice, only when some of the outgroup friends of one’s ingroup friends are known. So: only in mixed triads, not in open triads (Stark, 2019).
 
 <br>
 
-## Hypotheses
+## Selection effects
 
-1.  **Classic STE** -\> Egos with more female friends (*primary outgroup*) in T1 are more likely to be friends with ethnic minority students (*secondary outgroup*) in T2
+Another important network element lies, as described, in selection effects. To test the classic and individual-centered idea of attitude generalization, I first formulate H1. Continuing the selection idea, I build on the concept of homophily; the idea that 'birds of a feather flock together', or in other words: people prefer contact with others that are similar to them (McPherson et al., 2001). Based on Pettigrew's (2009) original concern surrounding the tendency of tolerant people to befriend each other, I formulate the following hypotheses:
 
-    [Students prefer / students with lower levels of X]{.underline}
+**H1**: Students with more positive primary outgroup (i.e. women) attitudes have, on average, more positive secondary outgroup (i.e. ethnic minority) attitudes as well.
 
-    -   But what is the effect?
-
-    1.  This effect is mediated by ego's tolerance (comfy with ethnic minorities)
-    2.  This effect is stronger when egos friends are tolerant (comfy with ethnic minorities) -\> **Influence effect?**
-    3.  This effect is stronger when ego is ethnic majority and/or male
+**H2**: Students prefer to send ties to others with similar levels of primary outgroup (i.e. women) and secondary outgroup (i.e. ethnic minority) attitudes as them.
 
 <br>
 
-1.  **Influence** -\> Egos with more tolerant friends (whose friends are comfy with ethnic minorities; *secondary outgroup attitudes*) are more likely to be friends with ethnic minority students (*secondary outgroup*) in T2
-    1.  This effect is mediated by ego's tolerance (comfy with ethnic minorities)
-    2.  This effect is stronger when egos friends are female -\> **Secondary transfer effect?**
-    3.  This effect is stronger when ego is ethnic majority and/or male
+## Influence effects
+
+Adding to this, some recent studies suggest that social influence can help explain the lack of unequivocal support for STEs (Bracegirdle et al., 2026; Zingora et al., 2026). It might not only matter who someone is friends with, but also what those friends think about certain outgroups. The importance of social influence is further demonstrated by Bracegirdle et al. 2026 (p. 1), showing that "socialization was strongest among friends who held initially opposing attitudes" and thereby that "socialization has a neutralizing effect, rather than a polarizing effect”. Thus, it seems, friends’ out-group attitudes become more similar to each other over time. Another interesting complication lies in who influences who: is it all kinds of friends, or just in- or outgroup friends? And does it matter whether these friends are part of a (primary) outgroup themselves? Some studies suggest that social influence only works from ingroup and not outgroup friends (Bracegirdle et al., 2021), whilst other research highlight how the attitudes of ingroup members are often viewed as biased and therefore less persuasive (Zingora et al., 2026). Based on the literature, I exploratively expect:
+
+**H3**: Students' secondary outgroup (i.e. ethnic minority) attitudes are shaped by the average secondary outgroup attitudes of their friends.
+
+**H4**: Students with more primary outgroup (i.e. based on gender) friends have, on average, more positive attitudes towards a secondary outgroup (i.e. ethnic minorities).
 
 <br>
 
-Questions
+Based on both these selection and influence effects, I respect with regards to the macro research question:
 
--   How to measure these with RSiena effects though?
+**H5:** The TNSS network is segregated based on ethnic minority attitudes.
 
-    -   Which effects?
+<br>
 
-    -   Out-groups fixed, or dependent on ego?
+------------------------------------------------------------------------
 
--   Should hypotheses all be on micro level?
+# References
+
+<br>
+
+Bracegirdle, C., Reimer, N. K., Van Zalk, M., Hewstone, M., & Wölfer, R. (2021). Disentangling contact and socialization effects on outgroup attitudes in diverse friendship networks. *Journal of Personality and Social Psychology*, *122*(1), 1–15. <https://doi.org/10.1037/pspa0000240>
+
+Bracegirdle, C., Zingora, T., & Spiegler, O. (2026). From mate to hate? Prejudice socialization in friendship networks. *American Psychologist*. <https://doi.org/10.1037/amp0001662>
+
+Harwood, J., Paolini, S., Joyce, N., Rubin, M., & Arroyo, A. (2011). Secondary transfer effects from imagined contact: group similarity affects the generalization gradient. *British Journal of Social Psychology*, *50*(1), 180–189. <https://doi.org/10.1348/014466610x524263>
+
+McPherson, M., Smith-Lovin, L., & Cook, J. M. (2001). Birds of a Feather: Homophily in Social Networks. *Annual Review of Sociology 27* (1): 415–44.
+
+Pettigrew, T. F. (2009). Secondary transfer effect of contact. *Social Psychology*, *40*(2), 55–65. <https://doi.org/10.1027/1864-9335.40.2.55>
+
+Stark, T. H., Nijs, T., & Köbrich, J. (2025). Additive and multiplicative effects of different forms of positive and negative indirect intergroup contact in predicting intergroup attitudes. *International Journal of Intercultural Relations*, *104*, 102110. <https://doi.org/10.1016/j.ijintrel.2024.102110>
+
+Tausch, N., Hewstone, M., Kenworthy, J. B., Psaltis, C., Schmid, K., Popan, J. R., Cairns, E., & Hughes, J. (2010). Secondary transfer effects of intergroup contact: Alternative accounts and underlying processes. *Journal of Personality and Social Psychology*, *99*(2), 282–302. <https://doi.org/10.1037/a0018553>
+
+Tropp, L. R., White, F., Rucinski, C. L., & Tredoux, C. (2022). Intergroup contact and prejudice reduction: prospects and challenges in changing youth attitudes. *Review of General Psychology*, *26*(3), 342–360. <https://doi.org/10.1177/10892680211046517>
+
+Vezzali, L., Stathi, S., Giovannini, D., Capozza, D., & Trifiletti, E. (2014). The greatest magic of Harry Potter: Reducing prejudice. *Journal of Applied Social Psychology*, *45*(2), 105–121. <https://doi.org/10.1111/jasp.12279>
+
+Zhou, S., Page-Gould, E., Aron, A., Moyer, A., & Hewstone, M. (2018). The extended contact hypothesis: a meta-analysis on 20 years of research. *Personality and Social Psychology Review*, *23*(2), 132–160. <https://doi.org/10.1177/1088868318762647>
+
+Zingora, T. (2025). On the spurious effect of intergroup friendship on outgroup attitudes in schools: The role of social influence and the positive impact of exposure to outgroup peers. *British Journal of Social Psychology*, *64*(2), e12797. <https://doi.org/10.1111/bjso.12797>
+
+Zingora, T., Bracegirdle, C., Stark, T. H., & Spiegler, O. (2026). Outgroup friendships and social influence in the development of adolescent attitudes toward secondary outgroups. *Journal of Personality and Social Psychology*, *131*(3), 444–462. <https://doi.org/10.1037/pspi0000530>

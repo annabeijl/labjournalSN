@@ -71,29 +71,6 @@ if (window.hljs) {
 }
 </style>
 
-<style type="text/css">
-/* for pandoc --citeproc since 2.11 */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="tweaks.css" type="text/css" />
 
@@ -412,10 +389,10 @@ div.tocify {
       <a href="Descriptive_results.html">Descriptive Results</a>
     </li>
     <li>
-      <a href="Results_interpretations.html">RSiena Results</a>
+      <a href="RSiena_results.html">RSiena Results</a>
     </li>
     <li>
-      <a href="Discussion.html">Conclusion and Discussion</a>
+      <a href="Discussion.html">Discussion</a>
     </li>
   </ul>
 </li>
@@ -458,44 +435,37 @@ div.tocify {
 <h1><span class="header-section-number">1</span> Introduction</h1>
 <p><br></p>
 <p>Intergroup contact theory is one of the most established theories in
-contemporary social science (<span class="citation">(<em>The Nature of
-Prejudice</em>, n.d.)</span>; Pettigrew &amp; Tropp). The central idea
-is that intergroup contact reduces intergroup prejudice; that is, if
-people have more contact with out-group members, they are more likely to
-develop positive attitudes on this out-group. “The contact hypothesis
-has stimulated an enormous body of research and has received support
-across a variety of settings and social groups (see Brown &amp;
-Hewstone, 2005; Pettigrew &amp; Tropp, 2006).” “A critical issue that
-has long concerned contact researchers, however, is whether the effects
-of intergroup contact generalize beyond the specific contact experience
-to new situations, the entire outgroup, and other outgroups not directly
-involved in the contact (e.g., Amir, 1969, 1976; Ford, 1986; Hewstone
-&amp; Brown, 1986; Pettigrew, 1997, 1998; Pettigrew &amp; Tropp, 2006).
-These forms of generalization are crucial for the wider effectiveness
-and practical value of intergroup contact as an intervention to reduce
-prejudice.” Over time, the theoretical model has been extended to
-include all out-group members (bron), and even members of other
-out-groups that were not involved in the contact at all. The latter is
-known as a <em>secondary transfer effect</em> of intergroup contact
-(Pettigrew, 2009; Tausch et al., 2010), and has been studied
-extensively. </p>
-<p>The most important underlying mechanism of this transfer effect of
-intergroup contact seems to be attitude generalization, where contact or
-positive attitudes towards a primary outgroup form part of a broader
-(generalized) outgroup attitude (see also Allport, 1954) and in this way
-‘spill over’ to other outgroups. In simpler terms, contact with one
-outgroup might make people realize that outgroups are not so bad at all,
-and make them more tolerant in general (cf. Tausch et al. 2010).
-However, the literature also describes a number of alternative
-explanations and theoreticl problems. For example, secondary transfer
-effects could also be explained by some respondents having more contact
-with (primary and secondary) outgroups in general (descibed as <em>the
-secondary contact problem</em> in Tausch et al., 2010); a <em>social
-desirability problem</em> (ibid); or a <em>causal sequence problem</em>
-where more tolerant repondents engage in more intergroup contact in
-general (ibid). The latter presents a big issue in particular, already
-raised by Pettigrew (2009) in his original text dubbing secondary
-transfer effects:</p>
+contemporary social science (Allport, 1954; Pettigrew &amp; Tropp,
+2006). The central idea is that intergroup contact reduces intergroup
+prejudice; that is, if people have more contact with outgroups, they are
+more likely to develop positive attitudes towards these outgroups. The
+so-called contact hypothesis has sparked an enormous body of research
+and has found support among many settings and social groups (see Brown
+&amp; Hewstone, 2005; Pettigrew &amp; Tropp, 2006). Intergroup contact
+is also often described as a promising and successful strategy or
+intervention to improve outgroup attitudes (Pettigrew &amp; Tropp, 2006;
+Zingora, 2025). Something that has been of particular interest to
+contact researchers, is whether the effects of intergroup contact
+generalize beyond the specific contact experience to new situations, the
+entire outgroup, and other outgroups not directly involved in the
+contact. The latter is known as a <em>secondary transfer effect</em> of
+intergroup contact (Pettigrew, 2009; Tausch et al., 2010), and
+constitutes the main focus of the current study. </p>
+<p>Secondary transfer effects (STEs) seem to revolve around attitude
+generalization, where contact or positive attitudes towards a primary
+outgroup form part of a broader (generalized) outgroup attitude (see
+also Allport, 1954) and in this way ‘spill over’ to other outgroups. In
+simpler terms, contact with one outgroup might make people realize that
+outgroups are not all that bad, and make them more tolerant in general
+(cf. Tausch et al. 2010). For example, contact with foreigners not only
+causes attitudes towards foreigners to improve, but also increases
+attitudes towards gay people (Pettigrew, 2009). However, the literature
+also describes a number of alternative explanations and theoretical
+problems. For example, it is possible that more tolerant people engage
+in more intergroup contact in general, reflecting a <em>selection</em>
+effect, rather than attitude generalization. This is a long-standing
+issue in STE research, already raised in the original text dubbing
+secondary transfer effects:</p>
 <p><em>“Given this complex, bidirectional nature of the contact and
 prejudice relationship, we must focus on this problem: Do primary
 contact effects typically generalize to other, noncontacted out-groups?
@@ -503,87 +473,152 @@ Or does the secondary transfer effect largely reflect the nonrecursive
 phenomenon whereby more tolerant people engage in more intergroup
 contact generally and harbor less prejudice against a wide variety of
 outgroups?”</em> (Pettigrew, 2009, p. 56).</p>
-<p>In other words, maybe this represents truly a selection effect where
-more tolerant people become friends with a range of out-group members.
-In order to examine this causal sequence, and test whether secondary
-transfer effects indeed reflect generalization / influence effects
-rather than selection bias, longitudinal and/or social network data is
-needed. [meer uitleg social networks perspectief]. “we need not only
-information on the social agents (e.g. people, organizations) but also
-on the ties (or relations) between them” (@SNASS). “A social network
-perspective will make explicit that empirical observations of
-individuals are not always independent. The complex (i.e. dynamic,
-multidimensional, non-linear) relations within social networks cause
-complex interdependencies between observations. This has consequences
-for many of our traditional research methods” To date, the social
-embeddedness and interdependence of people engaged in intergroup contact
-remains understudied (but see Bracegirdle et al. 2026; Zingora 2025;
-Zingora et al. 2026).</p>
-<p><br></p>
-<p>So: is this secondary transfer effect of intergroup contact actually
-because of attitude generalization, or could it actually (partially)
-reflect network dynamics, such as social influence? (cf. Zingora et
-al. 2026). Although this is very much an emerging field of study,
-multiple studies support the latter idea (Stark, 2019). Recent studies
-say: it’s actually fully influence, not transfer.</p>
-<p>The secondary out-group friendship formation may depend on individual
-out-group attitudes, but may also depend on opportunity structures,
-existing relations, having friends in common, or structural network
-effects, such as reciprocity, transitivity, or clustering. To
-disentangle [xxx], social network data can form an important addition to
-the literature on secondary transfer effects of intergroup contact. “How
-social networks shape opportunities to form intergroup friendships,
-influence intergroup attitudes, and affect ongoing intergroup
-interactions and relationships. This emerging work reveals how
-friendships across group lines are shaped not only by the individuals
-involved but also by their other friends, the attitudes of those around
-them, and the structure and context of their broader social network”
-(Turetsky &amp; Shelton, 2024).</p>
-<p><br></p>
-<p>Data and context justification. “We focused on interethnic
-friendships during adolescence because adolescents’ attitudes toward
-ethnic outgroups are more malleable than adults’ attitudes (Wölfer et
-al., 2016) and because adolescents are especially motivated to adopt the
-attitudes of significant peers and friends (Brechwald &amp; Prinstein,
-2011; Steinberg &amp; Monahan, 2007).” Schools are shown to play an
-important role in stimulating positive contact between (ethnic) groups,
-both within and outside of the school environment (Karataş et al.,
-2023). → offering a secure environment with the facilitative conditions
-(see Allport; Pettigrew &amp; Tropp). Can be transferred or ‘spilled
-over’ into other contexts</p>
-<p>Based on the above literature and social network analysis, this paper
-will focus on the following research question on the macro level: “To
-what extent are students’ ethnic minority (secondary outgroup) attitudes
-clustered based on primary outgroup (gender) friendships?”. To further
-entangle this, using the general theoretical framework (cf. Coleman
-1990), the micro level explanatory research question is: “To what extent
-can clustering in ethnic minority attitudes be explained by selection or
-influence effects?”. <em>By bridging insights from intrgroup contact
-theory and social network analysis, this research offers a novel
-perspective on attitude change.</em></p>
-<ul>
-<li><p><strong>RQ1</strong>: What is the distribution of secondary
-out-group attitudes / friendships in the network?</p></li>
-<li><p><strong>RQ2</strong>: To what extent are secondary out-group
-attitudes / friendships explained by social influence effects (rather
-than secondary transfer effects of intergroup contact)?</p>
-<p>highlight: selection vs influence!</p></li>
-</ul>
+<p>In other words, maybe this truly represents a selection effect, where
+more tolerant people become friends with a range of out-group members;
+complicating the evidence for classic STE theory. In order to examine
+this causal sequence, and to test whether secondary transfer effects
+indeed reflect generalization effects rather than selection bias,
+longitudinal and/or social network data is needed. Social network
+analysis is particularly well-suited for disentangling selection and
+influence effects, by taking into account the complex interdependencies
+between people (Tolsma &amp; Hofstra, 2024). In order to accurately
+study the development of intergroup attitudes, we need not only data on
+individuals, but also on the social relations and dependencies between
+them, and how they affect each other. In other words: we not only need
+to examine the dots, but also (especially!) the arrows between them. To
+date, the social embeddedness and interdependence of people engaged in
+intergroup contact remains understudied (but see e.g. Bracegirdle et
+al. 2022; Wölfer et al., 2017; Zingora et al. 2026).</p>
+<p>In addition to selection effects, another important factor to take
+into account are network dynamics. Recent research shows that outgroup
+attitudes are shaped not only by <em>individual</em> intergroup contact
+and attitudes, but also by other intervening <em>network</em> processes,
+such as social influence (Bracegirdle et al., 2022; Zingora, 2025;
+Zingora et al., 2026). Although secondary outgroup attitudes may indeed
+depend on individual (primary outgroup) attitudes or tolerance, they may
+also (partly) reflect structural network effects such as opportunity
+structures, existing relations, having friends in common, or the
+attitudes of those friends. The latter, which are better known as social
+influence processes (see also Flache, 2017), have until very recently,
+been neglected in the intergroup contact and STE literature. Although
+this is very much an emerging field of research, multiple studies find
+support for influence processes and suggest that network effects might
+actually be more prominent than secondary transfer or attitude
+generalization (Bracegirdle et al., 2022; Stark, 2019; Turetsky &amp;
+Shelton, 2024; Zingora et al., 2026). Again, social network analysis can
+thus form an important addition to the literature on secondary transfer
+effects of intergroup contact.</p>
+<p>Based on the above literature and the importance of an added social
+network perspective, this paper will focus on the following research
+question on the macro level: <em>“To what extent are students’ social
+networks segregated based on primary or secondary outgroup
+attitudes?”</em> (<strong>RQ1</strong>). To further disentangle this,
+using the general theoretical framework (cf. Coleman, 1990), the micro
+level explanatory research question is: <em>“To what extent can
+students’ secondary outgroup attitudes be explained by selection and
+influence effects?” (</em><strong>RQ2)</strong><em>.</em> This paper
+offers a new perspective on STEs of intergroup contact, by bringing
+together insights from intergroup contact theory and social network
+analysis.</p>
+<p>When studying these outgroup friendships and attitudes, schools are
+often used as an especially well-suited setting for various reasons (see
+Wölfer et al., 2017; Zingora, 2025). First, adolescents’ attitudes are
+seen as relatively malleable and susceptible to change from their
+friends and peers (Brechwald &amp; Prinstein, 2011). Schools in
+particular often offer a secure environment that succesfully integrate
+the facilitative conditions for reducing intergroup prejudice (see
+Allport, 1954; Pettigrew &amp; Tropp, 2006). Furthermore, the positive
+effects of intergroup contact in schools seem to spill over into other
+contexts outside the school environment (Karataş et al., 2023), further
+highlighting the importance of studying intergroup contact and attitudes
+among students. In this paper, I will therefore focus on students in the
+first years of secondary education in Nijmegen, the Netherlands, using
+TNSS network data (Tolsma &amp; Pop, 2010). The primary and secondary
+outgroups in this study are based on gender and ethnicity,
+respectively.</p>
 <p><br></p>
 <hr />
 </div>
 <div id="references" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> References</h1>
 <p><br></p>
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
-<div id="ref-thenatu" class="csl-entry">
-<em>The Nature of Prejudice</em>. n.d.
-</div>
-</div>
+<p>Allport, G. W. (1954). <em>The Nature of Prejudice.</em>
+Addison-Wesley.</p>
+<p>Bracegirdle, C., Reimer, N. K., Van Zalk, M., Hewstone, M., &amp;
+Wölfer, R. (2021). Disentangling contact and socialization effects on
+outgroup attitudes in diverse friendship networks. <em>Journal of
+Personality and Social Psychology</em>, <em>122</em>(1), 1–15. <a
+href="https://doi.org/10.1037/pspa0000240"
+class="uri">https://doi.org/10.1037/pspa0000240</a></p>
+<p>Bracegirdle, C., Zingora, T., &amp; Spiegler, O. (2026). From mate to
+hate? Prejudice socialization in friendship networks. <em>American
+Psychologist</em>. <a href="https://doi.org/10.1037/amp0001662"
+class="uri">https://doi.org/10.1037/amp0001662</a></p>
+<p>Brechwald, W. A., &amp; Prinstein, M. J. (2011). Beyond homophily: A
+decade of advances in understanding peer influence processes.
+<em>Journal of Research on Adolescence, 21</em>(1), 166–179. <a
+href="https://psycnet.apa.org/doi/10.1111/j.1532-7795.2010.00721.x">https://doi.org/10.1111/j.1532-7795.2010.00721.x</a></p>
+<p>Brown, R., &amp; Hewstone, M. (2005). An integrative theory of
+intergroup contact. In <em>Advances in experimental social
+psychology</em> (pp. 255–343). <a
+href="https://doi.org/10.1016/s0065-2601(05)37005-5">https://doi.org/10.1016/s0065-2601(05)37005-5</a></p>
+<p>Coleman, J. S. (1990). <em>Foundations of Social Theory</em>. Harvard
+University Press.</p>
+<p>Flache, A., Mäs, M., Feliciani, T., Chattoe-Brown, E., Deffuant, G.,
+Huet, S., &amp; Lorenz, J. (2017). Models of social influence: Towards
+the next frontiers. <em>Journal of Artificial Societies and Social
+Simulation, 20</em>(4), Article 2. <a
+href="https://doi.org/10.18564/jasss.3521"
+class="uri">https://doi.org/10.18564/jasss.3521</a></p>
+<p>Karataş, S., Eckstein, K., Noack, P., Rubini, M., &amp; Crocetti, E.
+(2023). Positive and negative intergroup contact in school and
+out‐of‐school contexts: A longitudinal approach to spillover effects.
+<em>Journal of Research on Adolescence</em>, <em>33</em>(4), 1335–1349.
+<a href="https://doi.org/10.1111/jora.12881"
+class="uri">https://doi.org/10.1111/jora.12881</a></p>
+<p>Pettigrew, T. F. (2009). Secondary transfer effect of contact.
+<em>Social Psychology</em>, <em>40</em>(2), 55–65. <a
+href="https://doi.org/10.1027/1864-9335.40.2.55"
+class="uri">https://doi.org/10.1027/1864-9335.40.2.55</a></p>
+<p>Pettigrew, T. F., &amp; Tropp, L. R. (2006). A meta-analytic test of
+intergroup contact theory. <em>Journal of personality and social
+psychology</em>, <em>90</em>(5), 751–783. <a
+href="https://doi.org/10.1037/0022-3514.90.5.751"
+class="uri">https://doi.org/10.1037/0022-3514.90.5.751</a></p>
+<p>Tausch, N., Hewstone, M., Kenworthy, J. B., Psaltis, C., Schmid, K.,
+Popan, J. R., Cairns, E., &amp; Hughes, J. (2010). Secondary transfer
+effects of intergroup contact: Alternative accounts and underlying
+processes. <em>Journal of Personality and Social Psychology</em>,
+<em>99</em>(2), 282–302. <a href="https://doi.org/10.1037/a0018553"
+class="uri">https://doi.org/10.1037/a0018553</a></p>
+<p>Tolsma, J., &amp; Hofstra, B. (2024). <em>Social Network Analysis for
+Social Scientists</em>. <a href="https://snass.netlify.app/"
+class="uri">https://snass.netlify.app/</a></p>
+<p>Tolsma, J., &amp; Pop, I. (2010). <em>The Nijmegen School Study Wave
+2010</em>. Radboud University. <a
+href="https://ssh.datastations.nl/dataset.xhtml?persistentId=doi:10.17026/DANS-ZWC-DUCR"
+class="uri">https://ssh.datastations.nl/dataset.xhtml?persistentId=doi:10.17026/DANS-ZWC-DUCR</a></p>
+<p>Wölfer, R., Jaspers, E., Blaylock, D., Wigoder, C., Hughes, J., &amp;
+Hewstone, M. (2017). Studying positive and negative direct and extended
+contact: Complementing self-reports with social network analysis.
+<em>Personality and Social Psychology Bulletin</em>, <em>43</em>(11),
+1566–1581. <a href="https://doi.org/10.1177/0146167217719732"
+class="uri">https://doi.org/10.1177/0146167217719732</a></p>
+<p>Zingora, T. (2025). On the spurious effect of intergroup friendship
+on outgroup attitudes in schools: The role of social influence and the
+positive impact of exposure to outgroup peers. <em>British Journal of
+Social Psychology</em>, <em>64</em>(2), e12797. <a
+href="https://doi.org/10.1111/bjso.12797"
+class="uri">https://doi.org/10.1111/bjso.12797</a></p>
+<p>Zingora, T., Bracegirdle, C., Stark, T. H., &amp; Spiegler, O.
+(2026). Outgroup friendships and social influence in the development of
+adolescent attitudes toward secondary outgroups. <em>Journal of
+Personality and Social Psychology</em>, <em>131</em>(3), 444–462. <a
+href="https://doi.org/10.1037/pspi0000530"
+class="uri">https://doi.org/10.1037/pspi0000530</a></p>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIioqSW50cm9kdWN0aW9uKioiDQphdXRob3I6ICJBbm5hIEJlaWpsIg0KZGF0ZTogIjEwIFNlcHRlbWJlciAyMDI2Ig0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KPGJyPg0KDQojIEludHJvZHVjdGlvbg0KDQo8YnI+DQoNCkludGVyZ3JvdXAgY29udGFjdCB0aGVvcnkgaXMgb25lIG9mIHRoZSBtb3N0IGVzdGFibGlzaGVkIHRoZW9yaWVzIGluIGNvbnRlbXBvcmFyeSBzb2NpYWwgc2NpZW5jZSAoW0B0aGVuYXR1XTsgUGV0dGlncmV3ICYgVHJvcHApLiBUaGUgY2VudHJhbCBpZGVhIGlzIHRoYXQgaW50ZXJncm91cCBjb250YWN0IHJlZHVjZXMgaW50ZXJncm91cCBwcmVqdWRpY2U7IHRoYXQgaXMsIGlmIHBlb3BsZSBoYXZlIG1vcmUgY29udGFjdCB3aXRoIG91dC1ncm91cCBtZW1iZXJzLCB0aGV5IGFyZSBtb3JlIGxpa2VseSB0byBkZXZlbG9wIHBvc2l0aXZlIGF0dGl0dWRlcyBvbiB0aGlzIG91dC1ncm91cC4gIlRoZSBjb250YWN0IGh5cG90aGVzaXMgaGFzIHN0aW11bGF0ZWQgYW4gZW5vcm1vdXMgYm9keSBvZiByZXNlYXJjaCBhbmQgaGFzIHJlY2VpdmVkIHN1cHBvcnQgYWNyb3NzIGEgdmFyaWV0eSBvZiBzZXR0aW5ncyBhbmQgc29jaWFsIGdyb3VwcyAoc2VlIEJyb3duICYgSGV3c3RvbmUsIDIwMDU7IFBldHRpZ3JldyAmIFRyb3BwLCAyMDA2KS4iICJBIGNyaXRpY2FsIGlzc3VlIHRoYXQgaGFzIGxvbmcgY29uY2VybmVkIGNvbnRhY3QgcmVzZWFyY2hlcnMsIGhvd2V2ZXIsIGlzIHdoZXRoZXIgdGhlIGVmZmVjdHMgb2YgaW50ZXJncm91cCBjb250YWN0IGdlbmVyYWxpemUgYmV5b25kIHRoZSBzcGVjaWZpYyBjb250YWN0IGV4cGVyaWVuY2UgdG8gbmV3IHNpdHVhdGlvbnMsIHRoZSBlbnRpcmUgb3V0Z3JvdXAsIGFuZCBvdGhlciBvdXRncm91cHMgbm90IGRpcmVjdGx5IGludm9sdmVkIGluIHRoZSBjb250YWN0IChlLmcuLCBBbWlyLCAxOTY5LCAxOTc2OyBGb3JkLCAxOTg2OyBIZXdzdG9uZSAmIEJyb3duLCAxOTg2OyBQZXR0aWdyZXcsIDE5OTcsIDE5OTg7IFBldHRpZ3JldyAmIFRyb3BwLCAyMDA2KS4gVGhlc2UgZm9ybXMgb2YgZ2VuZXJhbGl6YXRpb24gYXJlIGNydWNpYWwgZm9yIHRoZSB3aWRlciBlZmZlY3RpdmVuZXNzIGFuZCBwcmFjdGljYWwgdmFsdWUgb2YgaW50ZXJncm91cCBjb250YWN0IGFzIGFuIGludGVydmVudGlvbiB0byByZWR1Y2UgcHJlanVkaWNlLiIgT3ZlciB0aW1lLCB0aGUgdGhlb3JldGljYWwgbW9kZWwgaGFzIGJlZW4gZXh0ZW5kZWQgdG8gaW5jbHVkZSBhbGwgb3V0LWdyb3VwIG1lbWJlcnMgKGJyb24pLCBhbmQgZXZlbiBtZW1iZXJzIG9mIG90aGVyIG91dC1ncm91cHMgdGhhdCB3ZXJlIG5vdCBpbnZvbHZlZCBpbiB0aGUgY29udGFjdCBhdCBhbGwuIFRoZSBsYXR0ZXIgaXMga25vd24gYXMgYSAqc2Vjb25kYXJ5IHRyYW5zZmVyIGVmZmVjdCogb2YgaW50ZXJncm91cCBjb250YWN0IChQZXR0aWdyZXcsIDIwMDk7IFRhdXNjaCBldCBhbC4sIDIwMTApLCBhbmQgaGFzIGJlZW4gc3R1ZGllZCBleHRlbnNpdmVseS7CoA0KDQpUaGUgbW9zdCBpbXBvcnRhbnQgdW5kZXJseWluZyBtZWNoYW5pc20gb2YgdGhpcyB0cmFuc2ZlciBlZmZlY3Qgb2YgaW50ZXJncm91cCBjb250YWN0IHNlZW1zIHRvIGJlIGF0dGl0dWRlIGdlbmVyYWxpemF0aW9uLCB3aGVyZSBjb250YWN0IG9yIHBvc2l0aXZlIGF0dGl0dWRlcyB0b3dhcmRzIGEgcHJpbWFyeSBvdXRncm91cCBmb3JtIHBhcnQgb2YgYSBicm9hZGVyIChnZW5lcmFsaXplZCkgb3V0Z3JvdXAgYXR0aXR1ZGUgKHNlZSBhbHNvIEFsbHBvcnQsIDE5NTQpIGFuZCBpbiB0aGlzIHdheSAnc3BpbGwgb3ZlcicgdG8gb3RoZXIgb3V0Z3JvdXBzLiBJbiBzaW1wbGVyIHRlcm1zLCBjb250YWN0IHdpdGggb25lIG91dGdyb3VwIG1pZ2h0IG1ha2UgcGVvcGxlIHJlYWxpemUgdGhhdCBvdXRncm91cHMgYXJlIG5vdCBzbyBiYWQgYXQgYWxsLCBhbmQgbWFrZSB0aGVtIG1vcmUgdG9sZXJhbnQgaW4gZ2VuZXJhbCAoY2YuIFRhdXNjaCBldCBhbC4gMjAxMCkuIEhvd2V2ZXIsIHRoZSBsaXRlcmF0dXJlIGFsc28gZGVzY3JpYmVzIGEgbnVtYmVyIG9mIGFsdGVybmF0aXZlIGV4cGxhbmF0aW9ucyBhbmQgdGhlb3JldGljbCBwcm9ibGVtcy4gRm9yIGV4YW1wbGUsIHNlY29uZGFyeSB0cmFuc2ZlciBlZmZlY3RzIGNvdWxkIGFsc28gYmUgZXhwbGFpbmVkIGJ5IHNvbWUgcmVzcG9uZGVudHMgaGF2aW5nIG1vcmUgY29udGFjdCB3aXRoIChwcmltYXJ5IGFuZCBzZWNvbmRhcnkpIG91dGdyb3VwcyBpbiBnZW5lcmFsIChkZXNjaWJlZCBhcyAqdGhlIHNlY29uZGFyeSBjb250YWN0IHByb2JsZW0qIGluIFRhdXNjaCBldCBhbC4sIDIwMTApOyBhICpzb2NpYWwgZGVzaXJhYmlsaXR5IHByb2JsZW0qIChpYmlkKTsgb3IgYSAqY2F1c2FsIHNlcXVlbmNlIHByb2JsZW0qIHdoZXJlIG1vcmUgdG9sZXJhbnQgcmVwb25kZW50cyBlbmdhZ2UgaW4gbW9yZSBpbnRlcmdyb3VwIGNvbnRhY3QgaW4gZ2VuZXJhbCAoaWJpZCkuIFRoZSBsYXR0ZXIgcHJlc2VudHMgYSBiaWcgaXNzdWUgaW4gcGFydGljdWxhciwgYWxyZWFkeSByYWlzZWQgYnkgUGV0dGlncmV3ICgyMDA5KSBpbiBoaXMgb3JpZ2luYWwgdGV4dCBkdWJiaW5nIHNlY29uZGFyeSB0cmFuc2ZlciBlZmZlY3RzOg0KDQoq4oCcR2l2ZW4gdGhpcyBjb21wbGV4LCBiaWRpcmVjdGlvbmFsIG5hdHVyZSBvZiB0aGUgY29udGFjdCBhbmQgcHJlanVkaWNlIHJlbGF0aW9uc2hpcCwgd2UgbXVzdCBmb2N1cyBvbiB0aGlzIHByb2JsZW06IERvIHByaW1hcnkgY29udGFjdCBlZmZlY3RzIHR5cGljYWxseSBnZW5lcmFsaXplIHRvIG90aGVyLCBub25jb250YWN0ZWQgb3V0LWdyb3Vwcz8gT3IgZG9lcyB0aGUgc2Vjb25kYXJ5IHRyYW5zZmVyIGVmZmVjdCBsYXJnZWx5IHJlZmxlY3QgdGhlIG5vbnJlY3Vyc2l2ZSBwaGVub21lbm9uIHdoZXJlYnkgbW9yZSB0b2xlcmFudCBwZW9wbGUgZW5nYWdlIGluIG1vcmUgaW50ZXJncm91cCBjb250YWN0IGdlbmVyYWxseSBhbmQgaGFyYm9yIGxlc3MgcHJlanVkaWNlIGFnYWluc3QgYSB3aWRlIHZhcmlldHkgb2Ygb3V0Z3JvdXBzP+KAnSogKFBldHRpZ3JldywgMjAwOSwgcC4gNTYpLg0KDQpJbiBvdGhlciB3b3JkcywgbWF5YmUgdGhpcyByZXByZXNlbnRzIHRydWx5IGEgc2VsZWN0aW9uIGVmZmVjdCB3aGVyZSBtb3JlIHRvbGVyYW50IHBlb3BsZSBiZWNvbWUgZnJpZW5kcyB3aXRoIGEgcmFuZ2Ugb2Ygb3V0LWdyb3VwIG1lbWJlcnMuIEluIG9yZGVyIHRvIGV4YW1pbmUgdGhpcyBjYXVzYWwgc2VxdWVuY2UsIGFuZCB0ZXN0IHdoZXRoZXIgc2Vjb25kYXJ5IHRyYW5zZmVyIGVmZmVjdHMgaW5kZWVkIHJlZmxlY3QgZ2VuZXJhbGl6YXRpb24gLyBpbmZsdWVuY2UgZWZmZWN0cyByYXRoZXIgdGhhbiBzZWxlY3Rpb24gYmlhcywgbG9uZ2l0dWRpbmFsIGFuZC9vciBzb2NpYWwgbmV0d29yayBkYXRhIGlzIG5lZWRlZC4gW21lZXIgdWl0bGVnIHNvY2lhbCBuZXR3b3JrcyBwZXJzcGVjdGllZl0uICJ3ZSBuZWVkIG5vdCBvbmx5IGluZm9ybWF0aW9uIG9uIHRoZSBzb2NpYWwgYWdlbnRzIChlLmcuIHBlb3BsZSwgb3JnYW5pemF0aW9ucykgYnV0IGFsc28gb24gdGhlIHRpZXMgKG9yIHJlbGF0aW9ucykgYmV0d2VlbiB0aGVtIiAoXEBTTkFTUykuICJBIHNvY2lhbCBuZXR3b3JrIHBlcnNwZWN0aXZlIHdpbGwgbWFrZSBleHBsaWNpdCB0aGF0IGVtcGlyaWNhbCBvYnNlcnZhdGlvbnMgb2YgaW5kaXZpZHVhbHMgYXJlIG5vdCBhbHdheXMgaW5kZXBlbmRlbnQuIFRoZSBjb21wbGV4IChpLmUuIGR5bmFtaWMsIG11bHRpZGltZW5zaW9uYWwsIG5vbi1saW5lYXIpIHJlbGF0aW9ucyB3aXRoaW4gc29jaWFsIG5ldHdvcmtzIGNhdXNlIGNvbXBsZXggaW50ZXJkZXBlbmRlbmNpZXMgYmV0d2VlbiBvYnNlcnZhdGlvbnMuIFRoaXMgaGFzIGNvbnNlcXVlbmNlcyBmb3IgbWFueSBvZiBvdXIgdHJhZGl0aW9uYWwgcmVzZWFyY2ggbWV0aG9kcyIgVG8gZGF0ZSwgdGhlIHNvY2lhbCBlbWJlZGRlZG5lc3MgYW5kIGludGVyZGVwZW5kZW5jZSBvZiBwZW9wbGUgZW5nYWdlZCBpbiBpbnRlcmdyb3VwIGNvbnRhY3QgcmVtYWlucyB1bmRlcnN0dWRpZWQgKGJ1dCBzZWUgQnJhY2VnaXJkbGUgZXQgYWwuIDIwMjY7IFppbmdvcmEgMjAyNTsgWmluZ29yYSBldCBhbC4gMjAyNikuDQoNCjxicj4NCg0KU286IGlzIHRoaXMgc2Vjb25kYXJ5IHRyYW5zZmVyIGVmZmVjdCBvZiBpbnRlcmdyb3VwIGNvbnRhY3QgYWN0dWFsbHkgYmVjYXVzZSBvZiBhdHRpdHVkZSBnZW5lcmFsaXphdGlvbiwgb3IgY291bGQgaXQgYWN0dWFsbHkgKHBhcnRpYWxseSkgcmVmbGVjdCBuZXR3b3JrIGR5bmFtaWNzLCBzdWNoIGFzIHNvY2lhbCBpbmZsdWVuY2U/IChjZi4gWmluZ29yYSBldCBhbC4gMjAyNikuIEFsdGhvdWdoIHRoaXMgaXMgdmVyeSBtdWNoIGFuIGVtZXJnaW5nIGZpZWxkIG9mIHN0dWR5LCBtdWx0aXBsZSBzdHVkaWVzIHN1cHBvcnQgdGhlIGxhdHRlciBpZGVhIChTdGFyaywgMjAxOSkuIFJlY2VudCBzdHVkaWVzIHNheTogaXTigJlzIGFjdHVhbGx5IGZ1bGx5IGluZmx1ZW5jZSwgbm90IHRyYW5zZmVyLg0KDQpUaGUgc2Vjb25kYXJ5IG91dC1ncm91cCBmcmllbmRzaGlwIGZvcm1hdGlvbiBtYXkgZGVwZW5kIG9uIGluZGl2aWR1YWwgb3V0LWdyb3VwIGF0dGl0dWRlcywgYnV0IG1heSBhbHNvIGRlcGVuZCBvbiBvcHBvcnR1bml0eSBzdHJ1Y3R1cmVzLCBleGlzdGluZyByZWxhdGlvbnMsIGhhdmluZyBmcmllbmRzIGluIGNvbW1vbiwgb3Igc3RydWN0dXJhbCBuZXR3b3JrIGVmZmVjdHMsIHN1Y2ggYXMgcmVjaXByb2NpdHksIHRyYW5zaXRpdml0eSwgb3IgY2x1c3RlcmluZy4gVG8gZGlzZW50YW5nbGUgW3h4eF0sIHNvY2lhbCBuZXR3b3JrIGRhdGEgY2FuIGZvcm0gYW4gaW1wb3J0YW50IGFkZGl0aW9uIHRvIHRoZSBsaXRlcmF0dXJlIG9uIHNlY29uZGFyeSB0cmFuc2ZlciBlZmZlY3RzIG9mIGludGVyZ3JvdXAgY29udGFjdC7CoCJIb3cgc29jaWFsIG5ldHdvcmtzIHNoYXBlIG9wcG9ydHVuaXRpZXMgdG8gZm9ybSBpbnRlcmdyb3VwIGZyaWVuZHNoaXBzLCBpbmZsdWVuY2UgaW50ZXJncm91cCBhdHRpdHVkZXMsIGFuZCBhZmZlY3Qgb25nb2luZyBpbnRlcmdyb3VwIGludGVyYWN0aW9ucyBhbmQgcmVsYXRpb25zaGlwcy4gVGhpcyBlbWVyZ2luZyB3b3JrIHJldmVhbHMgaG93IGZyaWVuZHNoaXBzIGFjcm9zcyBncm91cCBsaW5lcyBhcmUgc2hhcGVkIG5vdCBvbmx5IGJ5IHRoZSBpbmRpdmlkdWFscyBpbnZvbHZlZCBidXQgYWxzbyBieSB0aGVpciBvdGhlciBmcmllbmRzLCB0aGUgYXR0aXR1ZGVzIG9mIHRob3NlIGFyb3VuZCB0aGVtLCBhbmQgdGhlIHN0cnVjdHVyZSBhbmQgY29udGV4dCBvZiB0aGVpciBicm9hZGVyIHNvY2lhbCBuZXR3b3Jr4oCdIChUdXJldHNreSAmIFNoZWx0b24sIDIwMjQpLg0KDQo8YnI+DQoNCkRhdGEgYW5kIGNvbnRleHQganVzdGlmaWNhdGlvbi4g4oCcV2UgZm9jdXNlZCBvbiBpbnRlcmV0aG5pYyBmcmllbmRzaGlwcyBkdXJpbmcgYWRvbGVzY2VuY2UgYmVjYXVzZSBhZG9sZXNjZW50c+KAmSBhdHRpdHVkZXMgdG93YXJkIGV0aG5pYyBvdXRncm91cHMgYXJlIG1vcmUgbWFsbGVhYmxlIHRoYW4gYWR1bHRz4oCZIGF0dGl0dWRlcyAoV8O2bGZlciBldCBhbC4sIDIwMTYpIGFuZCBiZWNhdXNlIGFkb2xlc2NlbnRzIGFyZSBlc3BlY2lhbGx5IG1vdGl2YXRlZCB0byBhZG9wdCB0aGUgYXR0aXR1ZGVzIG9mIHNpZ25pZmljYW50IHBlZXJzIGFuZCBmcmllbmRzIChCcmVjaHdhbGQgJiBQcmluc3RlaW4sIDIwMTE7IFN0ZWluYmVyZyAmIE1vbmFoYW4sIDIwMDcpLuKAnSBTY2hvb2xzIGFyZSBzaG93biB0byBwbGF5IGFuIGltcG9ydGFudCByb2xlIGluIHN0aW11bGF0aW5nIHBvc2l0aXZlIGNvbnRhY3QgYmV0d2VlbiAoZXRobmljKSBncm91cHMsIGJvdGggd2l0aGluIGFuZCBvdXRzaWRlIG9mIHRoZSBzY2hvb2wgZW52aXJvbm1lbnQgKEthcmF0YcWfIGV0IGFsLiwgMjAyMykuIOKGkiBvZmZlcmluZyBhIHNlY3VyZSBlbnZpcm9ubWVudCB3aXRoIHRoZSBmYWNpbGl0YXRpdmUgY29uZGl0aW9ucyAoc2VlIEFsbHBvcnQ7IFBldHRpZ3JldyAmIFRyb3BwKS4gQ2FuIGJlIHRyYW5zZmVycmVkIG9yIOKAmHNwaWxsZWQgb3ZlcuKAmSBpbnRvIG90aGVyIGNvbnRleHRzDQoNCkJhc2VkIG9uIHRoZSBhYm92ZSBsaXRlcmF0dXJlIGFuZCBzb2NpYWwgbmV0d29yayBhbmFseXNpcywgdGhpcyBwYXBlciB3aWxsIGZvY3VzIG9uIHRoZSBmb2xsb3dpbmcgcmVzZWFyY2ggcXVlc3Rpb24gb24gdGhlIG1hY3JvIGxldmVsOiAiVG8gd2hhdCBleHRlbnQgYXJlIHN0dWRlbnRzJyBldGhuaWMgbWlub3JpdHkgKHNlY29uZGFyeSBvdXRncm91cCkgYXR0aXR1ZGVzIGNsdXN0ZXJlZCBiYXNlZCBvbiBwcmltYXJ5IG91dGdyb3VwIChnZW5kZXIpIGZyaWVuZHNoaXBzPyIuIFRvIGZ1cnRoZXIgZW50YW5nbGUgdGhpcywgdXNpbmcgdGhlIGdlbmVyYWwgdGhlb3JldGljYWwgZnJhbWV3b3JrIChjZi4gQ29sZW1hbiAxOTkwKSwgdGhlIG1pY3JvIGxldmVsIGV4cGxhbmF0b3J5IHJlc2VhcmNoIHF1ZXN0aW9uIGlzOiAiVG8gd2hhdCBleHRlbnQgY2FuIGNsdXN0ZXJpbmcgaW4gZXRobmljIG1pbm9yaXR5IGF0dGl0dWRlcyBiZSBleHBsYWluZWQgYnkgc2VsZWN0aW9uIG9yIGluZmx1ZW5jZSBlZmZlY3RzPyIuICpCeSBicmlkZ2luZyBpbnNpZ2h0cyBmcm9tIGludHJncm91cCBjb250YWN0IHRoZW9yeSBhbmQgc29jaWFsIG5ldHdvcmsgYW5hbHlzaXMsIHRoaXMgcmVzZWFyY2ggb2ZmZXJzIGEgbm92ZWwgcGVyc3BlY3RpdmUgb24gYXR0aXR1ZGUgY2hhbmdlLioNCg0KLSAgICoqUlExKio6IFdoYXQgaXMgdGhlIGRpc3RyaWJ1dGlvbiBvZiBzZWNvbmRhcnkgb3V0LWdyb3VwIGF0dGl0dWRlcyAvIGZyaWVuZHNoaXBzIGluIHRoZSBuZXR3b3JrPw0KDQotICAgKipSUTIqKjogVG8gd2hhdCBleHRlbnQgYXJlIHNlY29uZGFyeSBvdXQtZ3JvdXAgYXR0aXR1ZGVzIC8gZnJpZW5kc2hpcHMgZXhwbGFpbmVkIGJ5IHNvY2lhbCBpbmZsdWVuY2UgZWZmZWN0cyAocmF0aGVyIHRoYW4gc2Vjb25kYXJ5IHRyYW5zZmVyIGVmZmVjdHMgb2YgaW50ZXJncm91cCBjb250YWN0KT8NCg0KICAgIGhpZ2hsaWdodDogc2VsZWN0aW9uIHZzIGluZmx1ZW5jZSENCg0KPGJyPg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KIyBSZWZlcmVuY2VzDQoNCjxicj4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIioqSW50cm9kdWN0aW9uKioiDQphdXRob3I6ICJBbm5hIEJlaWpsIg0KZGF0ZTogIjEwIFNlcHRlbWJlciAyMDI2Ig0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KPGJyPg0KDQojIEludHJvZHVjdGlvbg0KDQo8YnI+DQoNCkludGVyZ3JvdXAgY29udGFjdCB0aGVvcnkgaXMgb25lIG9mIHRoZSBtb3N0IGVzdGFibGlzaGVkIHRoZW9yaWVzIGluIGNvbnRlbXBvcmFyeSBzb2NpYWwgc2NpZW5jZSAoQWxscG9ydCwgMTk1NDsgUGV0dGlncmV3ICYgVHJvcHAsIDIwMDYpLiBUaGUgY2VudHJhbCBpZGVhIGlzIHRoYXQgaW50ZXJncm91cCBjb250YWN0IHJlZHVjZXMgaW50ZXJncm91cCBwcmVqdWRpY2U7IHRoYXQgaXMsIGlmIHBlb3BsZSBoYXZlIG1vcmUgY29udGFjdCB3aXRoIG91dGdyb3VwcywgdGhleSBhcmUgbW9yZSBsaWtlbHkgdG8gZGV2ZWxvcCBwb3NpdGl2ZSBhdHRpdHVkZXMgdG93YXJkcyB0aGVzZSBvdXRncm91cHMuIFRoZSBzby1jYWxsZWQgY29udGFjdCBoeXBvdGhlc2lzIGhhcyBzcGFya2VkIGFuIGVub3Jtb3VzIGJvZHkgb2YgcmVzZWFyY2ggYW5kIGhhcyBmb3VuZCBzdXBwb3J0IGFtb25nIG1hbnkgc2V0dGluZ3MgYW5kIHNvY2lhbCBncm91cHMgKHNlZSBCcm93biAmIEhld3N0b25lLCAyMDA1OyBQZXR0aWdyZXcgJiBUcm9wcCwgMjAwNikuIEludGVyZ3JvdXAgY29udGFjdCBpcyBhbHNvIG9mdGVuIGRlc2NyaWJlZCBhcyBhIHByb21pc2luZyBhbmQgc3VjY2Vzc2Z1bCBzdHJhdGVneSBvciBpbnRlcnZlbnRpb24gdG8gaW1wcm92ZSBvdXRncm91cCBhdHRpdHVkZXMgKFBldHRpZ3JldyAmIFRyb3BwLCAyMDA2OyBaaW5nb3JhLCAyMDI1KS4gU29tZXRoaW5nIHRoYXQgaGFzIGJlZW4gb2YgcGFydGljdWxhciBpbnRlcmVzdCB0byBjb250YWN0IHJlc2VhcmNoZXJzLCBpcyB3aGV0aGVyIHRoZSBlZmZlY3RzIG9mIGludGVyZ3JvdXAgY29udGFjdCBnZW5lcmFsaXplIGJleW9uZCB0aGUgc3BlY2lmaWMgY29udGFjdCBleHBlcmllbmNlIHRvIG5ldyBzaXR1YXRpb25zLCB0aGUgZW50aXJlIG91dGdyb3VwLCBhbmQgb3RoZXIgb3V0Z3JvdXBzIG5vdCBkaXJlY3RseSBpbnZvbHZlZCBpbiB0aGUgY29udGFjdC4gVGhlIGxhdHRlciBpcyBrbm93biBhcyBhICpzZWNvbmRhcnkgdHJhbnNmZXIgZWZmZWN0KiBvZiBpbnRlcmdyb3VwIGNvbnRhY3QgKFBldHRpZ3JldywgMjAwOTsgVGF1c2NoIGV0IGFsLiwgMjAxMCksIGFuZCBjb25zdGl0dXRlcyB0aGUgbWFpbiBmb2N1cyBvZiB0aGUgY3VycmVudCBzdHVkeS7CoA0KDQpTZWNvbmRhcnkgdHJhbnNmZXIgZWZmZWN0cyAoU1RFcykgc2VlbSB0byByZXZvbHZlIGFyb3VuZCBhdHRpdHVkZSBnZW5lcmFsaXphdGlvbiwgd2hlcmUgY29udGFjdCBvciBwb3NpdGl2ZSBhdHRpdHVkZXMgdG93YXJkcyBhIHByaW1hcnkgb3V0Z3JvdXAgZm9ybSBwYXJ0IG9mIGEgYnJvYWRlciAoZ2VuZXJhbGl6ZWQpIG91dGdyb3VwIGF0dGl0dWRlIChzZWUgYWxzbyBBbGxwb3J0LCAxOTU0KSBhbmQgaW4gdGhpcyB3YXkgJ3NwaWxsIG92ZXInIHRvIG90aGVyIG91dGdyb3Vwcy4gSW4gc2ltcGxlciB0ZXJtcywgY29udGFjdCB3aXRoIG9uZSBvdXRncm91cCBtaWdodCBtYWtlIHBlb3BsZSByZWFsaXplIHRoYXQgb3V0Z3JvdXBzIGFyZSBub3QgYWxsIHRoYXQgYmFkLCBhbmQgbWFrZSB0aGVtIG1vcmUgdG9sZXJhbnQgaW4gZ2VuZXJhbCAoY2YuIFRhdXNjaCBldCBhbC4gMjAxMCkuIEZvciBleGFtcGxlLCBjb250YWN0IHdpdGggZm9yZWlnbmVycyBub3Qgb25seSBjYXVzZXMgYXR0aXR1ZGVzIHRvd2FyZHMgZm9yZWlnbmVycyB0byBpbXByb3ZlLCBidXQgYWxzbyBpbmNyZWFzZXMgYXR0aXR1ZGVzIHRvd2FyZHMgZ2F5IHBlb3BsZSAoUGV0dGlncmV3LCAyMDA5KS4gSG93ZXZlciwgdGhlIGxpdGVyYXR1cmUgYWxzbyBkZXNjcmliZXMgYSBudW1iZXIgb2YgYWx0ZXJuYXRpdmUgZXhwbGFuYXRpb25zIGFuZCB0aGVvcmV0aWNhbCBwcm9ibGVtcy4gRm9yIGV4YW1wbGUsIGl0IGlzIHBvc3NpYmxlIHRoYXQgbW9yZSB0b2xlcmFudCBwZW9wbGUgZW5nYWdlIGluIG1vcmUgaW50ZXJncm91cCBjb250YWN0IGluIGdlbmVyYWwsIHJlZmxlY3RpbmcgYSAqc2VsZWN0aW9uKiBlZmZlY3QsIHJhdGhlciB0aGFuIGF0dGl0dWRlIGdlbmVyYWxpemF0aW9uLiBUaGlzIGlzIGEgbG9uZy1zdGFuZGluZyBpc3N1ZSBpbiBTVEUgcmVzZWFyY2gsIGFscmVhZHkgcmFpc2VkIGluIHRoZSBvcmlnaW5hbCB0ZXh0IGR1YmJpbmcgc2Vjb25kYXJ5IHRyYW5zZmVyIGVmZmVjdHM6DQoNCirigJxHaXZlbiB0aGlzIGNvbXBsZXgsIGJpZGlyZWN0aW9uYWwgbmF0dXJlIG9mIHRoZSBjb250YWN0IGFuZCBwcmVqdWRpY2UgcmVsYXRpb25zaGlwLCB3ZSBtdXN0IGZvY3VzIG9uIHRoaXMgcHJvYmxlbTogRG8gcHJpbWFyeSBjb250YWN0IGVmZmVjdHMgdHlwaWNhbGx5IGdlbmVyYWxpemUgdG8gb3RoZXIsIG5vbmNvbnRhY3RlZCBvdXQtZ3JvdXBzPyBPciBkb2VzIHRoZSBzZWNvbmRhcnkgdHJhbnNmZXIgZWZmZWN0IGxhcmdlbHkgcmVmbGVjdCB0aGUgbm9ucmVjdXJzaXZlIHBoZW5vbWVub24gd2hlcmVieSBtb3JlIHRvbGVyYW50IHBlb3BsZSBlbmdhZ2UgaW4gbW9yZSBpbnRlcmdyb3VwIGNvbnRhY3QgZ2VuZXJhbGx5IGFuZCBoYXJib3IgbGVzcyBwcmVqdWRpY2UgYWdhaW5zdCBhIHdpZGUgdmFyaWV0eSBvZiBvdXRncm91cHM/4oCdKiAoUGV0dGlncmV3LCAyMDA5LCBwLiA1NikuDQoNCkluIG90aGVyIHdvcmRzLCBtYXliZSB0aGlzIHRydWx5IHJlcHJlc2VudHMgYSBzZWxlY3Rpb24gZWZmZWN0LCB3aGVyZSBtb3JlIHRvbGVyYW50IHBlb3BsZSBiZWNvbWUgZnJpZW5kcyB3aXRoIGEgcmFuZ2Ugb2Ygb3V0LWdyb3VwIG1lbWJlcnM7IGNvbXBsaWNhdGluZyB0aGUgZXZpZGVuY2UgZm9yIGNsYXNzaWMgU1RFIHRoZW9yeS4gSW4gb3JkZXIgdG8gZXhhbWluZSB0aGlzIGNhdXNhbCBzZXF1ZW5jZSwgYW5kIHRvIHRlc3Qgd2hldGhlciBzZWNvbmRhcnkgdHJhbnNmZXIgZWZmZWN0cyBpbmRlZWQgcmVmbGVjdCBnZW5lcmFsaXphdGlvbiBlZmZlY3RzIHJhdGhlciB0aGFuIHNlbGVjdGlvbiBiaWFzLCBsb25naXR1ZGluYWwgYW5kL29yIHNvY2lhbCBuZXR3b3JrIGRhdGEgaXMgbmVlZGVkLiBTb2NpYWwgbmV0d29yayBhbmFseXNpcyBpcyBwYXJ0aWN1bGFybHkgd2VsbC1zdWl0ZWQgZm9yIGRpc2VudGFuZ2xpbmcgc2VsZWN0aW9uIGFuZCBpbmZsdWVuY2UgZWZmZWN0cywgYnkgdGFraW5nIGludG8gYWNjb3VudCB0aGUgY29tcGxleCBpbnRlcmRlcGVuZGVuY2llcyBiZXR3ZWVuIHBlb3BsZSAoVG9sc21hICYgSG9mc3RyYSwgMjAyNCkuIEluIG9yZGVyIHRvIGFjY3VyYXRlbHkgc3R1ZHkgdGhlIGRldmVsb3BtZW50IG9mIGludGVyZ3JvdXAgYXR0aXR1ZGVzLCB3ZSBuZWVkIG5vdCBvbmx5IGRhdGEgb24gaW5kaXZpZHVhbHMsIGJ1dCBhbHNvIG9uIHRoZSBzb2NpYWwgcmVsYXRpb25zIGFuZCBkZXBlbmRlbmNpZXMgYmV0d2VlbiB0aGVtLCBhbmQgaG93IHRoZXkgYWZmZWN0IGVhY2ggb3RoZXIuIEluIG90aGVyIHdvcmRzOiB3ZSBub3Qgb25seSBuZWVkIHRvIGV4YW1pbmUgdGhlIGRvdHMsIGJ1dCBhbHNvIChlc3BlY2lhbGx5ISkgdGhlIGFycm93cyBiZXR3ZWVuIHRoZW0uIFRvIGRhdGUsIHRoZSBzb2NpYWwgZW1iZWRkZWRuZXNzIGFuZCBpbnRlcmRlcGVuZGVuY2Ugb2YgcGVvcGxlIGVuZ2FnZWQgaW4gaW50ZXJncm91cCBjb250YWN0IHJlbWFpbnMgdW5kZXJzdHVkaWVkIChidXQgc2VlIGUuZy4gQnJhY2VnaXJkbGUgZXQgYWwuIDIwMjI7IFfDtmxmZXIgZXQgYWwuLCAyMDE3OyBaaW5nb3JhIGV0IGFsLiAyMDI2KS4NCg0KSW4gYWRkaXRpb24gdG8gc2VsZWN0aW9uIGVmZmVjdHMsIGFub3RoZXIgaW1wb3J0YW50IGZhY3RvciB0byB0YWtlIGludG8gYWNjb3VudCBhcmUgbmV0d29yayBkeW5hbWljcy4gUmVjZW50IHJlc2VhcmNoIHNob3dzIHRoYXQgb3V0Z3JvdXAgYXR0aXR1ZGVzIGFyZSBzaGFwZWQgbm90IG9ubHkgYnkgKmluZGl2aWR1YWwqIGludGVyZ3JvdXAgY29udGFjdCBhbmQgYXR0aXR1ZGVzLCBidXQgYWxzbyBieSBvdGhlciBpbnRlcnZlbmluZyAqbmV0d29yayogcHJvY2Vzc2VzLCBzdWNoIGFzIHNvY2lhbCBpbmZsdWVuY2UgKEJyYWNlZ2lyZGxlIGV0IGFsLiwgMjAyMjsgWmluZ29yYSwgMjAyNTsgWmluZ29yYSBldCBhbC4sIDIwMjYpLiBBbHRob3VnaCBzZWNvbmRhcnkgb3V0Z3JvdXAgYXR0aXR1ZGVzIG1heSBpbmRlZWQgZGVwZW5kIG9uIGluZGl2aWR1YWwgKHByaW1hcnkgb3V0Z3JvdXApIGF0dGl0dWRlcyBvciB0b2xlcmFuY2UsIHRoZXkgbWF5IGFsc28gKHBhcnRseSkgcmVmbGVjdCBzdHJ1Y3R1cmFsIG5ldHdvcmsgZWZmZWN0cyBzdWNoIGFzIG9wcG9ydHVuaXR5IHN0cnVjdHVyZXMsIGV4aXN0aW5nIHJlbGF0aW9ucywgaGF2aW5nIGZyaWVuZHMgaW4gY29tbW9uLCBvciB0aGUgYXR0aXR1ZGVzIG9mIHRob3NlIGZyaWVuZHMuIFRoZSBsYXR0ZXIsIHdoaWNoIGFyZSBiZXR0ZXIga25vd24gYXMgc29jaWFsIGluZmx1ZW5jZSBwcm9jZXNzZXMgKHNlZSBhbHNvIEZsYWNoZSwgMjAxNyksIGhhdmUgdW50aWwgdmVyeSByZWNlbnRseSwgYmVlbiBuZWdsZWN0ZWQgaW4gdGhlIGludGVyZ3JvdXAgY29udGFjdCBhbmQgU1RFIGxpdGVyYXR1cmUuIEFsdGhvdWdoIHRoaXMgaXMgdmVyeSBtdWNoIGFuIGVtZXJnaW5nIGZpZWxkIG9mIHJlc2VhcmNoLCBtdWx0aXBsZSBzdHVkaWVzIGZpbmQgc3VwcG9ydCBmb3IgaW5mbHVlbmNlIHByb2Nlc3NlcyBhbmQgc3VnZ2VzdCB0aGF0IG5ldHdvcmsgZWZmZWN0cyBtaWdodCBhY3R1YWxseSBiZSBtb3JlIHByb21pbmVudCB0aGFuIHNlY29uZGFyeSB0cmFuc2ZlciBvciBhdHRpdHVkZSBnZW5lcmFsaXphdGlvbiAoQnJhY2VnaXJkbGUgZXQgYWwuLCAyMDIyOyBTdGFyaywgMjAxOTsgVHVyZXRza3kgJiBTaGVsdG9uLCAyMDI0OyBaaW5nb3JhIGV0IGFsLiwgMjAyNikuIEFnYWluLCBzb2NpYWwgbmV0d29yayBhbmFseXNpcyBjYW4gdGh1cyBmb3JtIGFuIGltcG9ydGFudCBhZGRpdGlvbiB0byB0aGUgbGl0ZXJhdHVyZSBvbiBzZWNvbmRhcnkgdHJhbnNmZXIgZWZmZWN0cyBvZiBpbnRlcmdyb3VwIGNvbnRhY3QuDQoNCkJhc2VkIG9uIHRoZSBhYm92ZSBsaXRlcmF0dXJlIGFuZCB0aGUgaW1wb3J0YW5jZSBvZiBhbiBhZGRlZCBzb2NpYWwgbmV0d29yayBwZXJzcGVjdGl2ZSwgdGhpcyBwYXBlciB3aWxsIGZvY3VzIG9uIHRoZSBmb2xsb3dpbmcgcmVzZWFyY2ggcXVlc3Rpb24gb24gdGhlIG1hY3JvIGxldmVsOiAqIlRvIHdoYXQgZXh0ZW50IGFyZSBzdHVkZW50cycgc29jaWFsIG5ldHdvcmtzIHNlZ3JlZ2F0ZWQgYmFzZWQgb24gcHJpbWFyeSBvciBzZWNvbmRhcnkgb3V0Z3JvdXAgYXR0aXR1ZGVzPyIqICgqKlJRMSoqKS4gVG8gZnVydGhlciBkaXNlbnRhbmdsZSB0aGlzLCB1c2luZyB0aGUgZ2VuZXJhbCB0aGVvcmV0aWNhbCBmcmFtZXdvcmsgKGNmLiBDb2xlbWFuLCAxOTkwKSwgdGhlIG1pY3JvIGxldmVsIGV4cGxhbmF0b3J5IHJlc2VhcmNoIHF1ZXN0aW9uIGlzOiAqIlRvIHdoYXQgZXh0ZW50IGNhbiBzdHVkZW50cycgc2Vjb25kYXJ5IG91dGdyb3VwIGF0dGl0dWRlcyBiZSBleHBsYWluZWQgYnkgc2VsZWN0aW9uIGFuZCBpbmZsdWVuY2UgZWZmZWN0cz8iICgqKipSUTIpKioqLiogVGhpcyBwYXBlciBvZmZlcnMgYSBuZXcgcGVyc3BlY3RpdmUgb24gU1RFcyBvZiBpbnRlcmdyb3VwIGNvbnRhY3QsIGJ5IGJyaW5naW5nIHRvZ2V0aGVyIGluc2lnaHRzIGZyb20gaW50ZXJncm91cCBjb250YWN0IHRoZW9yeSBhbmQgc29jaWFsIG5ldHdvcmsgYW5hbHlzaXMuDQoNCldoZW4gc3R1ZHlpbmcgdGhlc2Ugb3V0Z3JvdXAgZnJpZW5kc2hpcHMgYW5kIGF0dGl0dWRlcywgc2Nob29scyBhcmUgb2Z0ZW4gdXNlZCBhcyBhbiBlc3BlY2lhbGx5IHdlbGwtc3VpdGVkIHNldHRpbmcgZm9yIHZhcmlvdXMgcmVhc29ucyAoc2VlIFfDtmxmZXIgZXQgYWwuLCAyMDE3OyBaaW5nb3JhLCAyMDI1KS4gRmlyc3QsIGFkb2xlc2NlbnRzJyBhdHRpdHVkZXMgYXJlIHNlZW4gYXMgcmVsYXRpdmVseSBtYWxsZWFibGUgYW5kIHN1c2NlcHRpYmxlIHRvIGNoYW5nZSBmcm9tIHRoZWlyIGZyaWVuZHMgYW5kIHBlZXJzIChCcmVjaHdhbGQgJiBQcmluc3RlaW4sIDIwMTEpLiBTY2hvb2xzIGluIHBhcnRpY3VsYXIgb2Z0ZW4gb2ZmZXIgYSBzZWN1cmUgZW52aXJvbm1lbnQgdGhhdCBzdWNjZXNmdWxseSBpbnRlZ3JhdGUgdGhlIGZhY2lsaXRhdGl2ZSBjb25kaXRpb25zIGZvciByZWR1Y2luZyBpbnRlcmdyb3VwIHByZWp1ZGljZSAoc2VlIEFsbHBvcnQsIDE5NTQ7IFBldHRpZ3JldyAmIFRyb3BwLCAyMDA2KS4gRnVydGhlcm1vcmUsIHRoZSBwb3NpdGl2ZSBlZmZlY3RzIG9mIGludGVyZ3JvdXAgY29udGFjdCBpbiBzY2hvb2xzIHNlZW0gdG8gc3BpbGwgb3ZlciBpbnRvIG90aGVyIGNvbnRleHRzIG91dHNpZGUgdGhlIHNjaG9vbCBlbnZpcm9ubWVudCAoS2FyYXRhxZ8gZXQgYWwuLCAyMDIzKSwgZnVydGhlciBoaWdobGlnaHRpbmcgdGhlIGltcG9ydGFuY2Ugb2Ygc3R1ZHlpbmcgaW50ZXJncm91cCBjb250YWN0IGFuZCBhdHRpdHVkZXMgYW1vbmcgc3R1ZGVudHMuIEluIHRoaXMgcGFwZXIsIEkgd2lsbCB0aGVyZWZvcmUgZm9jdXMgb24gc3R1ZGVudHMgaW4gdGhlIGZpcnN0IHllYXJzIG9mIHNlY29uZGFyeSBlZHVjYXRpb24gaW4gTmlqbWVnZW4sIHRoZSBOZXRoZXJsYW5kcywgdXNpbmcgVE5TUyBuZXR3b3JrIGRhdGEgKFRvbHNtYSAmIFBvcCwgMjAxMCkuIFRoZSBwcmltYXJ5IGFuZCBzZWNvbmRhcnkgb3V0Z3JvdXBzIGluIHRoaXMgc3R1ZHkgYXJlIGJhc2VkIG9uIGdlbmRlciBhbmQgZXRobmljaXR5LCByZXNwZWN0aXZlbHkuDQoNCjxicj4NCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMgUmVmZXJlbmNlcw0KDQo8YnI+DQoNCkFsbHBvcnQsIEcuIFcuICgxOTU0KS4gKlRoZSBOYXR1cmUgb2YgUHJlanVkaWNlLiogQWRkaXNvbi1XZXNsZXkuDQoNCkJyYWNlZ2lyZGxlLCBDLiwgUmVpbWVyLCBOLiBLLiwgVmFuIFphbGssIE0uLCBIZXdzdG9uZSwgTS4sICYgV8O2bGZlciwgUi4gKDIwMjEpLiBEaXNlbnRhbmdsaW5nIGNvbnRhY3QgYW5kIHNvY2lhbGl6YXRpb24gZWZmZWN0cyBvbiBvdXRncm91cCBhdHRpdHVkZXMgaW4gZGl2ZXJzZSBmcmllbmRzaGlwIG5ldHdvcmtzLiAqSm91cm5hbCBvZiBQZXJzb25hbGl0eSBhbmQgU29jaWFsIFBzeWNob2xvZ3kqLCAqMTIyKigxKSwgMeKAkzE1LiA8aHR0cHM6Ly9kb2kub3JnLzEwLjEwMzcvcHNwYTAwMDAyNDA+DQoNCkJyYWNlZ2lyZGxlLCBDLiwgWmluZ29yYSwgVC4sICYgU3BpZWdsZXIsIE8uICgyMDI2KS4gRnJvbSBtYXRlIHRvIGhhdGU/IFByZWp1ZGljZSBzb2NpYWxpemF0aW9uIGluIGZyaWVuZHNoaXAgbmV0d29ya3MuICpBbWVyaWNhbiBQc3ljaG9sb2dpc3QqLiA8aHR0cHM6Ly9kb2kub3JnLzEwLjEwMzcvYW1wMDAwMTY2Mj4NCg0KQnJlY2h3YWxkLCBXLiBBLiwgJiBQcmluc3RlaW4sIE0uIEouICgyMDExKS4gQmV5b25kIGhvbW9waGlseTogQSBkZWNhZGUgb2YgYWR2YW5jZXMgaW4gdW5kZXJzdGFuZGluZyBwZWVyIGluZmx1ZW5jZSBwcm9jZXNzZXMuICpKb3VybmFsIG9mIFJlc2VhcmNoIG9uIEFkb2xlc2NlbmNlLCAyMSooMSksIDE2NuKAkzE3OS4gW2h0dHBzOi8vZG9pLm9yZy8xMC4xMTExL2ouMTUzMi03Nzk1LjIwMTAuMDA3MjEueF0oaHR0cHM6Ly9wc3ljbmV0LmFwYS5vcmcvZG9pLzEwLjExMTEvai4xNTMyLTc3OTUuMjAxMC4wMDcyMS54KQ0KDQpCcm93biwgUi4sICYgSGV3c3RvbmUsIE0uICgyMDA1KS4gQW4gaW50ZWdyYXRpdmUgdGhlb3J5IG9mIGludGVyZ3JvdXAgY29udGFjdC4gSW4gKkFkdmFuY2VzIGluIGV4cGVyaW1lbnRhbCBzb2NpYWwgcHN5Y2hvbG9neSogKHBwLiAyNTXigJMzNDMpLiBbaHR0cHM6Ly9kb2kub3JnLzEwLjEwMTYvczAwNjUtMjYwMSgwNSkzNzAwNS01XShodHRwczovL2RvaS5vcmcvMTAuMTAxNi9zMDA2NS0yNjAxKDA1KTM3MDA1LTUpDQoNCkNvbGVtYW4sIEouIFMuICgxOTkwKS4gKkZvdW5kYXRpb25zIG9mIFNvY2lhbCBUaGVvcnkqLiBIYXJ2YXJkIFVuaXZlcnNpdHkgUHJlc3MuDQoNCkZsYWNoZSwgQS4sIE3DpHMsIE0uLCBGZWxpY2lhbmksIFQuLCBDaGF0dG9lLUJyb3duLCBFLiwgRGVmZnVhbnQsIEcuLCBIdWV0LCBTLiwgJiBMb3JlbnosIEouICgyMDE3KS4gTW9kZWxzIG9mIHNvY2lhbCBpbmZsdWVuY2U6IFRvd2FyZHMgdGhlIG5leHQgZnJvbnRpZXJzLiAqSm91cm5hbCBvZiBBcnRpZmljaWFsIFNvY2lldGllcyBhbmQgU29jaWFsIFNpbXVsYXRpb24sIDIwKig0KSwgQXJ0aWNsZSAyLiA8aHR0cHM6Ly9kb2kub3JnLzEwLjE4NTY0L2phc3NzLjM1MjE+DQoNCkthcmF0YcWfLCBTLiwgRWNrc3RlaW4sIEsuLCBOb2FjaywgUC4sIFJ1YmluaSwgTS4sICYgQ3JvY2V0dGksIEUuICgyMDIzKS4gUG9zaXRpdmUgYW5kIG5lZ2F0aXZlIGludGVyZ3JvdXAgY29udGFjdCBpbiBzY2hvb2wgYW5kIG91dOKAkG9m4oCQc2Nob29sIGNvbnRleHRzOiBBIGxvbmdpdHVkaW5hbCBhcHByb2FjaCB0byBzcGlsbG92ZXIgZWZmZWN0cy4gKkpvdXJuYWwgb2YgUmVzZWFyY2ggb24gQWRvbGVzY2VuY2UqLCAqMzMqKDQpLCAxMzM14oCTMTM0OS4gPGh0dHBzOi8vZG9pLm9yZy8xMC4xMTExL2pvcmEuMTI4ODE+DQoNClBldHRpZ3JldywgVC4gRi4gKDIwMDkpLiBTZWNvbmRhcnkgdHJhbnNmZXIgZWZmZWN0IG9mIGNvbnRhY3QuICpTb2NpYWwgUHN5Y2hvbG9neSosICo0MCooMiksIDU14oCTNjUuIDxodHRwczovL2RvaS5vcmcvMTAuMTAyNy8xODY0LTkzMzUuNDAuMi41NT4NCg0KUGV0dGlncmV3LCBULiBGLiwgJiBUcm9wcCwgTC4gUi4gKDIwMDYpLiBBIG1ldGEtYW5hbHl0aWMgdGVzdCBvZiBpbnRlcmdyb3VwIGNvbnRhY3QgdGhlb3J5LiAqSm91cm5hbCBvZiBwZXJzb25hbGl0eSBhbmQgc29jaWFsIHBzeWNob2xvZ3kqLCAqOTAqKDUpLCA3NTHigJM3ODMuIDxodHRwczovL2RvaS5vcmcvMTAuMTAzNy8wMDIyLTM1MTQuOTAuNS43NTE+DQoNClRhdXNjaCwgTi4sIEhld3N0b25lLCBNLiwgS2Vud29ydGh5LCBKLiBCLiwgUHNhbHRpcywgQy4sIFNjaG1pZCwgSy4sIFBvcGFuLCBKLiBSLiwgQ2Fpcm5zLCBFLiwgJiBIdWdoZXMsIEouICgyMDEwKS4gU2Vjb25kYXJ5IHRyYW5zZmVyIGVmZmVjdHMgb2YgaW50ZXJncm91cCBjb250YWN0OiBBbHRlcm5hdGl2ZSBhY2NvdW50cyBhbmQgdW5kZXJseWluZyBwcm9jZXNzZXMuICpKb3VybmFsIG9mIFBlcnNvbmFsaXR5IGFuZCBTb2NpYWwgUHN5Y2hvbG9neSosICo5OSooMiksIDI4MuKAkzMwMi4gPGh0dHBzOi8vZG9pLm9yZy8xMC4xMDM3L2EwMDE4NTUzPg0KDQpUb2xzbWEsIEouLCAmIEhvZnN0cmEsIEIuICgyMDI0KS4gKlNvY2lhbCBOZXR3b3JrIEFuYWx5c2lzIGZvciBTb2NpYWwgU2NpZW50aXN0cyouIDxodHRwczovL3NuYXNzLm5ldGxpZnkuYXBwLz4NCg0KVG9sc21hLCBKLiwgJiBQb3AsIEkuICgyMDEwKS4gKlRoZSBOaWptZWdlbiBTY2hvb2wgU3R1ZHkgV2F2ZSAyMDEwKi4gUmFkYm91ZCBVbml2ZXJzaXR5LiA8aHR0cHM6Ly9zc2guZGF0YXN0YXRpb25zLm5sL2RhdGFzZXQueGh0bWw/cGVyc2lzdGVudElkPWRvaToxMC4xNzAyNi9EQU5TLVpXQy1EVUNSPg0KDQpXw7ZsZmVyLCBSLiwgSmFzcGVycywgRS4sIEJsYXlsb2NrLCBELiwgV2lnb2RlciwgQy4sIEh1Z2hlcywgSi4sICYgSGV3c3RvbmUsIE0uICgyMDE3KS4gU3R1ZHlpbmcgcG9zaXRpdmUgYW5kIG5lZ2F0aXZlIGRpcmVjdCBhbmQgZXh0ZW5kZWQgY29udGFjdDogQ29tcGxlbWVudGluZyBzZWxmLXJlcG9ydHMgd2l0aCBzb2NpYWwgbmV0d29yayBhbmFseXNpcy4gKlBlcnNvbmFsaXR5IGFuZCBTb2NpYWwgUHN5Y2hvbG9neSBCdWxsZXRpbiosICo0MyooMTEpLCAxNTY24oCTMTU4MS4gPGh0dHBzOi8vZG9pLm9yZy8xMC4xMTc3LzAxNDYxNjcyMTc3MTk3MzI+DQoNClppbmdvcmEsIFQuICgyMDI1KS4gT24gdGhlIHNwdXJpb3VzIGVmZmVjdCBvZiBpbnRlcmdyb3VwIGZyaWVuZHNoaXAgb24gb3V0Z3JvdXAgYXR0aXR1ZGVzIGluIHNjaG9vbHM6IFRoZSByb2xlIG9mIHNvY2lhbCBpbmZsdWVuY2UgYW5kIHRoZSBwb3NpdGl2ZSBpbXBhY3Qgb2YgZXhwb3N1cmUgdG8gb3V0Z3JvdXAgcGVlcnMuICpCcml0aXNoIEpvdXJuYWwgb2YgU29jaWFsIFBzeWNob2xvZ3kqLCAqNjQqKDIpLCBlMTI3OTcuIDxodHRwczovL2RvaS5vcmcvMTAuMTExMS9ianNvLjEyNzk3Pg0KDQpaaW5nb3JhLCBULiwgQnJhY2VnaXJkbGUsIEMuLCBTdGFyaywgVC4gSC4sICYgU3BpZWdsZXIsIE8uICgyMDI2KS4gT3V0Z3JvdXAgZnJpZW5kc2hpcHMgYW5kIHNvY2lhbCBpbmZsdWVuY2UgaW4gdGhlIGRldmVsb3BtZW50IG9mIGFkb2xlc2NlbnQgYXR0aXR1ZGVzIHRvd2FyZCBzZWNvbmRhcnkgb3V0Z3JvdXBzLiAqSm91cm5hbCBvZiBQZXJzb25hbGl0eSBhbmQgU29jaWFsIFBzeWNob2xvZ3kqLCAqMTMxKigzKSwgNDQ04oCTNDYyLiA8aHR0cHM6Ly9kb2kub3JnLzEwLjEwMzcvcHNwaTAwMDA1MzA+DQo=</div>
 
 
 </div>

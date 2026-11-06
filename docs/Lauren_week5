@@ -1,0 +1,282 @@
+---
+title: "Lab journal social networks"
+author: "Lauren Dirix"
+bibliography: references.bib
+---
+
+# Preparation before class
+```{r}
+rm(list = ls())
+
+library("network")
+library("sna")
+
+load("./data/IndividualCharacteristics.RData")
+load("./data/NetworkCharacteristics.RData")
+load("./data/CivicAttitudes.RData")
+
+# view(hanging[[1]])
+hanging_df_t1 <- as.data.frame(hanging[[1]][1])
+class(hanging_df_t1)
+# view(hanging_df_t1)
+strong_netw_t1 <- data.matrix(hanging_df_t1)
+strong_netw_t1[strong_netw_t1==9]<-NA
+class(strong_netw_t1)
+# view(strong_netw_t1)
+
+hanging_df_t2 <- as.data.frame(hanging[[1]][2])
+class(hanging_df_t2)
+# view(hanging_df_t2)
+strong_netw_t2 <- data.matrix(hanging_df_t2)
+strong_netw_t2[strong_netw_t2==9]<-NA
+class(strong_netw_t2)
+# view(strong_netw_t2)
+```
+
+<br>
+
+## Descriptive statistics
+### Density
+```{r}
+# Wave 1
+netw1 <- as.network(strong_netw_t1)
+network.density(netw1)
+# 0.02720386
+
+# Wave 2
+netw2 <- as.network(strong_netw_t2)
+network.density(netw2)
+# 0.01859504
+```
+### Reciprocity
+```{r}
+#Wave 1
+hangingw1_nona <- na_if(hanging[[1]][[1]], 9)
+rowhangingw1 <- rowSums(is.na(hangingw1_nona)) == nrow(hangingw1_nona)
+colhangingw1 <- colSums(is.na(hangingw1_nona)) == ncol(hangingw1_nona)
+hangingw1_nona[which(rowhangingw1) , ] <- 0
+
+g_strong_t1 <- igraph:: graph_from_adjacency_matrix(hangingw1_nona, mode = "directed")
+
+reciprocity(g_strong_t1, ignore.loops = TRUE, mode = c("default", "ratio"))
+# 0.4708861
+
+# Wave 2
+hangingw2_nona <- na_if(hanging[[1]][[2]], 9)
+rowhangingw2 <- rowSums(is.na(hangingw2_nona)) == nrow(hangingw2_nona)
+colhangingw2 <- colSums(is.na(hangingw2_nona)) == ncol(hangingw2_nona)
+hangingw2_nona[which(rowhangingw2) , ] <- 0
+
+g_strong_t2 <- igraph:: graph_from_adjacency_matrix(hangingw2_nona, mode = "directed")
+
+reciprocity(g_strong_t2, ignore.loops = TRUE, mode = c("default", "ratio"))
+# 0.4444444
+```
+
+### Dyad configurations
+```{r}
+# Wave 1
+dyad_census(g_strong_t1)
+# Mutual ties: 93
+# Asymmetrical ties: 209
+# No tie: 6958
+
+# Wave 2
+dyad_census(g_strong_t2)
+# Mutual ties: 60
+# Asymmetrical ties: 150
+# No tie: 7050
+```
+### Triad configurations
+```{r}
+# Wave 1
+triad_census(g_strong_t1)
+# 003 = 253808
+# 012 = 22549
+# 102 = 10101
+# 021D = 235
+# 021U = 243
+# 021C = 219
+# 111D = 247
+# 111U = 254
+# 030T = 61
+# 030C = 2
+# 201 = 80
+# 120D = 40
+# 120U = 54
+# 120C = 2
+# 210 = 46
+# 300 = 39
+
+# Wave 2
+triad_census(g_strong_t2)
+# 003 = 263853
+# 012 = 16659
+# 102 = 6713
+# 021D = 133
+# 021U = 125
+# 021C = 123
+# 111D = 88
+# 111U = 132
+# 030T = 30
+# 030C = 0
+# 201 = 46
+# 120D = 9
+# 120U = 39
+# 120C = 2
+# 210 = 19
+# 300 = 9
+```
+### Transitivity
+```{r}
+# Wave 1
+transitivity(g_strong_t1)
+# 0.3641791
+
+# Wave 2
+transitivity(g_strong_t2)
+# 0.3336766
+```
+### Path length
+```{r}
+# Wave 1
+mean((ego_size(g_strong_t1, order = 2, mode = "out") - 1)/vcount(g_strong_t1))
+# 0.07820504
+
+# Wave 2
+mean((ego_size(g_strong_t2, order = 2, mode = "out") - 1)/vcount(g_strong_t2))
+# 0.0458302
+```
+
+# Trying on my own (with Paula)
+## Create civic engagement attitudes
+### Wave 1
+#### Factor analysis
+```{r}
+IC_df <- as.data.frame(T1civeng[[1]])
+view(IC_df)
+
+# Sample size = 121 (has to be > 300)
+psych::KMO(IC_df) 
+# KMO = .77 (has to be > .5)
+det(cor(IC_df, use = "complete.obs")) 
+# Determinant = 0.1928592 (> 0.00001)
+rcor.test(IC_df, use = "complete.obs")
+# Only positive correlations (as it should be)
+
+corrplot(cor(IC_df, use="complete.obs"), tl.col='black', tl.cex=.75) 
+
+Factors_w1 <- fa(IC_df, nfactors = 4, rotate = "none", fm = "minres")
+Factors_w1
+```
+
+#### Reliability analysis
+```{r}
+reliability <- psych::alpha(IC_df[, c("T1CIVICENG1","T1CIVICENG2","T1CIVICENG3","T1CIVICENG4")])
+reliability
+# Raw alpha = 0.8096448
+# All r.drop are > .3
+
+reliability$alpha.drop 
+# Removing T1CIVICENG4 results in a small increase of the Cronbach's alpha (0.82 instead of 0.81)
+```
+
+#### Make scale
+```{r}
+IC_df$missings <- rowSums(is.na(IC_df))
+
+IC_df$ce_t1 <- ifelse(IC_df$missings <= 1, rowMeans(IC_df[,1:4]), NA)
+
+# View(IC_df)
+```
+
+<br>
+
+## Wave 2
+### Factor analysis
+```{r}
+IC_df2 <- as.data.frame(T2civeng[[1]])
+#View(IC_df2)
+
+# Sample size = 121 (has to be > 300)
+psych::KMO(IC_df2) 
+# KMO = .81 (has to be > .5)
+det(cor(IC_df2, use = "complete.obs")) 
+# Determinant = 0.08336661 (> 0.00001)
+rcor.test(IC_df2, use = "complete.obs")
+# Only positive correlations (as it should be)
+
+corrplot(cor(IC_df2, use="complete.obs"), tl.col='black', tl.cex=.75) 
+
+Factors_w2 <- fa(IC_df2, nfactors = 4, rotate = "none", fm = "minres")
+Factors_w2
+```
+
+#### Reliability analysis
+```{r}
+reliability2 <- psych::alpha(IC_df2[, c("T2CIVICENG1","T2CIVICENG2","T2CIVICENG3","T2CIVICENG4")])
+reliability2
+# Raw alpha = 0.8848902
+# All r.drop are > .3
+
+reliability2$alpha.drop 
+# Removing T1CIVICENG4 results in a small increase of the Cronbach's alpha (0.88 instead of 0.90)
+```
+
+#### Make scale
+```{r}
+IC_df2$missings <- rowSums(is.na(IC_df2))
+
+IC_df2$ce_t2 <- ifelse(IC_df2$missings <= 1, rowMeans(IC_df2[,1:4]), NA)
+
+# View(IC_df2)
+```
+
+<br>
+
+## Data prep for RSiena
+### Behavioural data in matrix
+```{r}
+IC_df <- IC_df %>% 
+  rownames_to_column(var = "id") 
+
+IC_df2 <- IC_df2 %>% 
+  rownames_to_column(var = "id") 
+
+IC_df <- left_join(IC_df, IC_df2, by=c("id"))
+
+behy <- IC_df %>% 
+  dplyr::select("ce_t1", "ce_t2") %>% 
+  as.matrix()
+```
+
+### Make RSiena object
+```{r}
+behy <- sienaDependent(behy, type = c("behavior"))
+
+nety <- sienaDependent(array(data= c(strong_netw_t1, strong_netw_t2), dim=c(dim(strong_netw_t1),2)))
+
+# Into one (RSiena) data frame
+mydata <- sienaDataCreate(behy, nety)
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "test")
+print01Report(mydata, modelname = "./results/test")
+```
+
+### Simple model
+```{r}
+myeff <- getEffects(mydata)
+ans <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+```
+
+### Changing the effects/ statistics
+```{r}
+myeff <- includeEffects(myeff, avAlt, name = "behy", interaction1="nety") # You use nety to predict behy
+
+ans <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+
+ans
+```
+
+
+

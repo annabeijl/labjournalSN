@@ -1,0 +1,340 @@
+---
+title: "Lab journal social networks"
+author: "Lauren Dirix"
+bibliography: references.bib
+---
+
+# Preparation before class
+
+```{r, include=FALSE, message = FALSE}
+library(knitr)
+library(styler)
+library(tidyverse)
+library(installr)
+library(foreign)
+library(network)
+library(RSiena)
+library(RsienaTwoStep)
+library(igraph)
+library(devtools)
+```
+
+## Data preparation for RSiena
+
+Load data
+
+```{r}
+rm(list = ls())
+load("./data/IndividualCharacteristics.RData")
+load("./data/NetworkCharacteristics.RData")
+load("./data/CivicAttitudes.RData")
+```
+
+<br>
+
+Create network matrices
+
+```{r}
+# view(hanging[[1]])
+hanging_df_t1 <- as.data.frame(hanging[[1]][1])
+class(hanging_df_t1)
+# view(hanging_df_t1)
+strong_netw_t1 <- data.matrix(hanging_df_t1)
+strong_netw_t1[strong_netw_t1==9]<-NA
+class(strong_netw_t1)
+# view(strong_netw_t1)
+
+hanging_df_t2 <- as.data.frame(hanging[[1]][2])
+class(hanging_df_t2)
+# view(hanging_df_t2)
+strong_netw_t2 <- data.matrix(hanging_df_t2)
+strong_netw_t2[strong_netw_t2==9]<-NA
+class(strong_netw_t2)
+# view(strong_netw_t2)
+```
+
+<br>
+
+Make civic attitudes scale
+
+```{r}
+#Wave 1
+IC_df <- as.data.frame(T1civeng[[1]])
+IC_df$missings <- rowSums(is.na(IC_df))
+IC_df$ce_t1 <- ifelse(IC_df$missings <= 1, rowMeans(IC_df[,1:4]), NA)
+
+#Wave 2
+IC_df2 <- as.data.frame(T2civeng[[1]])
+IC_df2$missings <- rowSums(is.na(IC_df2))
+IC_df2$ce_t2 <- ifelse(IC_df2$missings <= 1, rowMeans(IC_df2[,1:4]), NA)
+```
+
+<br>
+
+Putting the behavioural data in a matrix
+
+```{r}
+IC_df <- IC_df %>% 
+  rownames_to_column(var = "id") 
+
+IC_df2 <- IC_df2 %>% 
+  rownames_to_column(var = "id") 
+
+IC_df <- left_join(IC_df, IC_df2, by=c("id"))
+
+behy <- IC_df %>% 
+  dplyr::select("ce_t1", "ce_t2") %>% 
+  as.matrix()
+```
+
+<br>
+
+Creating an RSiena data frame
+
+```{r}
+behy <- sienaDependent(behy, type = c("behavior"))
+nety <- sienaDependent(array(data= c(strong_netw_t1, strong_netw_t2), dim=c(dim(strong_netw_t1),2)))
+
+mydata <- sienaDataCreate(behy, nety)
+```
+
+<br>
+
+## Simplest model of RSiena
+
+Run a model with no effects
+
+```{r, eval=FALSE}
+myAlgorithm <- sienaAlgorithmCreate(projname = "test")
+myeff <- getEffects(mydata)
+simple_model <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+```
+
+```{r, include = FALSE}
+# saveRDS(simple_model, "simple_model.rds")
+simple_model <- readRDS("simple_model.rds")
+```
+
+```{r}
+simple_model
+```
+
+<br>
+
+### Interpretation
+
+- Rate basic rate parameter nety:
+
+  - **Question:** How do you intepret this?
+
+- Eval outdegree (density):
+
+  - Indicates how dense the network is.
+
+  - In this case: A negative value, meaning that the chance of observing a tie is lower than the chance of not forming a tie
+
+  - Nodes, in general, form relatively few ties (**question:** Relative to whom?)
+
+- Eval reciprocity:
+
+  - Indicated how often a tie that is formed is reciprocated
+
+  - In this case: A positive value, meaning that the chance of observing a reciprocated tie is higher than the chance of not forming a reciprocated tie
+
+  - Nodes, in general, prefer to form/ maintain ties to create a reciprocated relation, than start a relationship with a new person
+
+- Rate rate behy period 1:
+
+  - **Question:** How do you interpret this?
+
+- Eval behy linear shape:
+
+  - About how nodes who differ from the mean tend to change their behaviour (in this case assumed to be linear) **(Question?**)
+
+- Eval behy quadratic shape:
+
+  - About how nodes who differ from the mean tend to change their behaviour (in this case assumed to be quadratic) (**Question?**)
+
+<br>
+
+## Adding effects
+
+Expected homophily effect of gender
+
+```{r}
+# Create gender variable
+gender1 <- gender[[1]][,1]
+gender2 <- gender[[1]][,2]
+gender <- coalesce(gender1, gender2)
+head(gender)
+
+# Add gender as constant covariate
+gender_covar <- coCovar(gender)
+mydata_1 <- sienaDataCreate(nety, gender_covar, behy)
+myeff_1 <- getEffects(mydata_1)
+
+myeff_1 <- includeEffects(myeff_1, simX, interaction1 = "gender_covar")
+```
+
+Add effects for selection and influence for civic attitudes
+
+```{r}
+# General effects
+myeff_1 <- includeEffects(myeff_1, egoX, altX, simX, interaction1 = "behy")
+
+# Adding influence effects for indegree, outdegree and assimilation
+myeff_1 <- includeEffects(myeff_1, name = "behy", avAlt, indeg, outdeg, interaction1 = "nety")
+
+# Set algorithm
+myCoEvAlgorithm <- sienaAlgorithmCreate(projname = "test")
+```
+
+Running the model
+
+```{r, eval=FALSE}
+model_week7 <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_1)
+```
+
+```{r, include = FALSE}
+# saveRDS(model_week7, "model_week7.rds")
+model_week7 <- readRDS("model_week7.rds")
+```
+
+```{r}
+model_week7
+
+# All convergence t-ratio should be <.1 --> is met
+# Overall max convergence ratio should be <.25 --> is met (ratio = 0.1670)
+```
+
+<br>
+
+### Interpretation
+
+Network dynamics:
+
+- Rate basic rate parameter nety:
+
+  - **Question:** How do you intepret this?
+
+- Eval outdegree (density):
+
+  - Indicates how dense the network is.
+
+  - In this case: A negative value, meaning that the chance of observing a tie is lower than the chance of not forming a tie
+
+  - Nodes, in general, form relatively few ties (**question:** Relative to whom?)
+
+- Eval reciprocity:
+
+  - Indicated how often a tie that is formed is reciprocated
+
+  - In this case: A positive value, meaning that the chance of observing a reciprocated tie is higher than the chance of not forming a reciprocated tie
+
+  - Nodes, in general, prefer to form/ maintain ties to create a reciprocated relation, than start a relationship with a new person
+
+- Eval gender_covar similarity:
+
+  - How similar are connected ties with regards to the covar (in this case gender)
+
+  - In this case: A positive value, meaning that it is more likely that *i* makes a tie with *j* compared to with *h* if *j* has the same gender as *i* (and *h* hasn't)
+
+- Eval behy alter
+
+  - About network homophily
+
+  - Sender homophily --\> Does *i* prefer to send ties to someone similar to themselves
+
+  - In this case: Negative value --\> *i* prefers to send a tie to alter *j* over alter *h*, where *j* has dissimilar preferences
+
+- Eval behy ego
+
+  - About network homophily
+
+  - Receiver homophily --\> Does *i* get more ties from people with similar attitudes?
+
+  - In this case: Negative value --\> *i* is more likely to get a tie from *j* than from *h*, where *j* has dissimilar preferences
+
+- Eval behy similarity
+
+  - About network homophily
+
+<br>
+
+Behaviour dynamics:
+
+- Rate rate behy period 1:
+
+  - **Question:** How do you interpret this?
+
+- Eval behy linear shape:
+
+  - About how nodes who differ from the mean tend to change their behaviour (in this case assumed to be linear) (**Question?**)
+
+- Eval behy quadratic shape:
+
+  - About how nodes who differ from the mean tend to change their behaviour (in this case assumed to be quadratic) (**Question?**)
+
+  - The attractiveness of further steps u the behaviour ladder (this is the mountain I think), depends on where the actor is on the ladder
+
+- Eval behy indegree:
+
+  - Indegree tie is more likely when you have similar civic attitudes (positive value)
+
+- Eval behy outdegree:
+
+  - Outdegree tie is less likely when you have similar civic attitudes (negative value)
+
+- Eval behy average alter:
+
+  - About influence effects
+
+  - Average alter effect --\> *i* behaviour multiplied by the average behaviour of their alters
+
+  - In this case: A negative value --\> being friends with people with positive civic attitude scores, makes you more negative (?? huh?)
+  
+  - But it is not significant, so no effect
+
+
+```{r}
+# test_parameter(model_week7, tested = 1)
+```
+
+# In class
+## Changing effects in model
+```{r}
+gender_covar <- coCovar(gender)
+mydata_1 <- sienaDataCreate(nety, gender_covar, behy)
+myeff_2 <- getEffects(mydata_1)
+
+myeff_2 <- includeEffects(myeff_2, absDiffX, interaction1 = "gender_covar")
+
+# General effects
+myeff_2 <- includeEffects(myeff_1, egoX, altX, absDiffX, interaction1 = "behy")
+
+# Adding influence effects for indegree, outdegree and assimilation
+myeff_2 <- includeEffects(myeff_2, name = "behy", avAlt, indeg, outdeg, interaction1 = "nety")
+
+# Set algorithm
+myCoEvAlgorithm <- sienaAlgorithmCreate(projname = "test")
+```
+
+Running the model
+
+```{r, eval=FALSE}
+model_week7_2 <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_2)
+```
+
+```{r, include = FALSE}
+saveRDS(model_week7_2, "model_week7_2.rds")
+model_week7_2 <- readRDS("model_week7_2.rds")
+```
+
+```{r}
+model_week7_2
+
+# All convergence t-ratio should be <.1 --> is not met (eval behy sim = 0.2001 &  eval behy abs. difference = 0.1971)
+# Overall max convergence ratio should be <.25 --> is not met (ratio = 2.4452)
+```
+
+Okay so now the convergence is really bad, we should fix that probably. 

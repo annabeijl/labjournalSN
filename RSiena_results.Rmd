@@ -1,0 +1,563 @@
+---
+title: "***Results***"
+author: "Anna Beijl"
+date: "8 October 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+<br>
+
+# RSiena results
+
+<br>
+
+In this chapter, I analyze and describe the results of my RSiena analyses. Below, you can find the models and my interpretations, as well as the corresponding R code.
+
+<br>
+
+## *Preparing the data for RSiena*
+
+First, I construct my dependent variables and covariates, and prepare them for RSiena analysis by converting them to the right data objects.
+
+```{r}
+# DEPENDENT VARIABLES -------------------------------------------------------------
+# DV: NETWORK
+library(haven)
+tnss_net <- read_sav("./data/TNSS_wave_2010_mentors.sav")
+tnss_pup10 <- read_sav("./data/TNSS_wave_2010_pupils.sav")
+tnss_pup11 <- read_sav("./data/TNSS_wave_2011_pupils.sav")
+library(dplyr)
+library(tidyverse)
+tnss <- left_join(tnss_net, tnss_pup10)
+# view(tnss)
+
+tnss_pup10 <- tnss_pup10 %>% 
+  rownames_to_column(var = "id") 
+
+tnss_pup11 <- tnss_pup11 %>% 
+  rownames_to_column(var = "id") 
+
+tnss_2waves <- left_join(tnss_pup10, tnss_pup11, by=c("id"))
+# view(tnss_2waves)
+tnss_2waves_c5 <- tnss_2waves %>%
+  filter(IDClass == 5)
+view(tnss_2waves_c5)
+
+c5 <- tnss %>% 
+  filter(IDClass == 5)
+
+c5_net <- c5 %>%
+  select(fr_1:fr_28)
+
+net <- as.matrix(c5_net)
+sum(diag(net) != 0)
+
+view(c5_net)
+length(c5_net)
+
+net2 <- net
+
+net2[1,2] <- 1
+
+library(RSiena)
+nety <- sienaDependent(array(data = c(net, net2), dim = c(dim(net), 2)), allowOnly = FALSE)
+
+# DV: BEHAVIOR (ETHNIC MINORITY ATTITUDES)
+
+id <- c5 %>% 
+  dplyr::select("IDresp")
+
+behy_pre <- tnss_2waves %>% 
+  filter(IDresp.x %in% c5$IDresp) %>% 
+  dplyr::select("IDresp.x", "thermo_minority", "thermo_minority_2") %>% 
+  as.matrix() %>% 
+  data.frame
+
+id <- left_join(id, behy_pre, by=join_by(IDresp == IDresp.x) )
+
+behy <- id %>% dplyr::select("thermo_minority", "thermo_minority_2") %>% 
+  as.matrix()
+behy
+
+behy <- sienaDependent(behy, type = c("behavior"))
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "net", cond = F)
+```
+
+```{r}
+# COVARIATES ------------------------------------------------------------------
+#view(tnss_pup10)
+
+# gender
+class(c5$gender)
+gender <- as.numeric(c5$gender)
+class(gender)
+gender <- as.vector(gender) # 1 = woman
+gender_covar <- coCovar(gender) # = constant covariate
+class(gender_covar)
+
+# ethnicity
+class(c5$ethnicity)
+ethnic <- as.vector(ifelse(c5$ethnicity == 1, 0, 1)) # recode so that 1 = migration background, 0 = Dutch
+ethnic_covar <- coCovar(ethnic)
+class(ethnic_covar)
+
+# thermometer girls
+class(c5$thermo_vrouwen)
+thermo_women <- as.vector(c5$thermo_vrouwen)
+thermow_covar <- coCovar(thermo_women) # would make sense to use this as a changing covariate, but I only have 2 waves, which is not enough input for a varCovar
+class(thermow_covar)
+
+# number of ethnic minority friends
+class(c5$minority_friends)
+emfriends <- as.vector(c5$minority_friends)
+emfriends_covar <- coCovar(emfriends) # same note about varCovar goes here
+class(emfriends_covar)
+
+# dyadic covariates
+# GENDER
+# matrix was made based on tnss data frame, manually coded as 1 when gender of ego =/= gender of alter. matrix thus represents out-group friendships based on gender
+require(readxl)
+gender_dyads <- readxl::read_excel("./data/dyads_matrix.xlsx", col_names = F, sheet = 1)
+View(gender_dyads)
+class(gender_dyads)
+gender_dyads <- as.matrix(gender_dyads)
+
+covar_gender_dyads <- as_covariate_rsiena(gender_dyads, centered = FALSE, type = "oneMode")
+class(covar_gender_dyads)
+
+# ETHNICITY
+# matrix was made based on tnss data frame, manually coded as 1 when ethnicity of ego =/= ethnicity of alter. matrix thus represents out-group friendships
+ethnic_dyads <- readxl::read_excel("./data/dyads_matrix.xlsx", col_names = F, sheet = 2)
+View(ethnic_dyads)
+class(ethnic_dyads)
+ethnic_dyads <- as.matrix(ethnic_dyads)
+
+covar_ethnic_dyads <- as_covariate_rsiena(ethnic_dyads, centered = FALSE, type = "oneMode")
+class(covar_ethnic_dyads)
+```
+
+<br>
+
+## *Specify effects and estimate models*
+
+After the data is prepared, I can start estimating my Siena models. First, I tried estimating a model that contained both network and behavioral effects, but I encountered serious convergence issues. I therefore decided to split my analyses between both dependent variables; starting with a model that contains only network effects, then looking at the behavioral effects separately, and ultimately trying to combine them into one model again. Unfortunately, such a model failed to converge repeatedly, which means I can only report and interpret the estimates from the two separate models.
+
+<br>
+
+### **Network-only model**
+
+For the network-only model, I started with an empty model and gradually built up to include all my effects of interest (see also 'Model specifications' in the *Data* chapter). All of these models converged, that is, the overall maximum convergence ratio remained under the 0.25 threshold and convergence of individual convergence t-ratio of parameters were under 0.1 (though the fixed rate parameter forms an exception to this). Convergence means that the estimates are reliable and can safely be interpreted.
+
+In the final network model, there were repeatedly significant effects of reciprocity, transitivity, and indegree popularity. Reciprocity and transitivity had positive estimates (respectively *b* = 2.96, *p* \< .001; *b* = 0.50, *p* \< .001), meaning that students like (i.e. positively evaluate) to send ties that reciprocate another tie, and ties that close transitive triplets. Indegree popularity had a significant negative effect (*b* = -0.48, *p* = 0.040), meaning that students negatively evaluate sending ties to classmates that have many ties already (or in other words: that are popular or hold status). These results clearly show that structural network dynamics thus matter.
+
+The gender and ethnicity of egos and alters do not significantly affect their likelihness to send or receive ties. The number of ethnic minority friends that students have does not affect the network structure either (*b* = -0.09, *p* = 0.592). In terms of homophily effects, however, the models showed significant same-gender and same-ethnicity effects. The estimate for same-gender is positive, pointing at homophily effects where people are likely to become friends with others that have the same gender as them. However, the same-ethnicity estimate is *negative*, meaning that people (significantly) dislike sending ties to others with the same ethnicity. This thus suggests something like a preference for inter-ethnic friendships, which is interesting in light of the theoretical focus of this study.
+
+Primary outgroup attitudes of students, measured by thermometer attitudes towards women, do not matter for explaining the network in T2 (*b* = -0.01, *p* = 0.245). Neither does the similarity in primary outgroup attitudes between egos and alters (*b* = -0.04, *p* = 0.912). The results therefore do not support homophily effects based on primary outgroup attitudes, partly rejecting H2. The primary outgroup attitudes of *alters*, on the other hand, do seem to play a role (*b* = 0.04, *p* = 0.024); the positive effect reflects that students are more likely to send a tie to others with more positive ethnic minority attitudes.
+
+```{r}
+mydata_1 <- sienaDataCreate(nety, gender_covar, ethnic_covar, thermow_covar, emfriends_covar)
+myeff_1 <- getEffects(mydata_1)
+myeff_1
+ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+print01Report(mydata_1, modelname = "./results/tnss") # goed bekijken
+
+
+myeff_1[1,]$fix <- TRUE # fix the rate parameter because of stationary SAOM
+myeff_1[1,]$initialValue <- 20
+myeff_1
+
+# EMPTY MODEL: ONLY DENSITY AND RECIPROCITY
+net_empty <- siena07(myAlgorithm, data = mydata_1, effects = myeff_1, returnDeps = T)
+net_empty # dit gaat goed!
+
+# ADD TRANSITIVITY
+myeff_1a <- getEffects(mydata_1)
+myeff_1a <- includeEffects(myeff_1, transTrip)
+
+net_empty_a <- siena07(myAlgorithm, data = mydata_1, effects = myeff_1a, returnDeps = T)
+net_empty_a
+
+# ADD INPOP AND OUTACT
+myeff_1b <- getEffects(mydata_1)
+myeff_1b <- includeEffects(myeff_1a, inPop, outAct)
+
+net_empty_b <- siena07(myAlgorithm, data = mydata_1, effects = myeff_1b, returnDeps = T, prevAns = net_empty_a)
+net_empty_b # convergence too high.... Better when I use prevAns, but still a bit too high. 
+
+
+# ADD HOMOPHILY EFFECTS FOR GENDER
+myeff_2 <- getEffects(mydata_1)
+myeff_2 <- includeEffects(myeff_1b, egoX, altX, sameX, interaction1 = "gender_covar")
+
+# AND ADD CONTROL VARIABLES 
+myeff_2 <- includeEffects(myeff_2, egoX, interaction1 = "emfriends_covar")
+myeff_2 <- includeEffects(myeff_2, egoX, altX, simX, interaction1 = "thermow_covar")
+
+net_gender <- siena07(myAlgorithm, data = mydata_1, effects = myeff_2, returnDeps = T, prevAns = net_empty_b)
+net_gender # convergence okay
+
+results_net_gender <- data.frame(
+  effect = net_gender$effects$effectName,
+  b = net_gender$theta,
+  se = net_gender$se,
+  t = net_gender$theta / net_gender$se,
+  p = 2 * pnorm(-abs(net_gender$theta / net_gender$se)))
+pander::pander(results_net_gender)
+# sig effects of reciprocity and transitivity, and same gender! marginal sig for outdegree (density), inPop, and outAct. Gender ego/alter clearly nothing. Interesting: the primary outgroup attitudes of alters is significant: more positive = ego more likely to send tie to them.
+
+# ADD HOMOPHILY EFFECTS FOR ETHNICITY 
+myeff_2a <- getEffects(mydata_1)
+myeff_2a <- includeEffects(myeff_2, egoX, altX, sameX, interaction1 = "ethnic_covar")
+
+net_ethnic <- siena07(myAlgorithm, data = mydata_1, effects = myeff_2a, returnDeps = T, prevAns = net_gender)
+net_ethnic
+
+results_net_ethnic <- data.frame(
+  effect = net_ethnic$effects$effectName,
+  b = net_ethnic$theta,
+  se = net_ethnic$se,
+  t = net_ethnic$theta / net_ethnic$se,
+  p = 2 * pnorm(-abs(net_ethnic$theta / net_ethnic$se)))
+pander::pander(results_net_ethnic)
+# same pattern as before. Same gender and same ethnic both seem to matter! Ethnicity of alter also seems somewhat important.
+
+# now, finally, let's look for feedback mechanisms. Can we predict the network based on the behavior?
+# myeff_2b <- includeEffects(myeff_2a, egoX, altX, absDiffX, interaction1 = "behy")
+```
+
+<br>
+
+#### *Robustness checks: Rate parameter*
+
+To further support the above results, I conducted some robustness checks where I fixed the rate parameter to different values. The analyses show that the results remain similar when setting rate parameter to lower (λ = 5) or higher (λ = 50) values. The model where the rate parameter is set to 50 encounters serious convergence issues. Some effects cross the boundary of significance at alpha = 5%, but in general the patterns of significance remain similar in all three cases. I conclude with using the original value of λ = 20 for the rest of the behavioral models that follow.
+
+```{r}
+# now let's see what happens when I set the rate parameter to 5 
+myeff_2a[1,]$fix <- TRUE 
+myeff_2a[1,]$initialValue <- 5
+myeff_2a
+
+r5_net_ethnic <- siena07(myAlgorithm, data = mydata_1, effects = myeff_2a, returnDeps = T)
+r5_net_ethnic # look's good, convergence slightly better as well.
+
+results_r5_net_ethnic <- data.frame(
+  effect = r5_net_ethnic$effects$effectName,
+  b = r5_net_ethnic$theta,
+  se = r5_net_ethnic$se,
+  t = r5_net_ethnic$theta / r5_net_ethnic$se,
+  p = 2 * pnorm(-abs(r5_net_ethnic$theta / r5_net_ethnic$se)))
+pander::pander(results_r5_net_ethnic)
+# same patterns in terms of significance. some now slightly over/under p=0.05
+
+# and when I set the rate parameter to 50
+myeff_2a[1,]$fix <- TRUE 
+myeff_2a[1,]$initialValue <- 50
+myeff_2a
+
+r50_net_ethnic <- siena07(myAlgorithm, data = mydata_1, effects = myeff_2a, returnDeps = T)
+r50_net_ethnic # convergence too high, apart from that it looks fine.
+
+results_r50_net_ethnic <- data.frame(
+  effect = r50_net_ethnic$effects$effectName,
+  b = r50_net_ethnic$theta,
+  se = r50_net_ethnic$se,
+  t = r50_net_ethnic$theta / r50_net_ethnic$se,
+  p = 2 * pnorm(-abs(r50_net_ethnic$theta / r50_net_ethnic$se)))
+pander::pander(results_r50_net_ethnic)
+# again, roughly same patterns in terms of significance.
+```
+
+<br>
+
+#### ***Relative influence***
+
+Next, I examined relative influence of the effects to see how important each statistic was for individual actors in their decision making process. As displayed in the figure below, the most important effects are reciprocity, indegree popularity, outdegree activity, and transitive triplets; all structural network dynamics.
+
+In terms of the gender and ethnicity effects, especially same-gender and same-ethnic effects seem to matter for individual's decision making. Primary outgroup attitudes (i.e. thermometer scale about women) of alter also seem important. The relative influence of all other effects seems negligible, as also reflected by a lack of significance in the RSiena models.
+
+```{r}
+# pander::pander(results_net_ethnic)
+
+# get parameters
+theta.eval <- net_ethnic$theta
+
+# and effects
+myeff.eval <- net_ethnic$effects
+
+# use sienaRI()
+library(RsienaTwoStep)
+?sienaRI
+RI <- interpret_size(x = net_ethnic,
+                     data = mydata_1, 
+                     theta = theta.eval, 
+                     addPieChart = T, 
+                     legend = T,
+                     getChangeStats = T)
+RI
+
+# and plot
+?plot
+plot(RI, addPieChart = TRUE, legendColumns = 2)
+```
+
+<br>
+
+#### ***Goodness of Fit***
+
+Finally, I examine the Goodness of Fit (GOF) of my network model to see whether the model accurately predicts the actual observed network. In terms of auxiliary statistics, I looked at the indegree and outdegree distributions, geodesic distance, and triad census. The GOF seems very good based on all these statistics; the fitted model follows the overall shape and *p*-values are insignificant (meaning that the values of the fitted model do, collectively, not significantly differ from the observed values). I conclude that I do not need to add any additional statistics to the model in order to further increase GOF.
+
+In other words: this means that the model very accurately predicts the actual network at T2. But note: it also makes sense that the model predicts the network at T2 well, since it is a stationary / short-term dynamic equilibrium network, meaning that the network looks pretty much the same as at T1 (which the model uses to predict T2).
+
+```{r}
+# pander::pander(results_net_ethnic)
+
+GeodesicDistribution <- function(i, data, sims, period, groupName, varName, levls = c(1:5, Inf), cumulative = TRUE,
+    ...) {
+    x <- networkExtraction(i, data, sims, period, groupName, varName)
+    require(sna)
+    a <- sna::geodist(symmetrize(x))$gdist
+    if (cumulative) {
+        gdi <- sapply(levls, function(i) {
+            sum(a <= i)
+        })
+    } else {
+        gdi <- sapply(levls, function(i) {
+            sum(a == i)
+        })
+    }
+    names(gdi) <- as.character(levls)
+    gdi
+}
+
+# The following function is taken from the help page for sienaTest
+
+testall <- function(net_ethnic) {
+    for (i in which(net_ethnic$test)) {
+        sct <- score.Test(net_ethnic, i)
+        cat(net_ethnic$requestedEffects$effectName[i], "\n")
+        print(sct)
+    }
+    invisible(score.Test(ans))
+}
+
+
+gofi0 <- sienaGOF(net_ethnic, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "nety")
+gofo0 <- sienaGOF(net_ethnic, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = "nety")
+gof0.gd <- sienaGOF(net_ethnic, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "nety")
+gof0.tc <- sienaGOF(net_ethnic, TriadCensus, verbose = FALSE, join = TRUE, varName = "nety")
+
+
+plot(gofi0) # indegree distribution
+plot(gofo0) # outdegree distribution
+plot(gof0.gd) # geodesic distance
+plot(gof0.tc, center = TRUE, scale = TRUE) # triad census
+```
+
+------------------------------------------------------------------------
+
+<br>
+
+### **Behavioral model**
+
+Now that the network-only model has converged and predicted estimates, relative influence, and GOF, it is time to add back the behavioral dependent into the model. As described, I separated the two because of convergence issues when I initially tried to run a model that contained both. Again, I followed a stepwise and cumulative procedure, outlined in more detail in the *Data and Method* chapter. As mentioned, I ended up fixing the behavioral rate parameter as well (at λ = 50), since the model repeatedly produced insanely high estimates for it, further creating problems with convergence. After fixing, almost all models converged, except for the last one containing the dyadic covariate effects. This final model repeatedly produced convergence rates that far exceeded the 0.25 threshold, which means that I can not reliably interpret the estimates. Interpretations below therefore concern the last converging and most complete behavioral model that was able to run.
+
+In terms of the intercept, the behavioral model finds significant effects for both a linear and quadratic shape (respectively *b* = 0.15, *p* = .027; *b* = -0.01, *p* = .005). This means that, in changing their ethnic minority attitudes, students tend to move towards the group mean following a quadratic shape. The negative effect further indicates that students with below-average ethnic minority attitudes have a stronger tendency to move towards the mean than students with above-average attitudes.
+
+Furthermore, the analysis shows a significant positive average alter effect in all models (*b* = 0.04, *p* = .009). This means that students tend to adapt their ethnic minority attitudes to the average value of their connected peers. Note that, if the average ethnic minority attitudes of their friends are *lower* than theirs, this means that students will adapt in that direction! This finding provides support for social influence effects and therefore H3.
+
+As for primary outgroup attitudes, the results show that students' attitudes towards women do not predict their ethnic minority attitudes (*b* = -0.001, *p* -= .814). This finding rejects H1 and the idea of attitude generalization - in interesting contrast with STE literature.
+
+In terms of ethnicity and gender effects, the ethnicity of a student significantly predicts their ethnic minority attitudes (*b* = -0.45, *p* = .009). Interestingly though, this effect is negative, meaning that students with a non-Dutch background tend to have *lower* or more negative attitudes towards ethnic minorities. A similar effect was found for the number of ethnic minority friends: having more friends with a non-Dutch background significantly *decreased* scores on the thermometer scale, and therefore caused more negative ethnic minority attitudes (*b* = -0.33, *p* \< .001). Student's gender did not have an effect on their ethnic minority attitudes (*b* = 0.15, *p* = .427).
+
+Because of the convergence issues described above, I was not able to reliably test H4. The role of primary outgroup friends therefore remains unexplored. The question thus remains whether students with more primary outgroup (i.e. gender) friends tend to develop more positive attitudes towards a secondary outgroup (i.e. ethnic minorities). Based on my analyses, I also can not conclude whether students are likely to adopt an average secondary outgroup (i.e. ethnic minority) attitude of their primary outgroup (i.e. gender) friends.
+
+```{r}
+# now add the behavioral Y and see if it still works
+mydata_2 <- sienaDataCreate(nety, behy, gender_covar, ethnic_covar, thermow_covar, emfriends_covar, covar_gender_dyads)
+myeff_3 <- getEffects(mydata_2)
+
+myeff_3 <- includeEffects(myeff_3, name = "behy", avAlt, interaction1 = "nety")
+myeff_3[1,]$fix <- TRUE 
+myeff_3[1,]$initialValue <- 20
+myeff_3
+
+# beh_simple <- siena07(myAlgorithm, data = mydata_2, effects = myeff_3, returnDeps = T, thetaBound = 2000)
+# beh_simple
+
+# convergence is way too high, took really long to fit this model. Rate parameter of behavior is also insanely high (1395), and even before running a model the initalvalue = 1264. I will another model with a fixed behavioral rate too. 
+
+myeff_3 <- setEffect(myeff_3, 
+                   Rate, 
+                   name = "behy",       
+                   type = "rate",           
+                   period = 1,              
+                   initialValue = 50,      
+                   fix = TRUE)  
+
+
+beh_simple_fixed <- siena07(myAlgorithm, data = mydata_2, effects = myeff_3, returnDeps = T) 
+beh_simple_fixed # seems to go well
+
+results_beh_simple_fixed <- data.frame(
+  effect = beh_simple_fixed$effects$effectName,
+  b = beh_simple_fixed$theta,
+  se = beh_simple_fixed$se,
+  t = beh_simple_fixed$theta / beh_simple_fixed$se,
+  p = 2 * pnorm(-abs(beh_simple_fixed$theta / beh_simple_fixed$se)))
+pander::pander(results_beh_simple_fixed)
+# Significant average alter effect (positive). network statistics are also significant.
+
+# now let's add gender effect
+myeff_3a <- set_effect(myeff_3, depvar = "behy", list(effFrom, avXAlt), covar1 ="gender_covar")
+
+beh_gender <- siena07(myAlgorithm, data = mydata_2, effects = myeff_3a, returnDeps = T, prevAns = beh_simple_fixed)
+beh_gender # works! convergence also okay
+
+results_beh_gender <- data.frame(
+  effect = beh_gender$effects$effectName,
+  b = beh_gender$theta,
+  se = beh_gender$se,
+  t = beh_gender$theta / beh_gender$se,
+  p = 2 * pnorm(-abs(beh_gender$theta / beh_gender$se)))
+pander::pander(results_beh_gender)
+# very sig effect of gender covar! Positive, meaning that women on average score higher (i.e. more positive) on ethnic minority attitudes/thermometer.
+
+# add ethnicity effect
+myeff_3b <- set_effect(myeff_3a, depvar = "behy", c(effFrom, avXAlt), covar1 ="ethnic_covar")
+
+beh_ethnic <- siena07(myAlgorithm, data = mydata_2, effects = myeff_3b, returnDeps = T, prevAns = beh_gender)
+beh_ethnic # also converges!
+
+# add control variable effects: ethnic minority friends and thermometer women
+myeff_3d <- set_effect(myeff_3b, depvar = "behy", c(effFrom, avXAlt), covar1 ="emfriends_covar")
+myeff_3d <- set_effect(myeff_3d, depvar = "behy", c(effFrom, avXAlt), covar1 ="thermow_covar")
+
+beh_controls <- siena07(myAlgorithm, data = mydata_2, effects = myeff_3d, returnDeps = T, prevAns = beh_ethnic)
+beh_controls # converges
+
+results_beh_controls <- data.frame(
+  effect = beh_controls$effects$effectName,
+  b = beh_controls$theta,
+  se = beh_controls$se,
+  t = beh_controls$theta / beh_controls$se,
+  p = 2 * pnorm(-abs(beh_controls$theta / beh_controls$se)))
+pander::pander(results_beh_controls)
+# still sig average alter effect. after controlling though, gender has no longer an effect on em attitudes, but ethnicity still does. Interestingly, attitudes towards women do not have an effect on attitudes towards ethnic minorities. But the number of ethnic minority friends does play an important role. Interestingly, this is a negative effect, meaning that more em friends leads to a lower thermometer score and therefore more negative em attitudes (?!)
+
+
+# and finally add the effects I am most interested in, the dyadic effects of primary outgroup friendship
+myeff_3c <- set_effect(myeff_3b, depvar = "behy", c(totWAlt, avSimW), covar1 = "nety", covar2 = "covar_gender_dyads")
+myeff_3c
+
+# beh_dyads <- siena07(myAlgorithm, data = mydata_2, effects = myeff_3c, returnDeps = T, prevAns = beh_ethnic)
+# beh_dyads # had  to increase the thetaBound and convergence is quite high
+
+# let's try with a different algorithm
+myAlgorithm2 <- sienaAlgorithmCreate(projname = "net", cond = F, n3=5000)
+
+# beh_dyads2 <- siena07(myAlgorithm2, data = mydata_2, effects = myeff_3c, returnDeps = T, prevAns = beh_dyads, thetaBound = 5000) # still need to increase the thetaBound (a lot!!)
+# beh_dyads2 # convergence is still too high, although improved a little bit
+
+# results_beh_dyads2 <- data.frame(
+  # effect = beh_dyads2$effects$effectName,
+ #  b = beh_dyads2$theta,
+ #  se = beh_dyads2$se,
+ #  t = beh_dyads2$theta / beh_dyads2$se,
+ #  p = 2 * pnorm(-abs(beh_dyads2$theta / beh_dyads2$se)))
+# pander::pander(results_beh_dyads2)
+# in this model, none of the behavioral effects are significant. But note: can not trust these results because of high convergence
+
+# I conclude that this model is too complicated to run on this data. The fact that it can not converge is also knowledge.
+```
+
+<br>
+
+#### *Feedback mechanism / Selection effect*
+
+Finally, I predicted a separate model where I use the behavioral outcome (i.e. ethnic minority attitudes) to predict the network. This will provide insights into selection mechanisms, or in other words: whether students are more likely to befriend others based on their ethnic minority attitudes.
+
+The analysis shows very clear results: the ethnic minority attitudes of students do not predict the network outcome (*b* = 0.0008, *p* = .913), even in a simple model uncontrolled for other network dynamics. Neither do the attitudes of alters (*b* = -0.0003, *p* = .963), nor the level of similarity/difference between them (*b* = 0.003, *p* = .510). These findings clearly reject the idea of selection effects and therefore also reject H2.
+
+```{r}
+# now, finally, let's look for feedback mechanisms
+myeff_4 <- includeEffects(myeff_3c, egoX, altX, absDiffX, interaction1 = "behy")
+
+# beh_feedback <- siena07(myAlgorithm, data = mydata_2, effects = myeff_4, returnDeps = T, prevAns = beh_gender)
+#  # This doesn't work, convergence waaay too high
+
+# new effects structure to clean it out and hopefully help with convergence
+myeff_f <- getEffects(mydata_2)
+myeff_f <- includeEffects(myeff_f, egoX, altX, absDiffX, interaction1 = "behy")
+
+myeff_f[1,]$fix <- TRUE 
+myeff_f[1,]$initialValue <- 20
+
+myeff_f <- setEffect(myeff_f, 
+                   Rate, 
+                   name = "behy",       
+                   type = "rate",           
+                   period = 1,              
+                   initialValue = 50,      
+                   fix = TRUE)  
+myeff_f
+
+net_feedback <- siena07(myAlgorithm, data = mydata_2, effects = myeff_f, returnDeps = T)
+net_feedback # works well, convergence is great
+
+results_net_feedback <- data.frame(
+  effect = net_feedback$effects$effectName,
+  b = net_feedback$theta,
+  se = net_feedback$se,
+  t = net_feedback$theta / net_feedback$se,
+  p = 2 * pnorm(-abs(net_feedback$theta / net_feedback$se)))
+pander::pander(results_net_feedback)
+# no sig effects of behavior on network; nor from alter/ego, nor from absDiff
+```
+
+<br>
+
+#### *Relative influence*
+
+Next, I examined the relative influence of my last converging full behavioral model. As also reflected in the significance of the estimates, we see a huge importance (i.e. relative influence) of average alter effects. This means that the average level of ethnic minority attitudes of someone's friends plays a major role in their decision making on whether to change their own attitudes. Apart from the linear and quadratic shape, we also see a big effect of the number of ethnic minority friends that students have.
+
+```{r}
+# pander::pander(results_beh_controls)
+
+# get parameters
+theta.eval <- beh_controls$theta
+
+# and effects
+myeff.eval <- beh_controls$effects
+
+# use sienaRI()
+library(RsienaTwoStep)
+RI_beh <- interpret_size(x = beh_controls,
+                     data = mydata_2, 
+                     theta = theta.eval, 
+                     addPieChart = T, 
+                     legend = T,
+                     getChangeStats = T)
+RI_beh
+
+# and plot (both nety and behy):
+# plot(RI_beh[[1]], addPieChart = TRUE, legendColumns = 2) # for nety
+plot(RI_beh[[2]], addPieChart = TRUE, legendColumns = 2) # for behy
+```
+
+<br>
+
+#### *Goodness of Fit*
+
+Finally, I inspected the GOF of the behavior distribution in this model. As seen below, the model generally follows the overall shape of the distribution. However, the actual behavior distribution (as visualized by the red dots) actually seems to follow an S-shape, akin to a logistic function, rather than a linear or quadratic shape. The estimated model, on the other hand, predicts a more linear shape. This means that around the mid-point of 50 (i.e. neutral attitudes), the model underestimates the sharp jump in frequency and likely underestimates the amount of students who hold neutral attitudes. In follow-up research, a logistic function for the behavioral evaluation function could possibly be added to account for the diverging shape of the behavior distribution.
+
+```{r}
+gof_beh <- sienaGOF(beh_controls, BehaviorDistribution, verbose = FALSE, join = TRUE, varName = "behy")
+
+plot(gof_beh) # behavior distribution
+# looks good, but the neutral values around 50 seem underestimated in the model
+```

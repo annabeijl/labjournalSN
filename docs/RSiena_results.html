@@ -1,0 +1,2543 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Anna Beijl" />
+
+<meta name="date" content="2026-10-08" />
+
+<title>Results</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-heart"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lab journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Week1.html">Week 1</a>
+    </li>
+    <li>
+      <a href="Week2.html">Week 2</a>
+    </li>
+    <li>
+      <a href="Week3.html">Week 3</a>
+    </li>
+    <li>
+      <a href="Week4.html">Week 4</a>
+    </li>
+    <li>
+      <a href="Week5.html">Week 5</a>
+    </li>
+    <li>
+      <a href="Week6.html">Week 6</a>
+    </li>
+    <li>
+      <a href="Week7.html">Week 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="Theory.html">Theory and Hypotheses</a>
+    </li>
+    <li>
+      <a href="Data_methods.html">Data</a>
+    </li>
+    <li>
+      <a href="Descriptive_results.html">Descriptive Results</a>
+    </li>
+    <li>
+      <a href="RSiena_results.html">RSiena Results</a>
+    </li>
+    <li>
+      <a href="Discussion.html">Discussion</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/annabeijl/labjournalSN">
+    <span class="fa fa-smile-o"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><strong><em>Results</em></strong></h1>
+<h4 class="author">Anna Beijl</h4>
+<h4 class="date">8 October 2026</h4>
+
+</div>
+
+
+<p><br></p>
+<div id="rsiena-results" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> RSiena results</h1>
+<p><br></p>
+<p>In this chapter, I analyze and describe the results of my RSiena
+analyses. Below, you can find the models and my interpretations, as well
+as the corresponding R code.</p>
+<p><br></p>
+<div id="preparing-the-data-for-rsiena" class="section level2"
+number="1.1">
+<h2><span class="header-section-number">1.1</span> <em>Preparing the
+data for RSiena</em></h2>
+<p>First, I construct my dependent variables and covariates, and prepare
+them for RSiena analysis by converting them to the right data
+objects.</p>
+<pre class="r"><code># DEPENDENT VARIABLES -------------------------------------------------------------
+# DV: NETWORK
+library(haven)
+tnss_net &lt;- read_sav(&quot;./data/TNSS_wave_2010_mentors.sav&quot;)
+tnss_pup10 &lt;- read_sav(&quot;./data/TNSS_wave_2010_pupils.sav&quot;)
+tnss_pup11 &lt;- read_sav(&quot;./data/TNSS_wave_2011_pupils.sav&quot;)
+library(dplyr)
+library(tidyverse)
+tnss &lt;- left_join(tnss_net, tnss_pup10)
+# view(tnss)
+
+tnss_pup10 &lt;- tnss_pup10 %&gt;% 
+  rownames_to_column(var = &quot;id&quot;) 
+
+tnss_pup11 &lt;- tnss_pup11 %&gt;% 
+  rownames_to_column(var = &quot;id&quot;) 
+
+tnss_2waves &lt;- left_join(tnss_pup10, tnss_pup11, by=c(&quot;id&quot;))
+# view(tnss_2waves)
+tnss_2waves_c5 &lt;- tnss_2waves %&gt;%
+  filter(IDClass == 5)
+view(tnss_2waves_c5)
+
+c5 &lt;- tnss %&gt;% 
+  filter(IDClass == 5)
+
+c5_net &lt;- c5 %&gt;%
+  select(fr_1:fr_28)
+
+net &lt;- as.matrix(c5_net)
+sum(diag(net) != 0)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>view(c5_net)
+length(c5_net)</code></pre>
+<pre><code>## [1] 28</code></pre>
+<pre class="r"><code>net2 &lt;- net
+
+net2[1,2] &lt;- 1
+
+library(RSiena)
+nety &lt;- sienaDependent(array(data = c(net, net2), dim = c(dim(net), 2)), allowOnly = FALSE)
+
+# DV: BEHAVIOR (ETHNIC MINORITY ATTITUDES)
+
+id &lt;- c5 %&gt;% 
+  dplyr::select(&quot;IDresp&quot;)
+
+behy_pre &lt;- tnss_2waves %&gt;% 
+  filter(IDresp.x %in% c5$IDresp) %&gt;% 
+  dplyr::select(&quot;IDresp.x&quot;, &quot;thermo_minority&quot;, &quot;thermo_minority_2&quot;) %&gt;% 
+  as.matrix() %&gt;% 
+  data.frame
+
+id &lt;- left_join(id, behy_pre, by=join_by(IDresp == IDresp.x) )
+
+behy &lt;- id %&gt;% dplyr::select(&quot;thermo_minority&quot;, &quot;thermo_minority_2&quot;) %&gt;% 
+  as.matrix()
+behy</code></pre>
+<pre><code>##       thermo_minority thermo_minority_2
+##  [1,]              20                50
+##  [2,]              44                50
+##  [3,]              65                30
+##  [4,]              63                70
+##  [5,]              65                20
+##  [6,]              50                80
+##  [7,]              52                30
+##  [8,]              10                50
+##  [9,]              50                70
+## [10,]              72                50
+## [11,]             100                50
+## [12,]              50                70
+## [13,]              NA                NA
+## [14,]              84                60
+## [15,]              26                80
+## [16,]             100                50
+## [17,]              75                50
+## [18,]              60                50
+## [19,]              50                80
+## [20,]              86                60
+## [21,]              30                50
+## [22,]              98                50
+## [23,]              41               100
+## [24,]              39                80
+## [25,]               2                50
+## [26,]              90               100
+## [27,]              NA                NA
+## [28,]              10                60</code></pre>
+<pre class="r"><code>behy &lt;- sienaDependent(behy, type = c(&quot;behavior&quot;))
+
+myAlgorithm &lt;- sienaAlgorithmCreate(projname = &quot;net&quot;, cond = F)</code></pre>
+<pre><code>## If you use this algorithm object, siena07 will create/use an output file net.txt .</code></pre>
+<pre class="r"><code># COVARIATES ------------------------------------------------------------------
+#view(tnss_pup10)
+
+# gender
+class(c5$gender)</code></pre>
+<pre><code>## [1] &quot;haven_labelled&quot; &quot;vctrs_vctr&quot;     &quot;double&quot;</code></pre>
+<pre class="r"><code>gender &lt;- as.numeric(c5$gender)
+class(gender)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>gender &lt;- as.vector(gender) # 1 = woman
+gender_covar &lt;- coCovar(gender) # = constant covariate
+class(gender_covar)</code></pre>
+<pre><code>## [1] &quot;coCovar&quot;</code></pre>
+<pre class="r"><code># ethnicity
+class(c5$ethnicity)</code></pre>
+<pre><code>## [1] &quot;haven_labelled&quot; &quot;vctrs_vctr&quot;     &quot;double&quot;</code></pre>
+<pre class="r"><code>ethnic &lt;- as.vector(ifelse(c5$ethnicity == 1, 0, 1)) # recode so that 1 = migration background, 0 = Dutch
+ethnic_covar &lt;- coCovar(ethnic)
+class(ethnic_covar)</code></pre>
+<pre><code>## [1] &quot;coCovar&quot;</code></pre>
+<pre class="r"><code># thermometer girls
+class(c5$thermo_vrouwen)</code></pre>
+<pre><code>## [1] &quot;haven_labelled&quot; &quot;vctrs_vctr&quot;     &quot;double&quot;</code></pre>
+<pre class="r"><code>thermo_women &lt;- as.vector(c5$thermo_vrouwen)
+thermow_covar &lt;- coCovar(thermo_women) # would make sense to use this as a changing covariate, but I only have 2 waves, which is not enough input for a varCovar
+class(thermow_covar)</code></pre>
+<pre><code>## [1] &quot;coCovar&quot;</code></pre>
+<pre class="r"><code># number of ethnic minority friends
+class(c5$minority_friends)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>emfriends &lt;- as.vector(c5$minority_friends)
+emfriends_covar &lt;- coCovar(emfriends) # same note about varCovar goes here
+class(emfriends_covar)</code></pre>
+<pre><code>## [1] &quot;coCovar&quot;</code></pre>
+<pre class="r"><code># dyadic covariates
+# GENDER
+# matrix was made based on tnss data frame, manually coded as 1 when gender of ego =/= gender of alter. matrix thus represents out-group friendships based on gender
+require(readxl)
+gender_dyads &lt;- readxl::read_excel(&quot;./data/dyads_matrix.xlsx&quot;, col_names = F, sheet = 1)
+View(gender_dyads)
+class(gender_dyads)</code></pre>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>gender_dyads &lt;- as.matrix(gender_dyads)
+
+covar_gender_dyads &lt;- as_covariate_rsiena(gender_dyads, centered = FALSE, type = &quot;oneMode&quot;)
+class(covar_gender_dyads)</code></pre>
+<pre><code>## [1] &quot;coDyadCovar&quot;</code></pre>
+<pre class="r"><code># ETHNICITY
+# matrix was made based on tnss data frame, manually coded as 1 when ethnicity of ego =/= ethnicity of alter. matrix thus represents out-group friendships
+ethnic_dyads &lt;- readxl::read_excel(&quot;./data/dyads_matrix.xlsx&quot;, col_names = F, sheet = 2)
+View(ethnic_dyads)
+class(ethnic_dyads)</code></pre>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>ethnic_dyads &lt;- as.matrix(ethnic_dyads)
+
+covar_ethnic_dyads &lt;- as_covariate_rsiena(ethnic_dyads, centered = FALSE, type = &quot;oneMode&quot;)
+class(covar_ethnic_dyads)</code></pre>
+<pre><code>## [1] &quot;coDyadCovar&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="specify-effects-and-estimate-models" class="section level2"
+number="1.2">
+<h2><span class="header-section-number">1.2</span> <em>Specify effects
+and estimate models</em></h2>
+<p>After the data is prepared, I can start estimating my Siena models.
+First, I tried estimating a model that contained both network and
+behavioral effects, but I encountered serious convergence issues. I
+therefore decided to split my analyses between both dependent variables;
+starting with a model that contains only network effects, then looking
+at the behavioral effects separately, and ultimately trying to combine
+them into one model again. Unfortunately, such a model failed to
+converge repeatedly, which means I can only report and interpret the
+estimates from the two separate models.</p>
+<p><br></p>
+<div id="network-only-model" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span>
+<strong>Network-only model</strong></h3>
+<p>For the network-only model, I started with an empty model and
+gradually built up to include all my effects of interest (see also
+‘Model specifications’ in the <em>Data</em> chapter). All of these
+models converged, that is, the overall maximum convergence ratio
+remained under the 0.25 threshold and convergence of individual
+convergence t-ratio of parameters were under 0.1 (though the fixed rate
+parameter forms an exception to this). Convergence means that the
+estimates are reliable and can safely be interpreted.</p>
+<p>In the final network model, there were repeatedly significant effects
+of reciprocity, transitivity, and indegree popularity. Reciprocity and
+transitivity had positive estimates (respectively <em>b</em> = 2.96,
+<em>p</em> &lt; .001; <em>b</em> = 0.50, <em>p</em> &lt; .001), meaning
+that students like (i.e. positively evaluate) to send ties that
+reciprocate another tie, and ties that close transitive triplets.
+Indegree popularity had a significant negative effect (<em>b</em> =
+-0.48, <em>p</em> = 0.040), meaning that students negatively evaluate
+sending ties to classmates that have many ties already (or in other
+words: that are popular or hold status). These results clearly show that
+structural network dynamics thus matter.</p>
+<p>The gender and ethnicity of egos and alters do not significantly
+affect their likelihness to send or receive ties. The number of ethnic
+minority friends that students have does not affect the network
+structure either (<em>b</em> = -0.09, <em>p</em> = 0.592). In terms of
+homophily effects, however, the models showed significant same-gender
+and same-ethnicity effects. The estimate for same-gender is positive,
+pointing at homophily effects where people are likely to become friends
+with others that have the same gender as them. However, the
+same-ethnicity estimate is <em>negative</em>, meaning that people
+(significantly) dislike sending ties to others with the same ethnicity.
+This thus suggests something like a preference for inter-ethnic
+friendships, which is interesting in light of the theoretical focus of
+this study.</p>
+<p>Primary outgroup attitudes of students, measured by thermometer
+attitudes towards women, do not matter for explaining the network in T2
+(<em>b</em> = -0.01, <em>p</em> = 0.245). Neither does the similarity in
+primary outgroup attitudes between egos and alters (<em>b</em> = -0.04,
+<em>p</em> = 0.912). The results therefore do not support homophily
+effects based on primary outgroup attitudes, partly rejecting H2. The
+primary outgroup attitudes of <em>alters</em>, on the other hand, do
+seem to play a role (<em>b</em> = 0.04, <em>p</em> = 0.024); the
+positive effect reflects that students are more likely to send a tie to
+others with more positive ethnic minority attitudes.</p>
+<pre class="r"><code>mydata_1 &lt;- sienaDataCreate(nety, gender_covar, ethnic_covar, thermow_covar, emfriends_covar)
+myeff_1 &lt;- getEffects(mydata_1)
+myeff_1</code></pre>
+<pre><code>##   effectName                include fix   test  initialValue parm
+## 1 basic rate parameter nety TRUE    FALSE FALSE        0.1   0   
+## 2 outdegree (density)       TRUE    FALSE FALSE        0.0   0   
+## 3 reciprocity               TRUE    FALSE FALSE        0.0   0</code></pre>
+<pre class="r"><code>ifelse(!dir.exists(&quot;results&quot;), dir.create(&quot;results&quot;), FALSE)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>print01Report(mydata_1, modelname = &quot;./results/tnss&quot;) # goed bekijken
+
+
+myeff_1[1,]$fix &lt;- TRUE # fix the rate parameter because of stationary SAOM
+myeff_1[1,]$initialValue &lt;- 20
+myeff_1</code></pre>
+<pre><code>##   effectName                include fix   test  initialValue parm
+## 1 basic rate parameter nety TRUE    TRUE  FALSE         20   0   
+## 2 outdegree (density)       TRUE    FALSE FALSE          0   0   
+## 3 reciprocity               TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code># EMPTY MODEL: ONLY DENSITY AND RECIPROCITY
+net_empty &lt;- siena07(myAlgorithm, data = mydata_1, effects = myeff_1, returnDeps = T)
+net_empty # dit gaat goed!</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                     Estimate   Standard   Convergence 
+##                                                  Error      t-ratio   
+##   1. rate basic rate parameter nety 20.0000  (     NA   )   11.3546   
+##   2. eval outdegree (density)       -2.3696  ( 0.2266   )   -0.0608   
+##   3. eval reciprocity                3.2768  ( 0.3875   )   -0.0226   
+## 
+## Overall maximum convergence ratio:    0.1317 
+## 
+## 
+## Total of 2297 iteration steps.</code></pre>
+<pre class="r"><code># ADD TRANSITIVITY
+myeff_1a &lt;- getEffects(mydata_1)
+myeff_1a &lt;- includeEffects(myeff_1, transTrip)</code></pre>
+<pre><code>##   effectNumber effectName          shortName include fix   test  initialValue
+## 1 24           transitive triplets transTrip TRUE    FALSE FALSE          0  
+##   parm
+## 1 0</code></pre>
+<pre class="r"><code>net_empty_a &lt;- siena07(myAlgorithm, data = mydata_1, effects = myeff_1a, returnDeps = T)
+net_empty_a</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                     Estimate   Standard   Convergence 
+##                                                  Error      t-ratio   
+##   1. rate basic rate parameter nety 20.0000  (     NA   )   8.0667    
+##   2. eval outdegree (density)       -2.5623  ( 0.3008   )   0.0356    
+##   3. eval reciprocity                3.1092  ( 0.4667   )   0.0390    
+##   4. eval transitive triplets        0.2430  ( 0.0735   )   0.0011    
+## 
+## Overall maximum convergence ratio:    0.0788 
+## 
+## 
+## Total of 2344 iteration steps.</code></pre>
+<pre class="r"><code># ADD INPOP AND OUTACT
+myeff_1b &lt;- getEffects(mydata_1)
+myeff_1b &lt;- includeEffects(myeff_1a, inPop, outAct)</code></pre>
+<pre><code>##   effectNumber effectName            shortName include fix   test  initialValue
+## 1  81          indegree - popularity inPop     TRUE    FALSE FALSE          0  
+## 2 118          outdegree - activity  outAct    TRUE    FALSE FALSE          0  
+##   parm
+## 1 0   
+## 2 0</code></pre>
+<pre class="r"><code>net_empty_b &lt;- siena07(myAlgorithm, data = mydata_1, effects = myeff_1b, returnDeps = T, prevAns = net_empty_a)
+net_empty_b # convergence too high.... Better when I use prevAns, but still a bit too high. </code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                     Estimate   Standard   Convergence 
+##                                                  Error      t-ratio   
+##   1. rate basic rate parameter nety 20.0000  (     NA   )    7.7901   
+##   2. eval outdegree (density)       -0.5890  ( 0.5724   )   -0.0848   
+##   3. eval reciprocity                2.7742  ( 0.4490   )   -0.0105   
+##   4. eval transitive triplets        0.5017  ( 0.0731   )   -0.0223   
+##   5. eval indegree - popularity     -0.2877  ( 0.1370   )   -0.0750   
+##   6. eval outdegree - activity      -0.1834  ( 0.0825   )   -0.0690   
+## 
+## Overall maximum convergence ratio:    0.2395 
+## 
+## 
+## Total of 2469 iteration steps.</code></pre>
+<pre class="r"><code># ADD HOMOPHILY EFFECTS FOR GENDER
+myeff_2 &lt;- getEffects(mydata_1)
+myeff_2 &lt;- includeEffects(myeff_1b, egoX, altX, sameX, interaction1 = &quot;gender_covar&quot;)</code></pre>
+<pre><code>##   effectNumber effectName         shortName include fix   test  initialValue
+## 1 265          gender_covar alter altX      TRUE    FALSE FALSE          0  
+## 2 280          gender_covar ego   egoX      TRUE    FALSE FALSE          0  
+## 3 336          same gender_covar  sameX     TRUE    FALSE FALSE          0  
+##   parm
+## 1 0   
+## 2 0   
+## 3 0</code></pre>
+<pre class="r"><code># AND ADD CONTROL VARIABLES 
+myeff_2 &lt;- includeEffects(myeff_2, egoX, interaction1 = &quot;emfriends_covar&quot;)</code></pre>
+<pre><code>##   effectNumber effectName          shortName include fix   test  initialValue
+## 1 832          emfriends_covar ego egoX      TRUE    FALSE FALSE          0  
+##   parm
+## 1 0</code></pre>
+<pre class="r"><code>myeff_2 &lt;- includeEffects(myeff_2, egoX, altX, simX, interaction1 = &quot;thermow_covar&quot;)</code></pre>
+<pre><code>##   effectNumber effectName               shortName include fix   test 
+## 1 633          thermow_covar alter      altX      TRUE    FALSE FALSE
+## 2 648          thermow_covar ego        egoX      TRUE    FALSE FALSE
+## 3 694          thermow_covar similarity simX      TRUE    FALSE FALSE
+##   initialValue parm
+## 1          0   0   
+## 2          0   0   
+## 3          0   0</code></pre>
+<pre class="r"><code>net_gender &lt;- siena07(myAlgorithm, data = mydata_1, effects = myeff_2, returnDeps = T, prevAns = net_empty_b)
+net_gender # convergence okay</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                      Estimate   Standard   Convergence 
+##                                                   Error      t-ratio   
+##    1. rate basic rate parameter nety 20.0000  (     NA   )    8.3206   
+##    2. eval outdegree (density)       -0.3968  ( 0.7382   )    0.0138   
+##    3. eval reciprocity                2.9178  ( 0.5372   )    0.0309   
+##    4. eval transitive triplets        0.4765  ( 0.0769   )   -0.0011   
+##    5. eval indegree - popularity     -0.5287  ( 0.2074   )    0.0145   
+##    6. eval outdegree - activity      -0.1548  ( 0.1035   )   -0.0020   
+##    7. eval gender_covar alter         0.2114  ( 0.5100   )   -0.0231   
+##    8. eval gender_covar ego           0.0291  ( 0.5533   )   -0.0238   
+##    9. eval same gender_covar          0.6321  ( 0.2265   )    0.0165   
+##   10. eval thermow_covar alter        0.0374  ( 0.0167   )    0.0177   
+##   11. eval thermow_covar ego         -0.0125  ( 0.0108   )   -0.0045   
+##   12. eval thermow_covar similarity   0.0087  ( 0.3350   )   -0.0066   
+##   13. eval emfriends_covar ego       -0.1027  ( 0.1549   )    0.0592   
+## 
+## Overall maximum convergence ratio:    0.1176 
+## 
+## 
+## Total of 3141 iteration steps.</code></pre>
+<pre class="r"><code>results_net_gender &lt;- data.frame(
+  effect = net_gender$effects$effectName,
+  b = net_gender$theta,
+  se = net_gender$se,
+  t = net_gender$theta / net_gender$se,
+  p = 2 * pnorm(-abs(net_gender$theta / net_gender$se)))
+pander::pander(results_net_gender)</code></pre>
+<table style="width:99%;">
+<colgroup>
+<col width="38%" />
+<col width="15%" />
+<col width="13%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter nety</td>
+<td align="center">20</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-0.3968</td>
+<td align="center">0.7382</td>
+<td align="center">-0.5375</td>
+<td align="center">0.5909</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">2.918</td>
+<td align="center">0.5372</td>
+<td align="center">5.432</td>
+<td align="center">5.575e-08</td>
+</tr>
+<tr class="even">
+<td align="center">transitive triplets</td>
+<td align="center">0.4765</td>
+<td align="center">0.07694</td>
+<td align="center">6.194</td>
+<td align="center">5.881e-10</td>
+</tr>
+<tr class="odd">
+<td align="center">indegree - popularity</td>
+<td align="center">-0.5287</td>
+<td align="center">0.2074</td>
+<td align="center">-2.55</td>
+<td align="center">0.01078</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree - activity</td>
+<td align="center">-0.1548</td>
+<td align="center">0.1035</td>
+<td align="center">-1.496</td>
+<td align="center">0.1347</td>
+</tr>
+<tr class="odd">
+<td align="center">gender_covar alter</td>
+<td align="center">0.2114</td>
+<td align="center">0.51</td>
+<td align="center">0.4144</td>
+<td align="center">0.6786</td>
+</tr>
+<tr class="even">
+<td align="center">gender_covar ego</td>
+<td align="center">0.02914</td>
+<td align="center">0.5533</td>
+<td align="center">0.05266</td>
+<td align="center">0.958</td>
+</tr>
+<tr class="odd">
+<td align="center">same gender_covar</td>
+<td align="center">0.6321</td>
+<td align="center">0.2265</td>
+<td align="center">2.791</td>
+<td align="center">0.005259</td>
+</tr>
+<tr class="even">
+<td align="center">thermow_covar alter</td>
+<td align="center">0.03741</td>
+<td align="center">0.0167</td>
+<td align="center">2.241</td>
+<td align="center">0.02503</td>
+</tr>
+<tr class="odd">
+<td align="center">thermow_covar ego</td>
+<td align="center">-0.01251</td>
+<td align="center">0.01082</td>
+<td align="center">-1.157</td>
+<td align="center">0.2474</td>
+</tr>
+<tr class="even">
+<td align="center">thermow_covar similarity</td>
+<td align="center">0.008701</td>
+<td align="center">0.335</td>
+<td align="center">0.02597</td>
+<td align="center">0.9793</td>
+</tr>
+<tr class="odd">
+<td align="center">emfriends_covar ego</td>
+<td align="center">-0.1027</td>
+<td align="center">0.1549</td>
+<td align="center">-0.6631</td>
+<td align="center">0.5073</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># sig effects of reciprocity and transitivity, and same gender! marginal sig for outdegree (density), inPop, and outAct. Gender ego/alter clearly nothing. Interesting: the primary outgroup attitudes of alters is significant: more positive = ego more likely to send tie to them.
+
+# ADD HOMOPHILY EFFECTS FOR ETHNICITY 
+myeff_2a &lt;- getEffects(mydata_1)
+myeff_2a &lt;- includeEffects(myeff_2, egoX, altX, sameX, interaction1 = &quot;ethnic_covar&quot;)</code></pre>
+<pre><code>##   effectNumber effectName         shortName include fix   test  initialValue
+## 1 449          ethnic_covar alter altX      TRUE    FALSE FALSE          0  
+## 2 464          ethnic_covar ego   egoX      TRUE    FALSE FALSE          0  
+## 3 520          same ethnic_covar  sameX     TRUE    FALSE FALSE          0  
+##   parm
+## 1 0   
+## 2 0   
+## 3 0</code></pre>
+<pre class="r"><code>net_ethnic &lt;- siena07(myAlgorithm, data = mydata_1, effects = myeff_2a, returnDeps = T, prevAns = net_gender)
+net_ethnic</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                      Estimate   Standard   Convergence 
+##                                                   Error      t-ratio   
+##    1. rate basic rate parameter nety 20.0000  (     NA   )    7.5078   
+##    2. eval outdegree (density)       -0.3252  ( 0.7555   )   -0.0102   
+##    3. eval reciprocity                2.9082  ( 0.5672   )   -0.0059   
+##    4. eval transitive triplets        0.5126  ( 0.0815   )    0.0369   
+##    5. eval indegree - popularity     -0.4893  ( 0.1754   )    0.0042   
+##    6. eval outdegree - activity      -0.1745  ( 0.0986   )   -0.0098   
+##    7. eval gender_covar alter         0.0971  ( 0.5840   )   -0.0400   
+##    8. eval gender_covar ego           0.0940  ( 0.5281   )   -0.0373   
+##    9. eval same gender_covar          0.8913  ( 0.2823   )    0.0085   
+##   10. eval ethnic_covar alter        -1.0443  ( 0.5023   )    0.0148   
+##   11. eval ethnic_covar ego           0.1592  ( 0.4620   )   -0.0035   
+##   12. eval same ethnic_covar         -0.8330  ( 0.3436   )   -0.0198   
+##   13. eval thermow_covar alter        0.0377  ( 0.0131   )    0.0460   
+##   14. eval thermow_covar ego         -0.0146  ( 0.0122   )   -0.0058   
+##   15. eval thermow_covar similarity  -0.0333  ( 0.3738   )   -0.0424   
+##   16. eval emfriends_covar ego       -0.0883  ( 0.1348   )    0.0184   
+## 
+## Overall maximum convergence ratio:    0.1671 
+## 
+## 
+## Total of 3322 iteration steps.</code></pre>
+<pre class="r"><code>results_net_ethnic &lt;- data.frame(
+  effect = net_ethnic$effects$effectName,
+  b = net_ethnic$theta,
+  se = net_ethnic$se,
+  t = net_ethnic$theta / net_ethnic$se,
+  p = 2 * pnorm(-abs(net_ethnic$theta / net_ethnic$se)))
+pander::pander(results_net_ethnic)</code></pre>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="15%" />
+<col width="13%" />
+<col width="15%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter nety</td>
+<td align="center">20</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-0.3252</td>
+<td align="center">0.7555</td>
+<td align="center">-0.4304</td>
+<td align="center">0.6669</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">2.908</td>
+<td align="center">0.5672</td>
+<td align="center">5.127</td>
+<td align="center">2.944e-07</td>
+</tr>
+<tr class="even">
+<td align="center">transitive triplets</td>
+<td align="center">0.5126</td>
+<td align="center">0.08154</td>
+<td align="center">6.287</td>
+<td align="center">3.24e-10</td>
+</tr>
+<tr class="odd">
+<td align="center">indegree - popularity</td>
+<td align="center">-0.4893</td>
+<td align="center">0.1754</td>
+<td align="center">-2.79</td>
+<td align="center">0.005272</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree - activity</td>
+<td align="center">-0.1745</td>
+<td align="center">0.09857</td>
+<td align="center">-1.77</td>
+<td align="center">0.07665</td>
+</tr>
+<tr class="odd">
+<td align="center">gender_covar alter</td>
+<td align="center">0.09712</td>
+<td align="center">0.584</td>
+<td align="center">0.1663</td>
+<td align="center">0.8679</td>
+</tr>
+<tr class="even">
+<td align="center">gender_covar ego</td>
+<td align="center">0.09405</td>
+<td align="center">0.5281</td>
+<td align="center">0.1781</td>
+<td align="center">0.8587</td>
+</tr>
+<tr class="odd">
+<td align="center">same gender_covar</td>
+<td align="center">0.8913</td>
+<td align="center">0.2823</td>
+<td align="center">3.157</td>
+<td align="center">0.001592</td>
+</tr>
+<tr class="even">
+<td align="center">ethnic_covar alter</td>
+<td align="center">-1.044</td>
+<td align="center">0.5023</td>
+<td align="center">-2.079</td>
+<td align="center">0.03763</td>
+</tr>
+<tr class="odd">
+<td align="center">ethnic_covar ego</td>
+<td align="center">0.1592</td>
+<td align="center">0.462</td>
+<td align="center">0.3446</td>
+<td align="center">0.7304</td>
+</tr>
+<tr class="even">
+<td align="center">same ethnic_covar</td>
+<td align="center">-0.833</td>
+<td align="center">0.3436</td>
+<td align="center">-2.425</td>
+<td align="center">0.01533</td>
+</tr>
+<tr class="odd">
+<td align="center">thermow_covar alter</td>
+<td align="center">0.03769</td>
+<td align="center">0.01308</td>
+<td align="center">2.882</td>
+<td align="center">0.003957</td>
+</tr>
+<tr class="even">
+<td align="center">thermow_covar ego</td>
+<td align="center">-0.01463</td>
+<td align="center">0.01217</td>
+<td align="center">-1.203</td>
+<td align="center">0.2292</td>
+</tr>
+<tr class="odd">
+<td align="center">thermow_covar similarity</td>
+<td align="center">-0.03334</td>
+<td align="center">0.3738</td>
+<td align="center">-0.08918</td>
+<td align="center">0.9289</td>
+</tr>
+<tr class="even">
+<td align="center">emfriends_covar ego</td>
+<td align="center">-0.08833</td>
+<td align="center">0.1348</td>
+<td align="center">-0.6553</td>
+<td align="center">0.5123</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># same pattern as before. Same gender and same ethnic both seem to matter! Ethnicity of alter also seems somewhat important.
+
+# now, finally, let&#39;s look for feedback mechanisms. Can we predict the network based on the behavior?
+# myeff_2b &lt;- includeEffects(myeff_2a, egoX, altX, absDiffX, interaction1 = &quot;behy&quot;)</code></pre>
+<p><br></p>
+<div id="robustness-checks-rate-parameter" class="section level4"
+number="1.2.1.1">
+<h4><span class="header-section-number">1.2.1.1</span> <em>Robustness
+checks: Rate parameter</em></h4>
+<p>To further support the above results, I conducted some robustness
+checks where I fixed the rate parameter to different values. The
+analyses show that the results remain similar when setting rate
+parameter to lower (λ = 5) or higher (λ = 50) values. The model where
+the rate parameter is set to 50 encounters serious convergence issues.
+Some effects cross the boundary of significance at alpha = 5%, but in
+general the patterns of significance remain similar in all three cases.
+I conclude with using the original value of λ = 20 for the rest of the
+behavioral models that follow.</p>
+<pre class="r"><code># now let&#39;s see what happens when I set the rate parameter to 5 
+myeff_2a[1,]$fix &lt;- TRUE 
+myeff_2a[1,]$initialValue &lt;- 5
+myeff_2a</code></pre>
+<pre><code>##    effectName                include fix   test  initialValue parm
+## 1  basic rate parameter nety TRUE    TRUE  FALSE          5   0   
+## 2  outdegree (density)       TRUE    FALSE FALSE          0   0   
+## 3  reciprocity               TRUE    FALSE FALSE          0   0   
+## 4  transitive triplets       TRUE    FALSE FALSE          0   0   
+## 5  indegree - popularity     TRUE    FALSE FALSE          0   0   
+## 6  outdegree - activity      TRUE    FALSE FALSE          0   0   
+## 7  gender_covar alter        TRUE    FALSE FALSE          0   0   
+## 8  gender_covar ego          TRUE    FALSE FALSE          0   0   
+## 9  same gender_covar         TRUE    FALSE FALSE          0   0   
+## 10 ethnic_covar alter        TRUE    FALSE FALSE          0   0   
+## 11 ethnic_covar ego          TRUE    FALSE FALSE          0   0   
+## 12 same ethnic_covar         TRUE    FALSE FALSE          0   0   
+## 13 thermow_covar alter       TRUE    FALSE FALSE          0   0   
+## 14 thermow_covar ego         TRUE    FALSE FALSE          0   0   
+## 15 thermow_covar similarity  TRUE    FALSE FALSE          0   0   
+## 16 emfriends_covar ego       TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code>r5_net_ethnic &lt;- siena07(myAlgorithm, data = mydata_1, effects = myeff_2a, returnDeps = T)
+r5_net_ethnic # look&#39;s good, convergence slightly better as well.</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                      Estimate   Standard   Convergence 
+##                                                   Error      t-ratio   
+##    1. rate basic rate parameter nety  5.0000  (     NA   )    6.8597   
+##    2. eval outdegree (density)       -0.6767  ( 0.9073   )    0.0161   
+##    3. eval reciprocity                2.8981  ( 0.6030   )   -0.0029   
+##    4. eval transitive triplets        0.4874  ( 0.1239   )    0.0108   
+##    5. eval indegree - popularity     -0.4252  ( 0.2280   )    0.0505   
+##    6. eval outdegree - activity      -0.1503  ( 0.0989   )    0.0315   
+##    7. eval gender_covar alter         0.1724  ( 0.5781   )    0.0821   
+##    8. eval gender_covar ego          -0.0129  ( 0.6268   )    0.0408   
+##    9. eval same gender_covar          0.8943  ( 0.3673   )    0.0195   
+##   10. eval ethnic_covar alter        -1.0621  ( 0.6433   )   -0.0199   
+##   11. eval ethnic_covar ego           0.0534  ( 0.6066   )   -0.0218   
+##   12. eval same ethnic_covar         -0.7553  ( 0.4939   )    0.0066   
+##   13. eval thermow_covar alter        0.0350  ( 0.0161   )   -0.0470   
+##   14. eval thermow_covar ego         -0.0173  ( 0.0127   )   -0.0253   
+##   15. eval thermow_covar similarity   0.0091  ( 0.5885   )   -0.0200   
+##   16. eval emfriends_covar ego       -0.1255  ( 0.1761   )   -0.0194   
+## 
+## Overall maximum convergence ratio:    0.2197 
+## 
+## 
+## Total of 3322 iteration steps.</code></pre>
+<pre class="r"><code>results_r5_net_ethnic &lt;- data.frame(
+  effect = r5_net_ethnic$effects$effectName,
+  b = r5_net_ethnic$theta,
+  se = r5_net_ethnic$se,
+  t = r5_net_ethnic$theta / r5_net_ethnic$se,
+  p = 2 * pnorm(-abs(r5_net_ethnic$theta / r5_net_ethnic$se)))
+pander::pander(results_r5_net_ethnic)</code></pre>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="15%" />
+<col width="13%" />
+<col width="15%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter nety</td>
+<td align="center">5</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-0.6767</td>
+<td align="center">0.9073</td>
+<td align="center">-0.7459</td>
+<td align="center">0.4557</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">2.898</td>
+<td align="center">0.603</td>
+<td align="center">4.807</td>
+<td align="center">1.535e-06</td>
+</tr>
+<tr class="even">
+<td align="center">transitive triplets</td>
+<td align="center">0.4874</td>
+<td align="center">0.1239</td>
+<td align="center">3.934</td>
+<td align="center">8.369e-05</td>
+</tr>
+<tr class="odd">
+<td align="center">indegree - popularity</td>
+<td align="center">-0.4252</td>
+<td align="center">0.228</td>
+<td align="center">-1.865</td>
+<td align="center">0.06215</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree - activity</td>
+<td align="center">-0.1503</td>
+<td align="center">0.09891</td>
+<td align="center">-1.519</td>
+<td align="center">0.1286</td>
+</tr>
+<tr class="odd">
+<td align="center">gender_covar alter</td>
+<td align="center">0.1724</td>
+<td align="center">0.5781</td>
+<td align="center">0.2983</td>
+<td align="center">0.7655</td>
+</tr>
+<tr class="even">
+<td align="center">gender_covar ego</td>
+<td align="center">-0.01287</td>
+<td align="center">0.6268</td>
+<td align="center">-0.02053</td>
+<td align="center">0.9836</td>
+</tr>
+<tr class="odd">
+<td align="center">same gender_covar</td>
+<td align="center">0.8943</td>
+<td align="center">0.3673</td>
+<td align="center">2.435</td>
+<td align="center">0.01491</td>
+</tr>
+<tr class="even">
+<td align="center">ethnic_covar alter</td>
+<td align="center">-1.062</td>
+<td align="center">0.6433</td>
+<td align="center">-1.651</td>
+<td align="center">0.09872</td>
+</tr>
+<tr class="odd">
+<td align="center">ethnic_covar ego</td>
+<td align="center">0.05345</td>
+<td align="center">0.6066</td>
+<td align="center">0.08811</td>
+<td align="center">0.9298</td>
+</tr>
+<tr class="even">
+<td align="center">same ethnic_covar</td>
+<td align="center">-0.7553</td>
+<td align="center">0.4939</td>
+<td align="center">-1.529</td>
+<td align="center">0.1262</td>
+</tr>
+<tr class="odd">
+<td align="center">thermow_covar alter</td>
+<td align="center">0.03497</td>
+<td align="center">0.01609</td>
+<td align="center">2.173</td>
+<td align="center">0.02977</td>
+</tr>
+<tr class="even">
+<td align="center">thermow_covar ego</td>
+<td align="center">-0.01731</td>
+<td align="center">0.0127</td>
+<td align="center">-1.363</td>
+<td align="center">0.173</td>
+</tr>
+<tr class="odd">
+<td align="center">thermow_covar similarity</td>
+<td align="center">0.009106</td>
+<td align="center">0.5885</td>
+<td align="center">0.01547</td>
+<td align="center">0.9877</td>
+</tr>
+<tr class="even">
+<td align="center">emfriends_covar ego</td>
+<td align="center">-0.1255</td>
+<td align="center">0.1761</td>
+<td align="center">-0.7128</td>
+<td align="center">0.476</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># same patterns in terms of significance. some now slightly over/under p=0.05
+
+# and when I set the rate parameter to 50
+myeff_2a[1,]$fix &lt;- TRUE 
+myeff_2a[1,]$initialValue &lt;- 50
+myeff_2a</code></pre>
+<pre><code>##    effectName                include fix   test  initialValue parm
+## 1  basic rate parameter nety TRUE    TRUE  FALSE         50   0   
+## 2  outdegree (density)       TRUE    FALSE FALSE          0   0   
+## 3  reciprocity               TRUE    FALSE FALSE          0   0   
+## 4  transitive triplets       TRUE    FALSE FALSE          0   0   
+## 5  indegree - popularity     TRUE    FALSE FALSE          0   0   
+## 6  outdegree - activity      TRUE    FALSE FALSE          0   0   
+## 7  gender_covar alter        TRUE    FALSE FALSE          0   0   
+## 8  gender_covar ego          TRUE    FALSE FALSE          0   0   
+## 9  same gender_covar         TRUE    FALSE FALSE          0   0   
+## 10 ethnic_covar alter        TRUE    FALSE FALSE          0   0   
+## 11 ethnic_covar ego          TRUE    FALSE FALSE          0   0   
+## 12 same ethnic_covar         TRUE    FALSE FALSE          0   0   
+## 13 thermow_covar alter       TRUE    FALSE FALSE          0   0   
+## 14 thermow_covar ego         TRUE    FALSE FALSE          0   0   
+## 15 thermow_covar similarity  TRUE    FALSE FALSE          0   0   
+## 16 emfriends_covar ego       TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code>r50_net_ethnic &lt;- siena07(myAlgorithm, data = mydata_1, effects = myeff_2a, returnDeps = T)
+r50_net_ethnic # convergence too high, apart from that it looks fine.</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                      Estimate   Standard   Convergence 
+##                                                   Error      t-ratio   
+##    1. rate basic rate parameter nety 50.0000  (     NA   )    9.8096   
+##    2. eval outdegree (density)       -1.5953  ( 0.5672   )    0.0422   
+##    3. eval reciprocity                3.1540  ( 0.5317   )    0.0565   
+##    4. eval transitive triplets        0.3812  ( 0.0698   )    0.1003   
+##    5. eval indegree - popularity     -0.2043  ( 0.1308   )    0.3229   
+##    6. eval outdegree - activity      -0.0963  ( 0.0677   )    0.2899   
+##    7. eval gender_covar alter        -0.0644  ( 0.5617   )   -0.0623   
+##    8. eval gender_covar ego           0.1962  ( 0.5824   )   -0.0073   
+##    9. eval same gender_covar          0.7706  ( 0.1990   )   -0.0092   
+##   10. eval ethnic_covar alter        -0.9391  ( 0.4279   )    0.0839   
+##   11. eval ethnic_covar ego           0.0965  ( 0.4365   )   -0.0110   
+##   12. eval same ethnic_covar         -0.7971  ( 0.3335   )    0.0540   
+##   13. eval thermow_covar alter        0.0261  ( 0.0179   )    0.0340   
+##   14. eval thermow_covar ego         -0.0143  ( 0.0137   )    0.0593   
+##   15. eval thermow_covar similarity  -0.0362  ( 0.3268   )   -0.0652   
+##   16. eval emfriends_covar ego       -0.0491  ( 0.1229   )    0.0744   
+## 
+## Overall maximum convergence ratio:    2.1994 
+## 
+## 
+## Total of 3322 iteration steps.</code></pre>
+<pre class="r"><code>results_r50_net_ethnic &lt;- data.frame(
+  effect = r50_net_ethnic$effects$effectName,
+  b = r50_net_ethnic$theta,
+  se = r50_net_ethnic$se,
+  t = r50_net_ethnic$theta / r50_net_ethnic$se,
+  p = 2 * pnorm(-abs(r50_net_ethnic$theta / r50_net_ethnic$se)))
+pander::pander(results_r50_net_ethnic)</code></pre>
+<table style="width:99%;">
+<colgroup>
+<col width="38%" />
+<col width="15%" />
+<col width="13%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter nety</td>
+<td align="center">50</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-1.595</td>
+<td align="center">0.5672</td>
+<td align="center">-2.813</td>
+<td align="center">0.004913</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">3.154</td>
+<td align="center">0.5317</td>
+<td align="center">5.932</td>
+<td align="center">3e-09</td>
+</tr>
+<tr class="even">
+<td align="center">transitive triplets</td>
+<td align="center">0.3812</td>
+<td align="center">0.06983</td>
+<td align="center">5.459</td>
+<td align="center">4.791e-08</td>
+</tr>
+<tr class="odd">
+<td align="center">indegree - popularity</td>
+<td align="center">-0.2043</td>
+<td align="center">0.1308</td>
+<td align="center">-1.561</td>
+<td align="center">0.1185</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree - activity</td>
+<td align="center">-0.09635</td>
+<td align="center">0.0677</td>
+<td align="center">-1.423</td>
+<td align="center">0.1547</td>
+</tr>
+<tr class="odd">
+<td align="center">gender_covar alter</td>
+<td align="center">-0.06436</td>
+<td align="center">0.5617</td>
+<td align="center">-0.1146</td>
+<td align="center">0.9088</td>
+</tr>
+<tr class="even">
+<td align="center">gender_covar ego</td>
+<td align="center">0.1962</td>
+<td align="center">0.5824</td>
+<td align="center">0.3369</td>
+<td align="center">0.7362</td>
+</tr>
+<tr class="odd">
+<td align="center">same gender_covar</td>
+<td align="center">0.7706</td>
+<td align="center">0.199</td>
+<td align="center">3.873</td>
+<td align="center">0.0001075</td>
+</tr>
+<tr class="even">
+<td align="center">ethnic_covar alter</td>
+<td align="center">-0.9391</td>
+<td align="center">0.4279</td>
+<td align="center">-2.195</td>
+<td align="center">0.0282</td>
+</tr>
+<tr class="odd">
+<td align="center">ethnic_covar ego</td>
+<td align="center">0.09654</td>
+<td align="center">0.4365</td>
+<td align="center">0.2211</td>
+<td align="center">0.825</td>
+</tr>
+<tr class="even">
+<td align="center">same ethnic_covar</td>
+<td align="center">-0.7971</td>
+<td align="center">0.3335</td>
+<td align="center">-2.39</td>
+<td align="center">0.01686</td>
+</tr>
+<tr class="odd">
+<td align="center">thermow_covar alter</td>
+<td align="center">0.02609</td>
+<td align="center">0.01786</td>
+<td align="center">1.461</td>
+<td align="center">0.144</td>
+</tr>
+<tr class="even">
+<td align="center">thermow_covar ego</td>
+<td align="center">-0.01432</td>
+<td align="center">0.01369</td>
+<td align="center">-1.046</td>
+<td align="center">0.2956</td>
+</tr>
+<tr class="odd">
+<td align="center">thermow_covar similarity</td>
+<td align="center">-0.03616</td>
+<td align="center">0.3268</td>
+<td align="center">-0.1107</td>
+<td align="center">0.9119</td>
+</tr>
+<tr class="even">
+<td align="center">emfriends_covar ego</td>
+<td align="center">-0.04909</td>
+<td align="center">0.1229</td>
+<td align="center">-0.3993</td>
+<td align="center">0.6896</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># again, roughly same patterns in terms of significance.</code></pre>
+<p><br></p>
+</div>
+<div id="relative-influence" class="section level4" number="1.2.1.2">
+<h4><span class="header-section-number">1.2.1.2</span>
+<strong><em>Relative influence</em></strong></h4>
+<p>Next, I examined relative influence of the effects to see how
+important each statistic was for individual actors in their decision
+making process. As displayed in the figure below, the most important
+effects are reciprocity, indegree popularity, outdegree activity, and
+transitive triplets; all structural network dynamics.</p>
+<p>In terms of the gender and ethnicity effects, especially same-gender
+and same-ethnic effects seem to matter for individual’s decision making.
+Primary outgroup attitudes (i.e. thermometer scale about women) of alter
+also seem important. The relative influence of all other effects seems
+negligible, as also reflected by a lack of significance in the RSiena
+models.</p>
+<pre class="r"><code># pander::pander(results_net_ethnic)
+
+# get parameters
+theta.eval &lt;- net_ethnic$theta
+
+# and effects
+myeff.eval &lt;- net_ethnic$effects
+
+# use sienaRI()
+library(RsienaTwoStep)
+?sienaRI
+RI &lt;- interpret_size(x = net_ethnic,
+                     data = mydata_1, 
+                     theta = theta.eval, 
+                     addPieChart = T, 
+                     legend = T,
+                     getChangeStats = T)
+RI</code></pre>
+<pre><code>## 
+##   Expected relative importance of effects for dependent variable &#39;nety&#39; at observation moments:
+## 
+## 
+##                                                                period 1  
+##  
+##   1. eval outdegree (density)                                  0.0394  
+##   2. eval reciprocity                                          0.2064  
+##   3. eval transitive triplets                                  0.0992  
+##   4. eval indegree - popularity                                0.2143  
+##   5. eval outdegree - activity                                 0.1242  
+##   6. eval gender_covar alter                                   0.0057  
+##   7. eval gender_covar ego                                     0.0052  
+##   8. eval same gender_covar                                    0.0748  
+##   9. eval ethnic_covar alter                                   0.0451  
+##  10. eval ethnic_covar ego                                     0.0071  
+##  11. eval same ethnic_covar                                    0.0639  
+##  12. eval thermow_covar alter                                  0.0792  
+##  13. eval thermow_covar ego                                    0.0256  
+##  14. eval thermow_covar similarity                             0.0010  
+##  15. eval emfriends_covar ego                                  0.0088  
+## 
+## 
+##   Expected importance of effects for this dependent variable:
+## 
+##   1. eval outdegree (density)                                  0.1886  
+##   2. eval reciprocity                                          0.9763  
+##   3. eval transitive triplets                                  0.5097  
+##   4. eval indegree - popularity                                0.9194  
+##   5. eval outdegree - activity                                 0.5906  
+##   6. eval gender_covar alter                                   0.0270  
+##   7. eval gender_covar ego                                     0.0254  
+##   8. eval same gender_covar                                    0.3669  
+##   9. eval ethnic_covar alter                                   0.2126  
+##  10. eval ethnic_covar ego                                     0.0356  
+##  11. eval same ethnic_covar                                    0.3008  
+##  12. eval thermow_covar alter                                  0.3774  
+##  13. eval thermow_covar ego                                    0.1226  
+##  14. eval thermow_covar similarity                             0.0048  
+##  15. eval emfriends_covar ego                                  0.0425  
+## 
+## 
+##  R_H (&#39;degree of certainty&#39;)                                   0.4060</code></pre>
+<pre class="r"><code># and plot
+?plot
+plot(RI, addPieChart = TRUE, legendColumns = 2)</code></pre>
+<p><img src="RSiena_results_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="goodness-of-fit" class="section level4" number="1.2.1.3">
+<h4><span class="header-section-number">1.2.1.3</span>
+<strong><em>Goodness of Fit</em></strong></h4>
+<p>Finally, I examine the Goodness of Fit (GOF) of my network model to
+see whether the model accurately predicts the actual observed network.
+In terms of auxiliary statistics, I looked at the indegree and outdegree
+distributions, geodesic distance, and triad census. The GOF seems very
+good based on all these statistics; the fitted model follows the overall
+shape and <em>p</em>-values are insignificant (meaning that the values
+of the fitted model do, collectively, not significantly differ from the
+observed values). I conclude that I do not need to add any additional
+statistics to the model in order to further increase GOF.</p>
+<p>In other words: this means that the model very accurately predicts
+the actual network at T2. But note: it also makes sense that the model
+predicts the network at T2 well, since it is a stationary / short-term
+dynamic equilibrium network, meaning that the network looks pretty much
+the same as at T1 (which the model uses to predict T2).</p>
+<pre class="r"><code># pander::pander(results_net_ethnic)
+
+GeodesicDistribution &lt;- function(i, data, sims, period, groupName, varName, levls = c(1:5, Inf), cumulative = TRUE,
+    ...) {
+    x &lt;- networkExtraction(i, data, sims, period, groupName, varName)
+    require(sna)
+    a &lt;- sna::geodist(symmetrize(x))$gdist
+    if (cumulative) {
+        gdi &lt;- sapply(levls, function(i) {
+            sum(a &lt;= i)
+        })
+    } else {
+        gdi &lt;- sapply(levls, function(i) {
+            sum(a == i)
+        })
+    }
+    names(gdi) &lt;- as.character(levls)
+    gdi
+}
+
+# The following function is taken from the help page for sienaTest
+
+testall &lt;- function(net_ethnic) {
+    for (i in which(net_ethnic$test)) {
+        sct &lt;- score.Test(net_ethnic, i)
+        cat(net_ethnic$requestedEffects$effectName[i], &quot;\n&quot;)
+        print(sct)
+    }
+    invisible(score.Test(ans))
+}
+
+
+gofi0 &lt;- sienaGOF(net_ethnic, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;nety&quot;)
+gofo0 &lt;- sienaGOF(net_ethnic, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;nety&quot;)
+gof0.gd &lt;- sienaGOF(net_ethnic, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = &quot;nety&quot;)
+gof0.tc &lt;- sienaGOF(net_ethnic, TriadCensus, verbose = FALSE, join = TRUE, varName = &quot;nety&quot;)
+
+
+plot(gofi0) # indegree distribution</code></pre>
+<pre><code>## Note: some statistics are not plotted because their variance is 0.
+## This holds for the statistic: 8.</code></pre>
+<p><img src="RSiena_results_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>plot(gofo0) # outdegree distribution</code></pre>
+<pre><code>## Note: some statistics are not plotted because their variance is 0.
+## This holds for the statistic: 8.</code></pre>
+<p><img src="RSiena_results_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<pre class="r"><code>plot(gof0.gd) # geodesic distance</code></pre>
+<p><img src="RSiena_results_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<pre class="r"><code>plot(gof0.tc, center = TRUE, scale = TRUE) # triad census</code></pre>
+<p><img src="RSiena_results_files/figure-html/unnamed-chunk-6-4.png" width="672" /></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="behavioral-model" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> <strong>Behavioral
+model</strong></h3>
+<p>Now that the network-only model has converged and predicted
+estimates, relative influence, and GOF, it is time to add back the
+behavioral dependent into the model. As described, I separated the two
+because of convergence issues when I initially tried to run a model that
+contained both. Again, I followed a stepwise and cumulative procedure,
+outlined in more detail in the <em>Data and Method</em> chapter. As
+mentioned, I ended up fixing the behavioral rate parameter as well (at λ
+= 50), since the model repeatedly produced insanely high estimates for
+it, further creating problems with convergence. After fixing, almost all
+models converged, except for the last one containing the dyadic
+covariate effects. This final model repeatedly produced convergence
+rates that far exceeded the 0.25 threshold, which means that I can not
+reliably interpret the estimates. Interpretations below therefore
+concern the last converging and most complete behavioral model that was
+able to run.</p>
+<p>In terms of the intercept, the behavioral model finds significant
+effects for both a linear and quadratic shape (respectively <em>b</em> =
+0.15, <em>p</em> = .027; <em>b</em> = -0.01, <em>p</em> = .005). This
+means that, in changing their ethnic minority attitudes, students tend
+to move towards the group mean following a quadratic shape. The negative
+effect further indicates that students with below-average ethnic
+minority attitudes have a stronger tendency to move towards the mean
+than students with above-average attitudes.</p>
+<p>Furthermore, the analysis shows a significant positive average alter
+effect in all models (<em>b</em> = 0.04, <em>p</em> = .009). This means
+that students tend to adapt their ethnic minority attitudes to the
+average value of their connected peers. Note that, if the average ethnic
+minority attitudes of their friends are <em>lower</em> than theirs, this
+means that students will adapt in that direction! This finding provides
+support for social influence effects and therefore H3.</p>
+<p>As for primary outgroup attitudes, the results show that students’
+attitudes towards women do not predict their ethnic minority attitudes
+(<em>b</em> = -0.001, <em>p</em> -= .814). This finding rejects H1 and
+the idea of attitude generalization - in interesting contrast with STE
+literature.</p>
+<p>In terms of ethnicity and gender effects, the ethnicity of a student
+significantly predicts their ethnic minority attitudes (<em>b</em> =
+-0.45, <em>p</em> = .009). Interestingly though, this effect is
+negative, meaning that students with a non-Dutch background tend to have
+<em>lower</em> or more negative attitudes towards ethnic minorities. A
+similar effect was found for the number of ethnic minority friends:
+having more friends with a non-Dutch background significantly
+<em>decreased</em> scores on the thermometer scale, and therefore caused
+more negative ethnic minority attitudes (<em>b</em> = -0.33, <em>p</em>
+&lt; .001). Student’s gender did not have an effect on their ethnic
+minority attitudes (<em>b</em> = 0.15, <em>p</em> = .427).</p>
+<p>Because of the convergence issues described above, I was not able to
+reliably test H4. The role of primary outgroup friends therefore remains
+unexplored. The question thus remains whether students with more primary
+outgroup (i.e. gender) friends tend to develop more positive attitudes
+towards a secondary outgroup (i.e. ethnic minorities). Based on my
+analyses, I also can not conclude whether students are likely to adopt
+an average secondary outgroup (i.e. ethnic minority) attitude of their
+primary outgroup (i.e. gender) friends.</p>
+<pre class="r"><code># now add the behavioral Y and see if it still works
+mydata_2 &lt;- sienaDataCreate(nety, behy, gender_covar, ethnic_covar, thermow_covar, emfriends_covar, covar_gender_dyads)
+myeff_3 &lt;- getEffects(mydata_2)
+
+myeff_3 &lt;- includeEffects(myeff_3, name = &quot;behy&quot;, avAlt, interaction1 = &quot;nety&quot;)</code></pre>
+<pre><code>##   effectNumber effectName         shortName include fix   test  initialValue
+## 1 1373         behy average alter avAlt     TRUE    FALSE FALSE          0  
+##   parm
+## 1 0</code></pre>
+<pre class="r"><code>myeff_3[1,]$fix &lt;- TRUE 
+myeff_3[1,]$initialValue &lt;- 20
+myeff_3</code></pre>
+<pre><code>##   name effectName                include fix   test  initialValue parm
+## 1 nety basic rate parameter nety TRUE    TRUE  FALSE   20.00000   0   
+## 2 nety outdegree (density)       TRUE    FALSE FALSE    0.00000   0   
+## 3 nety reciprocity               TRUE    FALSE FALSE    0.00000   0   
+## 4 behy rate behy period 1        TRUE    FALSE FALSE 1264.69538   0   
+## 5 behy behy linear shape         TRUE    FALSE FALSE    0.00328   0   
+## 6 behy behy quadratic shape      TRUE    FALSE FALSE    0.00000   0   
+## 7 behy behy average alter        TRUE    FALSE FALSE    0.00000   0</code></pre>
+<pre class="r"><code># beh_simple &lt;- siena07(myAlgorithm, data = mydata_2, effects = myeff_3, returnDeps = T, thetaBound = 2000)
+# beh_simple
+
+# convergence is way too high, took really long to fit this model. Rate parameter of behavior is also insanely high (1395), and even before running a model the initalvalue = 1264. I will another model with a fixed behavioral rate too. 
+
+myeff_3 &lt;- setEffect(myeff_3, 
+                   Rate, 
+                   name = &quot;behy&quot;,       
+                   type = &quot;rate&quot;,           
+                   period = 1,              
+                   initialValue = 50,      
+                   fix = TRUE)  </code></pre>
+<pre><code>##   effectNumber effectName         shortName include fix  test  initialValue
+## 1 1258         rate behy period 1 Rate      TRUE    TRUE FALSE         50  
+##   parm
+## 1 0</code></pre>
+<pre class="r"><code>beh_simple_fixed &lt;- siena07(myAlgorithm, data = mydata_2, effects = myeff_3, returnDeps = T) 
+beh_simple_fixed # seems to go well</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                     Estimate   Standard   Convergence 
+##                                                  Error      t-ratio   
+## Network Dynamics 
+##   1. rate basic rate parameter nety 20.0000  (     NA   )    11.2205  
+##   2. eval outdegree (density)       -2.3753  ( 0.2488   )     0.0123  
+##   3. eval reciprocity                3.2973  ( 0.4175   )     0.0601  
+## 
+## Behavior Dynamics
+##   4. rate rate behy period 1        50.0000  (     NA   )   -19.0422  
+##   5. eval behy linear shape          0.1409  ( 0.0468   )    -0.0356  
+##   6. eval behy quadratic shape      -0.0066  ( 0.0015   )    -0.1069  
+##   7. eval behy average alter         0.0206  ( 0.0103   )    -0.0173  
+## 
+## Overall maximum convergence ratio:    0.1812 
+## 
+## 
+## Total of 2550 iteration steps.</code></pre>
+<pre class="r"><code>results_beh_simple_fixed &lt;- data.frame(
+  effect = beh_simple_fixed$effects$effectName,
+  b = beh_simple_fixed$theta,
+  se = beh_simple_fixed$se,
+  t = beh_simple_fixed$theta / beh_simple_fixed$se,
+  p = 2 * pnorm(-abs(beh_simple_fixed$theta / beh_simple_fixed$se)))
+pander::pander(results_beh_simple_fixed)</code></pre>
+<table style="width:99%;">
+<colgroup>
+<col width="38%" />
+<col width="16%" />
+<col width="13%" />
+<col width="12%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter nety</td>
+<td align="center">20</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-2.375</td>
+<td align="center">0.2488</td>
+<td align="center">-9.546</td>
+<td align="center">1.344e-21</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">3.297</td>
+<td align="center">0.4175</td>
+<td align="center">7.897</td>
+<td align="center">2.849e-15</td>
+</tr>
+<tr class="even">
+<td align="center">rate behy period 1</td>
+<td align="center">50</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">behy linear shape</td>
+<td align="center">0.1409</td>
+<td align="center">0.04676</td>
+<td align="center">3.013</td>
+<td align="center">0.00259</td>
+</tr>
+<tr class="even">
+<td align="center">behy quadratic shape</td>
+<td align="center">-0.006643</td>
+<td align="center">0.00154</td>
+<td align="center">-4.313</td>
+<td align="center">1.61e-05</td>
+</tr>
+<tr class="odd">
+<td align="center">behy average alter</td>
+<td align="center">0.02063</td>
+<td align="center">0.01033</td>
+<td align="center">1.998</td>
+<td align="center">0.04576</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># Significant average alter effect (positive). network statistics are also significant.
+
+# now let&#39;s add gender effect
+myeff_3a &lt;- set_effect(myeff_3, depvar = &quot;behy&quot;, list(effFrom, avXAlt), covar1 =&quot;gender_covar&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                     shortName include fix   test 
+## 1 1448         behy: effect from gender_covar effFrom   TRUE    FALSE FALSE
+##   initialValue parm
+## 1          0   0</code></pre>
+<pre class="r"><code>beh_gender &lt;- siena07(myAlgorithm, data = mydata_2, effects = myeff_3a, returnDeps = T, prevAns = beh_simple_fixed)
+beh_gender # works! convergence also okay</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                          Estimate   Standard   Convergence 
+##                                                       Error      t-ratio   
+## Network Dynamics 
+##   1. rate basic rate parameter nety      20.0000  (     NA   )    11.5005  
+##   2. eval outdegree (density)            -2.3469  ( 0.3528   )    -0.0134  
+##   3. eval reciprocity                     3.2456  ( 0.5694   )    -0.0041  
+## 
+## Behavior Dynamics
+##   4. rate rate behy period 1             50.0000  (     NA   )   -15.6970  
+##   5. eval behy linear shape               0.1431  ( 0.0595   )    -0.0237  
+##   6. eval behy quadratic shape           -0.0066  ( 0.0021   )    -0.0077  
+##   7. eval behy average alter              0.0274  ( 0.0161   )    -0.0659  
+##   8. eval behy: effect from gender_covar  0.4512  ( 0.1284   )    -0.0264  
+## 
+## Overall maximum convergence ratio:    0.0775 
+## 
+## 
+## Total of 2722 iteration steps.</code></pre>
+<pre class="r"><code>results_beh_gender &lt;- data.frame(
+  effect = beh_gender$effects$effectName,
+  b = beh_gender$theta,
+  se = beh_gender$se,
+  t = beh_gender$theta / beh_gender$se,
+  p = 2 * pnorm(-abs(beh_gender$theta / beh_gender$se)))
+pander::pander(results_beh_gender)</code></pre>
+<table>
+<colgroup>
+<col width="42%" />
+<col width="15%" />
+<col width="14%" />
+<col width="11%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter nety</td>
+<td align="center">20</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-2.347</td>
+<td align="center">0.3528</td>
+<td align="center">-6.652</td>
+<td align="center">2.888e-11</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">3.246</td>
+<td align="center">0.5694</td>
+<td align="center">5.7</td>
+<td align="center">1.199e-08</td>
+</tr>
+<tr class="even">
+<td align="center">rate behy period 1</td>
+<td align="center">50</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">behy linear shape</td>
+<td align="center">0.1431</td>
+<td align="center">0.05952</td>
+<td align="center">2.404</td>
+<td align="center">0.01621</td>
+</tr>
+<tr class="even">
+<td align="center">behy quadratic shape</td>
+<td align="center">-0.006627</td>
+<td align="center">0.002115</td>
+<td align="center">-3.133</td>
+<td align="center">0.001731</td>
+</tr>
+<tr class="odd">
+<td align="center">behy average alter</td>
+<td align="center">0.02736</td>
+<td align="center">0.0161</td>
+<td align="center">1.699</td>
+<td align="center">0.08938</td>
+</tr>
+<tr class="even">
+<td align="center">behy: effect from gender_covar</td>
+<td align="center">0.4512</td>
+<td align="center">0.1284</td>
+<td align="center">3.515</td>
+<td align="center">0.0004397</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># very sig effect of gender covar! Positive, meaning that women on average score higher (i.e. more positive) on ethnic minority attitudes/thermometer.
+
+# add ethnicity effect
+myeff_3b &lt;- set_effect(myeff_3a, depvar = &quot;behy&quot;, c(effFrom, avXAlt), covar1 =&quot;ethnic_covar&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                     shortName include fix   test 
+## 1 1543         behy: effect from ethnic_covar effFrom   TRUE    FALSE FALSE
+##   initialValue parm
+## 1          0   0</code></pre>
+<pre class="r"><code>beh_ethnic &lt;- siena07(myAlgorithm, data = mydata_2, effects = myeff_3b, returnDeps = T, prevAns = beh_gender)
+beh_ethnic # also converges!</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                          Estimate   Standard   Convergence 
+##                                                       Error      t-ratio   
+## Network Dynamics 
+##   1. rate basic rate parameter nety      20.0000  (     NA   )    10.8076  
+##   2. eval outdegree (density)            -2.3385  ( 0.2900   )    -0.0415  
+##   3. eval reciprocity                     3.2286  ( 0.5199   )    -0.0407  
+## 
+## Behavior Dynamics
+##   4. rate rate behy period 1             50.0000  (     NA   )   -14.0477  
+##   5. eval behy linear shape               0.1461  ( 0.0532   )     0.0668  
+##   6. eval behy quadratic shape           -0.0062  ( 0.0022   )    -0.0276  
+##   7. eval behy average alter              0.0294  ( 0.0145   )    -0.0037  
+##   8. eval behy: effect from gender_covar  0.4546  ( 0.1380   )    -0.0307  
+##   9. eval behy: effect from ethnic_covar -0.3401  ( 0.1362   )     0.0212  
+## 
+## Overall maximum convergence ratio:    0.0976 
+## 
+## 
+## Total of 2877 iteration steps.</code></pre>
+<pre class="r"><code># add control variable effects: ethnic minority friends and thermometer women
+myeff_3d &lt;- set_effect(myeff_3b, depvar = &quot;behy&quot;, c(effFrom, avXAlt), covar1 =&quot;emfriends_covar&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                        shortName include fix   test 
+## 1 1733         behy: effect from emfriends_covar effFrom   TRUE    FALSE FALSE
+##   initialValue parm
+## 1          0   0</code></pre>
+<pre class="r"><code>myeff_3d &lt;- set_effect(myeff_3d, depvar = &quot;behy&quot;, c(effFrom, avXAlt), covar1 =&quot;thermow_covar&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                      shortName include fix   test 
+## 1 1638         behy: effect from thermow_covar effFrom   TRUE    FALSE FALSE
+##   initialValue parm
+## 1          0   0</code></pre>
+<pre class="r"><code>beh_controls &lt;- siena07(myAlgorithm, data = mydata_2, effects = myeff_3d, returnDeps = T, prevAns = beh_ethnic)
+beh_controls # converges</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                              Estimate   Standard   Convergence 
+##                                                           Error      t-ratio   
+## Network Dynamics 
+##    1. rate basic rate parameter nety         20.0000  (     NA   )    11.1831  
+##    2. eval outdegree (density)               -2.3139  ( 0.2279   )     0.0398  
+##    3. eval reciprocity                        3.1858  ( 0.3876   )     0.0085  
+## 
+## Behavior Dynamics
+##    4. rate rate behy period 1                50.0000  (     NA   )   -10.6356  
+##    5. eval behy linear shape                  0.1478  ( 0.0706   )    -0.0611  
+##    6. eval behy quadratic shape              -0.0070  ( 0.0034   )     0.0063  
+##    7. eval behy average alter                 0.0406  ( 0.0199   )     0.0532  
+##    8. eval behy: effect from gender_covar     0.1523  ( 0.1736   )    -0.0199  
+##    9. eval behy: effect from ethnic_covar    -0.4357  ( 0.1741   )     0.0348  
+##   10. eval behy: effect from thermow_covar   -0.0012  ( 0.0046   )    -0.0067  
+##   11. eval behy: effect from emfriends_covar -0.3325  ( 0.0936   )    -0.0060  
+## 
+## Overall maximum convergence ratio:    0.1534 
+## 
+## 
+## Total of 2868 iteration steps.</code></pre>
+<pre class="r"><code>results_beh_controls &lt;- data.frame(
+  effect = beh_controls$effects$effectName,
+  b = beh_controls$theta,
+  se = beh_controls$se,
+  t = beh_controls$theta / beh_controls$se,
+  p = 2 * pnorm(-abs(beh_controls$theta / beh_controls$se)))
+pander::pander(results_beh_controls)</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="42%" />
+<col width="15%" />
+<col width="14%" />
+<col width="12%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter nety</td>
+<td align="center">20</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-2.314</td>
+<td align="center">0.2279</td>
+<td align="center">-10.15</td>
+<td align="center">3.158e-24</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">3.186</td>
+<td align="center">0.3876</td>
+<td align="center">8.219</td>
+<td align="center">2.06e-16</td>
+</tr>
+<tr class="even">
+<td align="center">rate behy period 1</td>
+<td align="center">50</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">behy linear shape</td>
+<td align="center">0.1478</td>
+<td align="center">0.07056</td>
+<td align="center">2.094</td>
+<td align="center">0.03625</td>
+</tr>
+<tr class="even">
+<td align="center">behy quadratic shape</td>
+<td align="center">-0.006998</td>
+<td align="center">0.003395</td>
+<td align="center">-2.061</td>
+<td align="center">0.0393</td>
+</tr>
+<tr class="odd">
+<td align="center">behy average alter</td>
+<td align="center">0.04063</td>
+<td align="center">0.0199</td>
+<td align="center">2.041</td>
+<td align="center">0.04125</td>
+</tr>
+<tr class="even">
+<td align="center">behy: effect from gender_covar</td>
+<td align="center">0.1523</td>
+<td align="center">0.1736</td>
+<td align="center">0.8774</td>
+<td align="center">0.3802</td>
+</tr>
+<tr class="odd">
+<td align="center">behy: effect from ethnic_covar</td>
+<td align="center">-0.4357</td>
+<td align="center">0.1741</td>
+<td align="center">-2.503</td>
+<td align="center">0.01231</td>
+</tr>
+<tr class="even">
+<td align="center">behy: effect from thermow_covar</td>
+<td align="center">-0.001217</td>
+<td align="center">0.004585</td>
+<td align="center">-0.2654</td>
+<td align="center">0.7907</td>
+</tr>
+<tr class="odd">
+<td align="center">behy: effect from emfriends_covar</td>
+<td align="center">-0.3325</td>
+<td align="center">0.09357</td>
+<td align="center">-3.553</td>
+<td align="center">0.0003802</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># still sig average alter effect. after controlling though, gender has no longer an effect on em attitudes, but ethnicity still does. Interestingly, attitudes towards women do not have an effect on attitudes towards ethnic minorities. But the number of ethnic minority friends does play an important role. Interestingly, this is a negative effect, meaning that more em friends leads to a lower thermometer score and therefore more negative em attitudes (?!)
+
+
+# and finally add the effects I am most interested in, the dyadic effects of primary outgroup friendship
+myeff_3c &lt;- set_effect(myeff_3b, depvar = &quot;behy&quot;, c(totWAlt, avSimW), covar1 = &quot;nety&quot;, covar2 = &quot;covar_gender_dyads&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                                             shortName
+## 1 1442         behy: av. simil. (nety) weighted by covar_gender_dyads avSimW   
+## 2 1446         behy: tot alter&#39;s (nety) of covar_gender_dyads         totWAlt  
+##   include fix   test  initialValue parm
+## 1 TRUE    FALSE FALSE          0   2   
+## 2 TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code>myeff_3c</code></pre>
+<pre><code>##    name effectName                                             include fix  
+## 1  nety basic rate parameter nety                              TRUE    TRUE 
+## 2  nety outdegree (density)                                    TRUE    FALSE
+## 3  nety reciprocity                                            TRUE    FALSE
+## 4  behy rate behy period 1                                     TRUE    TRUE 
+## 5  behy behy linear shape                                      TRUE    FALSE
+## 6  behy behy quadratic shape                                   TRUE    FALSE
+## 7  behy behy average alter                                     TRUE    FALSE
+## 8  behy behy: av. simil. (nety) weighted by covar_gender_dyads TRUE    FALSE
+## 9  behy behy: tot alter&#39;s (nety) of covar_gender_dyads         TRUE    FALSE
+## 10 behy behy: effect from gender_covar                         TRUE    FALSE
+## 11 behy behy: effect from ethnic_covar                         TRUE    FALSE
+##    test  initialValue parm
+## 1  FALSE   20.00000   0   
+## 2  FALSE    0.00000   0   
+## 3  FALSE    0.00000   0   
+## 4  FALSE   50.00000   0   
+## 5  FALSE    0.00328   0   
+## 6  FALSE    0.00000   0   
+## 7  FALSE    0.00000   0   
+## 8  FALSE    0.00000   2   
+## 9  FALSE    0.00000   0   
+## 10 FALSE    0.00000   0   
+## 11 FALSE    0.00000   0</code></pre>
+<pre class="r"><code># beh_dyads &lt;- siena07(myAlgorithm, data = mydata_2, effects = myeff_3c, returnDeps = T, prevAns = beh_ethnic)
+# beh_dyads # had  to increase the thetaBound and convergence is quite high
+
+# let&#39;s try with a different algorithm
+myAlgorithm2 &lt;- sienaAlgorithmCreate(projname = &quot;net&quot;, cond = F, n3=5000)</code></pre>
+<pre><code>## If you use this algorithm object, siena07 will create/use an output file net.txt .</code></pre>
+<pre class="r"><code># beh_dyads2 &lt;- siena07(myAlgorithm2, data = mydata_2, effects = myeff_3c, returnDeps = T, prevAns = beh_dyads, thetaBound = 5000) # still need to increase the thetaBound (a lot!!)
+# beh_dyads2 # convergence is still too high, although improved a little bit
+
+# results_beh_dyads2 &lt;- data.frame(
+  # effect = beh_dyads2$effects$effectName,
+ #  b = beh_dyads2$theta,
+ #  se = beh_dyads2$se,
+ #  t = beh_dyads2$theta / beh_dyads2$se,
+ #  p = 2 * pnorm(-abs(beh_dyads2$theta / beh_dyads2$se)))
+# pander::pander(results_beh_dyads2)
+# in this model, none of the behavioral effects are significant. But note: can not trust these results because of high convergence
+
+# I conclude that this model is too complicated to run on this data. The fact that it can not converge is also knowledge.</code></pre>
+<p><br></p>
+<div id="feedback-mechanism-selection-effect" class="section level4"
+number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> <em>Feedback
+mechanism / Selection effect</em></h4>
+<p>Finally, I predicted a separate model where I use the behavioral
+outcome (i.e. ethnic minority attitudes) to predict the network. This
+will provide insights into selection mechanisms, or in other words:
+whether students are more likely to befriend others based on their
+ethnic minority attitudes.</p>
+<p>The analysis shows very clear results: the ethnic minority attitudes
+of students do not predict the network outcome (<em>b</em> = 0.0008,
+<em>p</em> = .913), even in a simple model uncontrolled for other
+network dynamics. Neither do the attitudes of alters (<em>b</em> =
+-0.0003, <em>p</em> = .963), nor the level of similarity/difference
+between them (<em>b</em> = 0.003, <em>p</em> = .510). These findings
+clearly reject the idea of selection effects and therefore also reject
+H2.</p>
+<pre class="r"><code># now, finally, let&#39;s look for feedback mechanisms
+myeff_4 &lt;- includeEffects(myeff_3c, egoX, altX, absDiffX, interaction1 = &quot;behy&quot;)</code></pre>
+<pre><code>##   effectNumber effectName           shortName include fix   test  initialValue
+## 1 1035         behy alter           altX      TRUE    FALSE FALSE          0  
+## 2 1050         behy ego             egoX      TRUE    FALSE FALSE          0  
+## 3 1075         behy abs. difference absDiffX  TRUE    FALSE FALSE          0  
+##   parm
+## 1 0   
+## 2 0   
+## 3 0</code></pre>
+<pre class="r"><code># beh_feedback &lt;- siena07(myAlgorithm, data = mydata_2, effects = myeff_4, returnDeps = T, prevAns = beh_gender)
+#  # This doesn&#39;t work, convergence waaay too high
+
+# new effects structure to clean it out and hopefully help with convergence
+myeff_f &lt;- getEffects(mydata_2)
+myeff_f &lt;- includeEffects(myeff_f, egoX, altX, absDiffX, interaction1 = &quot;behy&quot;)</code></pre>
+<pre><code>##   effectNumber effectName           shortName include fix   test  initialValue
+## 1 1035         behy alter           altX      TRUE    FALSE FALSE          0  
+## 2 1050         behy ego             egoX      TRUE    FALSE FALSE          0  
+## 3 1075         behy abs. difference absDiffX  TRUE    FALSE FALSE          0  
+##   parm
+## 1 0   
+## 2 0   
+## 3 0</code></pre>
+<pre class="r"><code>myeff_f[1,]$fix &lt;- TRUE 
+myeff_f[1,]$initialValue &lt;- 20
+
+myeff_f &lt;- setEffect(myeff_f, 
+                   Rate, 
+                   name = &quot;behy&quot;,       
+                   type = &quot;rate&quot;,           
+                   period = 1,              
+                   initialValue = 50,      
+                   fix = TRUE)  </code></pre>
+<pre><code>##   effectNumber effectName         shortName include fix  test  initialValue
+## 1 1258         rate behy period 1 Rate      TRUE    TRUE FALSE         50  
+##   parm
+## 1 0</code></pre>
+<pre class="r"><code>myeff_f</code></pre>
+<pre><code>##   name effectName                include fix   test  initialValue parm
+## 1 nety basic rate parameter nety TRUE    TRUE  FALSE   20.00000   0   
+## 2 nety outdegree (density)       TRUE    FALSE FALSE    0.00000   0   
+## 3 nety reciprocity               TRUE    FALSE FALSE    0.00000   0   
+## 4 nety behy alter                TRUE    FALSE FALSE    0.00000   0   
+## 5 nety behy ego                  TRUE    FALSE FALSE    0.00000   0   
+## 6 nety behy abs. difference      TRUE    FALSE FALSE    0.00000   0   
+## 7 behy rate behy period 1        TRUE    TRUE  FALSE   50.00000   0   
+## 8 behy behy linear shape         TRUE    FALSE FALSE    0.00328   0   
+## 9 behy behy quadratic shape      TRUE    FALSE FALSE    0.00000   0</code></pre>
+<pre class="r"><code>net_feedback &lt;- siena07(myAlgorithm, data = mydata_2, effects = myeff_f, returnDeps = T)
+net_feedback # works well, convergence is great</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                     Estimate   Standard   Convergence 
+##                                                  Error      t-ratio   
+## Network Dynamics 
+##   1. rate basic rate parameter nety 20.0000  (     NA   )    11.1193  
+##   2. eval outdegree (density)       -2.4457  ( 0.2842   )     0.0135  
+##   3. eval reciprocity                3.2797  ( 0.4105   )     0.0520  
+##   4. eval behy alter                -0.0004  ( 0.0069   )    -0.0523  
+##   5. eval behy ego                   0.0009  ( 0.0076   )    -0.0085  
+##   6. eval behy abs. difference       0.0031  ( 0.0049   )    -0.0398  
+## 
+## Behavior Dynamics
+##   7. rate rate behy period 1        50.0000  (     NA   )   -26.8059  
+##   8. eval behy linear shape          0.1343  ( 0.0356   )    -0.0104  
+##   9. eval behy quadratic shape      -0.0062  ( 0.0009   )    -0.0447  
+## 
+## Overall maximum convergence ratio:    0.1755 
+## 
+## 
+## Total of 2877 iteration steps.</code></pre>
+<pre class="r"><code>results_net_feedback &lt;- data.frame(
+  effect = net_feedback$effects$effectName,
+  b = net_feedback$theta,
+  se = net_feedback$se,
+  t = net_feedback$theta / net_feedback$se,
+  p = 2 * pnorm(-abs(net_feedback$theta / net_feedback$se)))
+pander::pander(results_net_feedback)</code></pre>
+<table>
+<colgroup>
+<col width="37%" />
+<col width="17%" />
+<col width="14%" />
+<col width="14%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter nety</td>
+<td align="center">20</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-2.446</td>
+<td align="center">0.2842</td>
+<td align="center">-8.604</td>
+<td align="center">7.675e-18</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">3.28</td>
+<td align="center">0.4105</td>
+<td align="center">7.989</td>
+<td align="center">1.356e-15</td>
+</tr>
+<tr class="even">
+<td align="center">behy alter</td>
+<td align="center">-0.0003508</td>
+<td align="center">0.006875</td>
+<td align="center">-0.05103</td>
+<td align="center">0.9593</td>
+</tr>
+<tr class="odd">
+<td align="center">behy ego</td>
+<td align="center">0.0009414</td>
+<td align="center">0.007613</td>
+<td align="center">0.1237</td>
+<td align="center">0.9016</td>
+</tr>
+<tr class="even">
+<td align="center">behy abs. difference</td>
+<td align="center">0.003052</td>
+<td align="center">0.004864</td>
+<td align="center">0.6275</td>
+<td align="center">0.5303</td>
+</tr>
+<tr class="odd">
+<td align="center">rate behy period 1</td>
+<td align="center">50</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">behy linear shape</td>
+<td align="center">0.1343</td>
+<td align="center">0.03565</td>
+<td align="center">3.767</td>
+<td align="center">0.000165</td>
+</tr>
+<tr class="odd">
+<td align="center">behy quadratic shape</td>
+<td align="center">-0.006211</td>
+<td align="center">0.000862</td>
+<td align="center">-7.205</td>
+<td align="center">5.792e-13</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># no sig effects of behavior on network; nor from alter/ego, nor from absDiff</code></pre>
+<p><br></p>
+</div>
+<div id="relative-influence-1" class="section level4" number="1.2.2.2">
+<h4><span class="header-section-number">1.2.2.2</span> <em>Relative
+influence</em></h4>
+<p>Next, I examined the relative influence of my last converging full
+behavioral model. As also reflected in the significance of the
+estimates, we see a huge importance (i.e. relative influence) of average
+alter effects. This means that the average level of ethnic minority
+attitudes of someone’s friends plays a major role in their decision
+making on whether to change their own attitudes. Apart from the linear
+and quadratic shape, we also see a big effect of the number of ethnic
+minority friends that students have.</p>
+<pre class="r"><code># pander::pander(results_beh_controls)
+
+# get parameters
+theta.eval &lt;- beh_controls$theta
+
+# and effects
+myeff.eval &lt;- beh_controls$effects
+
+# use sienaRI()
+library(RsienaTwoStep)
+RI_beh &lt;- interpret_size(x = beh_controls,
+                     data = mydata_2, 
+                     theta = theta.eval, 
+                     addPieChart = T, 
+                     legend = T,
+                     getChangeStats = T)
+RI_beh</code></pre>
+<pre><code>## [[1]]
+## 
+##   Expected relative importance of effects for dependent variable &#39;nety&#39; at observation moments:
+## 
+## 
+##                                                                period 1  
+##  
+##   1. eval outdegree (density)                                  0.4676  
+##   2. eval reciprocity                                          0.5324  
+## 
+## 
+##   Expected importance of effects for this dependent variable:
+## 
+##   1. eval outdegree (density)                                  1.0237  
+##   2. eval reciprocity                                          1.1406  
+## 
+## 
+##  R_H (&#39;degree of certainty&#39;)                                   0.3038  
+## 
+## [[2]]
+## 
+##   Expected relative importance of effects for dependent variable &#39;behy&#39; at observation moments:
+## 
+## 
+##                                                                period 1  
+##  
+##   1. eval behy linear shape                                    0.1005  
+##   2. eval behy quadratic shape                                 0.2172  
+##   3. eval behy average alter                                   0.3383  
+##   4. eval behy: effect from gender_covar                       0.0490  
+##   5. eval behy: effect from ethnic_covar                       0.1103  
+##   6. eval behy: effect from thermow_covar                      0.0133  
+##   7. eval behy: effect from emfriends_covar                    0.1715  
+## 
+## 
+##   Expected importance of effects for this dependent variable:
+## 
+##   1. eval behy linear shape                                    0.0845  
+##   2. eval behy quadratic shape                                 0.1909  
+##   3. eval behy average alter                                   0.3313  
+##   4. eval behy: effect from gender_covar                       0.0408  
+##   5. eval behy: effect from ethnic_covar                       0.0930  
+##   6. eval behy: effect from thermow_covar                      0.0111  
+##   7. eval behy: effect from emfriends_covar                    0.1496  
+## 
+## 
+##  R_H (&#39;degree of certainty&#39;)                                   0.1849  
+## 
+## attr(,&quot;version&quot;)
+## [1] &quot;1.6.6&quot;</code></pre>
+<pre class="r"><code># and plot (both nety and behy):
+# plot(RI_beh[[1]], addPieChart = TRUE, legendColumns = 2) # for nety
+plot(RI_beh[[2]], addPieChart = TRUE, legendColumns = 2) # for behy</code></pre>
+<p><img src="RSiena_results_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="goodness-of-fit-1" class="section level4" number="1.2.2.3">
+<h4><span class="header-section-number">1.2.2.3</span> <em>Goodness of
+Fit</em></h4>
+<p>Finally, I inspected the GOF of the behavior distribution in this
+model. As seen below, the model generally follows the overall shape of
+the distribution. However, the actual behavior distribution (as
+visualized by the red dots) actually seems to follow an S-shape, akin to
+a logistic function, rather than a linear or quadratic shape. The
+estimated model, on the other hand, predicts a more linear shape. This
+means that around the mid-point of 50 (i.e. neutral attitudes), the
+model underestimates the sharp jump in frequency and likely
+underestimates the amount of students who hold neutral attitudes. In
+follow-up research, a logistic function for the behavioral evaluation
+function could possibly be added to account for the diverging shape of
+the behavior distribution.</p>
+<pre class="r"><code>gof_beh &lt;- sienaGOF(beh_controls, BehaviorDistribution, verbose = FALSE, join = TRUE, varName = &quot;behy&quot;)
+
+plot(gof_beh) # behavior distribution</code></pre>
+<pre><code>## Note: some statistics are not plotted because their variance is 0.
+## This holds for the statistic: 100.</code></pre>
+<p><img src="RSiena_results_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code># looks good, but the neutral values around 50 seem underestimated in the model</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIioqKlJlc3VsdHMqKioiDQphdXRob3I6ICJBbm5hIEJlaWpsIg0KZGF0ZTogIjggT2N0b2JlciAyMDI2Ig0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQod2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UpIA0KYGBgDQoNCjxicj4NCg0KIyBSU2llbmEgcmVzdWx0cw0KDQo8YnI+DQoNCkluIHRoaXMgY2hhcHRlciwgSSBhbmFseXplIGFuZCBkZXNjcmliZSB0aGUgcmVzdWx0cyBvZiBteSBSU2llbmEgYW5hbHlzZXMuIEJlbG93LCB5b3UgY2FuIGZpbmQgdGhlIG1vZGVscyBhbmQgbXkgaW50ZXJwcmV0YXRpb25zLCBhcyB3ZWxsIGFzIHRoZSBjb3JyZXNwb25kaW5nIFIgY29kZS4NCg0KPGJyPg0KDQojIyAqUHJlcGFyaW5nIHRoZSBkYXRhIGZvciBSU2llbmEqDQoNCkZpcnN0LCBJIGNvbnN0cnVjdCBteSBkZXBlbmRlbnQgdmFyaWFibGVzIGFuZCBjb3ZhcmlhdGVzLCBhbmQgcHJlcGFyZSB0aGVtIGZvciBSU2llbmEgYW5hbHlzaXMgYnkgY29udmVydGluZyB0aGVtIHRvIHRoZSByaWdodCBkYXRhIG9iamVjdHMuDQoNCmBgYHtyfQ0KIyBERVBFTkRFTlQgVkFSSUFCTEVTIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCiMgRFY6IE5FVFdPUksNCmxpYnJhcnkoaGF2ZW4pDQp0bnNzX25ldCA8LSByZWFkX3NhdigiLi9kYXRhL1ROU1Nfd2F2ZV8yMDEwX21lbnRvcnMuc2F2IikNCnRuc3NfcHVwMTAgPC0gcmVhZF9zYXYoIi4vZGF0YS9UTlNTX3dhdmVfMjAxMF9wdXBpbHMuc2F2IikNCnRuc3NfcHVwMTEgPC0gcmVhZF9zYXYoIi4vZGF0YS9UTlNTX3dhdmVfMjAxMV9wdXBpbHMuc2F2IikNCmxpYnJhcnkoZHBseXIpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCnRuc3MgPC0gbGVmdF9qb2luKHRuc3NfbmV0LCB0bnNzX3B1cDEwKQ0KIyB2aWV3KHRuc3MpDQoNCnRuc3NfcHVwMTAgPC0gdG5zc19wdXAxMCAlPiUgDQogIHJvd25hbWVzX3RvX2NvbHVtbih2YXIgPSAiaWQiKSANCg0KdG5zc19wdXAxMSA8LSB0bnNzX3B1cDExICU+JSANCiAgcm93bmFtZXNfdG9fY29sdW1uKHZhciA9ICJpZCIpIA0KDQp0bnNzXzJ3YXZlcyA8LSBsZWZ0X2pvaW4odG5zc19wdXAxMCwgdG5zc19wdXAxMSwgYnk9YygiaWQiKSkNCiMgdmlldyh0bnNzXzJ3YXZlcykNCnRuc3NfMndhdmVzX2M1IDwtIHRuc3NfMndhdmVzICU+JQ0KICBmaWx0ZXIoSURDbGFzcyA9PSA1KQ0Kdmlldyh0bnNzXzJ3YXZlc19jNSkNCg0KYzUgPC0gdG5zcyAlPiUgDQogIGZpbHRlcihJRENsYXNzID09IDUpDQoNCmM1X25ldCA8LSBjNSAlPiUNCiAgc2VsZWN0KGZyXzE6ZnJfMjgpDQoNCm5ldCA8LSBhcy5tYXRyaXgoYzVfbmV0KQ0Kc3VtKGRpYWcobmV0KSAhPSAwKQ0KDQp2aWV3KGM1X25ldCkNCmxlbmd0aChjNV9uZXQpDQoNCm5ldDIgPC0gbmV0DQoNCm5ldDJbMSwyXSA8LSAxDQoNCmxpYnJhcnkoUlNpZW5hKQ0KbmV0eSA8LSBzaWVuYURlcGVuZGVudChhcnJheShkYXRhID0gYyhuZXQsIG5ldDIpLCBkaW0gPSBjKGRpbShuZXQpLCAyKSksIGFsbG93T25seSA9IEZBTFNFKQ0KDQojIERWOiBCRUhBVklPUiAoRVRITklDIE1JTk9SSVRZIEFUVElUVURFUykNCg0KaWQgPC0gYzUgJT4lIA0KICBkcGx5cjo6c2VsZWN0KCJJRHJlc3AiKQ0KDQpiZWh5X3ByZSA8LSB0bnNzXzJ3YXZlcyAlPiUgDQogIGZpbHRlcihJRHJlc3AueCAlaW4lIGM1JElEcmVzcCkgJT4lIA0KICBkcGx5cjo6c2VsZWN0KCJJRHJlc3AueCIsICJ0aGVybW9fbWlub3JpdHkiLCAidGhlcm1vX21pbm9yaXR5XzIiKSAlPiUgDQogIGFzLm1hdHJpeCgpICU+JSANCiAgZGF0YS5mcmFtZQ0KDQppZCA8LSBsZWZ0X2pvaW4oaWQsIGJlaHlfcHJlLCBieT1qb2luX2J5KElEcmVzcCA9PSBJRHJlc3AueCkgKQ0KDQpiZWh5IDwtIGlkICU+JSBkcGx5cjo6c2VsZWN0KCJ0aGVybW9fbWlub3JpdHkiLCAidGhlcm1vX21pbm9yaXR5XzIiKSAlPiUgDQogIGFzLm1hdHJpeCgpDQpiZWh5DQoNCmJlaHkgPC0gc2llbmFEZXBlbmRlbnQoYmVoeSwgdHlwZSA9IGMoImJlaGF2aW9yIikpDQoNCm15QWxnb3JpdGhtIDwtIHNpZW5hQWxnb3JpdGhtQ3JlYXRlKHByb2puYW1lID0gIm5ldCIsIGNvbmQgPSBGKQ0KYGBgDQoNCmBgYHtyfQ0KIyBDT1ZBUklBVEVTIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KI3ZpZXcodG5zc19wdXAxMCkNCg0KIyBnZW5kZXINCmNsYXNzKGM1JGdlbmRlcikNCmdlbmRlciA8LSBhcy5udW1lcmljKGM1JGdlbmRlcikNCmNsYXNzKGdlbmRlcikNCmdlbmRlciA8LSBhcy52ZWN0b3IoZ2VuZGVyKSAjIDEgPSB3b21hbg0KZ2VuZGVyX2NvdmFyIDwtIGNvQ292YXIoZ2VuZGVyKSAjID0gY29uc3RhbnQgY292YXJpYXRlDQpjbGFzcyhnZW5kZXJfY292YXIpDQoNCiMgZXRobmljaXR5DQpjbGFzcyhjNSRldGhuaWNpdHkpDQpldGhuaWMgPC0gYXMudmVjdG9yKGlmZWxzZShjNSRldGhuaWNpdHkgPT0gMSwgMCwgMSkpICMgcmVjb2RlIHNvIHRoYXQgMSA9IG1pZ3JhdGlvbiBiYWNrZ3JvdW5kLCAwID0gRHV0Y2gNCmV0aG5pY19jb3ZhciA8LSBjb0NvdmFyKGV0aG5pYykNCmNsYXNzKGV0aG5pY19jb3ZhcikNCg0KIyB0aGVybW9tZXRlciBnaXJscw0KY2xhc3MoYzUkdGhlcm1vX3Zyb3V3ZW4pDQp0aGVybW9fd29tZW4gPC0gYXMudmVjdG9yKGM1JHRoZXJtb192cm91d2VuKQ0KdGhlcm1vd19jb3ZhciA8LSBjb0NvdmFyKHRoZXJtb193b21lbikgIyB3b3VsZCBtYWtlIHNlbnNlIHRvIHVzZSB0aGlzIGFzIGEgY2hhbmdpbmcgY292YXJpYXRlLCBidXQgSSBvbmx5IGhhdmUgMiB3YXZlcywgd2hpY2ggaXMgbm90IGVub3VnaCBpbnB1dCBmb3IgYSB2YXJDb3Zhcg0KY2xhc3ModGhlcm1vd19jb3ZhcikNCg0KIyBudW1iZXIgb2YgZXRobmljIG1pbm9yaXR5IGZyaWVuZHMNCmNsYXNzKGM1JG1pbm9yaXR5X2ZyaWVuZHMpDQplbWZyaWVuZHMgPC0gYXMudmVjdG9yKGM1JG1pbm9yaXR5X2ZyaWVuZHMpDQplbWZyaWVuZHNfY292YXIgPC0gY29Db3ZhcihlbWZyaWVuZHMpICMgc2FtZSBub3RlIGFib3V0IHZhckNvdmFyIGdvZXMgaGVyZQ0KY2xhc3MoZW1mcmllbmRzX2NvdmFyKQ0KDQojIGR5YWRpYyBjb3ZhcmlhdGVzDQojIEdFTkRFUg0KIyBtYXRyaXggd2FzIG1hZGUgYmFzZWQgb24gdG5zcyBkYXRhIGZyYW1lLCBtYW51YWxseSBjb2RlZCBhcyAxIHdoZW4gZ2VuZGVyIG9mIGVnbyA9Lz0gZ2VuZGVyIG9mIGFsdGVyLiBtYXRyaXggdGh1cyByZXByZXNlbnRzIG91dC1ncm91cCBmcmllbmRzaGlwcyBiYXNlZCBvbiBnZW5kZXINCnJlcXVpcmUocmVhZHhsKQ0KZ2VuZGVyX2R5YWRzIDwtIHJlYWR4bDo6cmVhZF9leGNlbCgiLi9kYXRhL2R5YWRzX21hdHJpeC54bHN4IiwgY29sX25hbWVzID0gRiwgc2hlZXQgPSAxKQ0KVmlldyhnZW5kZXJfZHlhZHMpDQpjbGFzcyhnZW5kZXJfZHlhZHMpDQpnZW5kZXJfZHlhZHMgPC0gYXMubWF0cml4KGdlbmRlcl9keWFkcykNCg0KY292YXJfZ2VuZGVyX2R5YWRzIDwtIGFzX2NvdmFyaWF0ZV9yc2llbmEoZ2VuZGVyX2R5YWRzLCBjZW50ZXJlZCA9IEZBTFNFLCB0eXBlID0gIm9uZU1vZGUiKQ0KY2xhc3MoY292YXJfZ2VuZGVyX2R5YWRzKQ0KDQojIEVUSE5JQ0lUWQ0KIyBtYXRyaXggd2FzIG1hZGUgYmFzZWQgb24gdG5zcyBkYXRhIGZyYW1lLCBtYW51YWxseSBjb2RlZCBhcyAxIHdoZW4gZXRobmljaXR5IG9mIGVnbyA9Lz0gZXRobmljaXR5IG9mIGFsdGVyLiBtYXRyaXggdGh1cyByZXByZXNlbnRzIG91dC1ncm91cCBmcmllbmRzaGlwcw0KZXRobmljX2R5YWRzIDwtIHJlYWR4bDo6cmVhZF9leGNlbCgiLi9kYXRhL2R5YWRzX21hdHJpeC54bHN4IiwgY29sX25hbWVzID0gRiwgc2hlZXQgPSAyKQ0KVmlldyhldGhuaWNfZHlhZHMpDQpjbGFzcyhldGhuaWNfZHlhZHMpDQpldGhuaWNfZHlhZHMgPC0gYXMubWF0cml4KGV0aG5pY19keWFkcykNCg0KY292YXJfZXRobmljX2R5YWRzIDwtIGFzX2NvdmFyaWF0ZV9yc2llbmEoZXRobmljX2R5YWRzLCBjZW50ZXJlZCA9IEZBTFNFLCB0eXBlID0gIm9uZU1vZGUiKQ0KY2xhc3MoY292YXJfZXRobmljX2R5YWRzKQ0KYGBgDQoNCjxicj4NCg0KIyMgKlNwZWNpZnkgZWZmZWN0cyBhbmQgZXN0aW1hdGUgbW9kZWxzKg0KDQpBZnRlciB0aGUgZGF0YSBpcyBwcmVwYXJlZCwgSSBjYW4gc3RhcnQgZXN0aW1hdGluZyBteSBTaWVuYSBtb2RlbHMuIEZpcnN0LCBJIHRyaWVkIGVzdGltYXRpbmcgYSBtb2RlbCB0aGF0IGNvbnRhaW5lZCBib3RoIG5ldHdvcmsgYW5kIGJlaGF2aW9yYWwgZWZmZWN0cywgYnV0IEkgZW5jb3VudGVyZWQgc2VyaW91cyBjb252ZXJnZW5jZSBpc3N1ZXMuIEkgdGhlcmVmb3JlIGRlY2lkZWQgdG8gc3BsaXQgbXkgYW5hbHlzZXMgYmV0d2VlbiBib3RoIGRlcGVuZGVudCB2YXJpYWJsZXM7IHN0YXJ0aW5nIHdpdGggYSBtb2RlbCB0aGF0IGNvbnRhaW5zIG9ubHkgbmV0d29yayBlZmZlY3RzLCB0aGVuIGxvb2tpbmcgYXQgdGhlIGJlaGF2aW9yYWwgZWZmZWN0cyBzZXBhcmF0ZWx5LCBhbmQgdWx0aW1hdGVseSB0cnlpbmcgdG8gY29tYmluZSB0aGVtIGludG8gb25lIG1vZGVsIGFnYWluLiBVbmZvcnR1bmF0ZWx5LCBzdWNoIGEgbW9kZWwgZmFpbGVkIHRvIGNvbnZlcmdlIHJlcGVhdGVkbHksIHdoaWNoIG1lYW5zIEkgY2FuIG9ubHkgcmVwb3J0IGFuZCBpbnRlcnByZXQgdGhlIGVzdGltYXRlcyBmcm9tIHRoZSB0d28gc2VwYXJhdGUgbW9kZWxzLg0KDQo8YnI+DQoNCiMjIyAqKk5ldHdvcmstb25seSBtb2RlbCoqDQoNCkZvciB0aGUgbmV0d29yay1vbmx5IG1vZGVsLCBJIHN0YXJ0ZWQgd2l0aCBhbiBlbXB0eSBtb2RlbCBhbmQgZ3JhZHVhbGx5IGJ1aWx0IHVwIHRvIGluY2x1ZGUgYWxsIG15IGVmZmVjdHMgb2YgaW50ZXJlc3QgKHNlZSBhbHNvICdNb2RlbCBzcGVjaWZpY2F0aW9ucycgaW4gdGhlICpEYXRhKiBjaGFwdGVyKS4gQWxsIG9mIHRoZXNlIG1vZGVscyBjb252ZXJnZWQsIHRoYXQgaXMsIHRoZSBvdmVyYWxsIG1heGltdW0gY29udmVyZ2VuY2UgcmF0aW8gcmVtYWluZWQgdW5kZXIgdGhlIDAuMjUgdGhyZXNob2xkIGFuZCBjb252ZXJnZW5jZSBvZiBpbmRpdmlkdWFsIGNvbnZlcmdlbmNlIHQtcmF0aW8gb2YgcGFyYW1ldGVycyB3ZXJlIHVuZGVyIDAuMSAodGhvdWdoIHRoZSBmaXhlZCByYXRlIHBhcmFtZXRlciBmb3JtcyBhbiBleGNlcHRpb24gdG8gdGhpcykuIENvbnZlcmdlbmNlIG1lYW5zIHRoYXQgdGhlIGVzdGltYXRlcyBhcmUgcmVsaWFibGUgYW5kIGNhbiBzYWZlbHkgYmUgaW50ZXJwcmV0ZWQuDQoNCkluIHRoZSBmaW5hbCBuZXR3b3JrIG1vZGVsLCB0aGVyZSB3ZXJlIHJlcGVhdGVkbHkgc2lnbmlmaWNhbnQgZWZmZWN0cyBvZiByZWNpcHJvY2l0eSwgdHJhbnNpdGl2aXR5LCBhbmQgaW5kZWdyZWUgcG9wdWxhcml0eS4gUmVjaXByb2NpdHkgYW5kIHRyYW5zaXRpdml0eSBoYWQgcG9zaXRpdmUgZXN0aW1hdGVzIChyZXNwZWN0aXZlbHkgKmIqID0gMi45NiwgKnAqIFw8IC4wMDE7ICpiKiA9IDAuNTAsICpwKiBcPCAuMDAxKSwgbWVhbmluZyB0aGF0IHN0dWRlbnRzIGxpa2UgKGkuZS4gcG9zaXRpdmVseSBldmFsdWF0ZSkgdG8gc2VuZCB0aWVzIHRoYXQgcmVjaXByb2NhdGUgYW5vdGhlciB0aWUsIGFuZCB0aWVzIHRoYXQgY2xvc2UgdHJhbnNpdGl2ZSB0cmlwbGV0cy4gSW5kZWdyZWUgcG9wdWxhcml0eSBoYWQgYSBzaWduaWZpY2FudCBuZWdhdGl2ZSBlZmZlY3QgKCpiKiA9IC0wLjQ4LCAqcCogPSAwLjA0MCksIG1lYW5pbmcgdGhhdCBzdHVkZW50cyBuZWdhdGl2ZWx5IGV2YWx1YXRlIHNlbmRpbmcgdGllcyB0byBjbGFzc21hdGVzIHRoYXQgaGF2ZSBtYW55IHRpZXMgYWxyZWFkeSAob3IgaW4gb3RoZXIgd29yZHM6IHRoYXQgYXJlIHBvcHVsYXIgb3IgaG9sZCBzdGF0dXMpLiBUaGVzZSByZXN1bHRzIGNsZWFybHkgc2hvdyB0aGF0IHN0cnVjdHVyYWwgbmV0d29yayBkeW5hbWljcyB0aHVzIG1hdHRlci4NCg0KVGhlIGdlbmRlciBhbmQgZXRobmljaXR5IG9mIGVnb3MgYW5kIGFsdGVycyBkbyBub3Qgc2lnbmlmaWNhbnRseSBhZmZlY3QgdGhlaXIgbGlrZWxpaG5lc3MgdG8gc2VuZCBvciByZWNlaXZlIHRpZXMuIFRoZSBudW1iZXIgb2YgZXRobmljIG1pbm9yaXR5IGZyaWVuZHMgdGhhdCBzdHVkZW50cyBoYXZlIGRvZXMgbm90IGFmZmVjdCB0aGUgbmV0d29yayBzdHJ1Y3R1cmUgZWl0aGVyICgqYiogPSAtMC4wOSwgKnAqID0gMC41OTIpLiBJbiB0ZXJtcyBvZiBob21vcGhpbHkgZWZmZWN0cywgaG93ZXZlciwgdGhlIG1vZGVscyBzaG93ZWQgc2lnbmlmaWNhbnQgc2FtZS1nZW5kZXIgYW5kIHNhbWUtZXRobmljaXR5IGVmZmVjdHMuIFRoZSBlc3RpbWF0ZSBmb3Igc2FtZS1nZW5kZXIgaXMgcG9zaXRpdmUsIHBvaW50aW5nIGF0IGhvbW9waGlseSBlZmZlY3RzIHdoZXJlIHBlb3BsZSBhcmUgbGlrZWx5IHRvIGJlY29tZSBmcmllbmRzIHdpdGggb3RoZXJzIHRoYXQgaGF2ZSB0aGUgc2FtZSBnZW5kZXIgYXMgdGhlbS4gSG93ZXZlciwgdGhlIHNhbWUtZXRobmljaXR5IGVzdGltYXRlIGlzICpuZWdhdGl2ZSosIG1lYW5pbmcgdGhhdCBwZW9wbGUgKHNpZ25pZmljYW50bHkpIGRpc2xpa2Ugc2VuZGluZyB0aWVzIHRvIG90aGVycyB3aXRoIHRoZSBzYW1lIGV0aG5pY2l0eS4gVGhpcyB0aHVzIHN1Z2dlc3RzIHNvbWV0aGluZyBsaWtlIGEgcHJlZmVyZW5jZSBmb3IgaW50ZXItZXRobmljIGZyaWVuZHNoaXBzLCB3aGljaCBpcyBpbnRlcmVzdGluZyBpbiBsaWdodCBvZiB0aGUgdGhlb3JldGljYWwgZm9jdXMgb2YgdGhpcyBzdHVkeS4NCg0KUHJpbWFyeSBvdXRncm91cCBhdHRpdHVkZXMgb2Ygc3R1ZGVudHMsIG1lYXN1cmVkIGJ5IHRoZXJtb21ldGVyIGF0dGl0dWRlcyB0b3dhcmRzIHdvbWVuLCBkbyBub3QgbWF0dGVyIGZvciBleHBsYWluaW5nIHRoZSBuZXR3b3JrIGluIFQyICgqYiogPSAtMC4wMSwgKnAqID0gMC4yNDUpLiBOZWl0aGVyIGRvZXMgdGhlIHNpbWlsYXJpdHkgaW4gcHJpbWFyeSBvdXRncm91cCBhdHRpdHVkZXMgYmV0d2VlbiBlZ29zIGFuZCBhbHRlcnMgKCpiKiA9IC0wLjA0LCAqcCogPSAwLjkxMikuIFRoZSByZXN1bHRzIHRoZXJlZm9yZSBkbyBub3Qgc3VwcG9ydCBob21vcGhpbHkgZWZmZWN0cyBiYXNlZCBvbiBwcmltYXJ5IG91dGdyb3VwIGF0dGl0dWRlcywgcGFydGx5IHJlamVjdGluZyBIMi4gVGhlIHByaW1hcnkgb3V0Z3JvdXAgYXR0aXR1ZGVzIG9mICphbHRlcnMqLCBvbiB0aGUgb3RoZXIgaGFuZCwgZG8gc2VlbSB0byBwbGF5IGEgcm9sZSAoKmIqID0gMC4wNCwgKnAqID0gMC4wMjQpOyB0aGUgcG9zaXRpdmUgZWZmZWN0IHJlZmxlY3RzIHRoYXQgc3R1ZGVudHMgYXJlIG1vcmUgbGlrZWx5IHRvIHNlbmQgYSB0aWUgdG8gb3RoZXJzIHdpdGggbW9yZSBwb3NpdGl2ZSBldGhuaWMgbWlub3JpdHkgYXR0aXR1ZGVzLg0KDQpgYGB7cn0NCm15ZGF0YV8xIDwtIHNpZW5hRGF0YUNyZWF0ZShuZXR5LCBnZW5kZXJfY292YXIsIGV0aG5pY19jb3ZhciwgdGhlcm1vd19jb3ZhciwgZW1mcmllbmRzX2NvdmFyKQ0KbXllZmZfMSA8LSBnZXRFZmZlY3RzKG15ZGF0YV8xKQ0KbXllZmZfMQ0KaWZlbHNlKCFkaXIuZXhpc3RzKCJyZXN1bHRzIiksIGRpci5jcmVhdGUoInJlc3VsdHMiKSwgRkFMU0UpDQpwcmludDAxUmVwb3J0KG15ZGF0YV8xLCBtb2RlbG5hbWUgPSAiLi9yZXN1bHRzL3Ruc3MiKSAjIGdvZWQgYmVraWprZW4NCg0KDQpteWVmZl8xWzEsXSRmaXggPC0gVFJVRSAjIGZpeCB0aGUgcmF0ZSBwYXJhbWV0ZXIgYmVjYXVzZSBvZiBzdGF0aW9uYXJ5IFNBT00NCm15ZWZmXzFbMSxdJGluaXRpYWxWYWx1ZSA8LSAyMA0KbXllZmZfMQ0KDQojIEVNUFRZIE1PREVMOiBPTkxZIERFTlNJVFkgQU5EIFJFQ0lQUk9DSVRZDQpuZXRfZW1wdHkgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YV8xLCBlZmZlY3RzID0gbXllZmZfMSwgcmV0dXJuRGVwcyA9IFQpDQpuZXRfZW1wdHkgIyBkaXQgZ2FhdCBnb2VkIQ0KDQojIEFERCBUUkFOU0lUSVZJVFkNCm15ZWZmXzFhIDwtIGdldEVmZmVjdHMobXlkYXRhXzEpDQpteWVmZl8xYSA8LSBpbmNsdWRlRWZmZWN0cyhteWVmZl8xLCB0cmFuc1RyaXApDQoNCm5ldF9lbXB0eV9hIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGFfMSwgZWZmZWN0cyA9IG15ZWZmXzFhLCByZXR1cm5EZXBzID0gVCkNCm5ldF9lbXB0eV9hDQoNCiMgQUREIElOUE9QIEFORCBPVVRBQ1QNCm15ZWZmXzFiIDwtIGdldEVmZmVjdHMobXlkYXRhXzEpDQpteWVmZl8xYiA8LSBpbmNsdWRlRWZmZWN0cyhteWVmZl8xYSwgaW5Qb3AsIG91dEFjdCkNCg0KbmV0X2VtcHR5X2IgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YV8xLCBlZmZlY3RzID0gbXllZmZfMWIsIHJldHVybkRlcHMgPSBULCBwcmV2QW5zID0gbmV0X2VtcHR5X2EpDQpuZXRfZW1wdHlfYiAjIGNvbnZlcmdlbmNlIHRvbyBoaWdoLi4uLiBCZXR0ZXIgd2hlbiBJIHVzZSBwcmV2QW5zLCBidXQgc3RpbGwgYSBiaXQgdG9vIGhpZ2guIA0KDQoNCiMgQUREIEhPTU9QSElMWSBFRkZFQ1RTIEZPUiBHRU5ERVINCm15ZWZmXzIgPC0gZ2V0RWZmZWN0cyhteWRhdGFfMSkNCm15ZWZmXzIgPC0gaW5jbHVkZUVmZmVjdHMobXllZmZfMWIsIGVnb1gsIGFsdFgsIHNhbWVYLCBpbnRlcmFjdGlvbjEgPSAiZ2VuZGVyX2NvdmFyIikNCg0KIyBBTkQgQUREIENPTlRST0wgVkFSSUFCTEVTIA0KbXllZmZfMiA8LSBpbmNsdWRlRWZmZWN0cyhteWVmZl8yLCBlZ29YLCBpbnRlcmFjdGlvbjEgPSAiZW1mcmllbmRzX2NvdmFyIikNCm15ZWZmXzIgPC0gaW5jbHVkZUVmZmVjdHMobXllZmZfMiwgZWdvWCwgYWx0WCwgc2ltWCwgaW50ZXJhY3Rpb24xID0gInRoZXJtb3dfY292YXIiKQ0KDQpuZXRfZ2VuZGVyIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGFfMSwgZWZmZWN0cyA9IG15ZWZmXzIsIHJldHVybkRlcHMgPSBULCBwcmV2QW5zID0gbmV0X2VtcHR5X2IpDQpuZXRfZ2VuZGVyICMgY29udmVyZ2VuY2Ugb2theQ0KDQpyZXN1bHRzX25ldF9nZW5kZXIgPC0gZGF0YS5mcmFtZSgNCiAgZWZmZWN0ID0gbmV0X2dlbmRlciRlZmZlY3RzJGVmZmVjdE5hbWUsDQogIGIgPSBuZXRfZ2VuZGVyJHRoZXRhLA0KICBzZSA9IG5ldF9nZW5kZXIkc2UsDQogIHQgPSBuZXRfZ2VuZGVyJHRoZXRhIC8gbmV0X2dlbmRlciRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKG5ldF9nZW5kZXIkdGhldGEgLyBuZXRfZ2VuZGVyJHNlKSkpDQpwYW5kZXI6OnBhbmRlcihyZXN1bHRzX25ldF9nZW5kZXIpDQojIHNpZyBlZmZlY3RzIG9mIHJlY2lwcm9jaXR5IGFuZCB0cmFuc2l0aXZpdHksIGFuZCBzYW1lIGdlbmRlciEgbWFyZ2luYWwgc2lnIGZvciBvdXRkZWdyZWUgKGRlbnNpdHkpLCBpblBvcCwgYW5kIG91dEFjdC4gR2VuZGVyIGVnby9hbHRlciBjbGVhcmx5IG5vdGhpbmcuIEludGVyZXN0aW5nOiB0aGUgcHJpbWFyeSBvdXRncm91cCBhdHRpdHVkZXMgb2YgYWx0ZXJzIGlzIHNpZ25pZmljYW50OiBtb3JlIHBvc2l0aXZlID0gZWdvIG1vcmUgbGlrZWx5IHRvIHNlbmQgdGllIHRvIHRoZW0uDQoNCiMgQUREIEhPTU9QSElMWSBFRkZFQ1RTIEZPUiBFVEhOSUNJVFkgDQpteWVmZl8yYSA8LSBnZXRFZmZlY3RzKG15ZGF0YV8xKQ0KbXllZmZfMmEgPC0gaW5jbHVkZUVmZmVjdHMobXllZmZfMiwgZWdvWCwgYWx0WCwgc2FtZVgsIGludGVyYWN0aW9uMSA9ICJldGhuaWNfY292YXIiKQ0KDQpuZXRfZXRobmljIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGFfMSwgZWZmZWN0cyA9IG15ZWZmXzJhLCByZXR1cm5EZXBzID0gVCwgcHJldkFucyA9IG5ldF9nZW5kZXIpDQpuZXRfZXRobmljDQoNCnJlc3VsdHNfbmV0X2V0aG5pYyA8LSBkYXRhLmZyYW1lKA0KICBlZmZlY3QgPSBuZXRfZXRobmljJGVmZmVjdHMkZWZmZWN0TmFtZSwNCiAgYiA9IG5ldF9ldGhuaWMkdGhldGEsDQogIHNlID0gbmV0X2V0aG5pYyRzZSwNCiAgdCA9IG5ldF9ldGhuaWMkdGhldGEgLyBuZXRfZXRobmljJHNlLA0KICBwID0gMiAqIHBub3JtKC1hYnMobmV0X2V0aG5pYyR0aGV0YSAvIG5ldF9ldGhuaWMkc2UpKSkNCnBhbmRlcjo6cGFuZGVyKHJlc3VsdHNfbmV0X2V0aG5pYykNCiMgc2FtZSBwYXR0ZXJuIGFzIGJlZm9yZS4gU2FtZSBnZW5kZXIgYW5kIHNhbWUgZXRobmljIGJvdGggc2VlbSB0byBtYXR0ZXIhIEV0aG5pY2l0eSBvZiBhbHRlciBhbHNvIHNlZW1zIHNvbWV3aGF0IGltcG9ydGFudC4NCg0KIyBub3csIGZpbmFsbHksIGxldCdzIGxvb2sgZm9yIGZlZWRiYWNrIG1lY2hhbmlzbXMuIENhbiB3ZSBwcmVkaWN0IHRoZSBuZXR3b3JrIGJhc2VkIG9uIHRoZSBiZWhhdmlvcj8NCiMgbXllZmZfMmIgPC0gaW5jbHVkZUVmZmVjdHMobXllZmZfMmEsIGVnb1gsIGFsdFgsIGFic0RpZmZYLCBpbnRlcmFjdGlvbjEgPSAiYmVoeSIpDQpgYGANCg0KPGJyPg0KDQojIyMjICpSb2J1c3RuZXNzIGNoZWNrczogUmF0ZSBwYXJhbWV0ZXIqDQoNClRvIGZ1cnRoZXIgc3VwcG9ydCB0aGUgYWJvdmUgcmVzdWx0cywgSSBjb25kdWN0ZWQgc29tZSByb2J1c3RuZXNzIGNoZWNrcyB3aGVyZSBJIGZpeGVkIHRoZSByYXRlIHBhcmFtZXRlciB0byBkaWZmZXJlbnQgdmFsdWVzLiBUaGUgYW5hbHlzZXMgc2hvdyB0aGF0IHRoZSByZXN1bHRzIHJlbWFpbiBzaW1pbGFyIHdoZW4gc2V0dGluZyByYXRlIHBhcmFtZXRlciB0byBsb3dlciAozrsgPSA1KSBvciBoaWdoZXIgKM67ID0gNTApIHZhbHVlcy4gVGhlIG1vZGVsIHdoZXJlIHRoZSByYXRlIHBhcmFtZXRlciBpcyBzZXQgdG8gNTAgZW5jb3VudGVycyBzZXJpb3VzIGNvbnZlcmdlbmNlIGlzc3Vlcy4gU29tZSBlZmZlY3RzIGNyb3NzIHRoZSBib3VuZGFyeSBvZiBzaWduaWZpY2FuY2UgYXQgYWxwaGEgPSA1JSwgYnV0IGluIGdlbmVyYWwgdGhlIHBhdHRlcm5zIG9mIHNpZ25pZmljYW5jZSByZW1haW4gc2ltaWxhciBpbiBhbGwgdGhyZWUgY2FzZXMuIEkgY29uY2x1ZGUgd2l0aCB1c2luZyB0aGUgb3JpZ2luYWwgdmFsdWUgb2YgzrsgPSAyMCBmb3IgdGhlIHJlc3Qgb2YgdGhlIGJlaGF2aW9yYWwgbW9kZWxzIHRoYXQgZm9sbG93Lg0KDQpgYGB7cn0NCiMgbm93IGxldCdzIHNlZSB3aGF0IGhhcHBlbnMgd2hlbiBJIHNldCB0aGUgcmF0ZSBwYXJhbWV0ZXIgdG8gNSANCm15ZWZmXzJhWzEsXSRmaXggPC0gVFJVRSANCm15ZWZmXzJhWzEsXSRpbml0aWFsVmFsdWUgPC0gNQ0KbXllZmZfMmENCg0KcjVfbmV0X2V0aG5pYyA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhXzEsIGVmZmVjdHMgPSBteWVmZl8yYSwgcmV0dXJuRGVwcyA9IFQpDQpyNV9uZXRfZXRobmljICMgbG9vaydzIGdvb2QsIGNvbnZlcmdlbmNlIHNsaWdodGx5IGJldHRlciBhcyB3ZWxsLg0KDQpyZXN1bHRzX3I1X25ldF9ldGhuaWMgPC0gZGF0YS5mcmFtZSgNCiAgZWZmZWN0ID0gcjVfbmV0X2V0aG5pYyRlZmZlY3RzJGVmZmVjdE5hbWUsDQogIGIgPSByNV9uZXRfZXRobmljJHRoZXRhLA0KICBzZSA9IHI1X25ldF9ldGhuaWMkc2UsDQogIHQgPSByNV9uZXRfZXRobmljJHRoZXRhIC8gcjVfbmV0X2V0aG5pYyRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKHI1X25ldF9ldGhuaWMkdGhldGEgLyByNV9uZXRfZXRobmljJHNlKSkpDQpwYW5kZXI6OnBhbmRlcihyZXN1bHRzX3I1X25ldF9ldGhuaWMpDQojIHNhbWUgcGF0dGVybnMgaW4gdGVybXMgb2Ygc2lnbmlmaWNhbmNlLiBzb21lIG5vdyBzbGlnaHRseSBvdmVyL3VuZGVyIHA9MC4wNQ0KDQojIGFuZCB3aGVuIEkgc2V0IHRoZSByYXRlIHBhcmFtZXRlciB0byA1MA0KbXllZmZfMmFbMSxdJGZpeCA8LSBUUlVFIA0KbXllZmZfMmFbMSxdJGluaXRpYWxWYWx1ZSA8LSA1MA0KbXllZmZfMmENCg0KcjUwX25ldF9ldGhuaWMgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YV8xLCBlZmZlY3RzID0gbXllZmZfMmEsIHJldHVybkRlcHMgPSBUKQ0KcjUwX25ldF9ldGhuaWMgIyBjb252ZXJnZW5jZSB0b28gaGlnaCwgYXBhcnQgZnJvbSB0aGF0IGl0IGxvb2tzIGZpbmUuDQoNCnJlc3VsdHNfcjUwX25ldF9ldGhuaWMgPC0gZGF0YS5mcmFtZSgNCiAgZWZmZWN0ID0gcjUwX25ldF9ldGhuaWMkZWZmZWN0cyRlZmZlY3ROYW1lLA0KICBiID0gcjUwX25ldF9ldGhuaWMkdGhldGEsDQogIHNlID0gcjUwX25ldF9ldGhuaWMkc2UsDQogIHQgPSByNTBfbmV0X2V0aG5pYyR0aGV0YSAvIHI1MF9uZXRfZXRobmljJHNlLA0KICBwID0gMiAqIHBub3JtKC1hYnMocjUwX25ldF9ldGhuaWMkdGhldGEgLyByNTBfbmV0X2V0aG5pYyRzZSkpKQ0KcGFuZGVyOjpwYW5kZXIocmVzdWx0c19yNTBfbmV0X2V0aG5pYykNCiMgYWdhaW4sIHJvdWdobHkgc2FtZSBwYXR0ZXJucyBpbiB0ZXJtcyBvZiBzaWduaWZpY2FuY2UuDQpgYGANCg0KPGJyPg0KDQojIyMjICoqKlJlbGF0aXZlIGluZmx1ZW5jZSoqKg0KDQpOZXh0LCBJIGV4YW1pbmVkIHJlbGF0aXZlIGluZmx1ZW5jZSBvZiB0aGUgZWZmZWN0cyB0byBzZWUgaG93IGltcG9ydGFudCBlYWNoIHN0YXRpc3RpYyB3YXMgZm9yIGluZGl2aWR1YWwgYWN0b3JzIGluIHRoZWlyIGRlY2lzaW9uIG1ha2luZyBwcm9jZXNzLiBBcyBkaXNwbGF5ZWQgaW4gdGhlIGZpZ3VyZSBiZWxvdywgdGhlIG1vc3QgaW1wb3J0YW50IGVmZmVjdHMgYXJlIHJlY2lwcm9jaXR5LCBpbmRlZ3JlZSBwb3B1bGFyaXR5LCBvdXRkZWdyZWUgYWN0aXZpdHksIGFuZCB0cmFuc2l0aXZlIHRyaXBsZXRzOyBhbGwgc3RydWN0dXJhbCBuZXR3b3JrIGR5bmFtaWNzLg0KDQpJbiB0ZXJtcyBvZiB0aGUgZ2VuZGVyIGFuZCBldGhuaWNpdHkgZWZmZWN0cywgZXNwZWNpYWxseSBzYW1lLWdlbmRlciBhbmQgc2FtZS1ldGhuaWMgZWZmZWN0cyBzZWVtIHRvIG1hdHRlciBmb3IgaW5kaXZpZHVhbCdzIGRlY2lzaW9uIG1ha2luZy4gUHJpbWFyeSBvdXRncm91cCBhdHRpdHVkZXMgKGkuZS4gdGhlcm1vbWV0ZXIgc2NhbGUgYWJvdXQgd29tZW4pIG9mIGFsdGVyIGFsc28gc2VlbSBpbXBvcnRhbnQuIFRoZSByZWxhdGl2ZSBpbmZsdWVuY2Ugb2YgYWxsIG90aGVyIGVmZmVjdHMgc2VlbXMgbmVnbGlnaWJsZSwgYXMgYWxzbyByZWZsZWN0ZWQgYnkgYSBsYWNrIG9mIHNpZ25pZmljYW5jZSBpbiB0aGUgUlNpZW5hIG1vZGVscy4NCg0KYGBge3J9DQojIHBhbmRlcjo6cGFuZGVyKHJlc3VsdHNfbmV0X2V0aG5pYykNCg0KIyBnZXQgcGFyYW1ldGVycw0KdGhldGEuZXZhbCA8LSBuZXRfZXRobmljJHRoZXRhDQoNCiMgYW5kIGVmZmVjdHMNCm15ZWZmLmV2YWwgPC0gbmV0X2V0aG5pYyRlZmZlY3RzDQoNCiMgdXNlIHNpZW5hUkkoKQ0KbGlicmFyeShSc2llbmFUd29TdGVwKQ0KP3NpZW5hUkkNClJJIDwtIGludGVycHJldF9zaXplKHggPSBuZXRfZXRobmljLA0KICAgICAgICAgICAgICAgICAgICAgZGF0YSA9IG15ZGF0YV8xLCANCiAgICAgICAgICAgICAgICAgICAgIHRoZXRhID0gdGhldGEuZXZhbCwgDQogICAgICAgICAgICAgICAgICAgICBhZGRQaWVDaGFydCA9IFQsIA0KICAgICAgICAgICAgICAgICAgICAgbGVnZW5kID0gVCwNCiAgICAgICAgICAgICAgICAgICAgIGdldENoYW5nZVN0YXRzID0gVCkNClJJDQoNCiMgYW5kIHBsb3QNCj9wbG90DQpwbG90KFJJLCBhZGRQaWVDaGFydCA9IFRSVUUsIGxlZ2VuZENvbHVtbnMgPSAyKQ0KYGBgDQoNCjxicj4NCg0KIyMjIyAqKipHb29kbmVzcyBvZiBGaXQqKioNCg0KRmluYWxseSwgSSBleGFtaW5lIHRoZSBHb29kbmVzcyBvZiBGaXQgKEdPRikgb2YgbXkgbmV0d29yayBtb2RlbCB0byBzZWUgd2hldGhlciB0aGUgbW9kZWwgYWNjdXJhdGVseSBwcmVkaWN0cyB0aGUgYWN0dWFsIG9ic2VydmVkIG5ldHdvcmsuIEluIHRlcm1zIG9mIGF1eGlsaWFyeSBzdGF0aXN0aWNzLCBJIGxvb2tlZCBhdCB0aGUgaW5kZWdyZWUgYW5kIG91dGRlZ3JlZSBkaXN0cmlidXRpb25zLCBnZW9kZXNpYyBkaXN0YW5jZSwgYW5kIHRyaWFkIGNlbnN1cy4gVGhlIEdPRiBzZWVtcyB2ZXJ5IGdvb2QgYmFzZWQgb24gYWxsIHRoZXNlIHN0YXRpc3RpY3M7IHRoZSBmaXR0ZWQgbW9kZWwgZm9sbG93cyB0aGUgb3ZlcmFsbCBzaGFwZSBhbmQgKnAqLXZhbHVlcyBhcmUgaW5zaWduaWZpY2FudCAobWVhbmluZyB0aGF0IHRoZSB2YWx1ZXMgb2YgdGhlIGZpdHRlZCBtb2RlbCBkbywgY29sbGVjdGl2ZWx5LCBub3Qgc2lnbmlmaWNhbnRseSBkaWZmZXIgZnJvbSB0aGUgb2JzZXJ2ZWQgdmFsdWVzKS4gSSBjb25jbHVkZSB0aGF0IEkgZG8gbm90IG5lZWQgdG8gYWRkIGFueSBhZGRpdGlvbmFsIHN0YXRpc3RpY3MgdG8gdGhlIG1vZGVsIGluIG9yZGVyIHRvIGZ1cnRoZXIgaW5jcmVhc2UgR09GLg0KDQpJbiBvdGhlciB3b3JkczogdGhpcyBtZWFucyB0aGF0IHRoZSBtb2RlbCB2ZXJ5IGFjY3VyYXRlbHkgcHJlZGljdHMgdGhlIGFjdHVhbCBuZXR3b3JrIGF0IFQyLiBCdXQgbm90ZTogaXQgYWxzbyBtYWtlcyBzZW5zZSB0aGF0IHRoZSBtb2RlbCBwcmVkaWN0cyB0aGUgbmV0d29yayBhdCBUMiB3ZWxsLCBzaW5jZSBpdCBpcyBhIHN0YXRpb25hcnkgLyBzaG9ydC10ZXJtIGR5bmFtaWMgZXF1aWxpYnJpdW0gbmV0d29yaywgbWVhbmluZyB0aGF0IHRoZSBuZXR3b3JrIGxvb2tzIHByZXR0eSBtdWNoIHRoZSBzYW1lIGFzIGF0IFQxICh3aGljaCB0aGUgbW9kZWwgdXNlcyB0byBwcmVkaWN0IFQyKS4NCg0KYGBge3J9DQojIHBhbmRlcjo6cGFuZGVyKHJlc3VsdHNfbmV0X2V0aG5pYykNCg0KR2VvZGVzaWNEaXN0cmlidXRpb24gPC0gZnVuY3Rpb24oaSwgZGF0YSwgc2ltcywgcGVyaW9kLCBncm91cE5hbWUsIHZhck5hbWUsIGxldmxzID0gYygxOjUsIEluZiksIGN1bXVsYXRpdmUgPSBUUlVFLA0KICAgIC4uLikgew0KICAgIHggPC0gbmV0d29ya0V4dHJhY3Rpb24oaSwgZGF0YSwgc2ltcywgcGVyaW9kLCBncm91cE5hbWUsIHZhck5hbWUpDQogICAgcmVxdWlyZShzbmEpDQogICAgYSA8LSBzbmE6Omdlb2Rpc3Qoc3ltbWV0cml6ZSh4KSkkZ2Rpc3QNCiAgICBpZiAoY3VtdWxhdGl2ZSkgew0KICAgICAgICBnZGkgPC0gc2FwcGx5KGxldmxzLCBmdW5jdGlvbihpKSB7DQogICAgICAgICAgICBzdW0oYSA8PSBpKQ0KICAgICAgICB9KQ0KICAgIH0gZWxzZSB7DQogICAgICAgIGdkaSA8LSBzYXBwbHkobGV2bHMsIGZ1bmN0aW9uKGkpIHsNCiAgICAgICAgICAgIHN1bShhID09IGkpDQogICAgICAgIH0pDQogICAgfQ0KICAgIG5hbWVzKGdkaSkgPC0gYXMuY2hhcmFjdGVyKGxldmxzKQ0KICAgIGdkaQ0KfQ0KDQojIFRoZSBmb2xsb3dpbmcgZnVuY3Rpb24gaXMgdGFrZW4gZnJvbSB0aGUgaGVscCBwYWdlIGZvciBzaWVuYVRlc3QNCg0KdGVzdGFsbCA8LSBmdW5jdGlvbihuZXRfZXRobmljKSB7DQogICAgZm9yIChpIGluIHdoaWNoKG5ldF9ldGhuaWMkdGVzdCkpIHsNCiAgICAgICAgc2N0IDwtIHNjb3JlLlRlc3QobmV0X2V0aG5pYywgaSkNCiAgICAgICAgY2F0KG5ldF9ldGhuaWMkcmVxdWVzdGVkRWZmZWN0cyRlZmZlY3ROYW1lW2ldLCAiXG4iKQ0KICAgICAgICBwcmludChzY3QpDQogICAgfQ0KICAgIGludmlzaWJsZShzY29yZS5UZXN0KGFucykpDQp9DQoNCg0KZ29maTAgPC0gc2llbmFHT0YobmV0X2V0aG5pYywgSW5kZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0eSIpDQpnb2ZvMCA8LSBzaWVuYUdPRihuZXRfZXRobmljLCBPdXRkZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0eSIpDQpnb2YwLmdkIDwtIHNpZW5hR09GKG5ldF9ldGhuaWMsIEdlb2Rlc2ljRGlzdHJpYnV0aW9uLCBjdW11bGF0aXZlID0gRkFMU0UsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0eSIpDQpnb2YwLnRjIDwtIHNpZW5hR09GKG5ldF9ldGhuaWMsIFRyaWFkQ2Vuc3VzLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldHkiKQ0KDQoNCnBsb3QoZ29maTApICMgaW5kZWdyZWUgZGlzdHJpYnV0aW9uDQpwbG90KGdvZm8wKSAjIG91dGRlZ3JlZSBkaXN0cmlidXRpb24NCnBsb3QoZ29mMC5nZCkgIyBnZW9kZXNpYyBkaXN0YW5jZQ0KcGxvdChnb2YwLnRjLCBjZW50ZXIgPSBUUlVFLCBzY2FsZSA9IFRSVUUpICMgdHJpYWQgY2Vuc3VzDQpgYGANCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCjxicj4NCg0KIyMjICoqQmVoYXZpb3JhbCBtb2RlbCoqDQoNCk5vdyB0aGF0IHRoZSBuZXR3b3JrLW9ubHkgbW9kZWwgaGFzIGNvbnZlcmdlZCBhbmQgcHJlZGljdGVkIGVzdGltYXRlcywgcmVsYXRpdmUgaW5mbHVlbmNlLCBhbmQgR09GLCBpdCBpcyB0aW1lIHRvIGFkZCBiYWNrIHRoZSBiZWhhdmlvcmFsIGRlcGVuZGVudCBpbnRvIHRoZSBtb2RlbC4gQXMgZGVzY3JpYmVkLCBJIHNlcGFyYXRlZCB0aGUgdHdvIGJlY2F1c2Ugb2YgY29udmVyZ2VuY2UgaXNzdWVzIHdoZW4gSSBpbml0aWFsbHkgdHJpZWQgdG8gcnVuIGEgbW9kZWwgdGhhdCBjb250YWluZWQgYm90aC4gQWdhaW4sIEkgZm9sbG93ZWQgYSBzdGVwd2lzZSBhbmQgY3VtdWxhdGl2ZSBwcm9jZWR1cmUsIG91dGxpbmVkIGluIG1vcmUgZGV0YWlsIGluIHRoZSAqRGF0YSBhbmQgTWV0aG9kKiBjaGFwdGVyLiBBcyBtZW50aW9uZWQsIEkgZW5kZWQgdXAgZml4aW5nIHRoZSBiZWhhdmlvcmFsIHJhdGUgcGFyYW1ldGVyIGFzIHdlbGwgKGF0IM67ID0gNTApLCBzaW5jZSB0aGUgbW9kZWwgcmVwZWF0ZWRseSBwcm9kdWNlZCBpbnNhbmVseSBoaWdoIGVzdGltYXRlcyBmb3IgaXQsIGZ1cnRoZXIgY3JlYXRpbmcgcHJvYmxlbXMgd2l0aCBjb252ZXJnZW5jZS4gQWZ0ZXIgZml4aW5nLCBhbG1vc3QgYWxsIG1vZGVscyBjb252ZXJnZWQsIGV4Y2VwdCBmb3IgdGhlIGxhc3Qgb25lIGNvbnRhaW5pbmcgdGhlIGR5YWRpYyBjb3ZhcmlhdGUgZWZmZWN0cy4gVGhpcyBmaW5hbCBtb2RlbCByZXBlYXRlZGx5IHByb2R1Y2VkIGNvbnZlcmdlbmNlIHJhdGVzIHRoYXQgZmFyIGV4Y2VlZGVkIHRoZSAwLjI1IHRocmVzaG9sZCwgd2hpY2ggbWVhbnMgdGhhdCBJIGNhbiBub3QgcmVsaWFibHkgaW50ZXJwcmV0IHRoZSBlc3RpbWF0ZXMuIEludGVycHJldGF0aW9ucyBiZWxvdyB0aGVyZWZvcmUgY29uY2VybiB0aGUgbGFzdCBjb252ZXJnaW5nIGFuZCBtb3N0IGNvbXBsZXRlIGJlaGF2aW9yYWwgbW9kZWwgdGhhdCB3YXMgYWJsZSB0byBydW4uDQoNCkluIHRlcm1zIG9mIHRoZSBpbnRlcmNlcHQsIHRoZSBiZWhhdmlvcmFsIG1vZGVsIGZpbmRzIHNpZ25pZmljYW50IGVmZmVjdHMgZm9yIGJvdGggYSBsaW5lYXIgYW5kIHF1YWRyYXRpYyBzaGFwZSAocmVzcGVjdGl2ZWx5ICpiKiA9IDAuMTUsICpwKiA9IC4wMjc7ICpiKiA9IC0wLjAxLCAqcCogPSAuMDA1KS4gVGhpcyBtZWFucyB0aGF0LCBpbiBjaGFuZ2luZyB0aGVpciBldGhuaWMgbWlub3JpdHkgYXR0aXR1ZGVzLCBzdHVkZW50cyB0ZW5kIHRvIG1vdmUgdG93YXJkcyB0aGUgZ3JvdXAgbWVhbiBmb2xsb3dpbmcgYSBxdWFkcmF0aWMgc2hhcGUuIFRoZSBuZWdhdGl2ZSBlZmZlY3QgZnVydGhlciBpbmRpY2F0ZXMgdGhhdCBzdHVkZW50cyB3aXRoIGJlbG93LWF2ZXJhZ2UgZXRobmljIG1pbm9yaXR5IGF0dGl0dWRlcyBoYXZlIGEgc3Ryb25nZXIgdGVuZGVuY3kgdG8gbW92ZSB0b3dhcmRzIHRoZSBtZWFuIHRoYW4gc3R1ZGVudHMgd2l0aCBhYm92ZS1hdmVyYWdlIGF0dGl0dWRlcy4NCg0KRnVydGhlcm1vcmUsIHRoZSBhbmFseXNpcyBzaG93cyBhIHNpZ25pZmljYW50IHBvc2l0aXZlIGF2ZXJhZ2UgYWx0ZXIgZWZmZWN0IGluIGFsbCBtb2RlbHMgKCpiKiA9IDAuMDQsICpwKiA9IC4wMDkpLiBUaGlzIG1lYW5zIHRoYXQgc3R1ZGVudHMgdGVuZCB0byBhZGFwdCB0aGVpciBldGhuaWMgbWlub3JpdHkgYXR0aXR1ZGVzIHRvIHRoZSBhdmVyYWdlIHZhbHVlIG9mIHRoZWlyIGNvbm5lY3RlZCBwZWVycy4gTm90ZSB0aGF0LCBpZiB0aGUgYXZlcmFnZSBldGhuaWMgbWlub3JpdHkgYXR0aXR1ZGVzIG9mIHRoZWlyIGZyaWVuZHMgYXJlICpsb3dlciogdGhhbiB0aGVpcnMsIHRoaXMgbWVhbnMgdGhhdCBzdHVkZW50cyB3aWxsIGFkYXB0IGluIHRoYXQgZGlyZWN0aW9uISBUaGlzIGZpbmRpbmcgcHJvdmlkZXMgc3VwcG9ydCBmb3Igc29jaWFsIGluZmx1ZW5jZSBlZmZlY3RzIGFuZCB0aGVyZWZvcmUgSDMuDQoNCkFzIGZvciBwcmltYXJ5IG91dGdyb3VwIGF0dGl0dWRlcywgdGhlIHJlc3VsdHMgc2hvdyB0aGF0IHN0dWRlbnRzJyBhdHRpdHVkZXMgdG93YXJkcyB3b21lbiBkbyBub3QgcHJlZGljdCB0aGVpciBldGhuaWMgbWlub3JpdHkgYXR0aXR1ZGVzICgqYiogPSAtMC4wMDEsICpwKiAtPSAuODE0KS4gVGhpcyBmaW5kaW5nIHJlamVjdHMgSDEgYW5kIHRoZSBpZGVhIG9mIGF0dGl0dWRlIGdlbmVyYWxpemF0aW9uIC0gaW4gaW50ZXJlc3RpbmcgY29udHJhc3Qgd2l0aCBTVEUgbGl0ZXJhdHVyZS4NCg0KSW4gdGVybXMgb2YgZXRobmljaXR5IGFuZCBnZW5kZXIgZWZmZWN0cywgdGhlIGV0aG5pY2l0eSBvZiBhIHN0dWRlbnQgc2lnbmlmaWNhbnRseSBwcmVkaWN0cyB0aGVpciBldGhuaWMgbWlub3JpdHkgYXR0aXR1ZGVzICgqYiogPSAtMC40NSwgKnAqID0gLjAwOSkuIEludGVyZXN0aW5nbHkgdGhvdWdoLCB0aGlzIGVmZmVjdCBpcyBuZWdhdGl2ZSwgbWVhbmluZyB0aGF0IHN0dWRlbnRzIHdpdGggYSBub24tRHV0Y2ggYmFja2dyb3VuZCB0ZW5kIHRvIGhhdmUgKmxvd2VyKiBvciBtb3JlIG5lZ2F0aXZlIGF0dGl0dWRlcyB0b3dhcmRzIGV0aG5pYyBtaW5vcml0aWVzLiBBIHNpbWlsYXIgZWZmZWN0IHdhcyBmb3VuZCBmb3IgdGhlIG51bWJlciBvZiBldGhuaWMgbWlub3JpdHkgZnJpZW5kczogaGF2aW5nIG1vcmUgZnJpZW5kcyB3aXRoIGEgbm9uLUR1dGNoIGJhY2tncm91bmQgc2lnbmlmaWNhbnRseSAqZGVjcmVhc2VkKiBzY29yZXMgb24gdGhlIHRoZXJtb21ldGVyIHNjYWxlLCBhbmQgdGhlcmVmb3JlIGNhdXNlZCBtb3JlIG5lZ2F0aXZlIGV0aG5pYyBtaW5vcml0eSBhdHRpdHVkZXMgKCpiKiA9IC0wLjMzLCAqcCogXDwgLjAwMSkuIFN0dWRlbnQncyBnZW5kZXIgZGlkIG5vdCBoYXZlIGFuIGVmZmVjdCBvbiB0aGVpciBldGhuaWMgbWlub3JpdHkgYXR0aXR1ZGVzICgqYiogPSAwLjE1LCAqcCogPSAuNDI3KS4NCg0KQmVjYXVzZSBvZiB0aGUgY29udmVyZ2VuY2UgaXNzdWVzIGRlc2NyaWJlZCBhYm92ZSwgSSB3YXMgbm90IGFibGUgdG8gcmVsaWFibHkgdGVzdCBINC4gVGhlIHJvbGUgb2YgcHJpbWFyeSBvdXRncm91cCBmcmllbmRzIHRoZXJlZm9yZSByZW1haW5zIHVuZXhwbG9yZWQuIFRoZSBxdWVzdGlvbiB0aHVzIHJlbWFpbnMgd2hldGhlciBzdHVkZW50cyB3aXRoIG1vcmUgcHJpbWFyeSBvdXRncm91cCAoaS5lLiBnZW5kZXIpIGZyaWVuZHMgdGVuZCB0byBkZXZlbG9wIG1vcmUgcG9zaXRpdmUgYXR0aXR1ZGVzIHRvd2FyZHMgYSBzZWNvbmRhcnkgb3V0Z3JvdXAgKGkuZS4gZXRobmljIG1pbm9yaXRpZXMpLiBCYXNlZCBvbiBteSBhbmFseXNlcywgSSBhbHNvIGNhbiBub3QgY29uY2x1ZGUgd2hldGhlciBzdHVkZW50cyBhcmUgbGlrZWx5IHRvIGFkb3B0IGFuIGF2ZXJhZ2Ugc2Vjb25kYXJ5IG91dGdyb3VwIChpLmUuIGV0aG5pYyBtaW5vcml0eSkgYXR0aXR1ZGUgb2YgdGhlaXIgcHJpbWFyeSBvdXRncm91cCAoaS5lLiBnZW5kZXIpIGZyaWVuZHMuDQoNCmBgYHtyfQ0KIyBub3cgYWRkIHRoZSBiZWhhdmlvcmFsIFkgYW5kIHNlZSBpZiBpdCBzdGlsbCB3b3Jrcw0KbXlkYXRhXzIgPC0gc2llbmFEYXRhQ3JlYXRlKG5ldHksIGJlaHksIGdlbmRlcl9jb3ZhciwgZXRobmljX2NvdmFyLCB0aGVybW93X2NvdmFyLCBlbWZyaWVuZHNfY292YXIsIGNvdmFyX2dlbmRlcl9keWFkcykNCm15ZWZmXzMgPC0gZ2V0RWZmZWN0cyhteWRhdGFfMikNCg0KbXllZmZfMyA8LSBpbmNsdWRlRWZmZWN0cyhteWVmZl8zLCBuYW1lID0gImJlaHkiLCBhdkFsdCwgaW50ZXJhY3Rpb24xID0gIm5ldHkiKQ0KbXllZmZfM1sxLF0kZml4IDwtIFRSVUUgDQpteWVmZl8zWzEsXSRpbml0aWFsVmFsdWUgPC0gMjANCm15ZWZmXzMNCg0KIyBiZWhfc2ltcGxlIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGFfMiwgZWZmZWN0cyA9IG15ZWZmXzMsIHJldHVybkRlcHMgPSBULCB0aGV0YUJvdW5kID0gMjAwMCkNCiMgYmVoX3NpbXBsZQ0KDQojIGNvbnZlcmdlbmNlIGlzIHdheSB0b28gaGlnaCwgdG9vayByZWFsbHkgbG9uZyB0byBmaXQgdGhpcyBtb2RlbC4gUmF0ZSBwYXJhbWV0ZXIgb2YgYmVoYXZpb3IgaXMgYWxzbyBpbnNhbmVseSBoaWdoICgxMzk1KSwgYW5kIGV2ZW4gYmVmb3JlIHJ1bm5pbmcgYSBtb2RlbCB0aGUgaW5pdGFsdmFsdWUgPSAxMjY0LiBJIHdpbGwgYW5vdGhlciBtb2RlbCB3aXRoIGEgZml4ZWQgYmVoYXZpb3JhbCByYXRlIHRvby4gDQoNCm15ZWZmXzMgPC0gc2V0RWZmZWN0KG15ZWZmXzMsIA0KICAgICAgICAgICAgICAgICAgIFJhdGUsIA0KICAgICAgICAgICAgICAgICAgIG5hbWUgPSAiYmVoeSIsICAgICAgIA0KICAgICAgICAgICAgICAgICAgIHR5cGUgPSAicmF0ZSIsICAgICAgICAgICANCiAgICAgICAgICAgICAgICAgICBwZXJpb2QgPSAxLCAgICAgICAgICAgICAgDQogICAgICAgICAgICAgICAgICAgaW5pdGlhbFZhbHVlID0gNTAsICAgICAgDQogICAgICAgICAgICAgICAgICAgZml4ID0gVFJVRSkgIA0KDQoNCmJlaF9zaW1wbGVfZml4ZWQgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YV8yLCBlZmZlY3RzID0gbXllZmZfMywgcmV0dXJuRGVwcyA9IFQpIA0KYmVoX3NpbXBsZV9maXhlZCAjIHNlZW1zIHRvIGdvIHdlbGwNCg0KcmVzdWx0c19iZWhfc2ltcGxlX2ZpeGVkIDwtIGRhdGEuZnJhbWUoDQogIGVmZmVjdCA9IGJlaF9zaW1wbGVfZml4ZWQkZWZmZWN0cyRlZmZlY3ROYW1lLA0KICBiID0gYmVoX3NpbXBsZV9maXhlZCR0aGV0YSwNCiAgc2UgPSBiZWhfc2ltcGxlX2ZpeGVkJHNlLA0KICB0ID0gYmVoX3NpbXBsZV9maXhlZCR0aGV0YSAvIGJlaF9zaW1wbGVfZml4ZWQkc2UsDQogIHAgPSAyICogcG5vcm0oLWFicyhiZWhfc2ltcGxlX2ZpeGVkJHRoZXRhIC8gYmVoX3NpbXBsZV9maXhlZCRzZSkpKQ0KcGFuZGVyOjpwYW5kZXIocmVzdWx0c19iZWhfc2ltcGxlX2ZpeGVkKQ0KIyBTaWduaWZpY2FudCBhdmVyYWdlIGFsdGVyIGVmZmVjdCAocG9zaXRpdmUpLiBuZXR3b3JrIHN0YXRpc3RpY3MgYXJlIGFsc28gc2lnbmlmaWNhbnQuDQoNCiMgbm93IGxldCdzIGFkZCBnZW5kZXIgZWZmZWN0DQpteWVmZl8zYSA8LSBzZXRfZWZmZWN0KG15ZWZmXzMsIGRlcHZhciA9ICJiZWh5IiwgbGlzdChlZmZGcm9tLCBhdlhBbHQpLCBjb3ZhcjEgPSJnZW5kZXJfY292YXIiKQ0KDQpiZWhfZ2VuZGVyIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGFfMiwgZWZmZWN0cyA9IG15ZWZmXzNhLCByZXR1cm5EZXBzID0gVCwgcHJldkFucyA9IGJlaF9zaW1wbGVfZml4ZWQpDQpiZWhfZ2VuZGVyICMgd29ya3MhIGNvbnZlcmdlbmNlIGFsc28gb2theQ0KDQpyZXN1bHRzX2JlaF9nZW5kZXIgPC0gZGF0YS5mcmFtZSgNCiAgZWZmZWN0ID0gYmVoX2dlbmRlciRlZmZlY3RzJGVmZmVjdE5hbWUsDQogIGIgPSBiZWhfZ2VuZGVyJHRoZXRhLA0KICBzZSA9IGJlaF9nZW5kZXIkc2UsDQogIHQgPSBiZWhfZ2VuZGVyJHRoZXRhIC8gYmVoX2dlbmRlciRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKGJlaF9nZW5kZXIkdGhldGEgLyBiZWhfZ2VuZGVyJHNlKSkpDQpwYW5kZXI6OnBhbmRlcihyZXN1bHRzX2JlaF9nZW5kZXIpDQojIHZlcnkgc2lnIGVmZmVjdCBvZiBnZW5kZXIgY292YXIhIFBvc2l0aXZlLCBtZWFuaW5nIHRoYXQgd29tZW4gb24gYXZlcmFnZSBzY29yZSBoaWdoZXIgKGkuZS4gbW9yZSBwb3NpdGl2ZSkgb24gZXRobmljIG1pbm9yaXR5IGF0dGl0dWRlcy90aGVybW9tZXRlci4NCg0KIyBhZGQgZXRobmljaXR5IGVmZmVjdA0KbXllZmZfM2IgPC0gc2V0X2VmZmVjdChteWVmZl8zYSwgZGVwdmFyID0gImJlaHkiLCBjKGVmZkZyb20sIGF2WEFsdCksIGNvdmFyMSA9ImV0aG5pY19jb3ZhciIpDQoNCmJlaF9ldGhuaWMgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YV8yLCBlZmZlY3RzID0gbXllZmZfM2IsIHJldHVybkRlcHMgPSBULCBwcmV2QW5zID0gYmVoX2dlbmRlcikNCmJlaF9ldGhuaWMgIyBhbHNvIGNvbnZlcmdlcyENCg0KIyBhZGQgY29udHJvbCB2YXJpYWJsZSBlZmZlY3RzOiBldGhuaWMgbWlub3JpdHkgZnJpZW5kcyBhbmQgdGhlcm1vbWV0ZXIgd29tZW4NCm15ZWZmXzNkIDwtIHNldF9lZmZlY3QobXllZmZfM2IsIGRlcHZhciA9ICJiZWh5IiwgYyhlZmZGcm9tLCBhdlhBbHQpLCBjb3ZhcjEgPSJlbWZyaWVuZHNfY292YXIiKQ0KbXllZmZfM2QgPC0gc2V0X2VmZmVjdChteWVmZl8zZCwgZGVwdmFyID0gImJlaHkiLCBjKGVmZkZyb20sIGF2WEFsdCksIGNvdmFyMSA9InRoZXJtb3dfY292YXIiKQ0KDQpiZWhfY29udHJvbHMgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YV8yLCBlZmZlY3RzID0gbXllZmZfM2QsIHJldHVybkRlcHMgPSBULCBwcmV2QW5zID0gYmVoX2V0aG5pYykNCmJlaF9jb250cm9scyAjIGNvbnZlcmdlcw0KDQpyZXN1bHRzX2JlaF9jb250cm9scyA8LSBkYXRhLmZyYW1lKA0KICBlZmZlY3QgPSBiZWhfY29udHJvbHMkZWZmZWN0cyRlZmZlY3ROYW1lLA0KICBiID0gYmVoX2NvbnRyb2xzJHRoZXRhLA0KICBzZSA9IGJlaF9jb250cm9scyRzZSwNCiAgdCA9IGJlaF9jb250cm9scyR0aGV0YSAvIGJlaF9jb250cm9scyRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKGJlaF9jb250cm9scyR0aGV0YSAvIGJlaF9jb250cm9scyRzZSkpKQ0KcGFuZGVyOjpwYW5kZXIocmVzdWx0c19iZWhfY29udHJvbHMpDQojIHN0aWxsIHNpZyBhdmVyYWdlIGFsdGVyIGVmZmVjdC4gYWZ0ZXIgY29udHJvbGxpbmcgdGhvdWdoLCBnZW5kZXIgaGFzIG5vIGxvbmdlciBhbiBlZmZlY3Qgb24gZW0gYXR0aXR1ZGVzLCBidXQgZXRobmljaXR5IHN0aWxsIGRvZXMuIEludGVyZXN0aW5nbHksIGF0dGl0dWRlcyB0b3dhcmRzIHdvbWVuIGRvIG5vdCBoYXZlIGFuIGVmZmVjdCBvbiBhdHRpdHVkZXMgdG93YXJkcyBldGhuaWMgbWlub3JpdGllcy4gQnV0IHRoZSBudW1iZXIgb2YgZXRobmljIG1pbm9yaXR5IGZyaWVuZHMgZG9lcyBwbGF5IGFuIGltcG9ydGFudCByb2xlLiBJbnRlcmVzdGluZ2x5LCB0aGlzIGlzIGEgbmVnYXRpdmUgZWZmZWN0LCBtZWFuaW5nIHRoYXQgbW9yZSBlbSBmcmllbmRzIGxlYWRzIHRvIGEgbG93ZXIgdGhlcm1vbWV0ZXIgc2NvcmUgYW5kIHRoZXJlZm9yZSBtb3JlIG5lZ2F0aXZlIGVtIGF0dGl0dWRlcyAoPyEpDQoNCg0KIyBhbmQgZmluYWxseSBhZGQgdGhlIGVmZmVjdHMgSSBhbSBtb3N0IGludGVyZXN0ZWQgaW4sIHRoZSBkeWFkaWMgZWZmZWN0cyBvZiBwcmltYXJ5IG91dGdyb3VwIGZyaWVuZHNoaXANCm15ZWZmXzNjIDwtIHNldF9lZmZlY3QobXllZmZfM2IsIGRlcHZhciA9ICJiZWh5IiwgYyh0b3RXQWx0LCBhdlNpbVcpLCBjb3ZhcjEgPSAibmV0eSIsIGNvdmFyMiA9ICJjb3Zhcl9nZW5kZXJfZHlhZHMiKQ0KbXllZmZfM2MNCg0KIyBiZWhfZHlhZHMgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YV8yLCBlZmZlY3RzID0gbXllZmZfM2MsIHJldHVybkRlcHMgPSBULCBwcmV2QW5zID0gYmVoX2V0aG5pYykNCiMgYmVoX2R5YWRzICMgaGFkICB0byBpbmNyZWFzZSB0aGUgdGhldGFCb3VuZCBhbmQgY29udmVyZ2VuY2UgaXMgcXVpdGUgaGlnaA0KDQojIGxldCdzIHRyeSB3aXRoIGEgZGlmZmVyZW50IGFsZ29yaXRobQ0KbXlBbGdvcml0aG0yIDwtIHNpZW5hQWxnb3JpdGhtQ3JlYXRlKHByb2puYW1lID0gIm5ldCIsIGNvbmQgPSBGLCBuMz01MDAwKQ0KDQojIGJlaF9keWFkczIgPC0gc2llbmEwNyhteUFsZ29yaXRobTIsIGRhdGEgPSBteWRhdGFfMiwgZWZmZWN0cyA9IG15ZWZmXzNjLCByZXR1cm5EZXBzID0gVCwgcHJldkFucyA9IGJlaF9keWFkcywgdGhldGFCb3VuZCA9IDUwMDApICMgc3RpbGwgbmVlZCB0byBpbmNyZWFzZSB0aGUgdGhldGFCb3VuZCAoYSBsb3QhISkNCiMgYmVoX2R5YWRzMiAjIGNvbnZlcmdlbmNlIGlzIHN0aWxsIHRvbyBoaWdoLCBhbHRob3VnaCBpbXByb3ZlZCBhIGxpdHRsZSBiaXQNCg0KIyByZXN1bHRzX2JlaF9keWFkczIgPC0gZGF0YS5mcmFtZSgNCiAgIyBlZmZlY3QgPSBiZWhfZHlhZHMyJGVmZmVjdHMkZWZmZWN0TmFtZSwNCiAjICBiID0gYmVoX2R5YWRzMiR0aGV0YSwNCiAjICBzZSA9IGJlaF9keWFkczIkc2UsDQogIyAgdCA9IGJlaF9keWFkczIkdGhldGEgLyBiZWhfZHlhZHMyJHNlLA0KICMgIHAgPSAyICogcG5vcm0oLWFicyhiZWhfZHlhZHMyJHRoZXRhIC8gYmVoX2R5YWRzMiRzZSkpKQ0KIyBwYW5kZXI6OnBhbmRlcihyZXN1bHRzX2JlaF9keWFkczIpDQojIGluIHRoaXMgbW9kZWwsIG5vbmUgb2YgdGhlIGJlaGF2aW9yYWwgZWZmZWN0cyBhcmUgc2lnbmlmaWNhbnQuIEJ1dCBub3RlOiBjYW4gbm90IHRydXN0IHRoZXNlIHJlc3VsdHMgYmVjYXVzZSBvZiBoaWdoIGNvbnZlcmdlbmNlDQoNCiMgSSBjb25jbHVkZSB0aGF0IHRoaXMgbW9kZWwgaXMgdG9vIGNvbXBsaWNhdGVkIHRvIHJ1biBvbiB0aGlzIGRhdGEuIFRoZSBmYWN0IHRoYXQgaXQgY2FuIG5vdCBjb252ZXJnZSBpcyBhbHNvIGtub3dsZWRnZS4NCmBgYA0KDQo8YnI+DQoNCiMjIyMgKkZlZWRiYWNrIG1lY2hhbmlzbSAvIFNlbGVjdGlvbiBlZmZlY3QqDQoNCkZpbmFsbHksIEkgcHJlZGljdGVkIGEgc2VwYXJhdGUgbW9kZWwgd2hlcmUgSSB1c2UgdGhlIGJlaGF2aW9yYWwgb3V0Y29tZSAoaS5lLiBldGhuaWMgbWlub3JpdHkgYXR0aXR1ZGVzKSB0byBwcmVkaWN0IHRoZSBuZXR3b3JrLiBUaGlzIHdpbGwgcHJvdmlkZSBpbnNpZ2h0cyBpbnRvIHNlbGVjdGlvbiBtZWNoYW5pc21zLCBvciBpbiBvdGhlciB3b3Jkczogd2hldGhlciBzdHVkZW50cyBhcmUgbW9yZSBsaWtlbHkgdG8gYmVmcmllbmQgb3RoZXJzIGJhc2VkIG9uIHRoZWlyIGV0aG5pYyBtaW5vcml0eSBhdHRpdHVkZXMuDQoNClRoZSBhbmFseXNpcyBzaG93cyB2ZXJ5IGNsZWFyIHJlc3VsdHM6IHRoZSBldGhuaWMgbWlub3JpdHkgYXR0aXR1ZGVzIG9mIHN0dWRlbnRzIGRvIG5vdCBwcmVkaWN0IHRoZSBuZXR3b3JrIG91dGNvbWUgKCpiKiA9IDAuMDAwOCwgKnAqID0gLjkxMyksIGV2ZW4gaW4gYSBzaW1wbGUgbW9kZWwgdW5jb250cm9sbGVkIGZvciBvdGhlciBuZXR3b3JrIGR5bmFtaWNzLiBOZWl0aGVyIGRvIHRoZSBhdHRpdHVkZXMgb2YgYWx0ZXJzICgqYiogPSAtMC4wMDAzLCAqcCogPSAuOTYzKSwgbm9yIHRoZSBsZXZlbCBvZiBzaW1pbGFyaXR5L2RpZmZlcmVuY2UgYmV0d2VlbiB0aGVtICgqYiogPSAwLjAwMywgKnAqID0gLjUxMCkuIFRoZXNlIGZpbmRpbmdzIGNsZWFybHkgcmVqZWN0IHRoZSBpZGVhIG9mIHNlbGVjdGlvbiBlZmZlY3RzIGFuZCB0aGVyZWZvcmUgYWxzbyByZWplY3QgSDIuDQoNCmBgYHtyfQ0KIyBub3csIGZpbmFsbHksIGxldCdzIGxvb2sgZm9yIGZlZWRiYWNrIG1lY2hhbmlzbXMNCm15ZWZmXzQgPC0gaW5jbHVkZUVmZmVjdHMobXllZmZfM2MsIGVnb1gsIGFsdFgsIGFic0RpZmZYLCBpbnRlcmFjdGlvbjEgPSAiYmVoeSIpDQoNCiMgYmVoX2ZlZWRiYWNrIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGFfMiwgZWZmZWN0cyA9IG15ZWZmXzQsIHJldHVybkRlcHMgPSBULCBwcmV2QW5zID0gYmVoX2dlbmRlcikNCiMgICMgVGhpcyBkb2Vzbid0IHdvcmssIGNvbnZlcmdlbmNlIHdhYWF5IHRvbyBoaWdoDQoNCiMgbmV3IGVmZmVjdHMgc3RydWN0dXJlIHRvIGNsZWFuIGl0IG91dCBhbmQgaG9wZWZ1bGx5IGhlbHAgd2l0aCBjb252ZXJnZW5jZQ0KbXllZmZfZiA8LSBnZXRFZmZlY3RzKG15ZGF0YV8yKQ0KbXllZmZfZiA8LSBpbmNsdWRlRWZmZWN0cyhteWVmZl9mLCBlZ29YLCBhbHRYLCBhYnNEaWZmWCwgaW50ZXJhY3Rpb24xID0gImJlaHkiKQ0KDQpteWVmZl9mWzEsXSRmaXggPC0gVFJVRSANCm15ZWZmX2ZbMSxdJGluaXRpYWxWYWx1ZSA8LSAyMA0KDQpteWVmZl9mIDwtIHNldEVmZmVjdChteWVmZl9mLCANCiAgICAgICAgICAgICAgICAgICBSYXRlLCANCiAgICAgICAgICAgICAgICAgICBuYW1lID0gImJlaHkiLCAgICAgICANCiAgICAgICAgICAgICAgICAgICB0eXBlID0gInJhdGUiLCAgICAgICAgICAgDQogICAgICAgICAgICAgICAgICAgcGVyaW9kID0gMSwgICAgICAgICAgICAgIA0KICAgICAgICAgICAgICAgICAgIGluaXRpYWxWYWx1ZSA9IDUwLCAgICAgIA0KICAgICAgICAgICAgICAgICAgIGZpeCA9IFRSVUUpICANCm15ZWZmX2YNCg0KbmV0X2ZlZWRiYWNrIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGFfMiwgZWZmZWN0cyA9IG15ZWZmX2YsIHJldHVybkRlcHMgPSBUKQ0KbmV0X2ZlZWRiYWNrICMgd29ya3Mgd2VsbCwgY29udmVyZ2VuY2UgaXMgZ3JlYXQNCg0KcmVzdWx0c19uZXRfZmVlZGJhY2sgPC0gZGF0YS5mcmFtZSgNCiAgZWZmZWN0ID0gbmV0X2ZlZWRiYWNrJGVmZmVjdHMkZWZmZWN0TmFtZSwNCiAgYiA9IG5ldF9mZWVkYmFjayR0aGV0YSwNCiAgc2UgPSBuZXRfZmVlZGJhY2skc2UsDQogIHQgPSBuZXRfZmVlZGJhY2skdGhldGEgLyBuZXRfZmVlZGJhY2skc2UsDQogIHAgPSAyICogcG5vcm0oLWFicyhuZXRfZmVlZGJhY2skdGhldGEgLyBuZXRfZmVlZGJhY2skc2UpKSkNCnBhbmRlcjo6cGFuZGVyKHJlc3VsdHNfbmV0X2ZlZWRiYWNrKQ0KIyBubyBzaWcgZWZmZWN0cyBvZiBiZWhhdmlvciBvbiBuZXR3b3JrOyBub3IgZnJvbSBhbHRlci9lZ28sIG5vciBmcm9tIGFic0RpZmYNCmBgYA0KDQo8YnI+DQoNCiMjIyMgKlJlbGF0aXZlIGluZmx1ZW5jZSoNCg0KTmV4dCwgSSBleGFtaW5lZCB0aGUgcmVsYXRpdmUgaW5mbHVlbmNlIG9mIG15IGxhc3QgY29udmVyZ2luZyBmdWxsIGJlaGF2aW9yYWwgbW9kZWwuIEFzIGFsc28gcmVmbGVjdGVkIGluIHRoZSBzaWduaWZpY2FuY2Ugb2YgdGhlIGVzdGltYXRlcywgd2Ugc2VlIGEgaHVnZSBpbXBvcnRhbmNlIChpLmUuIHJlbGF0aXZlIGluZmx1ZW5jZSkgb2YgYXZlcmFnZSBhbHRlciBlZmZlY3RzLiBUaGlzIG1lYW5zIHRoYXQgdGhlIGF2ZXJhZ2UgbGV2ZWwgb2YgZXRobmljIG1pbm9yaXR5IGF0dGl0dWRlcyBvZiBzb21lb25lJ3MgZnJpZW5kcyBwbGF5cyBhIG1ham9yIHJvbGUgaW4gdGhlaXIgZGVjaXNpb24gbWFraW5nIG9uIHdoZXRoZXIgdG8gY2hhbmdlIHRoZWlyIG93biBhdHRpdHVkZXMuIEFwYXJ0IGZyb20gdGhlIGxpbmVhciBhbmQgcXVhZHJhdGljIHNoYXBlLCB3ZSBhbHNvIHNlZSBhIGJpZyBlZmZlY3Qgb2YgdGhlIG51bWJlciBvZiBldGhuaWMgbWlub3JpdHkgZnJpZW5kcyB0aGF0IHN0dWRlbnRzIGhhdmUuDQoNCmBgYHtyfQ0KIyBwYW5kZXI6OnBhbmRlcihyZXN1bHRzX2JlaF9jb250cm9scykNCg0KIyBnZXQgcGFyYW1ldGVycw0KdGhldGEuZXZhbCA8LSBiZWhfY29udHJvbHMkdGhldGENCg0KIyBhbmQgZWZmZWN0cw0KbXllZmYuZXZhbCA8LSBiZWhfY29udHJvbHMkZWZmZWN0cw0KDQojIHVzZSBzaWVuYVJJKCkNCmxpYnJhcnkoUnNpZW5hVHdvU3RlcCkNClJJX2JlaCA8LSBpbnRlcnByZXRfc2l6ZSh4ID0gYmVoX2NvbnRyb2xzLA0KICAgICAgICAgICAgICAgICAgICAgZGF0YSA9IG15ZGF0YV8yLCANCiAgICAgICAgICAgICAgICAgICAgIHRoZXRhID0gdGhldGEuZXZhbCwgDQogICAgICAgICAgICAgICAgICAgICBhZGRQaWVDaGFydCA9IFQsIA0KICAgICAgICAgICAgICAgICAgICAgbGVnZW5kID0gVCwNCiAgICAgICAgICAgICAgICAgICAgIGdldENoYW5nZVN0YXRzID0gVCkNClJJX2JlaA0KDQojIGFuZCBwbG90IChib3RoIG5ldHkgYW5kIGJlaHkpOg0KIyBwbG90KFJJX2JlaFtbMV1dLCBhZGRQaWVDaGFydCA9IFRSVUUsIGxlZ2VuZENvbHVtbnMgPSAyKSAjIGZvciBuZXR5DQpwbG90KFJJX2JlaFtbMl1dLCBhZGRQaWVDaGFydCA9IFRSVUUsIGxlZ2VuZENvbHVtbnMgPSAyKSAjIGZvciBiZWh5DQpgYGANCg0KPGJyPg0KDQojIyMjICpHb29kbmVzcyBvZiBGaXQqDQoNCkZpbmFsbHksIEkgaW5zcGVjdGVkIHRoZSBHT0Ygb2YgdGhlIGJlaGF2aW9yIGRpc3RyaWJ1dGlvbiBpbiB0aGlzIG1vZGVsLiBBcyBzZWVuIGJlbG93LCB0aGUgbW9kZWwgZ2VuZXJhbGx5IGZvbGxvd3MgdGhlIG92ZXJhbGwgc2hhcGUgb2YgdGhlIGRpc3RyaWJ1dGlvbi4gSG93ZXZlciwgdGhlIGFjdHVhbCBiZWhhdmlvciBkaXN0cmlidXRpb24gKGFzIHZpc3VhbGl6ZWQgYnkgdGhlIHJlZCBkb3RzKSBhY3R1YWxseSBzZWVtcyB0byBmb2xsb3cgYW4gUy1zaGFwZSwgYWtpbiB0byBhIGxvZ2lzdGljIGZ1bmN0aW9uLCByYXRoZXIgdGhhbiBhIGxpbmVhciBvciBxdWFkcmF0aWMgc2hhcGUuIFRoZSBlc3RpbWF0ZWQgbW9kZWwsIG9uIHRoZSBvdGhlciBoYW5kLCBwcmVkaWN0cyBhIG1vcmUgbGluZWFyIHNoYXBlLiBUaGlzIG1lYW5zIHRoYXQgYXJvdW5kIHRoZSBtaWQtcG9pbnQgb2YgNTAgKGkuZS4gbmV1dHJhbCBhdHRpdHVkZXMpLCB0aGUgbW9kZWwgdW5kZXJlc3RpbWF0ZXMgdGhlIHNoYXJwIGp1bXAgaW4gZnJlcXVlbmN5IGFuZCBsaWtlbHkgdW5kZXJlc3RpbWF0ZXMgdGhlIGFtb3VudCBvZiBzdHVkZW50cyB3aG8gaG9sZCBuZXV0cmFsIGF0dGl0dWRlcy4gSW4gZm9sbG93LXVwIHJlc2VhcmNoLCBhIGxvZ2lzdGljIGZ1bmN0aW9uIGZvciB0aGUgYmVoYXZpb3JhbCBldmFsdWF0aW9uIGZ1bmN0aW9uIGNvdWxkIHBvc3NpYmx5IGJlIGFkZGVkIHRvIGFjY291bnQgZm9yIHRoZSBkaXZlcmdpbmcgc2hhcGUgb2YgdGhlIGJlaGF2aW9yIGRpc3RyaWJ1dGlvbi4NCg0KYGBge3J9DQpnb2ZfYmVoIDwtIHNpZW5hR09GKGJlaF9jb250cm9scywgQmVoYXZpb3JEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAiYmVoeSIpDQoNCnBsb3QoZ29mX2JlaCkgIyBiZWhhdmlvciBkaXN0cmlidXRpb24NCiMgbG9va3MgZ29vZCwgYnV0IHRoZSBuZXV0cmFsIHZhbHVlcyBhcm91bmQgNTAgc2VlbSB1bmRlcmVzdGltYXRlZCBpbiB0aGUgbW9kZWwNCmBgYA0K</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("RSiena_results.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

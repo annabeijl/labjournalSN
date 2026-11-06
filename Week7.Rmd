@@ -1,0 +1,401 @@
+---
+title: "***Lab journal Week7***"
+author: "Anna Beijl"
+date: "12 Oktober 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+# Workshop 12-10-2026
+
+<br>
+
+## *Summary*
+
+-   Everybody worked on their own projects and presented to the class. We discussed some considerations surrounding which effects to choose.
+
+-   We also worked on goodness of fit for our own models.
+
+## *Current to-do list*
+
+-   Clean up introduction chapter
+-   Write theory chapter
+-   Write data chapter
+    -   Include descriptive stats (justification on which ones)
+    -   Include visualization
+-   Write results chapter
+    -   Effects structure!!
+    -   RSiena models and interpretations
+    -   Relative influence
+    -   Goodness of fit
+-   Write conclusion and discussion chapter
+-   Clean up lab journal and website
+
+<br>
+
+------------------------------------------------------------------------
+
+# Lab journal
+
+<br>
+
+## *Dyadic effects*
+
+### Creating dyadic matrices
+
+Defining out-group friendships based on gender and ethnicity
+
+1.  CoDyadCovar = constant dyadic covariate = definiëren wie in- en outgroup van elkaar is
+2.  die interacteren met de totWAlt en avSimW
+
+```{r}
+library(RSiena)
+# GENDER
+# matrix was made based on tnss data frame, manually coded as 1 when gender of ego =/= gender of alter. matrix thus represents out-group friendships based on gender
+require(readxl)
+gender_dyads <- readxl::read_excel("./data/dyads_matrix.xlsx", col_names = F, sheet = 1)
+View(gender_dyads)
+class(gender_dyads)
+gender_dyads <- as.matrix(gender_dyads)
+
+covar_gender_dyads <- as_covariate_rsiena(gender_dyads, centered = FALSE, type = "oneMode")
+class(covar_gender_dyads)
+
+# ETHNICITY
+# matrix was made based on tnss data frame, manually coded as 1 when ethnicity of ego =/= ethnicity of alter. matrix thus represents out-group friendships
+ethnic_dyads <- readxl::read_excel("./data/dyads_matrix.xlsx", col_names = F, sheet = 2)
+View(ethnic_dyads)
+class(ethnic_dyads)
+ethnic_dyads <- as.matrix(ethnic_dyads)
+
+covar_ethnic_dyads <- as_covariate_rsiena(ethnic_dyads, centered = FALSE, type = "oneMode")
+class(covar_ethnic_dyads)
+```
+
+## *Adding effects*
+
+### First load all the data again
+
+```{r}
+library(haven)
+tnss_net <- read_sav("./data/TNSS_wave_2010_mentors.sav")
+tnss_pup10 <- read_sav("./data/TNSS_wave_2010_pupils.sav")
+tnss_pup11 <- read_sav("./data/TNSS_wave_2011_pupils.sav")
+library(dplyr)
+library(tidyverse)
+tnss <- left_join(tnss_net, tnss_pup10)
+# view(tnss)
+
+tnss_pup10 <- tnss_pup10 %>% 
+  rownames_to_column(var = "id") 
+
+tnss_pup11 <- tnss_pup11 %>% 
+  rownames_to_column(var = "id") 
+
+tnss_2waves <- left_join(tnss_pup10, tnss_pup11, by=c("id"))
+# view(tnss_2waves)
+tnss_2waves_c5 <- tnss_2waves %>%
+  filter(IDClass == 5)
+view(tnss_2waves_c5)
+
+c5 <- tnss %>% 
+  filter(IDClass == 5)
+
+c5_net <- c5 %>%
+  select(fr_1:fr_28)
+
+net <- as.matrix(c5_net)
+sum(diag(net) != 0)
+
+view(c5_net)
+length(c5_net)
+
+net2 <- net
+
+net2[1,2] <- 1
+
+library(RSiena)
+nety <- sienaDependent(array(data = c(net, net2), dim = c(dim(net), 2)), allowOnly = FALSE)
+
+# DV: BEHAVIOR (ETHNIC MINORITY ATTITUDES)
+
+id <- c5 %>% 
+  dplyr::select("IDresp")
+
+behy_pre <- tnss_2waves %>% 
+  filter(IDresp.x %in% c5$IDresp) %>% 
+  dplyr::select("IDresp.x", "thermo_minority", "thermo_minority_2") %>% 
+  as.matrix() %>% 
+  data.frame
+
+id <- left_join(id, behy_pre, by=join_by(IDresp == IDresp.x) )
+
+behy <- id %>% dplyr::select("thermo_minority", "thermo_minority_2") %>% 
+  as.matrix()
+behy
+
+behy <- sienaDependent(behy, type = c("behavior"))
+
+# gender
+class(c5$gender)
+gender <- as.numeric(c5$gender)
+class(gender)
+gender <- as.vector(gender) # 1 = woman
+gender_covar <- coCovar(gender) # = constant covariate
+class(gender_covar)
+
+# ethnicity
+class(c5$ethnicity)
+ethnic <- as.vector(ifelse(c5$ethnicity == 1, 0, 1)) # recode so that 1 = migration background, 0 = Dutch
+ethnic_covar <- coCovar(ethnic)
+class(ethnic_covar)
+```
+
+### Define effects structures
+
+```{r}
+mydata_0 <- sienaDataCreate(nety, gender_covar, ethnic_covar) # alleen netwerk y
+mydata_1 <- sienaDataCreate(nety, gender_covar, ethnic_covar, covar_gender_dyads, covar_ethnic_dyads, behy)
+
+# myeff_simple <- getEffects(mydata_1)
+myeff_00 <- getEffects(mydata_1)
+myeff_01 <- getEffects(mydata_1)
+myeff_02 <- getEffects(mydata_1)
+myeff_03 <- getEffects(mydata_1)
+myeff_04 <- getEffects(mydata_1)
+myeff_2 <- getEffects(mydata_1)
+effectsDocumentation(myeff_2)
+
+myeff_001 <- getEffects(mydata_0)
+myeff_001a <- getEffects(mydata_0)
+
+# structural network effects (control)
+myeff_00 <- includeEffects(myeff_00, density)
+myeff_01 <- includeEffects(myeff_00, transTrip)
+myeff_02 <- includeEffects(myeff_01, inPop, outAct, outPop)
+myeff_001 <- includeEffects(myeff_001, density, transTrip, inPop, outAct, outPop)
+myeff_001a <- includeEffects(myeff_001a, density)
+myeff_001b <- includeEffects(myeff_001a, transTrip)
+myeff_001c <- includeEffects(myeff_001b, inPop, outAct)
+
+# same gender / ethnicity effecten (netwerk)
+myeff_03 <- includeEffects(myeff_02, egoX, altX, sameX, interaction1 = "gender_covar")
+# myeff_2 <- includeEffects(myeff_2, egoX, altX, sameX, interaction1 = "ethnic_covar")
+
+# gender effect (behavior)
+myeff_04 <- set_effect(myeff_02, depvar = "behy", c(effFrom, avXAlt), covar1 ="gender_covar")
+# myeff_2 <- includeEffects(myeff_2, effFrom, avXAlt, interaction1="ethnic_covar")
+
+# outgroup friendship effects (dyadic) (behavior)
+# influence of primary outgroup friendships on secondary outgroup attitudes
+myeff_2 <- set_effect(myeff_02, depvar = "behy", c(totWAlt, avSimW), covar1 = "nety", covar2 = "covar_gender_dyads")
+
+# myeff_2 <- set_effect(myeff_2, depvar = "behy", c(totWAlt, avSimW), covar1 = "nety", covar2 = "covar_ethnic_dyads")
+
+# waarom werkt dit niet?
+# myeff_2 <- includeInteraction(myeff_2, egoX, X, totWAlt, interaction1 = c("covar_gender_dyads", ""))
+
+# Adding influence effects for indegree, outdegree and assimilation
+myeff_2 <- includeEffects(myeff_2, name = "behy", avAlt, indeg, outdeg, interaction1 = "nety")
+
+# effecten van netwerk op secondary outgroup attitudes
+myeff_2 <- includeEffects(myeff_2, egoX, altX, absDiffX, interaction1 = "behy")
+
+```
+
+## Estimate models
+
+```{r}
+# Set algorithm
+myCoEvAlgorithm <- sienaAlgorithmCreate(projname = "test")
+
+# fix the rate parameter because of stationary SAOM
+
+myeff_00[1,]$fix <- TRUE 
+myeff_00[1,]$initialValue <- 20
+myeff_00
+
+myeff_01[1,]$fix <- TRUE 
+myeff_01[1,]$initialValue <- 20
+myeff_01
+
+myeff_02[1,]$fix <- TRUE 
+myeff_02[1,]$initialValue <- 20
+myeff_02
+
+myeff_03[1,]$fix <- TRUE 
+myeff_03[1,]$initialValue <- 20
+myeff_03
+
+myeff_04[1,]$fix <- TRUE 
+myeff_04[1,]$initialValue <- 20
+myeff_04
+
+myeff_001c[1,]$fix <- TRUE
+myeff_001c[1,]$initialValue <- 20
+myeff_001c
+
+# paar robustness checks; kijken wat er gebeurt met behy rate parameter en met de rest als de nety rate op andere waarde staat
+
+# leeg model
+myCoEvAlgorithm2 <- sienaAlgorithmCreate(projname = "test", n3=5000)
+
+# model_001a <- siena07(myCoEvAlgorithm2, data = mydata_0, effects = myeff_001a, returnDeps = TRUE)
+# model_001a # dit gaat goed, maar rate blijft niet vastzitten?
+
+# model_001b <- siena07(myCoEvAlgorithm2, data = mydata_0, effects = myeff_001b, returnDeps = TRUE)
+# model_001b # zelfde verhaal: goede waardes en snel, maar rate wordt ook berekend for some reason
+
+# model_001c <- siena07(myCoEvAlgorithm2, data = mydata_0, effects = myeff_001c, returnDeps = TRUE)
+# model_001c # op dit punt gaat het echt mis. "SE not reliable, linear combination for which the data carries no information". "Warning: noninvertible estimated covariance matrix". alle SE worden NA (behalve de rate??!!)
+
+# model_001 # dit convergeert niet. "SE not reliable"
+# met ander algoritme / opnieuw runnen ook niet
+
+# model_00 <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_00, returnDeps = TRUE)
+# saveRDS(model_00, "model_00.rds")
+# model_00 <- readRDS("model_00.rds")
+# model_00
+
+# model_01 <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_01, returnDeps = TRUE)
+# saveRDS(model_01, "model_01.rds")
+# model_01 <- readRDS("model_01.rds")
+# model_01 # convergence wordt een stuk beter. alleen de behavioral rate is problematisch; misschien verhoogt dat ook de algemene convergence?
+
+# model_02 <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_02, returnDeps = TRUE)
+#saveRDS(model_02, "model_02.rds")
+#model_02 <- readRDS("model_02.rds")
+#model_02 # nu wordt het weer slechter... 
+
+#model_03 <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_03, returnDeps = TRUE)
+#saveRDS(model_03, "model_03.rds")
+#model_03 <- readRDS("model_03.rds")
+#model_03 # convergence nog steeds te hoog
+
+#model_04 <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_04, returnDeps = TRUE)
+#saveRDS(model_04, "model_04.rds")
+#model_04 <- readRDS("model_04.rds")
+#model_04 # convergence nog steeds te hoog
+
+#model_simple <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_simple, returnDeps = TRUE)
+#saveRDS(model_simple, "model_simple.rds")
+#model_simple <- readRDS("model_simple.rds")
+#model_simple
+
+
+#results0 <- data.frame(
+#  effect = model_simple$effects$effectName,
+#  b = model_simple$theta,
+#  se = model_simple$se,
+#  t = model_simple$theta / model_simple$se,
+#  p = 2 * pnorm(-abs(model_simple$theta / model_simple$se)))
+#pander::pander(results0)
+
+#model2 <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_2, returnDeps = TRUE)
+#saveRDS(model2, "model2.rds")
+#model2 <- readRDS("model2.rds")
+#model2
+```
+
+Convergence is super high. When I set the rate parameter to 15, things get considerably worse and convergence ratio and SEs are NA (how is that possible).
+
+```{r}
+# remove some effects for better convergence
+myeff_3 <- getEffects(mydata_1)
+myeff_3 <- includeEffects(myeff_3, density, transTrip, inPop, outAct, , outPop)
+
+# same gender / ethnicity effecten
+myeff_3 <- includeEffects(myeff_3, egoX, altX, sameX, avXAlt, interaction1 = "gender_covar")
+myeff_3 <- includeEffects(myeff_3, egoX, altX, sameX, avXAlt, interaction1 = "ethnic_covar")
+
+# influence of primary outgroup friendships on secondary outgroup attitudes (only gender)
+myeff_3 <- set_effect(myeff_3, depvar = "behy", totWAlt, covar1 = "nety", covar2 = "covar_gender_dyads")
+myeff_3 <- set_effect(myeff_3, depvar = "behy", avSimW, covar1 = "nety", covar2 = "covar_gender_dyads")
+
+# effecten van netwerk op secondary outgroup attitudes
+myeff_3 <- includeEffects(myeff_3, egoX, altX, absDiffX, interaction1 = "behy")
+
+myeff_3[1,]$fix <- TRUE # fix the rate parameter because of stationary SAOM
+myeff_3[1,]$initialValue <- 10
+myeff_3
+
+# model3 <- siena07(myCoEvAlgorithm, data = mydata_1, effects = myeff_3, returnDeps = TRUE)
+# saveRDS(model3, "model3.rds")
+# model3 <- readRDS("model3.rds")
+# model3
+# convergence and all SEs are NA ?!
+
+# results3 <- data.frame(
+ # effect = model3$effects$effectName,
+ # b = model3$theta,
+ # se = model3$se,
+ # t = model3$theta / model3$se,
+ # p = 2 * pnorm(-abs(model3$theta / model3$se)))
+#pander::pander(results3)
+```
+
+<br>
+
+------------------------------------------------------------------------
+
+## *Goodness of fit*
+
+```{r}
+
+# The geodesic distribution is not available from within RSiena, and therefore is copied from the help page of sienaGOF-auxiliary:
+
+GeodesicDistribution <- function(i, data, sims, period, groupName, varName, levls = c(1:5, Inf), cumulative = TRUE,
+    ...) {
+    x <- networkExtraction(i, data, sims, period, groupName, varName)
+    require(sna)
+    a <- sna::geodist(symmetrize(x))$gdist
+    if (cumulative) {
+        gdi <- sapply(levls, function(i) {
+            sum(a <= i)
+        })
+    } else {
+        gdi <- sapply(levls, function(i) {
+            sum(a == i)
+        })
+    }
+    names(gdi) <- as.character(levls)
+    gdi
+}
+
+# The following function is taken from the help page for sienaTest
+
+#testall <- function(ans) {
+#    for (i in which(ans$test)) {
+#        sct <- score.Test(ans, i)
+#        cat(ans$requestedEffects$effectName[i], "\n")
+#        print(sct)
+#    }
+#    invisible(score.Test(ans))
+#}
+```
+
+```{r}
+#gofi0 <- sienaGOF(ans, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "nety")
+#gofo0 <- sienaGOF(ans, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = "nety")
+#gof0.gd <- sienaGOF(ans, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "nety")
+#gof0.tc <- sienaGOF(ans, TriadCensus, verbose = FALSE, join = TRUE, varName = "nety")
+
+
+#plot(gofi0) # indegree distribution
+#plot(gofo0) # outdegree distribution
+#plot(gof0.gd) # geodesic distance
+#plot(gof0.tc, center = TRUE, scale = TRUE) # triad census
+```
+
+-   Indegree distribution looking good :D p-values as well as dots
+
+-   Outdegree distribution also looking good
+
+-   Geodesic distances problematic. People with distance = 2 and 3 are very overestimated. 5 very underestimated
+
+-   Triad census –\> 201 is overestimated. 120D, 120U, 210 and 300 underestimated.

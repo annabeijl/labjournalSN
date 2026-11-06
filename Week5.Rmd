@@ -1,7 +1,7 @@
 ---
-title: "Week5"
+title: "**Lab Journal Week 5**"
 author: "Anna Beijl"
-date: "2026-09-28"
+date: "1 October 2026"
 output: html_document
 ---
 
@@ -9,7 +9,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<br>
+
 # Workshop 28-09-2026
+
+<br>
 
 ## *Summary*
 
@@ -17,15 +21,29 @@ In the workshop we did the following:
 
 -   Student presentations on network visualization
 
--   
+-   Working on data preparation own projects
+
+    -   Stationary SAOM / short-term dynamic equilibrium
+
+-   Explanation and coding of behavioral Y
 
 ## *Current to-do list:*
 
--   x
+-   Prep my behavioral Y
+-   Read more on stationary SAOM
+-   Think about my effects structure
+-   Choose one effect in the RSiena manual to explain next time
+-   Update lab journal and website
 
 <br>
 
+------------------------------------------------------------------------
+
 # Lab journal
+
+<br>
+
+## *Visualization (cont.)*
 
 ```{r}
 rm(list = ls()) # clean workspace
@@ -103,10 +121,10 @@ view(tnss_pup10)
 
 library(igraph)
 g1 <- graph_from_adjacency_matrix(as.matrix(c5_net))
-g2 <- graph_from_adjacency_matrix(as.matrix(c3_net))
+# g2 <- graph_from_adjacency_matrix(as.matrix(c3_net))
 colorgender <- ifelse(c5$gender == 1, "hotpink", "olivedrab2")
 colorattgen <- ifelse(c5$comfyM == 1 | c5$comfyM == 2, "pink", "red") # rood = minder comfy met meisjes. kan dit ook met een gradient?
-coloratteth <- ifelse(c5$comfyEM == 1 | c5$comfyM == 2, "lightblue", "blue") # donkerblauw = minder comfy met ethnic minorities
+coloratteth <- ifelse(c5$comfyEM == 1 | c5$comfyEM == 2, "lightblue", "blue") # donkerblauw = minder comfy met ethnic minorities
 
 # to remove vertex labels:  vertex.label = NA,
 
@@ -122,16 +140,16 @@ plot(g1,
      edge.curved = 0, 
      edge.arrow.size = 0.4) 
 
-plot(g2,
-     vertex.color = ifelse(c5$gender == 1, "hotpink", "olivedrab2"), 
-     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
-     vertex.frame.color = "gray",  
-     vertex.label.color = "black",  
-     vertex.label.family = "Helvetica", 
-     vertex.label.cex = 0.5,  
-     vertex.label.dist = 0.8,  
-     edge.curved = 0, 
-     edge.arrow.size = 0.4) 
+# plot(g2,
+ #    vertex.color = ifelse(c5$gender == 1, "hotpink", "olivedrab2"), 
+ #    vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+ #    vertex.frame.color = "gray",  
+ #    vertex.label.color = "black",  
+ #    vertex.label.family = "Helvetica", 
+ #    vertex.label.cex = 0.5,  
+ #    vertex.label.dist = 0.8,  
+ #    edge.curved = 0, 
+ #    edge.arrow.size = 0.4) 
 
 # COLOR BASED ON ETHNICITY
 plot(g1 ,
@@ -145,16 +163,16 @@ plot(g1 ,
      edge.curved = 0, 
      edge.arrow.size = 0.4)
 
-plot(g2 ,
-     vertex.color = ifelse(c5$ethnicity == 1, "orange", "olivedrab2"), 
-     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
-     vertex.frame.color = "gray",  
-     vertex.label.color = "black",  
-     vertex.label.family = "Helvetica", 
-     vertex.label.cex = 0.5,  
-     vertex.label.dist = 0.8,  
-     edge.curved = 0, 
-     edge.arrow.size = 0.4)
+# plot(g2 ,
+ #    vertex.color = ifelse(c5$ethnicity == 1, "orange", "olivedrab2"), 
+  #   vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
+ #    vertex.frame.color = "gray",  
+  #   vertex.label.color = "black",  
+ #    vertex.label.family = "Helvetica", 
+  #   vertex.label.cex = 0.5,  
+ #    vertex.label.dist = 0.8,  
+  #   edge.curved = 0, 
+  #   edge.arrow.size = 0.4)
 
 # COLOR BASED ON COMFY WITH ETHNIC MINORITIES
 plot(g1,
@@ -168,16 +186,6 @@ plot(g1,
      edge.curved = 0, 
      edge.arrow.size = 0.4) 
 
-plot(g2,
-     vertex.color = adjustcolor(coloratteth, alpha.f = 4),
-     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
-     vertex.frame.color = "gray",  
-     vertex.label.color = "black",  
-     vertex.label.family = "Helvetica", 
-     vertex.label.cex = 0.5,  
-     vertex.label.dist = 0.8, 
-     edge.curved = 0, 
-     edge.arrow.size = 0.4) 
 
 # COLOR BASED ON COMFY WITH GIRLS
 plot(g1,
@@ -191,16 +199,6 @@ plot(g1,
      edge.curved = 0, 
      edge.arrow.size = 0.4) 
 
-plot(g2,
-     vertex.color = adjustcolor(colorattgen, alpha.f = 4),
-     vertex.size = betweenness(g1, normalized = T, directed = T) * 60 + 10,  
-     vertex.frame.color = "gray", 
-     vertex.label.color = "black",  
-     vertex.label.family = "Helvetica", 
-     vertex.label.cex = 0.5,  
-     vertex.label.dist = 0.8, 
-     edge.curved = 0, 
-     edge.arrow.size = 0.4) 
 
 # kunnen deze twee gecombineerd worden in één plot?
 
@@ -208,8 +206,6 @@ plot(g2,
 clp1 <- cluster_optimal(g1)
 plot(clp1, g1)
 
-clp2 <- cluster_optimal(g2)
-plot(clp2, g2)
 # kan ik clusteren obv een ego kenmerk?
 ?cluster_optimal
 # 5 / 6 aparte groepjes in de klas
@@ -218,3 +214,41 @@ plot(clp2, g2)
 -   Er zijn maar een paar studenten die niet oke/comfy zijn met meisjes; meer die niet oke/comfy zijn met etnische minderheden. Tolerantie mbt gender lijkt dus 'makkelijker' dan etniciteit. Dus gender als primary outgroup, ethnicity secundary?
 
 -   In beide klassen: lage density, heel erg losse vriendschappen + aparte groepjes
+
+    -   Mogelijk (deels) door nominaties mentoren? ipv eigen vriendschappen
+
+<br>
+
+------------------------------------------------------------------------
+
+## *Behavioral Y*
+
+```{r}
+behy_practice <- tnss_pup10 %>% 
+  dplyr::select("comfyM", "comfyJ", "comfyEM", "comfyNL") %>% 
+  as.matrix()
+
+behy_practice <- sienaDependent(behy_practice, type = c("behavior"))
+```
+
+<br>
+
+------------------------------------------------------------------------
+
+## *RQs + Effects*
+
+Worden tolerante mensen obv gender ook toleranter obv ethniciteit, door hun vrienden? Ofwel door de kenmerken van hun vrienden (gender), ofwel door de meningen (over etnische minderheden) van hun vrienden?
+
+-   Attitudes ego over gender minorities
+
+-   Attitudes ego over ethnic minorities
+
+-   Gender en etniciteit van ego
+
+-   Gender en etniciteit van vrienden
+
+    -   STE logica = als je meer vrienden hebt van primary outgroup (gender) wordt ego vanzelf toleranter naar secondary outgroup (etniciteit)
+
+-   Attitudes vrienden over gender minorities
+
+-   Attitudes vrienden over ethnic minorities
